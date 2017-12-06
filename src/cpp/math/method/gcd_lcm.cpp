@@ -1,16 +1,15 @@
 // %title
-// タイトル
+// GCD,LCM
 // 
 // %overview
-// ファイルの概要．
+// 最大公約数と最小公倍数
 //
 // %usage
-// int func(int x);
-// x    : 引数についての説明
-// @ret : 返り値についての説明
+// テンプレート型で実装
 //
 // %verified
-// 検証されたかどうか．
 // 
 // %references
-// 参考資料など．
+
+template<typename T> inline T gcd(T a, T b) { while(b){T t=a%b;a=b;b=t;}return a; }
+template<typename T> inline T lcm(T a, T b) { return a*b/gcd(a,b); }
