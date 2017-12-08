@@ -15,7 +15,7 @@
 // プログラミングチャレンジブック
 
 
-class rollinghash {
+class RollingHash {
     typedef unsigned long long rh_t;
     static const rh_t MD_1 = (rh_t)(1e9 + 21);
     static const rh_t PW = (rh_t)(1e9 + 7);
@@ -23,8 +23,8 @@ class rollinghash {
 public:
     vector<rh_t> hashes_[2];
 
-    rollinghash() {}
-    rollinghash(const string& s) {
+    RollingHash() {}
+    RollingHash(const string& s) {
         build(s);
     }
 
@@ -62,7 +62,7 @@ public:
         }
     }
 };
-vector<rollinghash::rh_t> rollinghash::pow_table__[2];
+vector<RollingHash::rh_t> RollingHash::pow_table__[2];
 
 
 
@@ -72,7 +72,7 @@ int main() {
     string str = "abracadabra";
     n = str.size();
 
-    rollinghash rh(str);
+    RollingHash rh(str);
 
     repeat(i, n) {
         iterate(j, i, n) {

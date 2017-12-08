@@ -15,11 +15,11 @@
 // プログラミングチャレンジブック
 
 template<typename TKEY=char, typename TVAL=int>
-struct trietree{
+struct TrieTree{
     TVAL value;
-    map<TKEY,trietree> trie;
-    trietree(TVAL v):value(v){}
-    trietree():value(0){}
+    map<TKEY,TrieTree> trie;
+    TrieTree(TVAL v):value(v){}
+    TrieTree():value(0){}
     
     template<typename IBEGIN,typename IEND>
     TVAL& operator()(IBEGIN begin, IEND end) {
