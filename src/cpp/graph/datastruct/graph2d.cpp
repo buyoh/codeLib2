@@ -1,0 +1,49 @@
+// %title
+// 無向グラフ(隣接行列)
+// 
+// %overview
+// 隣接行列を持つ．
+// 必要な空間計算量は |V|^2
+//
+// %usage
+// void connect(int from, int to, W_T dist = 1)
+// ;つなげる．ループ辺は非推奨．
+// void resize(size_t _n)
+// ;頂点数を変更する．
+// ;global変数として宣言した時に用いる．
+// inline W_T& operator()(int y, int x);
+// ;行列の値の参照
+//
+// %verified
+// 
+// %references
+//
+
+
+
+class Graph2d {
+public:
+    typedef int W_T;
+    size_t n;
+    vector<W_T> matrix;
+
+    Graph2d(size_t size) :n(size), matrix(size*size) {};
+
+    void resize(size_t s) {
+        n = s;
+        matrix.resize(n*n);
+    }
+
+    inline W_T& at(int y, int x) { return matrix[y*n + x]; }
+    inline W_T& operator()(int y, int x) { return matrix[y*n + x]; }
+    inline W_T at(int y, int x) const { return matrix[y*n + x]; }
+    inline W_T operator()(int y, int x) const { return matrix[y*n + x]; }
+
+    inline void connect(int u, int v, W_T dist = 1) {
+        at(u, v) = at(v, u) = dist;
+    }
+    inline void connect_d(int from, int to, W_T dist = 1) { // directedEdge u->v
+        at(from, to) = dist;
+    }
+};
+
