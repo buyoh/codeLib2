@@ -30,8 +30,10 @@ public:
     Graph2d(size_t size) :n(size), matrix(size*size) {};
 
     void resize(size_t s) {
-        n = s;
-        matrix.resize(n*n);
+        n = s; matrix.resize(n*n);
+    }
+    void resize(size_t s, W_T val) {
+        n = s; matrix.resize(n*n, val);
     }
 
     inline W_T& at(int y, int x) { return matrix[y*n + x]; }

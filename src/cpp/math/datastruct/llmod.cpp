@@ -24,7 +24,7 @@ public:
     llmod(ll num) :val_(cut(num)) {}
     llmod(const llmod& lm) : val_(lm.val_) {}
 
-    inline ll operator ll() const { return val_; }
+    inline operator ll() const { return val_; }
     inline ll operator *() const { return val_; }
     inline llmod& operator=(const llmod& lm) { val_ = lm.val_; return *this; }
     inline llmod& operator=(ll v) { val_ = cut(v); return *this; }
