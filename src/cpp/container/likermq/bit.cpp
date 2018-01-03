@@ -40,6 +40,8 @@ public:
         }
         return s;
     }
+    // l..rの範囲の値の和を求める
+    inline T sum(int l, int r) { return sum(r) - sum(l-1); }
     // idxの要素の値をval増やす
     void add(int idx, T val) {
         while (idx <= size_){
