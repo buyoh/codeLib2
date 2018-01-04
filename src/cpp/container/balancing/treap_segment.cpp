@@ -21,11 +21,11 @@
 // ; index番目の要素の手前にvalを挿入する．
 // void Treap::erase(int index)
 // ; index番目の要素を削除する．
-// unique_ptr<TreapNode>& Treap::find(key_t key)
-// ; keyに対応するvalのスマートポインタの参照を得る．
-// ; keyに対応するvalが存在しないなら，空のスマートポインタの参照を得る．
-// value_t& Treap::operator[](key_t key)
-// ; keyに対応するvalの参照を得る．無いなら爆発する．
+// unique_ptr<TreapNode>& Treap::find(int index)
+// ; index番目の要素のスマートポインタの参照を得る．
+// ; index番目の要素が存在しないなら，空のスマートポインタの参照を得る．
+// value_t& Treap::operator[](int index)
+// ; index番目の要素に対応するvalの参照を得る．無いなら爆発する．
 //
 // %verified
 // 
