@@ -28,6 +28,7 @@
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2521389#1 (setval, getminrange)
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2521434#1 (addvalrange, getval)
+// https://yukicoder.me/submissions/227863 (addvalrange, getminrange)
 // 
 // %references
 // プログラミングコンテストチャレンジブック
@@ -35,15 +36,16 @@
 
 
 
+
 template<typename T>
-//typedef int T;
+//typedef ll T;
 class SegmentTree {
     int size_;
     vector<T> valdata_;
-    vector<int> addtree_;
-    vector<int> maxtree_;
+    vector<T> addtree_;
+    vector<T> maxtree_;
 
-    int _geti(const vector<int>& v, int idx) const {
+    int _geti(const vector<T>& v, int idx) const {
         if (size_ - 1 <= idx) return (idx - size_ + 1);
         // if (idx < 0) return idx;
         return v[idx];
