@@ -99,7 +99,6 @@ template<typename T> inline Matrix<T>& operator+=(Matrix<T>& mat1, Matrix<T>& ma
 template<typename T> inline Matrix<T> operator+(Matrix<T>& mat1, Matrix<T>& mat2) { return Matrix<T>(mat1.height_, mat1.width_, mat1.data_ + mat2.data_); }
 
 
-// べきじょう
 template<typename T> Matrix<T> Matrix<T>::pow(long long p) {
     assert(height_ == width_);
     Matrix<T> a = *this;

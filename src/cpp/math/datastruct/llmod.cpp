@@ -38,7 +38,7 @@ public:
     inline llmod& operator++() { val_ = (val_ + 1) % MOD; return *this; }
     inline llmod operator++(int) { llmod t = *this; val_ = (val_ + 1) % MOD; return t; }
 };
-ostream& operator<<(ostream& os, const llmod& l) { os << *l; return os; }
+inline ostream& operator<<(ostream& os, const llmod& l) { os << *l; return os; }
 
 inline llmod operator+(llmod t, const llmod& r) { return t += r; }
 inline llmod operator-(llmod t, const llmod& r) { return t -= r; }

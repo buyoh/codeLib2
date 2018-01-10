@@ -23,5 +23,5 @@
 namespace {
     std::chrono::system_clock::time_point ttt;
     inline void tic() { ttt = TIME; }
-    inline void toc() { clog << "TIME : " << MILLISEC(TIME - ttt)) << '\n'; }
+    inline void toc() { clog << "TIME : " << MILLISEC(TIME - ttt) << '\n'; }
 }
