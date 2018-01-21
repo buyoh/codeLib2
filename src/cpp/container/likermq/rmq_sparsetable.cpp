@@ -16,12 +16,8 @@
 // ; i の要素の参照を得る．build後に更新してはならない．
 // void SparseTable::build()
 // ; クエリに応えられるように準備する．
-// void SegmentTree::add_valrange(int begin, int end, T e)
-// ; 区間[begin,end)にeを加算する
-// void SegmentTree::get_maxrange(int idx, T e)
-// ; 区間[begin,end)の最大値を計算する
-// void SegmentTree::get_maxrangeIdx(int idx, T e)
-// ; 区間[begin,end)の最大値が存在する要素のインデックスを取得する
+// void SparseTable::getminrangeIdx(int begin, int end)
+// ; 区間[begin,end)の最小値を計算する
 //
 // %verified
 // http://yukicoder.me/submissions/172470

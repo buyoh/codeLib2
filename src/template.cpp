@@ -14,6 +14,11 @@
 // 
 // %references
 // thanks.
+// %words
+// bsearch, nibuntansaku
+// %require
+// cpp/graph/datastruct/dgraph.cpp
+// 
 
 int func(int x){}
 
