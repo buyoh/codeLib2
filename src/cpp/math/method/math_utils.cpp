@@ -42,7 +42,7 @@ template<typename T> T fact_md(T n, T mod = MD) {
     T p = 1; for (; 1<n; p = (p*n--) % mod); return p;
 }
 template<typename T> T nPr_md(T n, T r, T mod = MD) {
-    T p = 1; for (; r<n; p = (p*n--) % mod); return p;
+    T p = 1; for (r = n - r; r<n; p = (p*n--) % mod); return p;
 }
 template<typename T> T nCr_md(T n, T r, T mod = MD) {
     if (n / 2 < r) return nCr_md(n, n - r);
