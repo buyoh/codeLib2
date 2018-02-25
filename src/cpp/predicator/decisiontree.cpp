@@ -1,3 +1,15 @@
+// %title
+// 決定木
+// 
+// %overview
+// 決定木
+//
+// %usage
+//
+// %verified
+// 
+// %references
+// 
 
 
 template<typename input_t, typename output_t>
