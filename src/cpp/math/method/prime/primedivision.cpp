@@ -18,13 +18,13 @@
 
 
 template<typename ARRAY>
-void prime_division(ARRAY& result, ll num) {
-    ll _num = num;
+void prime_division(ARRAY& result, ll _num) {
+    ll num = _num;
     while (num % 2 == 0) {
         num /= 2;
         ++result[2];
     }
-    for (ll i = 3; 1 < num && i*i <= _num; i += 2) {
+    for (ll i = 3; 1 < num && i <= _num; i += 2) {
         while (num % i == 0) {
             num /= i;
             ++result[i];
