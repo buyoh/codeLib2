@@ -53,3 +53,10 @@ template<typename T> T nCr_md(T n, T r, T mod = MD) {
 template<typename T> T nHr_md(T n, T r, T mod = MD) {
     return nCr_md(n - 1 + r, n - 1, mod);
 }
+
+// 1周をmodで表現するような角度の単位系で，
+// 角度xから角度yへ向きを変えるとき，xに加算するべき値
+inline double diffangle(double x, double y, double mod) {
+    double a1 = fmod(y-x,mod), a2 = fmod(y-x+mod,mod), a3 = fmod(y-x-mod,mod);
+    return abs(a2) < abs(a1) ? (abs(a3) < abs(a2) ? a3 : a2) : (abs(a3) < abs(a1) ? a3 : a1);
+}
