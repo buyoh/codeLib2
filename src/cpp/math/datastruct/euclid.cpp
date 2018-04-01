@@ -1,3 +1,21 @@
+// %title
+// 2次元グリッドと二次元座標
+// 
+// %overview
+// 特記事項なし
+//
+// %usage
+// 
+//
+// %verified
+// 
+// 
+// %references
+// 
+// %words
+// grid, field, point
+// %require
+// 
 
 
 struct P {
@@ -14,6 +32,8 @@ struct P {
     inline P operator-=(P p) { y -= p.y; x -= p.x; return *this; }
 };
 
+
+
 template<typename T>
 // using T = int;
 struct F {
@@ -29,8 +49,11 @@ struct F {
 
     inline void fill(T e) { std::fill(ALL(data), e); }
 
-    F<int> distance(const vector<P>& start_point, function<bool(T)> ismoveable) {
-
+    void print(ostream& os, int setw_arg = 4) {
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x)
+                os << setw(setw_arg) << operator()(y, x) << ' ';
+            os << '\n';
+        }
     }
 };
-
