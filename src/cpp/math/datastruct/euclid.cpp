@@ -22,7 +22,7 @@ struct P {
     using T = int;
     T y, x;
 
-    P(T _y, T _x) :y(_y), x(_x) {}
+    P(T _y = 0, T _x = 0) :y(_y), x(_x) {}
 
     inline bool operator == (P p) const { return y == p.y && x == p.x; }
     inline bool operator < (P p) const { return y == p.y ? x < p.x : y < p.y; }
@@ -40,14 +40,18 @@ struct F {
     int height, width;
     vector<T> data;
 
-    F(int h, int w) :height(h), width(w), data(h*w) {}
+    F(int h = 1, int w = 1) :height(h), width(w), data(h*w) {}
 
-    inline T& operator()(int y, int x) { return data[x + y * height]; }
-    inline T& operator()(P p) { return data[p.x + p.y * height]; }
-    inline T operator()(int y, int x) const { return data[x + y * height]; }
-    inline T operator()(P p) const { return data[p.x + p.y * height]; }
-
+    inline T& operator()(int y, int x) { return data[x + y * width]; }
+    inline T& operator()(P p) { return data[p.x + p.y * width]; }
+    inline T operator()(int y, int x) const { return data[x + y * width]; }
+    inline T operator()(P p) const { return data[p.x + p.y * width]; }
+    
+    inline bool safe(int y, int x) const { return 0 <= y && y < height && 0 <= x && x < width; }
+    inline bool safe(P p) const { return 0 <= p.y && p.y < height && 0 <= p.x && p.x < width; }
+        
     inline void fill(T e) { std::fill(ALL(data), e); }
+    inline void resize(int h, int w) { height = h; width = w; data.resize(h*w); }
 
     void print(ostream& os, int setw_arg = 4) {
         for (int y = 0; y < height; ++y) {
