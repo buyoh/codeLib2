@@ -14,19 +14,17 @@
 // @ret : 
 //
 // %verified
-// 
+// ABC020-C
 // %references
-//
+// めぐる式
 
 
 typedef ll bsearch_t;
-bsearch_t bin_search(bsearch_t low, bsearch_t high, function<bool(bsearch_t)> func) {
-    --low;
-    bsearch_t c;
-    while (low + 1 < high) {
-        c = (low + high) / 2;
-        (func(c) ? high : low) = c;
+bsearch_t bin_search(bsearch_t false_val, bsearch_t true_val, function<bool(bsearch_t)> func) {
+    while (abs(true_val - false_val) > 1) {
+        bsearch_t c = (true_val + false_val) / 2;
+        (func(c) ? true_val : false_val) = c;
     }
-    return high;
+    return true_val;
 }
 
