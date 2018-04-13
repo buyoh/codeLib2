@@ -50,8 +50,17 @@ template<typename T> T nCr_md(T n, T r, T mod = MD) {
         p = (((p*(n - r + 1)) % mod)*pow_md(r, mod - 2)) % mod;
     return p;
 }
-template<typename T> T nHr_md(T n, T r, T mod = MD) {
+template<typename T> inline T nHr_md(T n, T r, T mod = MD) {
     return nCr_md(n - 1 + r, n - 1, mod);
+}
+
+template<typename T> T nCr(T n, T r) {
+    if (n / 2 < r) return nCr(n, n - r);
+    T p = 1; for (T t = 1; t <= r; ++t) p = p * (n - t + 1) / t;
+    return p;
+}
+template<typename T> inline T nHr(T n, T r, T mod = MD) {
+    return nCr(n - 1 + r, n - 1, mod);
 }
 
 // 1周をmodで表現するような角度の単位系で，
