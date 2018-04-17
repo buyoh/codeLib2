@@ -24,6 +24,20 @@ using namespace std;
 typedef long long int ll;
 ```
 
+## document
+
+- sinatraによる雑な整理ツールを作っています．
+
+### setup
+
+- カレントディレクトリを `webdoc` に移動．
+- `bundle install`
+
+### 実行
+
+- カレントディレクトリを `webdoc` に移動．
+- `bundle exec ruby server.rb`
+
 ## テンプレート
 ```cpp
 // %title

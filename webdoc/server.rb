@@ -2,12 +2,15 @@ require 'sinatra'
 require 'sass'
 require 'json'
 
-require './webdoc/back/collector'
+require './back/collector'
 
 
 configure do
 
-  docs = Document.collect_documents()
+  docs = nil
+  Dir.chdir('../') do
+    docs = Document.collect_documents()
+  end
   docs.each_index do |idx|
     docs[idx][:id] = idx
   end
