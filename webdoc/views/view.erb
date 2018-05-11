@@ -41,7 +41,13 @@
 <% if @doc[:require] && !@doc[:require].empty? %>
 
 <h2>require</h2>
-<pre><%= @doc[:require] %></pre>
+<ul>
+<% @doc[:require].split.each do |req| %>
+    <% if !req.empty? %>
+        <li><a href="/search?word=<%= CGI.escape(req) %>"><%= req %></a></li>
+    <% end %>
+<% end %>
+</ul>
 
 <% end %>
 
