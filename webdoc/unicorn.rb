@@ -1,4 +1,3 @@
-@dir = "[Sinatraアプリが置いてあるフォルダへのパス]"
 worker_processes 1
 #working_directory "/my/nice/path" # 記載しておけば他のディレクトリでこのファイルを叩けなくなる
 preload_app true
