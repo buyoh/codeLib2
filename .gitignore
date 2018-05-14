@@ -48,3 +48,6 @@ Temporary Items
 
 # webdoc
 webdoc/.sass-cache
+webdoc/Gemfile.lock
+webdoc/tmp
+webdoc/log
