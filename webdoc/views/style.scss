@@ -175,6 +175,10 @@ body{
         font-weight: bolder;
     }
 
+    .text{
+        white-space: pre-line;
+    }
+
     #indexlist {
         .item{
             border-bottom: 1px dashed $accentcolor1;

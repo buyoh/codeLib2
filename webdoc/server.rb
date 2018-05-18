@@ -29,7 +29,7 @@ get '/search' do
   redirect "/", 303 unless params[:word]
   @searchKeyword = params[:word]
   r = Regexp.new(@searchKeyword, Regexp::IGNORECASE)
-  @docs = settings.docs.clone.select!{|d|d[:words]=~r || d[:path]=~r || d[:title]=~r}
+  @docs = settings.docs.select{|d|d[:words]=~r || d[:path]=~r || d[:title]=~r}
 
   redirect to("/view/%d"%[@docs[0][:id]]) if @docs.size == 1
   erb :index
