@@ -18,7 +18,10 @@
 // 解く．
 //
 // %verified
-// [TODO]
+// verified(ARC)
+// %require
+// cpp/graph/datastruct/graphflow.cpp
+// cpp/graph/method/flow/dinic.cpp
 // 
 // %references
 // https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem#Project_selection_problem
