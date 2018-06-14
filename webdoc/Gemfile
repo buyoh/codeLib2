@@ -10,6 +10,8 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 
 gem 'sass'
+gem 'sqlite3'
+
 platforms :ruby do # linux
   gem 'unicorn'
 end
