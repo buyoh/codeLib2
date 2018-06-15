@@ -20,6 +20,8 @@
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641075#1
 // %references
 // 
+// %require
+// cpp/graph/datastruct/graph2dcpp
 
 
 

@@ -18,7 +18,10 @@
 // 解く．
 //
 // %verified
-// [TODO]
+// verified(ARC)
+// %require
+// cpp/graph/datastruct/graphflow.cpp
+// cpp/graph/method/flow/dinic.cpp
 // 
 // %references
 // https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem#Project_selection_problem
@@ -31,7 +34,7 @@ public:
     const DGraphF::cap_t inf_ = 1e9;
     DGraphF::cap_t potential_ = 0;
 
-    ProjectSelection(size_t _n) :n_(_n + 2), graph_(_n) {}
+    ProjectSelection(size_t _n) :n_(_n), graph_(_n + 2) {}
 
     // p_iが状態Aの時，利益(損失)rを得る．
     inline void push_revenue(int i, DGraphF::cap_t r) {
@@ -39,7 +42,7 @@ public:
         if (r > 0)
             graph_.connect(n_, i, r);
         else if (r < 0)
-            graph_.connect(i, n_ + 1, r);
+            graph_.connect(i, n_ + 1, -r);
     }
     // p_iが状態Aでp_jが状態Bの時，qの損失が発生する．
     inline void push_purchase(int i, int j, DGraphF::cap_t q) {

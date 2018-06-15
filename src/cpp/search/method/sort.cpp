@@ -7,9 +7,11 @@
 // を求める
 //
 // %usage
+// void sort_index(const ITER begin, const ITER end, vector<int> &idx, vector<int> &idxr)
+// ; ITERはランダムアクセスイテレータ
 //
 // %verified
-// 
+// atcoder
 // %references
 // 
 

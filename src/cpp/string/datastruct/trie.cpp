@@ -23,7 +23,8 @@ struct TrieTree{
     
     template<typename IBEGIN,typename IEND>
     TVAL& operator()(IBEGIN begin, IEND end) {
+        auto begin_succ = begin;
         return (begin==end) ? value
-                            : trie[*begin](++begin, end);
+                            : trie[*begin](++begin_succ, end);
     }
 };
