@@ -27,6 +27,7 @@ typedef long long int ll;
 ## document
 
 - sinatraによる雑な整理ツールを作っています．
+- http://codelib.ukibune.blue に同様のものがあります
 
 ### setup
 
