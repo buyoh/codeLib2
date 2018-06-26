@@ -14,6 +14,8 @@
 // MILLISEC
 // ;TIMEの差分をミリ秒に変換
 //
+// %words
+// time,tic,toc
 // %verified
 // 
 // %references

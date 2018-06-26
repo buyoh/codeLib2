@@ -25,6 +25,9 @@
 // https://csacademy.com/contest/archive/task/addition/
 // https://yukicoder.me/submissions/221925
 // 
+// %words
+// io
+// %require
 // %references
 // cLay
 
