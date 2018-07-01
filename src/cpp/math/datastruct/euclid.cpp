@@ -31,7 +31,11 @@ struct P {
     inline P operator+=(P p) { y += p.y; x += p.x; return *this; }
     inline P operator-=(P p) { y -= p.y; x -= p.x; return *this; }
 };
+inline ostream& operator<<(ostream& os, P p) { os << '(' << p.y << ',' << p.x << ')'; return os; }
 
+const P FourMoving[] = { P(-1,0),P(0,1), P(1,0), P(0,-1) };
+const P FiveMoving[] = { P(-1,0),P(0,1), P(1,0), P(0,-1), P(0,0) };
+const P EightMoving[] = { P(-1,0),P(0,1), P(1,0), P(0,-1), P(-1,-1), P(-1,1), P(1,-1), P(1,1) };
 
 
 template<typename T>
