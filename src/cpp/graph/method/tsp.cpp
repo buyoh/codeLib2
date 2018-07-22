@@ -15,6 +15,10 @@
 // inline W_T& operator()(int y, int x);
 // ;行列の値の参照
 //
+// %words
+// tsp
+// %require
+// cpp/graph/datastruct/graph.cpp
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2588066#1
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641075#1

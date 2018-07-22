@@ -12,6 +12,11 @@
 // %verified
 // http://buyoh.hateblo.jp/entry/2017/12/10/184345
 // 
+// %words
+// vertexcover
+// %require
+// cpp/graph/datastruct/graph.cpp
+// 
 // %references
 //
 
