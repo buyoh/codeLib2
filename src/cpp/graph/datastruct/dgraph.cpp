@@ -26,13 +26,10 @@ public:
     
     DGraph(size_t n=1):n(n),vertex_to(n),vertex_from(n){}
     
+    inline size_t size() const { return n; }
+    void resize(size_t _n){ n = _n; vertex_to.resize(_n); vertex_from.resize(_n); }
     void connect(int from, int to){
         vertex_to[(size_t)from].emplace_back(to);
         vertex_from[(size_t)to].emplace_back(from);
-    }
-    void resize(size_t _n){
-        n = _n;
-        vertex_to.resize(_n);
-        vertex_from.resize(_n);
     }
 };

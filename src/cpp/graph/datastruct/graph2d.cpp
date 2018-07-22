@@ -23,18 +23,15 @@
 
 class Graph2d {
 public:
-    typedef int W_T;
+    using W_T = int;
     size_t n;
     vector<W_T> matrix;
 
     Graph2d(size_t size) :n(size), matrix(size*size) {};
 
-    void resize(size_t s) {
-        n = s; matrix.resize(n*n);
-    }
-    void resize(size_t s, W_T val) {
-        n = s; matrix.resize(n*n, val);
-    }
+    inline size_t size() const { return n; }
+    void resize(size_t s) { n = s; matrix.resize(n*n); }
+    void resize(size_t s, W_T val) { n = s; matrix.resize(n*n, val); }
 
     inline W_T& at(int y, int x) { return matrix[y*n + x]; }
     inline W_T& operator()(int y, int x) { return matrix[y*n + x]; }
