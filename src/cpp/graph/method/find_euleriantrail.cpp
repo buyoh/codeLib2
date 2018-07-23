@@ -3,7 +3,7 @@
 // 
 // %overview
 // 要は一筆書き．
-// 以前ブログ記事用に書いてそれっきりなのでなんとかする[TODO]
+// まだ汚いのでそのうち
 //
 // %usage
 // vector<int> find_eulerialTrail(const GraphE& graph)
@@ -15,96 +15,145 @@
 // http://shonen9th.blog.fc2.com/blog-entry-147.html
 
 
-vector<int> find_eulerialTrail(const GraphE& graph) {
+// オイラー路が存在するかどうか
+// 存在しなかったら(-1,-1)，存在したら(始点,終点)
+// 閉路なら 始点==終点
+pair<int, int> has_eulerialTrail(const DGraphE& graph) {
+    
+    Unionfind uf(graph.size());
 
-    vector<int> group(graph.edges.size());
+    int vstart = -1, vgoal = -1;
 
-    int lastgroupNo = 0;
+    repeat(i, graph.size()) {
+        if (graph.vertex_from[i].size() == graph.vertex_to[i].size() + 1) {
+            if (vstart >= 0) return make_pair(-1, -1);
+            vstart = i;
+        }
+        else if (graph.vertex_from[i].size() + 1 == graph.vertex_to[i].size()) {
+            if (vgoal >= 0) return make_pair(-1, -1);
+            vgoal = i;
+        }
+        else if (graph.vertex_from[i].size() != graph.vertex_to[i].size())
+            return make_pair(-1, -1);
+    }
+    if ((vstart == -1) != (vgoal == -1)) return make_pair(-1, -1);
+    for (const auto& a : graph.arcs) {
+        uf.connect(a.from, a.to);
+    }
+    if (uf.size(0) < graph.size()) return make_pair(-1, -1);
 
-    for (int idx = 0; idx < graph.edges.size(); ++idx) {
-        if (group[idx] != 0) continue;
+    if (vstart == -1) vgoal = vstart = 0;
 
-        group[idx] = ++lastgroupNo;
-        int tail = graph.edges[idx].v;
-        int v = graph.edges[idx].u;
+    return make_pair(vstart, vgoal);
+}
 
-        bool running = true;
-        while (running) {
+
+vector<int> find_eulerialTrail(const DGraphE& graph, int startEdge = 0) {
+    using boolean = int;
+
+    // 辺集合を複数のサイクルに分割したとき，属するサイクル番号
+    vector<int> group(graph.arcs.size(), -1);
+    //
+    vector<int> prior(graph.arcs.size(), -1);
+
+    int groupCount = 0;
+
+    // ループ辺は独立した1つのサイクルとして分割
+    for (int ei = 0; ei < graph.arcs.size(); ++ei)
+        if (graph.arcs[ei].from == graph.arcs[ei].to)
+            group[ei] = groupCount++;
+
+    // 辺集合を複数のサイクルに分割
+    for (int idx_ = -1; idx_ < (int)graph.arcs.size(); ++idx_) {
+        int idx = idx_ == -1 ? startEdge : idx_;
+        if (group[idx] >= 0) continue;
+
+        group[idx] = groupCount++;
+        int tail = graph.arcs[idx].from;
+        int v = graph.arcs[idx].to;
+
+        int tim = 0;
+        prior[idx] = 0;
+
+        for (bool running = true; running; ) {
             running = false;
             for (int ie : graph.vertex_to[v]) {
-                if (group[ie] == 0) {
-                    group[ie] = lastgroupNo;
-                    v = graph.edges[ie].to(v);
-                    running = true;
-                    break;
-                }
+                if (group[ie] >= 0) continue;
+
+                prior[ie] = ++tim;
+                group[ie] = group[idx];
+                v = graph.arcs[ie].to;
+                running = true;
+                break;
             }
         }
     }
-
     vector<int> result;
+    stack<int> history;
 
-    vector<int> checked(lastgroupNo + 1);
-    stack<int> ss;
+    int tail = graph.arcs[startEdge].from;
+    int curr = graph.arcs[startEdge].to;
+    history.push(group[startEdge]);
 
-    int tail = graph.edges[0].v;
-    int v = graph.edges[0].u;
-    ss.push(group[0]);
-    checked[group[0]] = true;
+    result.push_back(tail);
+    result.push_back(startEdge);
+    result.push_back(curr);
 
-    result.push_back(graph.edges[0].v);
-    result.push_back(0);
-    result.push_back(v);
+    vector<boolean> encountedGroup(groupCount);
+    encountedGroup[group[startEdge]] = true;
 
-    group[0] = -1;
+    group[startEdge] = -1;
 
-    int stat = 1;
+    for (int step = 1; step < graph.arcs.size(); ++step) {
 
-    // (ループの外に出た！)
-    vector<pair<int, int>> dic(lastgroupNo + 1);
-
-    for (int step = 1; stat != 0; ++step) {
-        stat = 0;
-        for (int ie : graph.vertex_to[v]) {
+        bool prfound = false;
+        map<int, pair<int, int>> connected; // [group] = prior, edgeid
+        for (int ie : graph.vertex_to[curr]) {
+            // 通過済みの辺
             if (group[ie] < 0) continue;
 
             int g = group[ie];
 
-            if (!checked[g]) {
-                checked[g] = true;
-                ss.push(g);
+            // 通過したことが無いサイクルならば
+            if (!encountedGroup[g]) {
+                history.push(g);
+                encountedGroup[g] = true;
 
                 group[ie] = -1;
-                v = graph.edges[ie].to(v);
-
+                curr = graph.arcs[ie].to;
                 result.push_back(ie);
-                result.push_back(v);
+                result.push_back(curr);
 
-                stat = 2; break;
+                prfound = true; break;
             }
             else {
-                if (dic[g].first != step) {
-                    dic[g].first = step;
-                    dic[g].second = ie;
-                    stat = 1;
-                }
+                if (connected.count(g) == 0)
+                    connected[g] = make_pair(prior[ie], ie);
+                else
+                    connected[g] = min(connected[g], make_pair(prior[ie], ie));
             }
         }
-        if (stat == 1) {
-            while (dic[ss.top()].first != step) {
-                ss.pop();
-                assert(!ss.empty()); // バグ対策用
-            }
+        if (prfound) continue;
+        if (connected.empty()) break;
 
-            int ie = dic[ss.top()].second;
+        {
+            // 今通過しているサイクルを一通り巡回したならば，1つ前のサイクルに乗り換える
+            while (connected.count(history.top()) == 0) {
+                history.pop();
+                if (history.empty()) return result; // assertion
+            }
+            // 1つ前のサイクルに乗り換える，辺id
+            int ie = connected[history.top()].second;
             group[ie] = -1;
-            v = graph.edges[ie].to(v);
+            curr = graph.arcs[ie].to;
 
             result.push_back(ie);
-            result.push_back(v);
+            result.push_back(curr);
         }
     }
 
     return result;
 }
+
+
 
