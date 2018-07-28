@@ -7,11 +7,15 @@
 //
 // %usage
 // vector<int> gen_primelist(ll high);
-// ; high : 
-// ; `out[i]==1`ならばiは!!合成数!!
+// ; high : 上限
+// ; `out[i]==1`ならばiは!!素数!! (i<=1は未定義)
 // 
-// constexpr IsPrimeC<2000> ipc;
+// constexpr IsPrimeC<9999> ipc;
 // ; `ipc[x] == true` なら，xは!!素数!!
+// 
+// constexpr PrimeListC<9999> plc;
+// ; `plc[i]` i 番目の素数
+// ; イテレータあるよ
 //
 // %verified
 // 
@@ -33,16 +37,17 @@ vector<int> gen_primelist(ll high) {
             }
         }
     }
+    for (auto& x : out) out ^= 1;
     return out;
 }
 
 
 template<int Max = 2000>
 class IsPrimeC {
-    int d_[Max + 1];
+    bool d_[Max + 1];
 
     template<typename T>
-    constexpr T cesqrt(T s) {
+    static constexpr T cesqrt(T s) {
         double x = s / 2.0;
         double prev = 0.0;
         while (x != prev) {
@@ -51,6 +56,7 @@ class IsPrimeC {
         }
         return x;
     }
+
 public:
     constexpr IsPrimeC(): d_() {
         d_[0] = d_[1] = 1;
@@ -65,4 +71,36 @@ public:
         for (int i = 0; i <= Max; ++i) d_[i] = !d_[i];
     }
     constexpr inline bool operator[](int x) const{return d_[x]; }
+
+};
+
+
+template<int Max = 2000>
+class PrimeListC {
+    int d_[Max];
+public:
+    constexpr PrimeListC() : d_() {
+        int n = 1;
+        d_[0] = 2;
+        for (int x = 3; n < Max; ++x) {
+            bool f = true;
+            for (int i = 0; d_[i] * d_[i] <= x; ++i)
+                if (x % d_[i] == 0) { f = false; break; }
+            if (f) d_[n++] = x;
+        }
+    }
+    constexpr inline int operator[](int x) const { return d_[x]; }
+    template<int Max>
+    class iterator {
+        const PrimeListC<Max>& pl;
+        int ptr = 0;
+    public:
+        constexpr iterator(const decltype(pl)& _pl, int _ptr = 0) :pl(_pl),ptr(_ptr) { }
+        constexpr int operator*() const { return pl[ptr]; }
+        constexpr iterator<Max>& operator++() { ptr++; return *this; } // prefix
+        constexpr inline bool operator!=(const iterator<Max>& it) const { return ptr != it.ptr ? !(Max < ptr && Max < it.ptr) : false; }
+        constexpr inline bool operator==(const iterator<Max>& it) const { return ptr != it.ptr ? (Max < ptr && Max < it.ptr) : true; }
+    };
+    constexpr PrimeListC::iterator<Max> begin() const { return PrimeListC::iterator<Max>(*this, 0); }
+    constexpr PrimeListC::iterator<Max> end() const { return PrimeListC::iterator<Max>(*this, Max); }
 };
