@@ -22,7 +22,7 @@
 // Edge構造体を定義する無向グラフ
 class GraphE {
 public:
-    typedef int W_T;
+    using W_T = int;
     struct Edge {
         int u, v;
         W_T value;
@@ -35,10 +35,8 @@ public:
 
     GraphE(int n=1) :n(n), vertex_to(n) { }
 
-    void resize(size_t _n) {
-        n = _n;
-        vertex_to.resize(_n);
-    }
+    inline size_t size() const { return n; }
+    void resize(size_t _n) { vertex_to.resize(n = _n); }
     void connect(int from, int to, W_T val = 0) {
         vertex_to[(size_t)from].push_back((int)edges.size());
         vertex_to[(size_t)to].push_back((int)edges.size());

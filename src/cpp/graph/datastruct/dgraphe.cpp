@@ -20,7 +20,7 @@
 
 class DGraphE {
 public:
-    typedef int W_T;
+    using W_T = int;
     struct Arc {
         int from, to;
         W_T value;
@@ -34,11 +34,8 @@ public:
 
     DGraphE(int n = 1) :n(n), vertex_to(n), vertex_from(n) { }
 
-    void resize(size_t _n) {
-        n = _n;
-        vertex_to.resize(_n);
-        vertex_from.resize(_n);
-    }
+    inline size_t size() const { return n; }
+    void resize(size_t _n) { n = _n; vertex_to.resize(_n); vertex_from.resize(_n); }
     void connect(int from, int to, W_T val = 0) {
         vertex_to[(size_t)from].push_back((int)arcs
             .size());

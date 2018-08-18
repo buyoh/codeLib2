@@ -1,8 +1,8 @@
 # %title
-# algorithm name here
+# GCD,LCM,組み合わせ計算
 # 
 # %overview
-# my nice algorithm.
+# todo
 #
 # %usage
 # int func(int x);
@@ -15,11 +15,29 @@
 # %references
 # thanks.
 # %words
-# bsearch, nibuntansaku
+# math
 # %require
-# cpp/graph/datastruct/dgraph.cpp
+# 
 # 
 
-def ok
-    
+def pow_md(x, w, mod)
+  y = 1
+  x = x%mod
+  while 0 < w
+      y = (y*x) % mod if w.odd?
+      x = (x*x) % mod
+      w >>= 1
+  end
+  y
+end
+
+
+def nCr_md(n, r, mod)
+  return nCr_md(n, n-r, mod) if n/2 < r
+  num,den = 1,1
+  1.upto(r) do |i|
+      num = num*(n-i+1) % mod
+      den = den*i % mod
+  end
+  num * pow_md(den, mod-2, mod) % mod
 end
