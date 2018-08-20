@@ -68,6 +68,9 @@ body{
                 text-decoration: underline double;
             }
         }
+        li.right{
+            float: right;
+        }
         li:last-child{
             border: none;
             padding: 0px;
@@ -205,4 +208,14 @@ body{
             border-bottom:none;
         }
     }
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear: both;
 }

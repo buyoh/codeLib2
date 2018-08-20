@@ -1,12 +1,17 @@
 require 'sinatra'
+# require 'sinatra/cookies'
 require 'sass'
 require 'json'
 require 'fileutils'
+require 'uri'
+require 'logger'
 
 require './back/collector'
 
 require 'sqlite3'
 
+Dir.mkdir('tmp') unless Dir.exist?('tmp')
+FileUtils::touch('tmp/codes.db') unless File.exist?('tmp/codes.db')
 sqldb = SQLite3::Database.new('tmp/codes.db')
 
 
@@ -101,7 +106,9 @@ end
 
 
 def find_db(sqldb, id)
-  path, title, keyword = sqldb.execute("select path,title,keyword from articles where id=?;", id)[0]
+  r = sqldb.execute("select path,title,keyword from articles where id=?;", id)
+  return nil if r.empty?
+  path, title, keyword = r[0]
   pairs = sqldb.execute("select keyStr,valueStr from descriptors where articleId=?", id)
 
   h = {path:path, title:title, keyword:keyword}
@@ -115,10 +122,61 @@ end
 # - - - - - - - - - - - - - - - - - - - - - - - 
 
 
+def set_cookie(name, value, expires = 3600*3)
+  value = JSON::generate(value) unless value.is_a? String
+  logger.info value
+  response.set_cookie(name, :value => value, :expires => Time.now + expires, :path => '/')
+end
+
+def get_cookie(name)
+  j = request.cookies[name]
+  h = nil
+  logger.info j
+  if j
+    begin
+      logger.info URI::unescape(j)
+      h = JSON::parse(URI::unescape(j))
+    rescue JSON::JSONError
+      h = nil
+    end
+  end
+  h
+end
+
+
+def init_cart()
+  set_cookie('cart', '{"i":[]}', 3600*3)
+  return {'i'=>[]}
+end
+
+def get_cart()
+  cart = get_cookie('cart')
+  cart = init_cart() if cart.nil?
+  cart
+end
+
+def set_cart(cart)
+  set_cookie('cart', cart)
+end
+
+def include_cart(cart, id)
+  cart['i'].include?(id)
+end
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - 
+
+
 configure do
 
   create_db sqldb
   update_db sqldb
+
+end
+
+
+before do
+  @cart = get_cart()
 
 end
 
@@ -155,7 +213,43 @@ get '/view/:id' do
   id = params[:id].to_i
   redirect "/", 303 if id < 0
   @doc = find_db(sqldb, id)
+  @id = id
   erb :view
+end
+
+
+get '/cart' do
+  @docs = []
+  err = []
+  @cart['i'].each do |id|
+    doc = find_db(sqldb, id)
+    if doc.nil?
+      err << id
+    else
+      doc[:id] = id
+      @docs << doc
+    end
+  end
+  # todo: remove err
+  erb :cart
+end
+
+
+get '/cart/add/:id' do
+  redirect '/', 303 unless params[:id]
+  id = params[:id].to_i
+  @cart['i'].push(id).uniq!
+  set_cart(@cart)
+  redirect '/', 303
+end
+
+
+get '/cart/rem/:id' do
+  redirect '/', 303 unless params[:id]
+  id = params[:id].to_i
+  @cart['i'] = @cart['i'] - [id]
+  set_cart(@cart)
+  redirect '/', 303
 end
 
 
