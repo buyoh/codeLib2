@@ -105,17 +105,77 @@ def search_index_db(sqldb, path, title, keyword, union="or")
 end
 
 
-def find_db(sqldb, id)
-  r = sqldb.execute("select path,title,keyword from articles where id=?;", id)
-  return nil if r.empty?
-  path, title, keyword = r[0]
-  pairs = sqldb.execute("select keyStr,valueStr from descriptors where articleId=?", id)
-
-  h = {path:path, title:title, keyword:keyword}
+def get_detail(sqldb, id)
+  pairs = sqldb.execute("select keyStr,valueStr from descriptors where articleId=?;", id)
+  h = {}
   pairs.each do |key, val|
     h[key.to_sym] = val
   end
   h
+end
+
+
+def find_db_by_index(sqldb, id)
+  r = sqldb.execute("select path,title,keyword from articles where id=?;", id)
+  return nil if r.empty?
+  path, title, keyword = r[0]
+  { id: id, path: path, title: title, keyword: keyword }.update(get_detail(sqldb, id))
+end
+
+
+def find_db_by_path(sqldb, path)
+  r = sqldb.execute("select id,path,title,keyword from articles where path like ?;", '%'+path)
+  return nil if r.empty?
+  id, path, title, keyword = r[0]
+  id = id.to_i
+  { id: id, path: path, title: title, keyword: keyword }.update(get_detail(sqldb, id))
+end
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+# :idxs, :docs,
+def solve_idxs(sqldb, idxs)
+  docs = []
+  solved_idxs = idxs.clone
+
+  dfs = lambda do |path|
+    doc = find_db_by_path(sqldb, path)
+    next unless doc
+    id = doc[:id]
+
+    next if solved_idxs.include?(id)
+    docs << doc
+    solved_idxs.unshift(id)
+
+    next unless doc[:require]
+    doc[:require].split.each do |pa|
+      dfs.call(pa.strip)
+    end
+  end
+
+  idxs.each do |idx|
+    doc = find_db_by_index(sqldb, idx)
+    next unless doc
+    docs << doc
+    next unless doc[:require]
+    doc[:require].split.each do |path|
+      dfs.call(path.strip)
+    end
+  end
+  { idxs: solved_idxs, docs: docs }
+end
+
+
+def generate_merged_code(idxs, docs)
+  code = ''
+  idxs.each do |id|
+    doc = docs.find{|d| d[:id] == id}
+    next unless doc
+    code += doc[:code] + "\n"
+  end
+  code
 end
 
 
@@ -124,17 +184,14 @@ end
 
 def set_cookie(name, value, expires = 3600*3)
   value = JSON::generate(value) unless value.is_a? String
-  logger.info value
   response.set_cookie(name, :value => value, :expires => Time.now + expires, :path => '/')
 end
 
 def get_cookie(name)
   j = request.cookies[name]
   h = nil
-  logger.info j
   if j
     begin
-      logger.info URI::unescape(j)
       h = JSON::parse(URI::unescape(j))
     rescue JSON::JSONError
       h = nil
@@ -142,6 +199,9 @@ def get_cookie(name)
   end
   h
 end
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - 
 
 
 def init_cart()
@@ -212,7 +272,7 @@ get '/view/:id' do
   redirect "/", 303 unless params[:id]
   id = params[:id].to_i
   redirect "/", 303 if id < 0
-  @doc = find_db(sqldb, id)
+  @doc = find_db_by_index(sqldb, id)
   @id = id
   erb :view
 end
@@ -222,7 +282,7 @@ get '/cart' do
   @docs = []
   err = []
   @cart['i'].each do |id|
-    doc = find_db(sqldb, id)
+    doc = find_db_by_index(sqldb, id)
     if doc.nil?
       err << id
     else
@@ -230,7 +290,15 @@ get '/cart' do
       @docs << doc
     end
   end
-  # todo: remove err
+
+  unless err.empty?
+    @cart['i'] = @cart['i'] - err
+    set_cart(@cart)
+  end
+
+  solved = solve_idxs(sqldb, @cart['i'])
+  @gen_code = generate_merged_code(solved[:idxs], solved[:docs])
+
   erb :cart
 end
 
@@ -247,7 +315,11 @@ end
 get '/cart/rem/:id' do
   redirect '/', 303 unless params[:id]
   id = params[:id].to_i
-  @cart['i'] = @cart['i'] - [id]
+  if id < 0
+    @cart['i'] = []
+  else
+    @cart['i'] = @cart['i'] - [id]
+  end
   set_cart(@cart)
   redirect '/', 303
 end
