@@ -29,7 +29,7 @@ class Bitree {
 public:
     int size_;
     vector<T> data_;
-    Bitree(int size_) :size_(size_+1), data_(size_+1) {}
+    Bitree(int size_) :size_(size_), data_(size_+1) {}
 
     // 1..rの範囲の値の和を求める．
     T sum(int r) {
