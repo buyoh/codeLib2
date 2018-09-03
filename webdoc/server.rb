@@ -343,6 +343,12 @@ get '/index.json' do
 end
 
 
+get '/version.json' do
+  content_type :json
+  {mtime: File.mtime('./server.rb').to_s}.to_json
+end
+
+
 get '/style.css' do
   content_type 'text/css'
   scss :style
