@@ -66,7 +66,7 @@ def update_db(sqldb)
 
     # existed = sqldb.execute("select id from articles where path=?;", doc[:path])
     
-    existed = index.select{|article| article.path == doc[:path]}
+    existed = index.select{|article| article[:path] == doc[:path]}
 
     id = nil
     if existed.empty?
