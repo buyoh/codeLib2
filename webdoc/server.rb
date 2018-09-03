@@ -59,18 +59,23 @@ def update_db(sqldb)
     docs = Document.collect_documents()
   end
 
-  docs.each do |doc|
-    doc[:keyword] = "" unless doc[:keyword]
+  index = all_index_db(sqldb)
 
-    existed = sqldb.execute("select id from articles where path=?;",doc[:path])
+  docs.each do |doc|
+    doc[:keyword] = '' unless doc[:keyword]
+
+    # existed = sqldb.execute("select id from articles where path=?;", doc[:path])
+    
+    existed = index.select{|article| article.path == doc[:path]}
 
     id = nil
     if existed.empty?
-      sqldb.execute("insert into articles(path, title, keyword) values(?,?,?);", [doc[:path],doc[:title],doc[:keyword]])
+      sqldb.execute("insert into articles(path, title, keyword) values(?,?,?);", [doc[:path], doc[:title], doc[:keyword]])
       id = sqldb.execute("select id from articles where path=?;", doc[:path])[0][0]
     else
-      id = existed[0][0]
-      sqldb.execute("update articles set path=?, title=?, keyword=? where id=#{id};", [doc[:path],doc[:title],doc[:keyword]])
+      existed[0][:checked] = true
+      id = existed[0][:id]
+      sqldb.execute("update articles set path=?, title=?, keyword=? where id=#{id};", [doc[:path], doc[:title], doc[:keyword]])
     end
 
     doc.each do |key, val|
@@ -83,6 +88,12 @@ def update_db(sqldb)
     end
   end
 
+  index.each do |article|
+    unless article[:checked]
+      sqldb.execute("delete from articles where articleId=?", article[:id])
+      sqldb.execute("delete from descriptors where articleId=?", article[:id])
+    end
+  end
 end
 
 
