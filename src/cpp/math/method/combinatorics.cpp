@@ -53,6 +53,6 @@ template<typename T> T nCr(T n, T r) {
     T p = 1; for (T t = 1; t <= r; ++t) p = p * (n - t + 1) / t;
     return p;
 }
-template<typename T> inline T nHr(T n, T r, T mod = MD) {
-    return nCr(n - 1 + r, n - 1, mod);
+template<typename T> inline T nHr(T n, T r) {
+    return nCr(n - 1 + r, n - 1);
 }

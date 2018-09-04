@@ -13,6 +13,8 @@
 // [TODO]
 // %references
 // http://shonen9th.blog.fc2.com/blog-entry-147.html
+// %words
+// euler
 
 
 // オイラー路が存在するかどうか
