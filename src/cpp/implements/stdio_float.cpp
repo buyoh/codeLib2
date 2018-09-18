@@ -25,7 +25,7 @@ void output_float(T var, int d) noexcept {
     printer << (long long)i;
     var -= i;
     putchar_unlocked('.');
-    while (d-- > 0) {
+    while (d-- > 0 && var > 0) {
         var *= 10.0;
         int i = floor(var);
         putchar_unlocked('0'+i);
