@@ -1,97 +1,67 @@
 // %title
-// 組み合わせ計算(コンパイル時前計算)
+// 組合せ計算(前計算)
 // 
 // %overview
-// inverse, conbination, permutation, factorial をコンパイル時に計算する．
+// inverse, conbination, permutation, factorial を構築時に計算する
+// constexprを付けられないことは無い
+// 
 //
 // %usage
-// constexpr StaticCombination<1000, 1000, MD> sncr;
-// constexpr StaticFactorial<1000, MD> ssf;
-// constexpr StaticPermutation<1000, 1000, MD> snpr;
-// constexpr StaticInverse<1000, MD> si;
-// ; 該当する構造体をconstexprを付けて宣言．
+// Combinatorics<2000100, MD> wakame;
 //
 // %words
 // fact,ncr,npr,nck,npk
 // %verified
-// 
+// https://yukicoder.me/submissions/286997
 // %references
 
 
-template<int MaxN, int MaxR, long long Mod>
-struct StaticCombination {
-    using value_type = long long;
-    value_type table[MaxN+1][MaxR+1];
-
-    constexpr StaticCombination() :table() {
-        for (int n = 0; n < MaxN; ++n) {
-            table[n][0] = 1;
-            for (int r = 0; r <= n && r < MaxR; ++r)
-                table[n + 1][r + 1] = (table[n][r + 1] + table[n][r]) % Mod;
-        }
-    }
-
-    constexpr inline value_type operator()(int n, int r) const {
-        return table[n][r];
-    }
-};
-
-
-template<int MaxN, int MaxR, long long Mod>
-struct StaticPermutation {
-    using value_type = long long;
-    value_type table[MaxN + 1][MaxR + 1];
-
-    constexpr StaticPermutation() :table() {
-        for (value_type n = 0; n < static_cast<value_type>(MaxN); ++n) {
-            table[n][0] = 1;
-            for (value_type r = 0; r <= n && r < static_cast<value_type>(MaxR); ++r)
-                table[n][r + 1] = (table[n][r]*(n-r)) % Mod;
-        }
-    }
-
-    constexpr inline value_type operator()(int n, int r) const {
-        return table[n][r];
-    }
-};
-
 
 template<int MaxN, long long Mod>
-struct StaticFactorial {
+class Combinatorics {
     using value_type = long long;
-    value_type table[MaxN + 1];
+    value_type fact_[MaxN + 1];
+    // value_type inv_[MaxN + 1]; // iranai
 
-    constexpr StaticFactorial() :table() {
-        table[0] = 1;
-        table[1] = 1;
-        for (value_type n = 2; n <= MaxN; ++n)
-            table[n] = (table[n - 1] * n) % Mod;
-    }
-    constexpr inline value_type operator()(int n) const {
-        return table[n];
-    }
-};
-
-
-template<long long MaxN, long long Mod>
-struct StaticInverse {
-    using value_type = long long;
-    value_type table[MaxN + 1];
-
-    static constexpr value_type inv(value_type x) {
-        value_type y = 1; x = x % Mod;
-        for (ll p = Mod - 2; 0 < p; p >>= 1) {
-            if (p & 1) y = y * x % Mod;
-            x = x * x % Mod;
+    value_type mypow(value_type x, value_type p, value_type mod = MD) {
+        value_type y = 1; x = x % mod;
+        for (; 0 < p; p >>= 1) {
+            if (p & 1) y = y * x % mod;
+            x = x * x % mod;
         }
         return y;
     }
 
-    constexpr StaticInverse() :table() {
-        for (value_type n = 0; n <= MaxN; ++n)
-            table[n] = inv(n);
+public:
+    Combinatorics() :fact_() {
+        fact_[0] = 1;
+        fact_[1] = 1;
+        for (value_type n = 2; n <= MaxN; ++n)
+            fact_[n] = (fact_[n - 1] * n) % Mod;
+        // inv_[Max] := calculate;
+        // iterate => inv_[i] = inv_[i+1] * (i+1) % MD;
     }
-    constexpr inline value_type operator()(int n) const {
-        return table[n];
+    inline value_type fact(int n) const {
+        return fact_[n];
+    }
+
+    inline value_type inv(value_type n) {
+        return mypow(n, MD - 2, MD);
+    }
+
+    inline value_type nPr(value_type n, value_type r) {
+        if (r < 0 || n < r) return 0;
+        return fact_[n] * inv(fact_[n - r]) % MD;
+    }
+    inline value_type nCr(value_type n, value_type r) {
+        if (n < r) return 0;
+        return ((fact_[n] * inv(fact_[n - r]) % MD) * inv(fact_[r])) % MD;
+    }
+    inline value_type nHr(value_type n, value_type r) {
+        if (n == 0 && r == 0) return 1;
+        if (n == 0) return 0;
+        return nCr(n - 1 + r, n - 1);
     }
 };
+
+

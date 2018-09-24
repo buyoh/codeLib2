@@ -1,8 +1,8 @@
 // %title
-// 組み合わせ計算
+// 組合せ計算
 // 
 // %overview
-// 組み合わせ計算
+// 
 //
 // %usage
 // T pow_md(T x, T p, T mod = MD)
