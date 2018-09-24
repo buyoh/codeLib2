@@ -62,7 +62,7 @@ def update_db(sqldb)
   index = all_index_db(sqldb)
 
   docs.each do |doc|
-    doc[:keyword] = '' unless doc[:keyword]
+    doc[:words] = '' unless doc[:words]
 
     # existed = sqldb.execute("select id from articles where path=?;", doc[:path])
     
@@ -70,16 +70,16 @@ def update_db(sqldb)
 
     id = nil
     if existed.empty?
-      sqldb.execute("insert into articles(path, title, keyword) values(?,?,?);", [doc[:path], doc[:title], doc[:keyword]])
+      sqldb.execute("insert into articles(path, title, keyword) values(?,?,?);", [doc[:path], doc[:title], doc[:words]])
       id = sqldb.execute("select id from articles where path=?;", doc[:path])[0][0]
     else
       existed[0][:checked] = true
       id = existed[0][:id]
-      sqldb.execute("update articles set path=?, title=?, keyword=? where id=#{id};", [doc[:path], doc[:title], doc[:keyword]])
+      sqldb.execute("update articles set path=?, title=?, keyword=? where id=#{id};", [doc[:path], doc[:title], doc[:words]])
     end
 
     doc.each do |key, val|
-      next if key == :title || key == :path || key == :keyword
+      next if key == :title || key == :path || key == :words
       if sqldb.execute("select keyStr from descriptors where articleId=#{id} and keyStr=?;", doc[:key]).empty?
         sqldb.execute("insert into descriptors(articleId, keyStr, valueStr) values(?,?,?);", [id, key.to_s, val])
       else
@@ -99,7 +99,7 @@ end
 
 def all_index_db(sqldb)
   sqldb.execute("select id,path,title,keyword from articles;") \
-    .map{|id,path,title,keyword| {id:id, path:path, title:title, keyword:keyword} }
+    .map{|id,path,title,keyword| {id:id, path:path, title:title, words:keyword} }
 end
 
 
@@ -112,7 +112,7 @@ def search_index_db(sqldb, path, title, keyword, union="or")
   if keyword; where_query << "keyword like ?"; where_value << keyword; end
   return [] if where_value.empty?
   sqldb.execute("select id,path,title,keyword from articles where #{where_query*" #{union} "};", where_value) \
-    .map{|id,path,title,keyword| {id:id, path:path, title:title, keyword:keyword} }
+    .map{|id,path,title,keyword| {id:id, path:path, title:title, words:keyword} }
 end
 
 
@@ -130,7 +130,7 @@ def find_db_by_index(sqldb, id)
   r = sqldb.execute("select path,title,keyword from articles where id=?;", id)
   return nil if r.empty?
   path, title, keyword = r[0]
-  { id: id, path: path, title: title, keyword: keyword }.update(get_detail(sqldb, id))
+  { id: id, path: path, title: title, words: keyword }.update(get_detail(sqldb, id))
 end
 
 
@@ -139,7 +139,7 @@ def find_db_by_path(sqldb, path)
   return nil if r.empty?
   id, path, title, keyword = r[0]
   id = id.to_i
-  { id: id, path: path, title: title, keyword: keyword }.update(get_detail(sqldb, id))
+  { id: id, path: path, title: title, words: keyword }.update(get_detail(sqldb, id))
 end
 
 
