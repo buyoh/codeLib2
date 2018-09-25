@@ -26,34 +26,35 @@
 // cpp/container/likermq/rmq_sparsetable.cpp
 
 class LCATable {
-    const Graph& graph_; // 構築時に参照するだけ
     vector<int> visited_;
     vector<int> visited_inv_;
     SparseTable<int> depth_;
 
 public:
-    LCATable(const Graph& g, int root = 0) :graph_(g), visited_(g.n * 2), visited_inv_(g.n), depth_(g.n*2) { build(root); }
+    LCATable(const Graph& g, int root = 0) :visited_(g.n * 2), visited_inv_(g.n), depth_(g.n * 2) { build(g, root); }
 
-    int _tour_dfs(int idx, int from = -1, int step = 0, int dep = 0) {
+    int _tour_dfs(const Graph& g, int idx, int from = -1, int step = 0, int dep = 0) {
         depth_[step] = dep;
         visited_inv_[idx] = step;
         visited_[step] = idx;
 
-        for (int to : graph_.vertex_to[idx]) {
+        for (int to : g.vertex_to[idx]) {
             if (to == from) continue;
-            step = _tour_dfs(to, idx, ++step, dep + 1);
+            step = _tour_dfs(g, to, idx, ++step, dep + 1);
             depth_[step] = dep;
             visited_[step] = idx;
         }
         return ++step;
     }
 
-    void build(int root = 0) {
-        _tour_dfs(root);
+    inline void build(const Graph& g, int root = 0) {
+        _tour_dfs(g, root);
         depth_.build();
     }
 
     inline int operator()(int u, int v) {
-        return visited_inv_[u] <= visited_inv_[v] ? visited_[depth_.getminrangeIdx(visited_inv_[u], visited_inv_[v])] : operator()(v, u);
+        return visited_inv_[u] <= visited_inv_[v] ?
+            visited_[depth_.getminrangeIdx(visited_inv_[u], visited_inv_[v])] : operator()(v, u);
     }
 };
+

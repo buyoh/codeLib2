@@ -18,15 +18,13 @@
 // %references
 //
 
-double bin_search_real(double l, double h, function<bool(double)> func) {
-    double mid = 1.0;
-    double last = 0.0;
 
-    while (abs(last - mid) < EPS) {
-        last = mid;
-        mid = (l + h) / 2.0;
-        (func(mid) ? h : l) = mid;
+const double EPS = 1e-9;
+double bin_search_real(double false_value, double true_value, function<bool(double)> func) {
+    for (int i = 0; i < 99; ++i) {
+        double mid = (true_value + false_value) / 2;
+        (func(mid) ? true_value : false_value) = mid;
     }
-    return mid;
+    return true_value;
 }
 

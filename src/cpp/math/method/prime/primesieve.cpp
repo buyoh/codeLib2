@@ -90,16 +90,16 @@ public:
         }
     }
     constexpr inline int operator[](int x) const { return d_[x]; }
-    template<int Max>
+    template<int _Max>
     class iterator {
-        const PrimeListC<Max>& pl;
+        const PrimeListC<_Max>& pl;
         int ptr = 0;
     public:
         constexpr iterator(const decltype(pl)& _pl, int _ptr = 0) :pl(_pl),ptr(_ptr) { }
         constexpr int operator*() const { return pl[ptr]; }
-        constexpr iterator<Max>& operator++() { ptr++; return *this; } // prefix
-        constexpr inline bool operator!=(const iterator<Max>& it) const { return ptr != it.ptr ? !(Max < ptr && Max < it.ptr) : false; }
-        constexpr inline bool operator==(const iterator<Max>& it) const { return ptr != it.ptr ? (Max < ptr && Max < it.ptr) : true; }
+        constexpr iterator<_Max>& operator++() { ptr++; return *this; } // prefix
+        constexpr inline bool operator!=(const iterator<_Max>& it) const { return ptr != it.ptr ? !(_Max < ptr && _Max < it.ptr) : false; }
+        constexpr inline bool operator==(const iterator<_Max>& it) const { return ptr != it.ptr ? (_Max < ptr && _Max < it.ptr) : true; }
     };
     constexpr PrimeListC::iterator<Max> begin() const { return PrimeListC::iterator<Max>(*this, 0); }
     constexpr PrimeListC::iterator<Max> end() const { return PrimeListC::iterator<Max>(*this, Max); }

@@ -14,73 +14,74 @@
 // scc
 // %require
 // cpp/graph/datastruct/dgraph.cpp
-
+// cpp/graph/datastruct/unionfind.cpp
 
 
 int strongly_connected_components(const DGraph& graph, Unionfind& result) {
-    stack<int> s;
-    int size = graph.n;
-    vector<int> num(size), low(size);
-    vector<int> flg(size);
-    int count = 0;
+    stack<int> stk;
+    vector<int> num(graph.size()), low(graph.size()), flg(graph.size());
+    int cnt = 0;
     int n_components = graph.n;
 
     function<void(int)> dfs = [&](int idx) {
-        low[idx] = num[idx] = ++count;
-        s.push(idx);
+        low[idx] = num[idx] = ++cnt;
+        stk.push(idx);
         flg[idx] = true;
 
-        for (int w : graph.vertex_to[idx]) {
-            if (num[w] == 0) {
-                dfs(w);
-                low[idx] = min(low[idx], low[w]);
+        for (int to : graph.vertex_to[idx]) {
+            if (num[to] == 0) {
+                dfs(to);
+                low[idx] = min(low[idx], low[to]);
             }
-            else if (flg[w]) { // ?
-                low[idx] = min(low[idx], num[w]);
+            else if (flg[to]) { // ?
+                low[idx] = min(low[idx], num[to]);
             }
         }
         if (low[idx] == num[idx]) {
-            while (!s.empty()) {
-                int w = s.top(); s.pop();
-                flg[w] = false;
-                if (idx == w) break;
-                n_components -= result.connect(idx, w);
+            while (!stk.empty()) {
+                int v = stk.top(); stk.pop();
+                flg[v] = false;
+                if (idx == v) break;
+                n_components -= result.connect(idx, v);
             }
         }
     };
-    for (int i = 0; i < graph.n; ++i) {
+    for (int i = 0; i < graph.size(); ++i) {
         if (num[i] == 0) dfs(i);
     }
     return n_components;
 }
 
 
+
 class SCComps {
 public:
-    const DGraph& orig;
+    // sccが1頂点に纏められたグラフ
     DGraph sccg;
+    // 元の頂点番号からscc後の頂点番号を求める
     vector<int> ori2scc;
+    // scc後の頂点番号から元の頂点番号を求める
     vector<vector<int>> scc2ori;
 
-    SCComps(const DGraph& g) :orig(g), sccg(1), ori2scc(g.n, -1) { build(); }
+    SCComps(const DGraph& g) :sccg(1), ori2scc(g.size(), -1) { build(g); }
 
-    void build() {
-        Unionfind uf(orig.n);
+    void build(const DGraph& orig) {
+        Unionfind uf(orig.size());
         strongly_connected_components(orig, uf);
 
-        int n_vtx = 0;
-        for (int i = 0; i < orig.n; ++i) {
+        int n = 0;
+        for (int i = 0; i < orig.size(); ++i) {
             int r = uf.root(i);
             if (ori2scc[r] == -1) {
-                ori2scc[r] = n_vtx++;
+                ori2scc[r] = n++;
                 scc2ori.emplace_back();
             }
             ori2scc[i] = ori2scc[r];
             scc2ori[ori2scc[i]].push_back(i);
         }
-        sccg.resize(n_vtx);
+        sccg.resize(n);
 
-        for (int i = 0; i < orig.n; ++i) {
+        for (int i = 0; i < orig.size(); ++i) {
             for (int to : orig.vertex_to[i]) {
                 if (ori2scc[i] == ori2scc[to]) continue;
                 sccg.connect(ori2scc[i], ori2scc[to]);
@@ -91,5 +92,4 @@ public:
     inline const vector<int>& vertex_to(int v) const { return sccg.vertex_to[v]; }
     inline const vector<int>& vertex_from(int v) const { return sccg.vertex_from[v]; }
     inline int size() const { return sccg.n; }
-
 };

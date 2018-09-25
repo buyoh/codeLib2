@@ -40,4 +40,6 @@ public:
         vertex_from[(size_t)to].push_back((int)edges.size()); // fromfrom
         edges.emplace_back(from, to, left);
     }
+
+    inline size_t size() const {return n_;}
 };
