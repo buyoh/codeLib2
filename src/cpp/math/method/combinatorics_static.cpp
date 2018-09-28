@@ -23,16 +23,16 @@ class Combinatorics {
     value_type fact_[MaxN + 1];
     // value_type inv_[MaxN + 1]; // iranai
 
-    value_type mypow(value_type x, value_type p, value_type mod = MD) {
-        value_type y = 1; x = x % mod;
+public:
+    value_type pow(value_type x, value_type p) {
+        value_type y = 1; x = x % Mod;
         for (; 0 < p; p >>= 1) {
-            if (p & 1) y = y * x % mod;
-            x = x * x % mod;
+            if (p & 1) y = y * x % Mod;
+            x = x * x % Mod;
         }
         return y;
     }
 
-public:
     Combinatorics() :fact_() {
         fact_[0] = 1;
         fact_[1] = 1;
@@ -46,7 +46,7 @@ public:
     }
 
     inline value_type inv(value_type n) {
-        return mypow(n, MD - 2, MD);
+        return pow(n, MD - 2);
     }
 
     inline value_type nPr(value_type n, value_type r) {
@@ -63,5 +63,3 @@ public:
         return nCr(n - 1 + r, n - 1);
     }
 };
-
-
