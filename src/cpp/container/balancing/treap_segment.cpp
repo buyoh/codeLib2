@@ -15,7 +15,7 @@
 // %usage
 // void Treap::concat(Treap& another)
 // ; thisの末尾にanotherを結合して，anotherを空にする．
-// void Treap::split(int size)
+// Treap Treap::split(int size)
 // ; thisの前からsize個を切り出す．
 // void Treap::insert(int index, value_t val)
 // ; index番目の要素の手前にvalを挿入する．

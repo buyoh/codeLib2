@@ -7,7 +7,7 @@
 // functionでwrapすれば済むだけの話だが，競技では面倒なので．
 //
 // %usage
-// tsearch_t tri_search_minimize(tsearch_t left, tsearch_t right, function<fval_t(tsearch_t)> func) 
+// tsearch_t ternarySearchMinimize(tsearch_t left, tsearch_t right, function<fval_t(tsearch_t)> func) 
 // left : 探索区間．型tsearch_tは整数．区間は low,high を含む
 // right: 
 // func : 下に凸な関数func(x)
@@ -20,7 +20,7 @@
 
 typedef ll tsearch_t;
 typedef ll fval_t;
-tsearch_t tri_search_minimize(tsearch_t left, tsearch_t right, function<fval_t(tsearch_t)> func) {
+tsearch_t ternarySearchMinimize(tsearch_t left, tsearch_t right, function<fval_t(tsearch_t)> func) {
 
     for (int lop = 0; lop < 60; ++lop) {
         tsearch_t l = right - (2 * right - 2 * left) / 3;

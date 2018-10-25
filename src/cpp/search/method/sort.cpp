@@ -7,7 +7,7 @@
 // を求める
 //
 // %usage
-// void sort_index(const ITER begin, const ITER end, vector<int> &idx, vector<int> &idxr)
+// void sortedIndex(const ITER begin, const ITER end, vector<int> &idx, vector<int> &idxr)
 // ; ITERはランダムアクセスイテレータ
 //
 // %verified
@@ -21,7 +21,7 @@
 // ソートしてi番目の値は 元々idx[i]番目の値
 // 元々i番目の値は ソートするとidxr[i]番目の値
 template <typename ITER>
-void sort_index(const ITER begin, const ITER end, vector<int> &idx, vector<int> &idxr) {
+void sortedIndex(const ITER begin, const ITER end, vector<int> &idx, vector<int> &idxr) {
     size_t n = end - begin;
     idx.resize(n);
     idxr.resize(n);
