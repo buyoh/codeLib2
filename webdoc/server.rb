@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/reloader' if development?
 # require 'sinatra/cookies'
 require 'sass'
 require 'json'
@@ -15,7 +16,8 @@ FileUtils::touch('tmp/codes.db') unless File.exist?('tmp/codes.db')
 sqldb = SQLite3::Database.new('tmp/codes.db')
 
 
-# check and recreate
+# テーブルを再作成する
+# 必要に応じてdropする
 def create_db(sqldb)
 
   count_a = sqldb.execute("select count(*) from sqlite_master where type='table' and name='articles';")[0][0]
@@ -52,6 +54,8 @@ def create_db(sqldb)
 end
 
 
+# DBを更新する
+# 必要に応じてレコードの更新・削除など．
 def update_db(sqldb)
 
   docs = nil
@@ -90,21 +94,23 @@ def update_db(sqldb)
 
   index.each do |article|
     unless article[:checked]
-      sqldb.execute("delete from articles where articleId=?", article[:id])
+      sqldb.execute("delete from articles where id=?", article[:id])
       sqldb.execute("delete from descriptors where articleId=?", article[:id])
     end
   end
 end
 
 
+# すべての {id, path, title, words} を配列に返す
 def all_index_db(sqldb)
   sqldb.execute("select id,path,title,keyword from articles;") \
     .map{|id,path,title,keyword| {id:id, path:path, title:title, words:keyword} }
 end
 
 
+# 検索に一致した {id, path, title, words} の配列を返す
+# memo: %が*，_が?に該当．部分判定は '%query%'
 def search_index_db(sqldb, path, title, keyword, union="or")
-  # memo: %が*，_が?に該当．部分判定は '%query%'
   where_query = []
   where_value = []
   if path;    where_query << "path like ?";    where_value << path;    end
@@ -116,6 +122,7 @@ def search_index_db(sqldb, path, title, keyword, union="or")
 end
 
 
+# descriptors テーブルに含まれる情報を集める
 def get_detail(sqldb, id)
   pairs = sqldb.execute("select keyStr,valueStr from descriptors where articleId=?;", id)
   h = {}
@@ -126,6 +133,7 @@ def get_detail(sqldb, id)
 end
 
 
+# idの値から {id, path, title, words} を求める
 def find_db_by_index(sqldb, id)
   r = sqldb.execute("select path,title,keyword from articles where id=?;", id)
   return nil if r.empty?
@@ -134,6 +142,7 @@ def find_db_by_index(sqldb, id)
 end
 
 
+# パスの値から id, path, title, words を求める
 def find_db_by_path(sqldb, path)
   r = sqldb.execute("select id,path,title,keyword from articles where path like ?;", '%'+path)
   return nil if r.empty?
@@ -145,8 +154,9 @@ end
 
 # - - - - - - - - - - - - - - - - - - - - - - - 
 
-
-# :idxs, :docs,
+# idxs: Array
+# idxs に含まれる id について 記事を収集してdocsにまとめる
+# return: {idxs: solved_idxs, docs: solved_docs}
 def solve_idxs(sqldb, idxs)
   docs = []
   solved_idxs = idxs.clone
