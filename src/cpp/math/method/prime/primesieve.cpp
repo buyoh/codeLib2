@@ -3,43 +3,25 @@
 // 
 // %overview
 // エラトステネスの篩
-// constexpr版もある(IsPrimeC)W
+// 生成する素数の数を静的に決めてしまう．
+// コンパイルが異様に遅くなるので(compile TLE)，
+// 競技プログラミングではconstexprを付けないほうが無難
 //
 // %usage
-// vector<int> gen_primelist(ll high);
-// ; high : 上限
-// ; `out[i]==1`ならばiは!!素数!! (i<=1は未定義)
-// 
 // constexpr IsPrimeC<9999> ipc;
 // ; `ipc[x] == true` なら，xは!!素数!!
 // 
 // constexpr PrimeListC<9999> plc;
 // ; `plc[i]` i 番目の素数
 // ; イテレータあるよ
+// map<ll, int> PrimeListC::divison(ll);
+// ; 素因数分解する．
 //
 // %verified
 // 
 // 
 // %references
 // 
-
-
-
-vector<int> gen_primelist(ll high) {
-    vector<int> out;
-    out.resize(high + 1);
-    out[0] = out[1] = 1;
-    ll sqh = (ll)sqrt(high);
-    for (ll i = 2; i <= sqh; i++) {
-        if (out[i] == 0) {
-            for (ll j = i * i; j <= high; j += i) { // i*i
-                out[j] = 1;
-            }
-        }
-    }
-    for (auto& x : out) out ^= 1;
-    return out;
-}
 
 
 template<int Max = 2000>
@@ -85,7 +67,7 @@ public:
         for (int x = 3; n < Max; ++x) {
             bool f = true;
             for (int i = 0; d_[i] * d_[i] <= x; ++i)
-                if (x % d_[i] == 0) { f = false; break; }
+                if (x / d_[i] * d_[i] == x) { f = false; break; }
             if (f) d_[n++] = x;
         }
     }
@@ -103,4 +85,14 @@ public:
     };
     constexpr PrimeListC::iterator<Max> begin() const { return PrimeListC::iterator<Max>(*this, 0); }
     constexpr PrimeListC::iterator<Max> end() const { return PrimeListC::iterator<Max>(*this, Max); }
+
+    map<ll, int> division(ll number) const {
+        map<ll, int> div;
+        for (int i = 0; number > 1 && i < Max; ++i) {
+            ll p = d_[i]; int c = 0;
+            while (number / p * p == number) ++c, number /= p;
+            if (c > 0) div[p] = c;
+        }
+        return div;
+    }
 };

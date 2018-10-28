@@ -1,22 +1,20 @@
 // %title
-// 数学計算など
+// 回転角
 // 
 // %overview
-// 必須の計算用関数．
-//
-// %usage
-// T gcd(T a, T b)
-// ; a,bの最大公約数
-// T gcd(T a, T b)
-// ; a,bの最小公倍数
+// 1周をmodで表現するような角度の単位系で，
+// 角度xから角度yへ向きを変えるとき，xに加算するべき値
+// 例えば，mod=360の時，
+// x=45, y=135ならば，return=90
+// x=45, y=315ならば，return=-90
+// x=45, y=450ならば，return=45
+// x=45, y=-45ならば，return=-90
 // 
+// %usage
 //
 // %verified
 // 
 // %references
-
-template<typename T> inline T gcd(T a, T b) { while(b){T t=a%b;a=b;b=t;}return a; }
-template<typename T> inline T lcm(T a, T b) { return a*b/gcd(a,b); }
 
 // 1周をmodで表現するような角度の単位系で，
 // 角度xから角度yへ向きを変えるとき，xに加算するべき値

@@ -21,7 +21,7 @@
 ```
 #include "bits/stdc++.h"
 using namespace std;
-typedef long long int ll;
+using ll = int64_t; // long long
 ```
 
 ## document

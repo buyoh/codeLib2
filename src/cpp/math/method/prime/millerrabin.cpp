@@ -19,12 +19,12 @@
 
 
 
-powm_strict(ll x, ll p, ll mod=1000000007ll){
-    typedef __int128_t ll128;
+ll powm_strict(ll x, ll p, ll mod=1000000007ll){
+    using ll128 = __int128_t;
     ll y = 1;
     x = x%mod;
     while (0 < p) {
-        if (p%2 == 1)
+        if ((p & 1) == 1)
             y = (ll)((((ll128)y)*x)%mod);
         x = (ll)((((ll128)x)*x)%mod);
         p /= 2;
@@ -33,10 +33,10 @@ powm_strict(ll x, ll p, ll mod=1000000007ll){
 }
 
 // Miller–Rabin primality test
-bool isprime_mr(ll val) {
-    typedef __int128_t ll128;
+bool isprime_MillerRabin(ll val) {
+    using ll128 = __int128_t;
     static const ll test[12] = {2,3,5,7,11,13,17,19,23,29,31,37};
-    if (val <= 1 || val % 2 == 0)
+    if (val <= 1 || (val & 1) == 0)
         return val == 2;
     for (auto t : test)
         if (val % t == 0)

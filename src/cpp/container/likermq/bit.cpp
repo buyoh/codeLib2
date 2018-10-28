@@ -32,7 +32,7 @@ public:
     Bitree(int size_) :size_(size_), data_(size_+1) {}
 
     // 1..rの範囲の値の和を求める．
-    T sum(int r) {
+    T sum(int r) const {
         T s = 0;
         while (r) {
             s += data_[r];
@@ -41,7 +41,7 @@ public:
         return s;
     }
     // l..rの範囲の値の和を求める
-    inline T sum(int l, int r) { return sum(r) - sum(l-1); }
+    inline T sum(int l, int r) const { return sum(r) - sum(l-1); }
     // idxの要素の値をval増やす
     void add(int idx, T val) {
         while (idx <= size_){
