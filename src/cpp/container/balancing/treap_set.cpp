@@ -28,51 +28,53 @@
 // https://www.slideshare.net/iwiwi/2-12188757
 // http://www.prefield.com/algorithm/container/treap.html
 
-struct TreapNode {
-    typedef int key_t;
-    typedef long long value_t;
-    typedef mt19937_64 randomizer_t;
-    static const key_t init_key_ = 0;
-    static const value_t init_value_ = 0;
-    static randomizer_t rnd;
 
-    unique_ptr<TreapNode> childlen[2];
-    key_t key;
-    value_t value;
-    randomizer_t::result_type priority;
-
-    TreapNode(key_t k = init_key_, value_t v = init_value_) :key(k), value(v), priority(rnd() | 1) {}
-    TreapNode(key_t k, value_t v, randomizer_t::result_type p) :key(k), value(v), priority(p) {}
-
-    //inline Node& operator[](size_t i) { return *childlen[i & 1]; }
-    //inline bool has(size_t i) { return (bool)childlen[i & 1]; }
-};
-TreapNode::randomizer_t TreapNode::rnd = TreapNode::randomizer_t();
-
-
-
-class Treap : public unique_ptr<TreapNode> {
+class Treap {
 public:
-    using key_t = TreapNode::key_t;
-    using value_t = TreapNode::value_t;
-    static const key_t init_key_ = TreapNode::init_key_;
-    static const value_t init_value_ = TreapNode::init_value_;
+    using key_type = int;
+    using value_type = long long;
+private:
+    using randevice_type = mt19937;
 
+    static randevice_type rnd;
+
+private:
+    struct Node {
+
+        key_type key;
+        value_type value;
+        unique_ptr<Node> childlen[2];
+        randevice_type::result_type priority;
+
+        Node(const key_type& k = key_type(), const value_type& v = value_type()) :key(k), value(v), priority(rnd() | 1) {}
+        Node(key_type k, value_type v, randevice_type::result_type p) :key(k), value(v), priority(p) {}
+
+        //inline Node& operator[](size_t i) { return *childlen[i & 1]; }
+        //inline bool has(size_t i) { return (bool)childlen[i & 1]; }
+    };
+
+
+private:
+    unique_ptr<Node> root;
+
+
+public:
     Treap() {}
-    Treap(TreapNode* p):unique_ptr<TreapNode>(p){}
+    Treap(Node* p) :root(p) {}
 
 
+private:
     // base.childlen[swap_for]がbaseの位置に来るように回転させる．
-    static void _rotate(unique_ptr<TreapNode>& base, size_t swap_for) {
+    static void _rotate(unique_ptr<Node>& base, size_t swap_for) {
         swap_for &= 1;
-        unique_ptr<TreapNode> swf = move(base->childlen[swap_for]);
+        unique_ptr<Node> swf = move(base->childlen[swap_for]);
         base->childlen[swap_for] = move(swf->childlen[swap_for ^ 1]);
         swf->childlen[swap_for ^ 1] = move(base);
         base = move(swf);
     }
 
     // thisをrootとする部分木にkをkeyとするNodeが無ければ作る，あれば返す．
-    inline TreapNode& _touch(unique_ptr<TreapNode>& node, key_t k) {
+    static inline Node& _touch(unique_ptr<Node>& node, key_type k) {
         if (k == node->key)
             return *node;
         size_t i = node->key < k;
@@ -83,53 +85,62 @@ public:
             return r;
         }
         else {
-            node->childlen[i].reset(new TreapNode(k));
+            node->childlen[i].reset(new Node(k));
             return *(node->childlen[i]);
         }
     }
 
-    // map[]と同じ
-    value_t& operator[](key_t key) {
-        if (!(*this)) {
-            reset(new TreapNode());
-            return (*this)->value;
-        }
-        else {
-            return _touch(*this, key).value;
-        }
+    // keyが等しいnodeを探す(const)
+    static const unique_ptr<Node>& _find(const unique_ptr<Node>& ptr, key_type key) {
+        return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key);
     }
-
     // keyが等しいnodeを探す
-    unique_ptr<TreapNode>& _find(unique_ptr<TreapNode>& ptr, key_t key) {
+    static unique_ptr<Node>& _find(unique_ptr<Node>& ptr, key_type key) {
         return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key);
     }
 
-    // keyが等しいnodeを探す
-    // 存在しないなら空のunique_ptrの参照が返る
-    inline unique_ptr<TreapNode>& find(key_t key) {
-        return _find(*this, key);
-    }
-
-
     // ptrを削除する．
-    void _erase(unique_ptr<TreapNode>& ptr) {
+    static void _erase(unique_ptr<Node>& ptr) {
         if (!ptr->childlen[0] && !ptr->childlen[1]) {
             ptr.release();
         }
         else {
-            bool i = ptr->childlen[0] ? 0 : ptr->childlen[1] ? 1 : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
+            bool i =
+                ptr->childlen[0] ? 0 :
+                ptr->childlen[1] ? 1 :
+                ptr->childlen[0]->priority > ptr->childlen[1]->priority;
             _rotate(ptr, i);
             _erase(ptr->childlen[i ^ 1]);
         }
     }
 
+
+public:
+    // map[]と同じ
+    value_type& operator[](key_type key) {
+        if (!(root)) {
+            root.reset(new Node());
+            return root->value;
+        }
+        else {
+            return _touch(root, key).value;
+        }
+    }
+
+    // keyが等しいnodeを探す
+    // 存在しないなら空のunique_ptrの参照が返る
+    inline const unique_ptr<Node>& find(key_type key) const {
+        return _find(root, key);
+    }
+
     // keyを持つnodeを削除する
-    inline void erase(key_t key) {
-        unique_ptr<TreapNode>& node = _find(*this, key);
+    inline void erase(key_type key) {
+        unique_ptr<Node>& node = _find(root, key);
         if (node) _erase(node);
     }
 
 };
+Treap::randevice_type Treap::rnd = randevice_type();
 
 
 // validate
