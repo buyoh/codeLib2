@@ -17,6 +17,8 @@
 // 
 // %references
 //
+// %words
+// graphstruct
 
 class DGraphE {
 public:

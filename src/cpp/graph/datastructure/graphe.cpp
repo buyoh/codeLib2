@@ -17,6 +17,8 @@
 // 
 // %references
 //
+// %words
+// graphstruct
 
 
 // Edge構造体を定義する無向グラフ
