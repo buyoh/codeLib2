@@ -273,7 +273,7 @@ public:
     }
 
     // [index] の値を書き換える
-    inline T setValue(int index, T val) {
+    inline void setValue(int index, T val) {
         _downward_applyDown((index + size_) >> 1);
         T diff = val - leaf_[index];
         leaf_[index] = val;
@@ -286,7 +286,7 @@ public:
     }
 
     // [index] の値に加算する
-    inline T addValue(int index, T val) {
+    inline void addValue(int index, T val) {
         _downward_applyDown((index + size_) >> 1);
         leaf_[index] += val;
 
