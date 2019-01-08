@@ -3,7 +3,7 @@
 // 
 // %overview
 // ゼータ変換は，集合関数f(2^S)=Nを
-// g(X) = sum{Y⊆X}(f(Y))
+// g(X) = sum{X⊆Y}(f(Y))
 // に変換する．
 // プログラミング上では，f,gは多くの場合，
 // 関数ではなく配列として表現される．
@@ -22,6 +22,7 @@
 // 
 // %references
 // https://topcoder.g.hatena.ne.jp/iwiwi/20120422/1335065228
+// https://naoyat.hatenablog.jp/entry/zeta-moebius
 // 講義資料
 // %words
 // zeta, mebius
