@@ -2,7 +2,7 @@
 // 最小頂点被覆の数
 // 
 // %overview
-// グラフの最小頂点被覆の大きさを求める．
+// グラフの最小頂点被覆の大きさと選ぶ頂点集合を求める．
 // 最大独立集合，最大クリークに転用可能．
 // 半分全列挙の実装だが，分岐限定法の方が効率が良いので実装し直す[TODO]
 //
@@ -11,6 +11,7 @@
 //
 // %verified
 // http://buyoh.hateblo.jp/entry/2017/12/10/184345
+// https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/4065305
 // 
 // %words
 // vertexcover
@@ -21,43 +22,16 @@
 //
 
 
-int vertex_cover_l(const Graph& graph) {
-    ll n = graph.n;
-
-    vector<int> choice(n, 0);
-    repeat(i, n) {
-        choice[n - i - 1] = 1;
-        do {
-            bool ok = true;
-            repeat(j, n) {
-                if (choice[j] == 0) {
-                    for (int to : graph.vertex_to[j])
-                        if (!choice[to]) {
-                            ok = false; j = n;
-                            break;
-                        }
-                }
-            }
-            if (ok) return i + 1;
-        } while (next_permutation(ALL(choice)));
-    }
-    abort(); // あり得ない
-}
-
-
 inline int bitcount(int x) {
     return bitset<31>(x).count();
 }
 
 // 半分全列挙
-int vertex_cover(const Graph& graph) {
+pair<int, vector<int>> vertex_cover(const Graph& graph) {
     const int n = graph.n;
     const int n_A = n / 2;
     const int n_B = n - n_A;
     const int inf = 1e9;
-
-    // 少なすぎるケースは回避
-    if (n < 6) return vertex_cover_l(graph);
 
     // group A : i <  n_A
     // group B : i >= n_A
@@ -92,7 +66,7 @@ int vertex_cover(const Graph& graph) {
     }
 
     // dp[S] Sは独立集合ではない
-    vector<int> not_independent_B(1 << n_B, 0);
+    vector<int8_t> not_independent_B(1 << n_B, 0);
     for (int _i = 0; _i < n_B; ++_i) {
         int bit = 1 << _i;
         for (int j : graph.vertex_to[n_A + _i])
@@ -123,6 +97,7 @@ int vertex_cover(const Graph& graph) {
 
     // answer
     int best = inf;
+    pair<int,int> vtx_selection;
 
     // groupB の部分集合を全列挙
     for (int bit = 0; bit < 1 << n_B; ++bit) {
@@ -143,9 +118,52 @@ int vertex_cover(const Graph& graph) {
             }
         }
 
-        best = min(best, ans_partial_A[mask_A] + bitcount(bit) + fix_A);
+        int score = ans_partial_A[mask_A] + bitcount(bit) + fix_A;
+        if (score < best) {
+            best = score;
+            vtx_selection.first = mask_A;
+            vtx_selection.second = bit;
+        }
     }
 
-    return best;
+    // 選んだ頂点の復元
+    vector<int> selection;
+    for (int i = 0; i < n_B; ++i) {
+        if (vtx_selection.second & (1 << i))
+            selection.push_back(n_A + i);
+    }
+    for (int i = 0; i < n_A; ++i) {
+        if ((vtx_selection.first & (1 << i)) == 0)
+            selection.push_back(i);
+    }
+    {
+        int m = vtx_selection.first;
+        int curr = ans_partial_A[m];
+        while (m > 0) {
+            int bi;
+            for (int i = 0; i < n_A; ++i) {
+                if ((m & (1 << i)) == 0) continue;
+                int a = ans_partial_A[m ^ (1 << i)];
+                if (curr == a) {
+                    bi = -1;
+                    m ^= (1 << i);
+                    break;
+                }
+                else if (curr - 1 == a) {
+                    bi = i;
+                }
+            }
+            if (bi >= 0) {
+                m ^= (1 << bi);
+                selection.push_back(bi);
+                --curr;
+            }
+            
+        }
+    }
+    sort(selection.begin(), selection.end());
+    selection.shrink_to_fit();
+
+    return make_pair(best, selection);
 }
 
