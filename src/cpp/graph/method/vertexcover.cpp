@@ -1,13 +1,13 @@
 // %title
-// 最小頂点被覆の数
+// 最小頂点被覆
 // 
 // %overview
 // グラフの最小頂点被覆の大きさと選ぶ頂点集合を求める．
 // 最大独立集合，最大クリークに転用可能．
-// 半分全列挙の実装だが，分岐限定法の方が効率が良いので実装し直す[TODO]
+// 半分全列挙の実装
 //
 // %usage
-// int vertex_cover(const Graph& graph)
+// int vertexCover(const Graph& graph)
 //
 // %verified
 // http://buyoh.hateblo.jp/entry/2017/12/10/184345
@@ -27,7 +27,7 @@ inline int bitcount(int x) {
 }
 
 // 半分全列挙
-pair<int, vector<int>> vertex_cover(const Graph& graph) {
+pair<int, vector<int>> vertexCover(const Graph& graph) {
     const int n = graph.n;
     const int n_A = n / 2;
     const int n_B = n - n_A;
