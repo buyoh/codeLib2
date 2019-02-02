@@ -12,6 +12,8 @@
 // void resize(size_t _n)
 // ;頂点数を変更する．
 // ;global変数として宣言した時に用いる．
+// void connect(vector<Edges>&& edges)
+// ; edgesを基に構築（グラフは空であること）
 //
 // %verified
 // 
@@ -35,13 +37,20 @@ public:
     vector<vector<int>> vertex_to;
     vector<Edge> edges;
 
-    GraphE(int n=1) :n(n), vertex_to(n) { }
+    GraphE(int n = 1) :n(n), vertex_to(n) { }
 
-    inline size_t size() const { return n; }
+    inline size_t size() const noexcept { return n; }
     void resize(size_t _n) { vertex_to.resize(n = _n); }
     void connect(int from, int to, W_T val = 0) {
         vertex_to[(size_t)from].push_back((int)edges.size());
         vertex_to[(size_t)to].push_back((int)edges.size());
         edges.emplace_back(from, to, val);
+    }
+    void connect(vector<Edge>&& es) {
+        edges = move(es);
+        for (int i = 0; (size_t)i < edges.size(); ++i) {
+            vertex_to[edges[i].u].push_back(i);
+            vertex_to[edges[i].v].push_back(i);
+        }
     }
 };
