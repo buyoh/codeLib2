@@ -76,6 +76,15 @@ class Point{
     cross(p){
         return this.x*p.y - p.x*this.y; 
     }
+    /**
+     * 🍆
+     * @param {Point} p 
+     */
+    cos(p){
+        return (this.x*p.x + this.y*p.y)
+            / (Math.sqrt(this.x*this.x + this.y*this.y)
+            * Math.sqrt(p.x*p.x + p.y*p.y))
+    }
 }
 
 
