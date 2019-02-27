@@ -8,57 +8,9 @@ require 'logger'
 
 require './back/dbwrapper'
 require './back/collector'
-
+require './back/dbutil'
 
 sqldb = DBWrapper.new
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - 
-
-# idxs: Array
-# idxs に含まれる id について 記事を収集してdocsにまとめる
-# return: {idxs: solved_idxs, docs: solved_docs}
-def solve_idxs(sqldb, idxs)
-  docs = []
-  solved_idxs = idxs.clone
-
-  dfs = lambda do |path|
-    doc = sqldb.find_db_by_path(path)
-    next unless doc
-    id = doc[:id]
-
-    next if solved_idxs.include?(id)
-    docs << doc
-    solved_idxs.unshift(id)
-
-    next unless doc[:require]
-    doc[:require].split.each do |pa|
-      dfs.call(pa.strip)
-    end
-  end
-
-  idxs.each do |idx|
-    doc = sqldb.find_db_by_index(idx)
-    next unless doc
-    docs << doc
-    next unless doc[:require]
-    doc[:require].split.each do |path|
-      dfs.call(path.strip)
-    end
-  end
-  { idxs: solved_idxs, docs: docs }
-end
-
-
-def generate_merged_code(idxs, docs)
-  code = ''
-  idxs.each do |id|
-    doc = docs.find{|d| d[:id] == id}
-    next unless doc
-    code += doc[:code] + "\n"
-  end
-  code
-end
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - 
@@ -177,8 +129,8 @@ get '/cart' do
     set_cart(@cart)
   end
 
-  solved = solve_idxs(sqldb, @cart['i'])
-  @gen_code = generate_merged_code(solved[:idxs], solved[:docs])
+  solved = DBUtil.solve_paths(sqldb, @cart['i'].map{|id| DBUtil.id_to_path(sqldb, id)})
+  @gen_code = DBUtil.generate_merged_code(solved[:path_sequence], solved[:docs])
 
   erb :cart
 end
