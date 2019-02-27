@@ -21,7 +21,7 @@
 // http://yukicoder.me/submissions/142141
 // 
 // %require
-// cpp/graph/datastruct/dgraph.cpp
+// cpp/graph/datastructure/dgraph.cpp
 // 
 // %references
 // http://www.prefield.com/algorithm/misc/2-sat.html

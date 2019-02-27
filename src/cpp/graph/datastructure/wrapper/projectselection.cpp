@@ -20,7 +20,7 @@
 // %verified
 // verified(ARC)
 // %require
-// cpp/graph/datastruct/graphflow.cpp
+// cpp/graph/datastructure/graphflow.cpp
 // cpp/graph/method/flow/dinic.cpp
 // 
 // %references

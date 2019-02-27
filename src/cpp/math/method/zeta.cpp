@@ -27,7 +27,7 @@
 // %words
 // zeta, mebius
 // %require
-// cpp/graph/datastruct/dgraph.cpp
+// cpp/graph/datastructure/dgraph.cpp
 // 
 
 using value_t = int;

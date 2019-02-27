@@ -13,8 +13,8 @@
 // %words
 // scc
 // %require
-// cpp/graph/datastruct/dgraph.cpp
-// cpp/graph/datastruct/unionfind.cpp
+// cpp/graph/datastructure/dgraph.cpp
+// cpp/graph/datastructure/unionfind.cpp
 
 
 int strongly_connected_components(const DGraph& graph, Unionfind& result) {

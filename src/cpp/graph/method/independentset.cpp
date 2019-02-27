@@ -18,7 +18,7 @@
 // %words
 // vertexcover, independentSet
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 // 
 // %references
 // FV Fomin, Exact Exponential Algorithms, Springer.

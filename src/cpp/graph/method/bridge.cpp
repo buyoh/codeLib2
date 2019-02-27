@@ -15,7 +15,7 @@
 // %words
 // bridge
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 
 // 橋を探す
 // 
