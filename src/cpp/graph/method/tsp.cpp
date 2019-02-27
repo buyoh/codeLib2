@@ -18,14 +18,14 @@
 // %words
 // tsp
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2588066#1
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641075#1
 // %references
 // 
 // %require
-// cpp/graph/datastruct/graph2dcpp
+// cpp/graph/datastructure/graph2dcpp
 
 
 

@@ -14,7 +14,7 @@
 // %words
 // articulation
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 
 void detect_articulation_point(const Graph& graph, vector<int>& out){
     out.resize(graph.n);

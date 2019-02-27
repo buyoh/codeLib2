@@ -8,7 +8,7 @@
 // %words
 // dijkstra
 // %require
-// cpp/graph/datastruct/graphe.cpp
+// cpp/graph/datastructure/graphe.cpp
 // %verified
 // 
 // %references
