@@ -108,6 +108,7 @@ get '/view/:id' do
   @doc = sqldb.find_db_by_index(id)
   redirect "/", 404 unless @doc
   @id = id
+  @enable_replacepath = true
   erb :view
 end
 

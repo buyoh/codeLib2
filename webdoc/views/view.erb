@@ -1,8 +1,10 @@
 
 
+<% if @enable_replacepath %>
 <script type="text/javascript">
 addEventListener("load", function(){history.replaceState(null, "", "<%= @doc[:path]%>");});
 </script>
+<% end %>
 
 <h1><%= @doc[:title] %></h1>
 
