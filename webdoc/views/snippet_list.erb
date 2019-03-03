@@ -3,7 +3,7 @@
 <% @docs.each do |doc| %>
     <% id = doc[:id] %>
     <div class="item">
-        <div class="title"><a href="/view/<%= doc[:id] %>"><%= doc[:title] %></a></div>
+        <div class="title"><a href="/view/<%= doc[:path] %>"><%= doc[:title] %></a></div>
         <div class="left">
             <div class="path"><%= doc[:path] %></div>
             <div class="keyword">keyword: <%= doc[:words] %></div>
