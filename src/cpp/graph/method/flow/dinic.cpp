@@ -25,80 +25,77 @@ void dinic(DGraphF &graph, vector<DGraphF::cap_t>& result, int i_source, int i_s
 
     result.resize(graph.n_);
     vector<int> dist(graph.n_);
-    queue<int> q;
-    vector<int> flag(graph.n_);
+    vector<int8_t> visited(graph.n_);
 
-    static function<DGraphF::cap_t(int, int, DGraphF::cap_t)> _dfs = [&](int u, int i_sink, DGraphF::cap_t mini) {
+    function<DGraphF::cap_t(int, int, DGraphF::cap_t)> _dfs = [&](int u, int i_sink, DGraphF::cap_t mini) -> DGraphF::cap_t {
         // DAG
         // TODO: 経路再利用
         if (i_sink == u) return mini;
-        if (flag[u]) return (DGraphF::cap_t) - 1;
-        flag[u] = true;
+        if (visited[u]) return -1;
+        visited[u] = true;
 
         DGraphF::cap_t sumw = 0;
         bool term = true;
-        for (int e : graph.vertex_to[u]) {
-            auto& edge = graph.edges[e];
-            if (edge.left > 0 && dist[u]>dist[edge.to]) {
-                DGraphF::cap_t w = (mini < 0) ? edge.left : min(edge.left, mini);
+        for (int edgeidx : graph.vertex_to[u]) {
+            auto& edge = graph.edges[edgeidx];
+            if (edge.left > 0 && dist[u] > dist[edge.to]) {
+                DGraphF::cap_t f = (mini < 0) ? edge.left : min(edge.left, mini);
 
-                w = _dfs(edge.to, i_sink, w);
-                if (w == -1) continue;
-                edge.left -= w;
-                result[edge.to] += w;
+                f = _dfs(edge.to, i_sink, f);
+                if (f == -1) continue;
+                edge.left -= f;
+                result[edge.to] += f;
 
-                sumw += w;
-                mini -= w;
+                sumw += f;
+                mini -= f;
                 term = false;
-                flag[u] = false; // TODO: 末尾では? 
-
+                visited[u] = false; // TODO: 末尾では?
                 if (mini == 0) return sumw;
             }
         }
-        for (int e : graph.vertex_from[u]) {
-            auto& edge = graph.edges[e];
-            if (edge.cap>edge.left && dist[u]>dist[edge.from]) {
-                DGraphF::cap_t w = (mini < 0) ? (edge.cap - edge.left) : min(edge.cap - edge.left, mini);
+        for (int edgeidx : graph.vertex_from[u]) {
+            auto& edge = graph.edges[edgeidx];
+            if (edge.cap > edge.left && dist[u] > dist[edge.from]) {
+                DGraphF::cap_t f = (mini < 0) ? (edge.cap - edge.left) : min(edge.cap - edge.left, mini);
 
-                w = _dfs(edge.from, i_sink, w);
-                if (w == -1) continue;
-                edge.left += w;
-                result[edge.to] -= w;
+                f = _dfs(edge.from, i_sink, f);
+                if (f == -1) continue;
+                edge.left += f;
+                result[edge.to] -= f;
 
-                sumw += w;
-                mini -= w;
+                sumw += f;
+                mini -= f;
                 term = false;
-                flag[u] = false;
+                visited[u] = false;
                 if (mini == 0) return sumw;
             }
         }
-        return term ? (DGraphF::cap_t)(-1) : sumw;
+        return term ? -1 : sumw;
     };
 
-
+    queue<int> que;
     for (int distbegin = 0; ; distbegin += (int)graph.n_) {
-
-        q.emplace(i_sink); // bfsはsinkからsourceへの距離を計算．
+        // sinkからsourceへの距離を計算．
+        que.emplace(i_sink);
         dist[i_sink] = distbegin + 1;
-        while (!q.empty()) {
-            int v = q.front();
-            q.pop();
-            for (int ie : graph.vertex_from[v]) {
-                const auto edge = graph.edges[ie];
+        while (!que.empty()) {
+            int v = que.front(); que.pop();
+            for (int edgeidx : graph.vertex_from[v]) {
+                const auto edge = graph.edges[edgeidx];
                 if (0 < edge.left && dist[edge.from] <= distbegin) {
                     dist[edge.from] = dist[v] + 1;
-                    q.emplace(edge.from);
+                    que.push(edge.from);
                 }
             }
-            for (int ie : graph.vertex_to[v]) {
-                const auto edge = graph.edges[ie];
+            for (int edgeidx : graph.vertex_to[v]) {
+                const auto edge = graph.edges[edgeidx];
                 if (edge.left < edge.cap && dist[edge.to] <= distbegin) {
                     dist[edge.to] = dist[v] + 1;
-                    q.emplace(edge.to);
+                    que.push(edge.to);
                 }
             }
         }
-        fill(flag.begin(), flag.end(), false);
+        fill(visited.begin(), visited.end(), false);
 
         if (dist[i_source] <= distbegin)
             break;
