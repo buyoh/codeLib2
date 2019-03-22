@@ -26,7 +26,7 @@ vector<GraphE::W_T> dijkstraEdgeWeighted(const GraphE& graph, int startIndex) {
     dist[startIndex] = 0;
 
     while (!que.empty()) {
-        int d = -que.top().first;
+        GraphE::W_T d = -que.top().first;
         int v = que.top().second;
         que.pop();
         if (dist[v] < d) continue;
