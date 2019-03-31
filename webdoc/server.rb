@@ -96,7 +96,7 @@ get '/search' do
   q = "%#{@searchKeyword}%"
   @docs = sqldb.search_index_db(q, q, q)
   
-  redirect to("/view/%d"%[@docs[0][:path]]) if @docs.size == 1
+  redirect "/view/%s" % [@docs[0][:path]] if @docs.size == 1
   erb :index
 end
 
