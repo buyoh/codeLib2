@@ -23,7 +23,8 @@ struct P {
     using T = int;
     T y, x;
 
-    P(T _y = 0, T _x = 0) :y(_y), x(_x) {}
+    inline explicit P(T _y, T _x) :y(_y), x(_x) {}
+    inline P() : y(0), x(0) { }
 
     inline bool operator == (P p) const { return y == p.y && x == p.x; }
     inline bool operator < (P p) const { return y == p.y ? x < p.x : y < p.y; }
