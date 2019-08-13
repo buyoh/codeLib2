@@ -10,7 +10,7 @@ require './dbhelper/dbwrapper'
 require './dbhelper/collector'
 require './dbhelper/dbutil'
 
-sqldb = DBWrapper.new
+$sqldb = DBWrapper.new
 
 # - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -62,8 +62,8 @@ end
 
 configure do
 
-  sqldb.create_db
-  sqldb.update_db
+  $sqldb.create_db
+  $sqldb.update_db
 
 end
 

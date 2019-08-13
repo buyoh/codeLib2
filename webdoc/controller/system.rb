@@ -3,7 +3,7 @@ get '/reload' do
   file = 'tmp/reload.log'
   if !File.exist?(file) || Time.now - File.mtime(file) > 300
     FileUtils.touch file
-    sqldb.update_db
+    $sqldb.update_db
   end
   redirect "/", 303
 end

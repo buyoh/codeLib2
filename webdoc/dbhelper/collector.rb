@@ -42,7 +42,7 @@ module Document
       d[:path] = file
       dic << d if d.key?(:title)
     end
-
+    
     return dic
   end
 end

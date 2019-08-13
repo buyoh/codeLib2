@@ -3,7 +3,7 @@ get '/cart' do
   @docs = []
   err = []
   @cart['i'].each do |id|
-    doc = sqldb.find_db_by_index(id)
+    doc = $sqldb.find_db_by_index(id)
     if doc.nil?
       err << id
     else
@@ -17,7 +17,7 @@ get '/cart' do
     set_cart(@cart)
   end
 
-  solved = DBUtil.solve_paths(sqldb, @cart['i'].map{|id| DBUtil.id_to_path(sqldb, id)})
+  solved = DBUtil.solve_paths($sqldb, @cart['i'].map{|id| DBUtil.id_to_path($sqldb, id)})
   @gen_code = DBUtil.generate_merged_code(solved[:path_sequence], solved[:docs])
 
   erb :cart
