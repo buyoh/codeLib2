@@ -34,26 +34,7 @@ module Document
   def self.collect_documents
     throw "current directory is not root" unless File.directory?("src")
 
-    # -------------------
-    
-    files = []
-    
-    dfs = lambda do |path|
-      if File.directory?(path)
-        Dir.foreach(path) do |f|
-          dfs.call "#{path}/#{f}" if f[0] != '.'
-        end
-      else
-        files << path
-      end
-    end
-    
-    Dir.foreach("src") do |lang|
-      next if lang[0] == '.'
-      dfs.call "src/#{lang}"
-    end
-    
-    # -------------------
+    files = Dir.glob("src/**/*").select{|file| File.file?(file) }.to_a
     
     dic = []
     files.each do |file|
