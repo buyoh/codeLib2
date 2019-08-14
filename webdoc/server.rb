@@ -6,11 +6,11 @@ require 'json'
 require 'uri'
 require 'logger'
 
-require './dbhelper/dbwrapper'
+require './dbhelper/dbhelper'
 require './dbhelper/collector'
 require './dbhelper/dbutil'
 
-$sqldb = DBWrapper.new
+$sqldb = DBHelper.new
 
 # - - - - - - - - - - - - - - - - - - - - - - - 
 

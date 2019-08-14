@@ -1,5 +1,5 @@
-require '../code/codeparser.rb'
-require '../markup/markup.rb'
+require './code/codeparser.rb'
+require './markup/markup.rb'
 
 module Document
 
@@ -10,7 +10,7 @@ module Document
     
     dic = []
     files.each do |path|
-      d = fileload(path)
+      d = Code.fileload(path)
       if d.key?(:title)
         d.keys.each do |k|
           d[k] = Markup.parse(d[k])
