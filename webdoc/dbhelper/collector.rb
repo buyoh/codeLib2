@@ -4,7 +4,7 @@ require '../markup/markup.rb'
 module Document
 
   def self.collect_documents
-    throw "current directory is not root" unless File.directory?("src")
+    raise RuntimeError.new("current directory is not root") unless File.directory?("src")
 
     files = Dir.glob("src/**/*").select{|file| File.file?(file) }.to_a
     
