@@ -39,8 +39,8 @@ get '/cart' do
     set_cart(@cart)
   end
 
-  solved = DBUtil.solve_paths($sqldb, @cart['i'].map{|id| DBUtil.id_to_path($sqldb, id)})
-  @gen_code = DBUtil.generate_merged_code(solved[:path_sequence], solved[:docs])
+  solved = DBSolver.solve_paths($sqldb, @cart['i'].map{|id| DBSolver.id_to_path($sqldb, id)})
+  @gen_code = DBSolver.generate_merged_code(solved[:path_sequence], solved[:docs])
 
   erb :cart
 end

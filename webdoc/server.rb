@@ -8,7 +8,7 @@ require 'logger'
 
 require './dbhelper/dbhelper'
 require './dbhelper/collector'
-require './dbhelper/dbutil'
+require './dbhelper/dbsolver'
 
 $enable_cart = true
 
