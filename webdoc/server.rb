@@ -10,7 +10,7 @@ require './dbhelper/dbhelper'
 require './dbhelper/collector'
 require './dbhelper/dbsolver'
 
-$enable_cart = true
+$enable_cart = false
 
 $sqldb = DBHelper.new
 
