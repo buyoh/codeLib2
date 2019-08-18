@@ -1,3 +1,5 @@
+if $enable_cart
+
 
 def init_cart()
   set_cookie('cart', '{"i":[]}', 3600*3)
@@ -68,4 +70,7 @@ get '/cart/rem/:id' do # TODO: なんでこれGETなんですか？
   end
   set_cart(@cart)
   redirect '/', 303
+end
+
+
 end

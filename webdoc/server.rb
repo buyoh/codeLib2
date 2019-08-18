@@ -10,6 +10,8 @@ require './dbhelper/dbhelper'
 require './dbhelper/collector'
 require './dbhelper/dbutil'
 
+$enable_cart = true
+
 $sqldb = DBHelper.new
 
 # - - - - - - - - - - - - - - - - - - - - - - - 

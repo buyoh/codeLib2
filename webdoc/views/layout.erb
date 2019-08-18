@@ -31,7 +31,9 @@
                         </div>
                     </form>
                 </li>
+                <% if $enable_cart %>
                 <li class="right"><a href="/cart">カート(<%= @cart['i'].size %>)</a></li>
+                <% end %>
                 <li></li>
             </ul>
         </div>
