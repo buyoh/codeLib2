@@ -1,5 +1,11 @@
 {
   "[ruby]":  {
     "editor.tabSize": 2
+  },
+  "[erb]":  {
+    "editor.tabSize": 2
+  },
+  "[scss]":  {
+    "editor.tabSize": 2
   }
 }
