@@ -47,14 +47,15 @@ ubuntuの場合、
 
 ### シーケンス
 
-- developブランチからブランチを作成
+現状は最低限の規定のみ。
+
+- masterからブランチを作成
   - test, src ならブランチ名は`src-lang-algorithmNameHere`
   - webdoc ならブランチ名は`webdoc-hoge`
 - 実装する
 - pull requestする
-- (tester実装予定)
-- developにsquashする
-- (tester実装予定)
+- masterにsquashする
+
 
 ### テンプレート
 
