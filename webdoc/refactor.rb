@@ -28,9 +28,9 @@ Dir.chdir('../') do
       end
     when 'cpp'
       if @inplace
-        code = system("clang-format -i -style=Chromium #{path}")
+        code = system("clang-format -i -style=file #{path}")
       else
-        diff = `bash -c "diff <( clang-format -style=Chromium #{path} ) #{path}"`
+        diff = `bash -c "diff <( clang-format -style=file #{path} ) #{path}"`
         unless diff=~/^\s*$/
           code = 1
           puts "clang-format assertion: #{path}"
