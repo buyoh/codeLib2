@@ -18,18 +18,36 @@
 // 
 
 
+
 struct P {
     using T = int;
     T y, x;
 
-    P(T _y = 0, T _x = 0) :y(_y), x(_x) {}
+    inline explicit P(T _y, T _x) :y(_y), x(_x) {}
+    inline P() : y(0), x(0) { }
 
     inline bool operator == (P p) const { return y == p.y && x == p.x; }
     inline bool operator < (P p) const { return y == p.y ? x < p.x : y < p.y; }
     inline P operator+(P p) const { return P(y + p.y, x + p.x); }
     inline P operator-(P p) const { return P(y - p.y, x - p.x); }
-    inline P operator+=(P p) { y += p.y; x += p.x; return *this; }
-    inline P operator-=(P p) { y -= p.y; x -= p.x; return *this; }
+    inline P& operator+=(P p) { y += p.y; x += p.x; return *this; }
+    inline P& operator-=(P p) { y -= p.y; x -= p.x; return *this; }
+    inline P& operator-=(T m) { y *= m; x ; return *this; }
+    inline T distM(P p) const { return abs(y - p.y) + abs(x - p.x); }
+    inline T distC(P p) const { return max(abs(y - p.y), abs(x - p.x)); }
+    template<typename ITR> ITR nearestM(ITR begin, ITR end) const {
+        if (begin == end) return end;
+        T best = distM(*begin);
+        ITR besti = begin;
+        for (ITR it = begin; ++it, it != end;) {
+            T m = distM(*it);
+            if (best < m) {
+                best = m;
+                besti = it;
+            }
+        }
+        return besti;
+    }
 };
 inline ostream& operator<<(ostream& os, P p) { os << '(' << p.y << ',' << p.x << ')'; return os; }
 
@@ -37,6 +55,7 @@ const P FourMoving[] = { P(-1,0),P(0,1), P(1,0), P(0,-1) };
 const P FiveMoving[] = { P(-1,0),P(0,1), P(1,0), P(0,-1), P(0,0) };
 const P EightMoving[] = { P(-1,0),P(0,1), P(1,0), P(0,-1), P(-1,-1), P(-1,1), P(1,-1), P(1,1) };
 
+inline P operator*(P::T m, P p) noexcept { return P(m*p.y, m*p.x); }
 
 template<typename T>
 // using T = int;

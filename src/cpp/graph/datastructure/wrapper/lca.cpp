@@ -22,7 +22,7 @@
 // %words
 // lca
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 // cpp/container/likermq/rmq_sparsetable.cpp
 
 class LCATable {

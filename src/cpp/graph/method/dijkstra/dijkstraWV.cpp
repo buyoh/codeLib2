@@ -8,7 +8,7 @@
 // %words
 // dijkstra
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 // %verified
 // 
 // %references
@@ -24,7 +24,7 @@ vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const ITER&
     dist[startIndex] = 0;
 
     while (!que.empty()) {
-        int d = -que.top().first;
+        GraphE::W_T d = -que.top().first;
         int v = que.top().second;
         que.pop();
         if (dist[v] < d) continue;

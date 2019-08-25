@@ -42,10 +42,10 @@ public:
         inline bool operator<(const T& t) const { return value < t; }
         inline bool operator==(const T& t) const { return value == t; }
         inline bool operator<(const IdxVal& iv) const { return value < iv.value || (value == iv.value && index < iv.index); }
-        inline bool operator==(const IdxVal& iv) const { return index == iv.index && value == iv.value; }
+        inline bool operator==(const IdxVal & iv) const { return index == iv.index && value == iv.value; }
     };
 
-    enum struct Cmd{
+    enum struct Cmd {
         None, Add, Flat
     };
 
@@ -94,7 +94,7 @@ public:
         _resize();
         _init();
     }
-    SegmentTree(int _n, const T& _fillVal) :
+    SegmentTree(int _n, const T & _fillVal) :
         size_([](int _n) {int s = 8; while (s < _n) s <<= 1; return s; }(_n))
     {
         _resize();
@@ -142,12 +142,12 @@ private:
             else {
                 node_[c].sum = node_[ptr].lazyValue * width;
                 node_[c].max.value = node_[ptr].lazyValue;
-                node_[c].lazyValue += node_[ptr].lazyValue;
+                node_[c].lazyValue = node_[ptr].lazyValue;
                 node_[c].lazyType = Cmd::Flat;
 
                 node_[c + 1].sum = node_[ptr].lazyValue * width;
                 node_[c + 1].max.value = node_[ptr].lazyValue;
-                node_[c + 1].lazyValue += node_[ptr].lazyValue;
+                node_[c + 1].lazyValue = node_[ptr].lazyValue;
                 node_[c + 1].lazyType = Cmd::Flat;
             }
 
@@ -317,4 +317,3 @@ public:
         return _getMaxRange(begin, end, 1, 0, size_);
     }
 };
-

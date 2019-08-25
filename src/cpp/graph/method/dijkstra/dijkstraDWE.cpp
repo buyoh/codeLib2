@@ -1,5 +1,5 @@
 // %title
-// ダイクストラ法(無向・辺重み)
+// ダイクストラ法(有向・辺重み)
 // 
 // %overview
 //
@@ -8,17 +8,15 @@
 // %words
 // dijkstra
 // %require
-// cpp/graph/datastructure/graphe.cpp
+// cpp/graph/datastructure/dgraphe.cpp
 // %verified
 // 
 // %references
 // 
 
 
-
-
-vector<GraphE::W_T> dijkstraEdgeWeighted(const GraphE& graph, int startIndex) {
-    using T = GraphE::W_T;
+vector<DGraphE::W_T> dijkstraDEdgeWeighted(const DGraphE& graph, int startIndex) {
+    using T = DGraphE::W_T;
     vector<T> dist(graph.size(), numeric_limits<T>::max());
 
     priority_queue<pair<T, int>> que; // <dist, idx>
@@ -32,8 +30,8 @@ vector<GraphE::W_T> dijkstraEdgeWeighted(const GraphE& graph, int startIndex) {
         if (dist[v] < d) continue;
 
         for (int ei : graph.vertex_to[v]) {
-            auto e = graph.edges[ei];
-            int u = e.to(v);
+            auto e = graph.arcs[ei];
+            int u = e.to;
             if (d + e.value < dist[u]) {
                 que.emplace(-(dist[u] = d + e.value), u);
             }

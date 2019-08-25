@@ -16,7 +16,7 @@
 // %words
 // grid, dij
 // %require
-// cpp/grid/datastruct/euclid.cpp
+// cpp/grid/datastructure/euclid.cpp
 
 
 ;

@@ -1,21 +1,23 @@
 
 <div id="indexlist">
 <% @docs.each do |doc| %>
-    <% id = doc[:id] %>
-    <div class="item">
-        <div class="title"><a href="/view/<%= doc[:id] %>"><%= doc[:title] %></a></div>
-        <div class="left">
-            <div class="path"><%= doc[:path] %></div>
-            <div class="keyword">keyword: <%= doc[:words] %></div>
-        </div>
-        <div class="right">
-            <% if include_cart(@cart, id) %>
-            <p><a href="/cart/rem/<%=id%>">カートから削除</a></p>
-            <% else %>
-            <p><a href="/cart/add/<%=id%>">カートに追加</a></p>
-            <% end %>
-        </div>
-        <div class="clear"></div>
+  <% id = doc[:id] %>
+  <div class="item">
+    <div class="title"><a href="/view/<%= doc[:path] %>"><%= doc[:title] %></a></div>
+    <div class="left">
+      <div class="path"><%= doc[:path] %></div>
+      <div class="keyword">keyword: <%= doc[:words] %></div>
     </div>
+    <% if $enable_cart %>
+    <div class="right">
+      <% if include_cart(@cart, id) %>
+      <p><a href="/cart/rem/<%=id%>">カートから削除</a></p>
+      <% else %>
+      <p><a href="/cart/add/<%=id%>">カートに追加</a></p>
+      <% end %>
+    </div>
+    <% end %>
+    <div class="clear"></div>
+  </div>
 <% end %>
 </div>

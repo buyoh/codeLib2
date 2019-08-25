@@ -3,6 +3,7 @@
 // 
 // %overview
 // グラフの最大独立集合の大きさと選ぶ頂点集合を求める．
+// 入力グラフは単純グラフであること．多重辺はNG．
 // 最小頂点被覆，最大クリークに転用可能．
 // 分岐限定法．
 // 
@@ -15,9 +16,9 @@
 // https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/4080519
 // 
 // %words
-// vertexcover
+// vertexcover, independentSet
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 // 
 // %references
 // FV Fomin, Exact Exponential Algorithms, Springer.

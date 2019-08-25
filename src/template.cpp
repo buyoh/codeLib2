@@ -17,7 +17,7 @@
 // %words
 // bsearch, nibuntansaku
 // %require
-// cpp/graph/datastruct/dgraph.cpp
+// cpp/graph/datastructure/dgraph.cpp
 // 
 
 int func(int x){}

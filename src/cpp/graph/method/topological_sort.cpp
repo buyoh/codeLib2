@@ -13,11 +13,13 @@
 //
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641044#1
+// %require
+// cpp/graph/datastructure/dgraph.cpp
 // 
 // %references
 //
 
-vector<int> topological_sort(const DGraph& graph) {
+vector<int> topologicalSort(const DGraph& graph) {
     const int n = graph.n;
     vector<int> result; result.reserve(n);
     vector<int> start; start.reserve(n);

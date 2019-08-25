@@ -1,5 +1,11 @@
 
 
+<% if @enable_replacepath %>
+<script type="text/javascript">
+addEventListener("load", function(){history.replaceState(null, "", "<%= @doc[:path]%>");});
+</script>
+<% end %>
+
 <h1><%= @doc[:title] %></h1>
 
 
@@ -8,10 +14,12 @@
 
 <% if @doc[:overview] && !@doc[:overview].empty? %>
 
-<% if include_cart(@cart, @id) %>
-<p>カートに追加済み</p>
-<% else %>
-<p><a href="/cart/add/<%=@id%>">カートに追加</a></p>
+<% if $enable_cart %>
+  <% if include_cart(@cart, @id) %>
+  <p>カートに追加済み</p>
+  <% else %>
+  <p><a href="/cart/add/<%=@id%>">カートに追加</a></p>
+  <% end %>
 <% end %>
 
 <h2>overview</h2>
@@ -49,9 +57,9 @@
 <h2>require</h2>
 <ul>
 <% @doc[:require].split.each do |req| %>
-    <% if !req.empty? %>
-        <li><a href="/search?word=<%= CGI.escape(req) %>"><%= req %></a></li>
-    <% end %>
+  <% if !req.empty? %>
+    <li><a href="/search?word=<%= CGI.escape(req) %>"><%= req %></a></li>
+  <% end %>
 <% end %>
 </ul>
 

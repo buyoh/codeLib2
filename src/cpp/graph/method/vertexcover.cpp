@@ -16,7 +16,7 @@
 // %words
 // vertexcover
 // %require
-// cpp/graph/datastruct/graph.cpp
+// cpp/graph/datastructure/graph.cpp
 // 
 // %references
 //
