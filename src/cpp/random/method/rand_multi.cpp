@@ -1,6 +1,6 @@
 // %title
 // 1からnまでの乱数をm個重複せずランダムに選ぶ
-// 
+//
 // %overview
 // 1からnまでの乱数をm個重複せずランダムに選ぶ．
 // このアルゴリズムは空間計算量O(m)，時間計算量O(m)で済む（ハッシュ操作をO(1)とする）．
@@ -23,23 +23,24 @@
 // ; 既にdisableした値をもう一度disableする操作はinvalid．
 //
 // %verified
-// 
+//
 // %references
-// 
+//
 
-// 
-void pick_multirand(int n, int m, vector<int>& out){
-    out.clear();
-    unordered_map<int, int> memo;
-    if (n < m) m = n;
-    for (int low = 1; low <= m; ++low){
-        int r = rand_int(low, n);
-        if (!memo[r]){
-            out.emplace_back(r);
-        }else{
-            out.emplace_back(memo[r]);
-        }
-        int e = memo[low];
-        memo[r] = e ? e : low; 
+//
+void pick_multirand(int n, int m, vector<int>& out) {
+  out.clear();
+  unordered_map<int, int> memo;
+  if (n < m)
+    m = n;
+  for (int low = 1; low <= m; ++low) {
+    int r = rand_int(low, n);
+    if (!memo[r]) {
+      out.emplace_back(r);
+    } else {
+      out.emplace_back(memo[r]);
     }
+    int e = memo[low];
+    memo[r] = e ? e : low;
+  }
 }

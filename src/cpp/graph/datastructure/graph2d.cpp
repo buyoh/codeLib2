@@ -1,6 +1,6 @@
 // %title
 // 無向グラフ(隣接行列)
-// 
+//
 // %overview
 // 隣接行列を持つ．
 // 必要な空間計算量は |V|^2
@@ -15,36 +15,37 @@
 // ;行列の値の参照
 //
 // %verified
-// 
+//
 // %references
 //
 // %words
 // graphstruct
 
-
-
 class Graph2d {
-public:
-    using W_T = int;
-    size_t n;
-    vector<W_T> matrix;
+ public:
+  using W_T = int;
+  size_t n;
+  vector<W_T> matrix;
 
-    Graph2d(size_t size) :n(size), matrix(size*size) {};
+  Graph2d(size_t size) : n(size), matrix(size * size){};
 
-    inline size_t size() const { return n; }
-    void resize(size_t s) { n = s; matrix.resize(n*n); }
-    void resize(size_t s, W_T val) { n = s; matrix.resize(n*n, val); }
+  inline size_t size() const { return n; }
+  void resize(size_t s) {
+    n = s;
+    matrix.resize(n * n);
+  }
+  void resize(size_t s, W_T val) {
+    n = s;
+    matrix.resize(n * n, val);
+  }
 
-    inline W_T& at(int y, int x) { return matrix[y*n + x]; }
-    inline W_T& operator()(int y, int x) { return matrix[y*n + x]; }
-    inline W_T at(int y, int x) const { return matrix[y*n + x]; }
-    inline W_T operator()(int y, int x) const { return matrix[y*n + x]; }
+  inline W_T& at(int y, int x) { return matrix[y * n + x]; }
+  inline W_T& operator()(int y, int x) { return matrix[y * n + x]; }
+  inline W_T at(int y, int x) const { return matrix[y * n + x]; }
+  inline W_T operator()(int y, int x) const { return matrix[y * n + x]; }
 
-    inline void connect(int u, int v, W_T dist = 1) {
-        at(u, v) = at(v, u) = dist;
-    }
-    inline void connect_d(int from, int to, W_T dist = 1) { // directedEdge u->v
-        at(from, to) = dist;
-    }
+  inline void connect(int u, int v, W_T dist = 1) { at(u, v) = at(v, u) = dist; }
+  inline void connect_d(int from, int to, W_T dist = 1) {  // directedEdge u->v
+    at(from, to) = dist;
+  }
 };
-

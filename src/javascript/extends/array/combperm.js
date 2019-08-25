@@ -35,7 +35,7 @@ Array.prototype.permutation = function*() {
         }
     }
     for (let r of dfs([])) yield r;
-}
+};
 
 Array.prototype.combination = function*(k) {
     if (this.length <= 0 || (this.length < k)) return;
@@ -56,4 +56,4 @@ Array.prototype.combination = function*(k) {
         for (let r of dfs(c, idx+1)) yield r;
     }
     for (let r of dfs([], 0)) yield r;
-}
+};

@@ -83,7 +83,7 @@ class Point{
     cos(p){
         return (this.x*p.x + this.y*p.y)
             / (Math.sqrt(this.x*this.x + this.y*this.y)
-            * Math.sqrt(p.x*p.x + p.y*p.y))
+            * Math.sqrt(p.x*p.x + p.y*p.y));
     }
 }
 
@@ -180,7 +180,7 @@ class Line{
         return {
             distance: Math.abs(lv.cross(p.minus(lp)))/Math.sqrt(den),
             nearest: this.point(lv.dot(p.minus(lp))/den)
-        }
+        };
     }
 
     /**
