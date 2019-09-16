@@ -51,3 +51,6 @@ webdoc/.sass-cache
 webdoc/Gemfile.lock
 webdoc/tmp
 webdoc/log
+
+#tmp
+tmp

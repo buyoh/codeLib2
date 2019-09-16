@@ -1,24 +1,17 @@
-require './dbhelper/dbhelper'
+Dir.chdir __dir__
 require './dbhelper/collector'
-require './dbhelper/dbsolver'
 
 @inplace = $*.include?('--inplace')
-
-
-
-sqldb = DBHelper.new
 
 
 success = true
 
 Dir.chdir('../') do
 
-  sqldb.all_index_db.each do |item|
-    path = item[:path]
+  Document.src_files.each do |path|
     li = path.split('/')
 
     code = 0
-    next unless li[0] == 'src'
     case li[1]
     when 'javascript'
       if @inplace
@@ -40,8 +33,8 @@ Dir.chdir('../') do
         end
       end
     end
-
-    success &= code == 0
+    puts "failed: #{path}" unless code
+    success &= code
   end
 
 end

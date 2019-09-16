@@ -22,9 +22,9 @@
 // 
 
 
-class Dice{
+class Dice { // eslint-disable-line no-unused-vars
 
-    constructor(){
+    constructor() {
         this.vecs = [
             [1, 0, 0],
             [0, 1, 0],
@@ -35,27 +35,27 @@ class Dice{
     /**
      * @param {1|-1} sign 1 or -1
      */
-    rotateZ(sign = 1){
+    rotateZ(sign = 1) {
         sign = sign < 0 ? -1 : 1;
-        for (let i=0; i<3; ++i)
-            this.vecs[i] = [sign*this.vecs[i][1], -sign*this.vecs[i][0], this.vecs[i][2]];
+        for (let i = 0; i < 3; ++i)
+            this.vecs[i] = [sign * this.vecs[i][1], -sign * this.vecs[i][0], this.vecs[i][2]];
     }
 
     /**
      * @param {1|-1} sign 1 or -1
      */
-    rotateY(sign = 1){
+    rotateY(sign = 1) {
         sign = sign < 0 ? -1 : 1;
-        for (let i=0; i<3; ++i)
-            this.vecs[i] = [sign*this.vecs[i][2], this.vecs[i][1], -sign*this.vecs[i][0]];
+        for (let i = 0; i < 3; ++i)
+            this.vecs[i] = [sign * this.vecs[i][2], this.vecs[i][1], -sign * this.vecs[i][0]];
     }
 
     /**
      * @param {1|-1} sign 1 or -1
      */
-    rotateX(sign = 1){
+    rotateX(sign = 1) {
         sign = sign < 0 ? -1 : 1;
-        for (let i=0; i<3; ++i)
-            this.vecs[i] = [this.vecs[i][0], sign*this.vecs[i][2], -sign*this.vecs[i][1]];
+        for (let i = 0; i < 3; ++i)
+            this.vecs[i] = [this.vecs[i][0], sign * this.vecs[i][2], -sign * this.vecs[i][1]];
     }
 }

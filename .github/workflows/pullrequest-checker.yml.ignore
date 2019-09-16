@@ -1,0 +1,30 @@
+name: pullrequest-checker
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: install tools
+      run: |
+        sudo apt install clang-format
+        sudo apt install ruby gem g++ npm
+        sudo npm i -g eslint 
+        sudo npm i -g node npm eslint
+    - name: autotest
+      run: |
+        ruby webdoc/autotest.rb
+    - name: refactor
+      run: |
+        ruby webdoc/refactor.rb --inplace
+        if [ `git diff | wc -l` -ne 0 ] ; then
+        git add .
+        git commit -m 'build by Github Actions'
+        fi
+    - uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
