@@ -12,8 +12,7 @@ jobs:
     - name: install tools
       run: |
         sudo apt update
-        sudo apt upgrade
-        sudo apt install ruby gem g++ npm clang clang-format
+        sudo apt install ruby gem g++ npm clang-format-6.0
         sudo npm i -g eslint 
     - name: autotest
       run: |
