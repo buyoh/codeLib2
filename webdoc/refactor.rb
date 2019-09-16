@@ -34,7 +34,7 @@ Dir.chdir('../') do
       end
     end
 
-    success &= code == 0
+    success &= code
   end
 
 end

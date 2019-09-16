@@ -17,13 +17,13 @@
 // 
 // 
 
-class Point{
+class Point {
     /**
      * 
      * @param {number} x 
      * @param {number} y 
      */
-    constructor(x, y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
     }
@@ -32,80 +32,80 @@ class Point{
      * 
      * @param {number} t
      */
-    multiply(t){
-        return new Point(t*this.x, t*this.y);
+    multiply(t) {
+        return new Point(t * this.x, t * this.y);
     }
     /**
      * 
      * @param {Point} p 
      */
-    plus(p){
-        return new Point(this.x+p.x, this.y+p.y);
+    plus(p) {
+        return new Point(this.x + p.x, this.y + p.y);
     }
     /**
      * 
      * @param {Point} p 
      */
-    minus(p){
-        return new Point(this.x-p.x, this.y-p.y);
+    minus(p) {
+        return new Point(this.x - p.x, this.y - p.y);
     }
     /**
      * 
      * @param {Point} p 
      */
-    distance(p){
-        return Math.hypot(this.x-p.x, this.y-p.y);
+    distance(p) {
+        return Math.hypot(this.x - p.x, this.y - p.y);
     }
     /**
      * x*x+y*y
      */
-    square(){
-        return this.x*this.x+this.y*this.y;
+    square() {
+        return this.x * this.x + this.y * this.y;
     }
     /**
      * 
      * @param {Point} p 
      */
-    dot(p){
-        return this.x*p.x + this.y*p.y;
+    dot(p) {
+        return this.x * p.x + this.y * p.y;
     }
     /**
      * 
      * @param {Point} p 
      */
-    cross(p){
-        return this.x*p.y - p.x*this.y; 
+    cross(p) {
+        return this.x * p.y - p.x * this.y;
     }
     /**
      * 🍆
      * @param {Point} p 
      */
-    cos(p){
-        return (this.x*p.x + this.y*p.y)
-            / (Math.sqrt(this.x*this.x + this.y*this.y)
-            * Math.sqrt(p.x*p.x + p.y*p.y));
+    cos(p) {
+        return (this.x * p.x + this.y * p.y)
+            / (Math.sqrt(this.x * this.x + this.y * this.y)
+                * Math.sqrt(p.x * p.x + p.y * p.y));
     }
 }
 
 
-class Circle{
+class Circle { // eslint-disable-line no-unused-vars
     /**
      * 
      * @param {Point} p 中心点
      * @param {number} rad 半径
      */
-    constructor(p, rad){
+    constructor(p, rad) {
         this.p = p;
         this.rad = rad;
     }
-    
+
     /**
      * 直線と円の交点
      * 交点が存在しない場合，[null,null]
      * @param {Line} li 
      * @returns {[Point,Point]}
      */
-    intersectionLine(li){
+    intersectionLine(li) {
         return li.intersectionCircle(this);
     }
 
@@ -115,21 +115,21 @@ class Circle{
      * @param {Circle} ci 
      * @returns {[Point,Point]}
      */
-    intersectionCircle(ci){
-        const a = (this.p.square()-ci.p.square()-this.rad*this.rad+ci.rad*ci.rad)/2;
-        return Line.equation(this.p.x-ci.p.x,this.p.y-ci.p.y, -a).intersectionCircle(this);
+    intersectionCircle(ci) {
+        const a = (this.p.square() - ci.p.square() - this.rad * this.rad + ci.rad * ci.rad) / 2;
+        return Line.equation(this.p.x - ci.p.x, this.p.y - ci.p.y, -a).intersectionCircle(this);
     }
 }
 
 
-class Line{
+class Line {
     /**
      * pos+t*vel を満たす直線．
      * |vel| < EPS の時，0除算が発生することがある．
      * @param {Point} pos
      * @param {Point} vel
      */
-    constructor(pos, vel){
+    constructor(pos, vel) {
         this.pos = pos;
         this.vel = vel;
     }
@@ -139,7 +139,7 @@ class Line{
      * @param {Point} p1 
      * @param {Point} p2 
      */
-    static path(p1, p2){
+    static path(p1, p2) {
         const lp = p1, lv = p2.plus(p1.multiply(-1));
         return new Line(lp, lv);
     }
@@ -151,18 +151,18 @@ class Line{
      * @param {number} b 
      * @param {number} c 
      */
-    static equation(a, b, c){
+    static equation(a, b, c) {
         if (Math.abs(a) < Math.abs(b))
-            return new Line(new Point(0, -c/b), new Point(b, -a));
+            return new Line(new Point(0, -c / b), new Point(b, -a));
         else
-            return new Line(new Point(-c/a, 0), new Point(b, -a));
+            return new Line(new Point(-c / a, 0), new Point(b, -a));
     }
 
     /**
      * t をパラメータとする直線上の点 pos+t*vel を求める．
      * @param {number} t 
      */
-    point(t){
+    point(t) {
         return this.pos.plus(this.vel.multiply(t));
     }
 
@@ -172,14 +172,14 @@ class Line{
      * @param {Point} p
      * @returns {{distance: number, nearest: Point}}
      */
-    distancePoint(p){
+    distancePoint(p) {
         const lp = this.pos, lv = this.vel;
 
         const den = lv.square();
 
         return {
-            distance: Math.abs(lv.cross(p.minus(lp)))/Math.sqrt(den),
-            nearest: this.point(lv.dot(p.minus(lp))/den)
+            distance: Math.abs(lv.cross(p.minus(lp))) / Math.sqrt(den),
+            nearest: this.point(lv.dot(p.minus(lp)) / den)
         };
     }
 
@@ -189,17 +189,17 @@ class Line{
      * @param {Circle} ci 
      * @returns {[Point,Point]}
      */
-    intersectionCircle(ci){
+    intersectionCircle(ci) {
         const lp = this.pos, lv = this.vel;
 
-        const d = lv.x*(ci.p.y-lp.y)-lv.y*(ci.p.x-lp.x);
-        const den = lv.x*lv.x+lv.y*lv.y;
-        const det = (den)*ci.rad*ci.rad-d*d;
+        const d = lv.x * (ci.p.y - lp.y) - lv.y * (ci.p.x - lp.x);
+        const den = lv.x * lv.x + lv.y * lv.y;
+        const det = (den) * ci.rad * ci.rad - d * d;
         if (det < 0) return [null, null];
 
-        const num = lv.x*(ci.p.x-lp.x)+lv.y*(ci.p.y-lp.y);
+        const num = lv.x * (ci.p.x - lp.x) + lv.y * (ci.p.y - lp.y);
         const detsq = Math.sqrt(det);
-        return [this.point((num+detsq)/den), this.point((num-detsq)/den)];
+        return [this.point((num + detsq) / den), this.point((num - detsq) / den)];
     }
 
     /**
@@ -208,11 +208,11 @@ class Line{
      * @param {Line} li
      * @returns {Point} 
      */
-    intersectionLine(li){
+    intersectionLine(li) {
         const num = -this.vel.cross(li.pos.minus(this.pos));
         const den = this.vel.cross(li.vel);
         if (den == 0) return null;
-        return li.point(num/den);
+        return li.point(num / den);
     }
 
 }
