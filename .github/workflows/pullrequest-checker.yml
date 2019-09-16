@@ -15,7 +15,7 @@ jobs:
         # sudo apt install ruby gem g++ npm
         # sudo npm i -g eslint 
         brew install clang-format
-        npm i -g eslint
+        npm i -g npm eslint
     - name: autotest
       run: |
         ruby webdoc/autotest.rb
