@@ -3,7 +3,6 @@
 
 ## What's this?
 - 手法やアルゴリズムをまとめたチートシートです。
-- Repository codeLib からファイルを再構築しました。
 
 ## codeLibとの違い
 - 説明文などのフォーマットを統一
@@ -56,7 +55,6 @@ ubuntuの場合、
 - pull requestする
 - masterにsquashする
 
-
 ### テンプレート
 
 空行なしで行頭にコメント行文字を入れると、メタ情報として認識されます。
@@ -80,3 +78,8 @@ ubuntuの場合、
 // 参考資料など．
 ```
 
+### test
+
+```
+ruby webdoc/autotest.rb
+```

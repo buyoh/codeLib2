@@ -1,6 +1,5 @@
-
+Dir.chdir __dir__
 require './dbhelper/collector.rb'
-require './tool/files.rb'
 
 @tempdir = './tmp'
 
