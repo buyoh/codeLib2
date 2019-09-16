@@ -1,8 +1,8 @@
 // %title
 // 時間計測用マクロ．
-// 
+//
 // %overview
-// 
+//
 //
 // %usage
 // void tic()
@@ -17,13 +17,17 @@
 // %words
 // time,tic,toc
 // %verified
-// 
+//
 // %references
 
 #define TIME chrono::system_clock::now()
 #define MILLISEC(t) (chrono::duration_cast<chrono::milliseconds>(t).count())
 namespace {
-    std::chrono::system_clock::time_point ttt;
-    inline void tic() { ttt = TIME; }
-    inline void toc() { clog << "TIME : " << MILLISEC(TIME - ttt) << '\n'; }
+std::chrono::system_clock::time_point ttt;
+inline void tic() {
+  ttt = TIME;
 }
+inline void toc() {
+  clog << "TIME : " << MILLISEC(TIME - ttt) << '\n';
+}
+}  // namespace

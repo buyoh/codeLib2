@@ -1,6 +1,6 @@
 // %title
 // 禁止可能な一様分布の乱数
-// 
+//
 // %overview
 // 一部の整数を取り出せないようにできるような，一様分布の乱数を生成する．
 // invalidな引数を与えた場合の動作は未定義．
@@ -17,35 +17,33 @@
 // ; 既にdisableした値をもう一度disableする操作はinvalid．
 //
 // %verified
-// 
+//
 // %references
-// 
+//
 
+class RandChooser {
+  size_t size;
+  size_t left_size;
+  vector<int> swapper;
+  vector<int> unswapper;
 
-class RandChooser{
-    size_t size;
-    size_t left_size;
-    vector<int> swapper;
-    vector<int> unswapper;
-public:
-    RandChooser(size_t s):size(s),left_size(s),swapper(s),unswapper(s){
-        for (int i=0; i < s; ++i){
-            swapper[i] = unswapper[i] = i;
-        }
+ public:
+  RandChooser(size_t s) : size(s), left_size(s), swapper(s), unswapper(s) {
+    for (int i = 0; i < s; ++i) {
+      swapper[i] = unswapper[i] = i;
     }
-    inline size_t left(){
-        return left_size;
-    }
-    
-    template<typename RANDOM>
-    inline int operator()(RANDOM &rd){
-        uniform_int_distribution<int> rand_int(0, left_size-1);
-        return swapper[rand_int(rd)];
-    }
-    
-    inline int disable(int idx){
-        swap(swapper[unswapper[idx]],swapper[left_size-1]);
-        unswapper[swapper[unswapper[idx]]] = unswapper[idx];
-        return --left_size;
-    }
+  }
+  inline size_t left() { return left_size; }
+
+  template <typename RANDOM>
+  inline int operator()(RANDOM& rd) {
+    uniform_int_distribution<int> rand_int(0, left_size - 1);
+    return swapper[rand_int(rd)];
+  }
+
+  inline int disable(int idx) {
+    swap(swapper[unswapper[idx]], swapper[left_size - 1]);
+    unswapper[swapper[unswapper[idx]]] = unswapper[idx];
+    return --left_size;
+  }
 };
