@@ -17,7 +17,7 @@ jobs:
         ruby webdoc/autotest.rb
     - name: refactor
       run: |
-        ruby webdoc/refactor.rb
+        ruby webdoc/refactor.rb --inplace
         if [ `git diff | wc -l` -ne 0 ] ; then
         git add .
         git commit -m 'build by Github Actions'
