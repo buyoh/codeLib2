@@ -5,17 +5,16 @@ on: [pull_request]
 jobs:
   build:
 
-    runs-on: macOS-latest #ubuntu-latest
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v1
     - name: install tools
       run: |
-        # sudo apt install clang-format
-        # sudo apt install ruby gem g++ npm
-        # sudo npm i -g eslint 
-        brew install clang-format
-        npm i -g node npm eslint
+        sudo apt install clang-format
+        sudo apt install ruby gem g++ npm
+        sudo npm i -g eslint 
+        sudo npm i -g node npm eslint
     - name: autotest
       run: |
         ruby webdoc/autotest.rb
