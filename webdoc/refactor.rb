@@ -33,7 +33,7 @@ Dir.chdir('../') do
         end
       end
     end
-
+    puts "failed: #{path}" unless code
     success &= code
   end
 
