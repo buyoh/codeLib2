@@ -1,7 +1,7 @@
 ---
 BasedOnStyle: 'Chromium'
 AlignConsecutiveAssignments: false
-ColumnLimit: 100
+ColumnLimit: 160
 PointerAlignment: 'Left'
 SpaceAfterCStyleCast: false
 SpacesInAngles: false
