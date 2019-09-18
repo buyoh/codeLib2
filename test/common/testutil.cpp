@@ -16,21 +16,17 @@ using ll = int64_t;
 #define CHKEQ(expected, actual)                                                   \
   if (!((expected) == (actual))) {                                                \
     cerr << "in" << __LINE__ << "; CHK failed; " #expected " = " #actual << endl; \
-    _chkerr_eq_dump(expected, actual, #expected, #actual); \
-    abort(); \
+    _chkerr_eq_dump(expected, actual, #expected, #actual);                        \
+    abort();                                                                      \
   }
 
 namespace {
-  template<typename E, typename A>
-  void _chkerr_eq_dump(const E& e, const A& a, const char* ename, const char* aname) {       \
-    cerr << "in" << __LINE__ << "; CHK failed; " << ename << " = " << aname << endl;
-    cerr << ename << ": " << e << " " << aname << ": " << a << endl;
-  }
-  template<typename E, typename A>
-  void _chkerr_eqdump(const E& e, const A& a, const char* ename, const char* aname) {       \
-    cerr << "in" << __LINE__ << "; CHK failed; " << ename << " = " << aname << endl;
-  }
+template <typename E, typename A>
+auto _chkerr_eq_dump(const E& e, const A& a, const char* ename, const char* aname) -> decltype(e << a, nullptr) {
+  cerr << ename << " = " << e << ", " << aname << " = " << a << endl;
 }
+auto _chkerr_eq_dump(...) -> decltype(nullptr) {}
+}  // namespace
 
 namespace Rand {
 
