@@ -11,8 +11,11 @@
 // %references
 // 蟻本
 
+#include <bits/stdc++.h>
+using namespace std;
+
 class SuffixArray {
-  const char* data;
+  const char* str;
   int size;
   vector<const char*> sa;
   string keeper;
@@ -20,40 +23,36 @@ class SuffixArray {
  public:
   SuffixArray() {}
   SuffixArray(const string& d) {
-    data = d.c_str();
+    str = d.c_str();
     size = d.size();
   }
   SuffixArray(string&& d) {
     keeper = move(d);
-    data = keeper.c_str();
+    str = keeper.c_str();
     size = keeper.size();
   }
 
   void build() {
-    sa.resize(size);
-
-    for (int i = 0; i < size; i++) {
-      sa[i] = data + i;
-    }
-    sort(sa.begin(), sa.end(), [](const char* l, const char* r) { return *l < *r; });
+    vector<int> sfx(size);
+    iota(sfx.begin(), sfx.end(), 0);
+    sort(sfx.begin(), sfx.end(), [this](int l, int r) { return str[l] < str[r]; });
 
     vector<int> rank(size * 2, -1);
     vector<int> tmp(size * 2, -1);
 
-    rank[sa[0] - data] = 0;
-    for (int i = 1; i < size; ++i)
-      rank[sa[i] - data] = rank[sa[i - 1] - data] + (*sa[i - 1] < *sa[i]);
+    for (int i = 0; i < size; ++i)
+      rank[i] = str[i];
     for (int d = 1; d < size; d *= 2) {
-      auto compare = [this, d, &rank](const char* l, const char* r) {
-        return rank[l - data] != rank[r - data] ? rank[l - data] < rank[r - data] : rank[l + d - data] < rank[r + d - data];
-      };
-      sort(sa.begin(), sa.end(), compare);
-      tmp[sa[0] - data] = 0;
+      auto compare = [d, &rank](int l, int r) { return rank[l] != rank[r] ? rank[l] < rank[r] : rank[l + d] < rank[r + d]; };
+      sort(sfx.begin(), sfx.end(), compare);
+      tmp[sfx[0]] = 0;
       for (int i = 1; i < size; ++i)
-        tmp[sa[i] - data] = tmp[sa[i - 1] - data] + compare(sa[i - 1], sa[i]);
-      for (int i = 0; i < size; ++i)
-        rank[i] = tmp[i];
+        tmp[sfx[i]] = tmp[sfx[i - 1]] + compare(sfx[i - 1], sfx[i]);
+      tmp.swap(rank);
     }
+    sa.resize(size);
+    for (int i = 0; i < size; ++i)
+      sa[i] = str + sfx[i];
   }
   pair<bool, pair<int, int>> find(const string& keyword) {
     auto n = keyword.size();
@@ -94,5 +93,5 @@ class SuffixArray {
     return make_pair(true, make_pair(low, high));
   }
 
-  inline int foundToIdx(int found) { return sa[found] - data; }
+  inline int foundToIdx(int found) { return sa[found] - str; }
 };
