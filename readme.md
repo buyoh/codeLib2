@@ -50,7 +50,7 @@ ubuntuの場合、
 
 - masterからブランチを作成
   - test, src ならブランチ名は`src-lang-algorithmNameHere`
-  - webdoc ならブランチ名は`webdoc-hoge`
+  - webdoc ならブランチ名は`tools-hoge`
 - 実装する
 - pull requestする
 - masterにsquashする
@@ -76,6 +76,12 @@ ubuntuの場合、
 // 
 // %references
 // 参考資料など．
+// %words
+// キーワード
+// %require
+// 必要な別のスニペット
+// %tags
+// nolint, (wip:未実装), (unverified:未実装)
 ```
 
 ### test
