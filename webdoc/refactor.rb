@@ -1,5 +1,6 @@
 Dir.chdir __dir__
 require './dbhelper/collector'
+require './code/codeparser'
 
 @inplace = $*.include?('--inplace')
 
@@ -9,7 +10,12 @@ success = true
 Dir.chdir('../') do
 
   Document.src_files.each do |path|
+    info = Code.fileload(path)
     li = path.split('/')
+
+    tags = (info[:tags] || '').split(',').map(&:strip)
+
+    next if tags.include?('nolint')
 
     code = 0
     case li[1]
