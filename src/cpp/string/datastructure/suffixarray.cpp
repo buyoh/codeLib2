@@ -6,13 +6,10 @@
 // %usage
 //
 // %verified
-//
-//
+// tested
 // %references
 // 蟻本
-
-#include <bits/stdc++.h>
-using namespace std;
+// http://wk1080id.hatenablog.com/entry/2018/12/25/005926
 
 class SuffixArray {
   const char* str;
@@ -25,35 +22,62 @@ class SuffixArray {
   SuffixArray(const string& d) {
     str = d.c_str();
     size = d.size();
+    assert(str[size] == 0);
+    ++size;
   }
   SuffixArray(string&& d) {
     keeper = move(d);
     str = keeper.c_str();
     size = keeper.size();
+    assert(str[size] == 0);
+    ++size;
   }
 
   void build() {
-    vector<int> sfx(size);
-    iota(sfx.begin(), sfx.end(), 0);
-    sort(sfx.begin(), sfx.end(), [this](int l, int r) { return str[l] < str[r]; });
-
-    vector<int> rank(size * 2, -1);
-    vector<int> tmp(size * 2, -1);
+    const int Alpha = 128;
+    vector<int> sfx(size);                  // suffix array permutation
+    vector<int> div(size);                  // division
+    vector<int> cnt(max(size + 1, Alpha));  // counter
 
     for (int i = 0; i < size; ++i)
-      rank[i] = str[i];
+      cnt[str[i]] += 1;
+    for (int i = 1; i < Alpha; ++i)
+      cnt[i] += cnt[i - 1];
+    for (int i = 0; i < size; ++i)
+      sfx[--cnt[str[i]]] = i;
+
+    div[sfx[0]] = 0;
+    for (int i = 1; i < size; ++i)
+      div[sfx[i]] = div[sfx[i - 1]] + (str[sfx[i - 1]] < str[sfx[i]]);
+
     for (int d = 1; d < size; d *= 2) {
-      auto compare = [d, &rank](int l, int r) { return rank[l] != rank[r] ? rank[l] < rank[r] : rank[l + d] < rank[r + d]; };
-      sort(sfx.begin(), sfx.end(), compare);
-      tmp[sfx[0]] = 0;
-      for (int i = 1; i < size; ++i)
-        tmp[sfx[i]] = tmp[sfx[i - 1]] + compare(sfx[i - 1], sfx[i]);
-      tmp.swap(rank);
+      vector<int> sfx2(size);
+      {
+        fill(cnt.begin(), cnt.end(), 0);
+        for (int i = 0; i < size; ++i)
+          cnt[div[(sfx[i] - d + size) % size]] += 1;
+        for (int i = 1; i <= size; ++i)
+          cnt[i] += cnt[i - 1];
+        for (int i = size - 1; 0 <= i; --i) {
+          sfx2[--cnt[div[(sfx[i] - d + size) % size]]] = (sfx[i] - d + size) % size;
+        }
+      }
+      sfx2.swap(sfx);
+      vector<int> div2(size);
+      div2[sfx[0]] = 0;
+      int acc = 0;
+      for (int i = 1; i < size; ++i) {
+        pair<int, int> curr = {div[sfx[i]], div[(sfx[i] + d) % size]};
+        pair<int, int> prev = {div[sfx[i - 1]], div[(sfx[i - 1] + d) % size]};
+        div2[sfx[i]] = div2[sfx[i - 1]] + (curr != prev);
+      }
+      div2.swap(div);
     }
     sa.resize(size);
     for (int i = 0; i < size; ++i)
       sa[i] = str + sfx[i];
   }
+
   pair<bool, pair<int, int>> find(const string& keyword) {
     auto n = keyword.size();
 
