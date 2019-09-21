@@ -30,7 +30,7 @@ using ll = int64_t; // long long
 
 ### setup
 
-- カレントディレクトリを `webdoc` に移動してから、
+- カレントディレクトリを `tools` に移動してから、
 - `bundle install`
 
 失敗する場合は、おそらく必要なアプリケーションがインストールされていない。
@@ -39,7 +39,7 @@ ubuntuの場合、
 
 ### 実行
 
-- カレントディレクトリを `webdoc` に移動してから、
+- カレントディレクトリを `tools` に移動してから、
 - `bundle exec ruby server.rb`
 
 ## 開発
@@ -50,7 +50,7 @@ ubuntuの場合、
 
 - masterからブランチを作成
   - test, src ならブランチ名は`src-lang-algorithmNameHere`
-  - webdoc ならブランチ名は`tools-hoge`
+  - tools ならブランチ名は`tools-hoge`
 - 実装する
 - pull requestする
 - masterにsquashする
@@ -87,5 +87,5 @@ ubuntuの場合、
 ### test
 
 ```
-ruby webdoc/autotest.rb
+ruby tools/autotest.rb
 ```

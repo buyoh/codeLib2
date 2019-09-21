@@ -1,2 +1,2 @@
-require './server.rb'
+require './webdoc.rb'
 run Sinatra::Application

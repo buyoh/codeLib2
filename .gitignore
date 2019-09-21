@@ -46,11 +46,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# webdoc
-webdoc/.sass-cache
-webdoc/Gemfile.lock
-webdoc/tmp
-webdoc/log
+# tools
+tools/.sass-cache
+tools/Gemfile.lock
+tools/tmp
+tools/log
 
 #tmp
 tmp
