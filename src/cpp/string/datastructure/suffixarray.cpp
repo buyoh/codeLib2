@@ -4,7 +4,13 @@
 // %overview
 //
 // %usage
-//
+// 
+// %require
+// ```
+#include "bits/stdc++.h"
+using namespace std;
+// ```
+// 
 // %verified
 // tested
 // %references

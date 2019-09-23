@@ -80,6 +80,11 @@ ubuntuの場合、
 // キーワード
 // %require
 // 必要な別のスニペット
+// ```
+#include "bits/stdc++.h"
+using namespace std;
+using ll = long long;
+// ```
 // %tags
 // nolint, (wip:未実装), (unverified:未実装)
 ```

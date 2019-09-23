@@ -14,7 +14,11 @@
 // %words
 // bellmanford
 // %require
-// cpp/graph/datastructure/dgraphe.cpp
+// ```
+#include "bits/stdc++.h"
+using namespace std;
+#include "src/cpp/graph/datastructure/dgraphe.cpp"
+// ```
 
 vector<DGraphE::W_T> bellmanFord(int n, const vector<DGraphE::Arc>& arcs, int start = 0) {
     using T = DGraphE::W_T;
