@@ -55,8 +55,9 @@ addEventListener("load", function(){history.replaceState(null, "", "<%= @doc[:pa
 <% if @doc[:require] && !@doc[:require].empty? %>
 
 <h2>require</h2>
+<pre><%= @doc[:require] %></pre>
 <ul>
-<% @doc[:require].split.each do |req| %>
+<% @doc[:require].split.map{|str| str=~/src\/([0-9a-zA-Z\/._-]+)/; $1}.compact.each do |req| %>
   <% if !req.empty? %>
     <li><a href="/search?word=<%= CGI.escape(req) %>"><%= req %></a></li>
   <% end %>
