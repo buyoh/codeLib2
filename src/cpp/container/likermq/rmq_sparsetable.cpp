@@ -33,7 +33,7 @@ template <typename T>
 class SparseTable {
  public:
   int size;
-  const vector<int> log2;
+  vector<int> log2;
   vector<T> data;
   vector<T> dp;
 
