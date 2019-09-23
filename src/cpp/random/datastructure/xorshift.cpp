@@ -12,6 +12,7 @@
 // %require
 // ```
 #include <limits>
+#include <cstdint>
 using namespace std;
 // ```
 // %verified

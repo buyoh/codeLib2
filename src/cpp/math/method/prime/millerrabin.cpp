@@ -9,6 +9,11 @@
 // bool isprime_mr(ll val)
 // x : N
 // @ret : is N prime?
+// 
+// %require
+// ```
+using ll = long long;
+// ```
 //
 // %verified
 // https://yukicoder.me/submissions/210977

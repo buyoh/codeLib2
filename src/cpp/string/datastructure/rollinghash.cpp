@@ -65,25 +65,3 @@ class RollingHash {
   }
 };
 vector<RollingHash::rh_t> RollingHash::pow_table__[2];
-
-// チェック
-
-int main() {
-  string str = "abracadabra";
-  n = str.size();
-
-  RollingHash rh(str);
-
-  repeat(i, n) {
-    iterate(j, i, n) {
-      iterate(k, j, n) {
-        int m = k - j + 1;
-        cout << str.substr(i, m) << " <=> " << str.substr(j, m) << '\n';
-        assert((str.substr(i, m) == str.substr(j, m)) == (rh(i, i + m) == rh(j, j + m)));
-      }
-      //
-    }
-  }
-
-  return 0;
-}

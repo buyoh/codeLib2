@@ -12,6 +12,7 @@
 //
 // %require
 // ```
+#include <cstdint>
 using namespace std;
 // ```
 // %verified

@@ -11,7 +11,6 @@
 // %require
 // ```
 #include <vector>
-#include <cstdint>
 #include <cassert>
 #include <type_traits>
 #include <algorithm>
@@ -28,7 +27,7 @@ template <typename T>
 // using T = int;
 class RadixHeap {
  public:
-  using value_type = uint64_t;
+  using value_type = unsigned long long;
 
  private:
   using pair_type = pair<value_type, T>;

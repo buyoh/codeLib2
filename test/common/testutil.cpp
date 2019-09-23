@@ -6,6 +6,7 @@ using ll = int64_t;
 // util
 #define all(v) (v).begin(), (v).end()
 #define repeat(cnt, l) for (auto cnt = remove_reference<decltype(l)>::type(); (cnt) < (l); ++(cnt))
+#define iterate(it, be, en) for (auto it = (be); it != (en); ++it)
 
 // assertion
 #define CHK(cond)                                               \

@@ -20,6 +20,7 @@
 // %require
 // ```
 #include <vector>
+#include <cstdint>
 using namespace std;
 // ```
 // %verified

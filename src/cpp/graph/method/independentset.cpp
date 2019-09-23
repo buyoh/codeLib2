@@ -7,15 +7,13 @@
 // 最小頂点被覆，最大クリークに転用可能．
 // 分岐限定法．
 //
-// note: verifiedのリンク先のコードはランダム生成による検証コードを含む
-// TODO: dfsの実装でコンパイルエラー出てる
-//
 // %usage
 // int independentSet(const Graph& graph)
 //
 // %require
 // ```
 #include <vector>
+#include <cstdint>
 #include "src/cpp/graph/datastructure/graph.cpp"
 // ```
 // %verified
@@ -82,7 +80,7 @@ pair<int, vector<int>> independentSet(const Graph& graph) {
     selection[vtx] = 0;
   };
 
-  auto dfs = [&](auto dfs, int depth, int rem, int score) -> void {
+  auto dfs = [&](auto& dfs, int depth, int rem, int score) -> void {
     if (rem == 0) {
       if (bestScore < score) {
         bestScore = score;

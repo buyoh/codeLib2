@@ -38,7 +38,7 @@ void dinic(DGraphF& graph, vector<DGraphF::cap_t>& result, int i_source, int i_s
 
   result.resize(graph.n_);
   vector<int> dist(graph.n_);
-  vector<int8_t> visited(graph.n_);
+  vector<bool> visited(graph.n_);
 
   function<DGraphF::cap_t(int, int, DGraphF::cap_t)> _dfs =
       [&](int u, int i_sink, DGraphF::cap_t mini) -> DGraphF::cap_t {

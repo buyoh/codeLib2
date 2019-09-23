@@ -17,12 +17,6 @@
 ## 注意
 - 別の構造体を前提とするコードがあります(example: `maxflow`は`Flow`が必要．)
 
-```
-#include "bits/stdc++.h"
-using namespace std;
-using ll = int64_t; // long long
-```
-
 ## document
 
 - sinatraによる雑な整理ツールを作っています
@@ -89,7 +83,7 @@ using namespace std;
 // キーワード
 // 
 // %tags
-// nolint, (wip:未実装), (unverified:未検証), (deprecated: 非推奨)
+// nolint, (wip: 未実装), (unverified: 未検証), (deprecated: 非推奨)
 ```
 
 ### test

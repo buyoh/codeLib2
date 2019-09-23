@@ -72,7 +72,7 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
   }
 
   // dp[S] Sは独立集合ではない
-  vector<int8_t> not_independent_B(1 << n_B, 0);
+  vector<bool> not_independent_B(1 << n_B, 0);
   for (int _i = 0; _i < n_B; ++_i) {
     int bit = 1 << _i;
     for (int j : graph.vertex_to[n_A + _i])
@@ -83,7 +83,7 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
     if (bitcount(bit) <= 1)
       continue;
     for (int _i = 0; _i < n_B; ++_i) {
-      not_independent_B[bit | (1 << _i)] |= not_independent_B[bit];
+      not_independent_B[bit | (1 << _i)] = not_independent_B[bit | (1 << _i)] | not_independent_B[bit];
     }
   }
 
