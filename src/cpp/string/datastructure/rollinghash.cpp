@@ -21,7 +21,9 @@ using namespace std;
 // プログラミングチャレンジブック
 
 class RollingHash {
+public:
   using rh_t = unsigned long long;
+private:
   static const rh_t MD_1 = (rh_t)(1e9 + 21);
   static const rh_t PW = (rh_t)(1e9 + 7);
   static vector<rh_t> pow_table__[2];
