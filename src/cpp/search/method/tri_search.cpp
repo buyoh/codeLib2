@@ -12,13 +12,18 @@
 // 下に凸な関数func(x)
 // @ret :
 //
+// %require
+// ```
+#include <functional>
+using namespace std;
+// ```
 // %verified
 //
 // %references
 //
 
-typedef ll tsearch_t;
-typedef ll fval_t;
+using tsearch_t = long long;
+using fval_t = long long;
 tsearch_t ternarySearchMinimize(tsearch_t left, tsearch_t right, function<fval_t(tsearch_t)> func) {
   for (int lop = 0; lop < 60; ++lop) {
     tsearch_t l = right - (2 * right - 2 * left) / 3;

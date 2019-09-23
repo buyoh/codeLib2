@@ -7,6 +7,12 @@
 // %usage
 // ; 一番下のmain関数を見てください．
 //
+// %require
+// ```
+#include <vector>
+#include <cstdio>
+using namespace std;
+// ```
 // %verified
 // http://www.fujilab.dnj.ynu.ac.jp/lecture/system2.pdf
 // https://yukicoder.me/submissions/213095

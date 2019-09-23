@@ -14,6 +14,12 @@
 // MILLISEC
 // ;TIMEの差分をミリ秒に変換
 //
+// %require
+// ```
+#include <chrono>
+#include <iostream>
+using namespace std;
+// ```
 // %words
 // time,tic,toc
 // %verified

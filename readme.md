@@ -71,17 +71,25 @@ ubuntuの場合、
 // x    : 引数についての説明
 // @ret : 返り値についての説明
 //
+// %require
+// 必要な別のスニペットや記述
+// ```
+#include <vector>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
+//
 // %verified
 // 検証されたかどうか．
 // 
 // %references
 // 参考資料など．
+// 
 // %words
 // キーワード
-// %require
-// 必要な別のスニペット
+// 
 // %tags
-// nolint, (wip:未実装), (unverified:未実装)
+// nolint, (wip:未実装), (unverified:未検証), (deprecated: 非推奨)
 ```
 
 ### test

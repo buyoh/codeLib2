@@ -17,13 +17,18 @@
 // ; idx の要素の値をval増やす
 // ; 1-indexed．
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // 二分探索が未だ出来ていない
 //
 // %references
 // プログラミングコンテストチャレンジブック
 
-template <typename T = ll>
+template <typename T = long long>
 class Bitree {
   const int size_;
   vector<T> data_;

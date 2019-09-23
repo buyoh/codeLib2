@@ -11,6 +11,13 @@
 //    3, 1, 2,
 //    2, 3, 1
 // });
+// 
+// %require
+// ```
+#include <valarray>
+#include <ostream>
+using namespace std;
+// ```
 //
 // %verified
 // https://beta.atcoder.jp/contests/arc027/submissions/3095831

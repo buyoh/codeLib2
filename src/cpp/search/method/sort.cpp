@@ -10,6 +10,11 @@
 // void sortedIndex(const ITER begin, const ITER end, vector<int> &idx, vector<int> &idxr)
 // ; ITERはランダムアクセスイテレータ
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // atcoder
 // %references

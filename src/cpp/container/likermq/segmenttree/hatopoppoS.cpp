@@ -12,6 +12,12 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <memory>
+using namespace std;
+using ll = long long;
+// ```
 // %verified
 // https://yukicoder.me/submissions/251514
 // アカン

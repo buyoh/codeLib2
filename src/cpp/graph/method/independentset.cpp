@@ -1,5 +1,5 @@
 // %title
-// 最大独立集合
+// 最大独立集合 (分岐限定法)
 //
 // %overview
 // グラフの最大独立集合の大きさと選ぶ頂点集合を求める．
@@ -8,20 +8,26 @@
 // 分岐限定法．
 //
 // note: verifiedのリンク先のコードはランダム生成による検証コードを含む
+// TODO: dfsの実装でコンパイルエラー出てる
 //
 // %usage
 // int independentSet(const Graph& graph)
 //
+// %require
+// ```
+#include <vector>
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
 // %verified
 // https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/4080519
 //
 // %words
 // vertexcover, independentSet
-// %require
-// cpp/graph/datastructure/graph.cpp
 //
 // %references
 // FV Fomin, Exact Exponential Algorithms, Springer.
+// %tag
+// wip
 
 pair<int, vector<int>> independentSet(const Graph& graph) {
   int bestScore = 0;

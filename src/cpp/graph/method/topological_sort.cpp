@@ -11,10 +11,16 @@
 // @ret  : 頂点集合0..N-1がトポロジカルソートされたもの．
 // ; @ret.size() < N の時，入力のグラフがDAGでは無かったことを示す．
 //
+// %require
+// ```
+#include <vector>
+#include <functional>
+using namespace std;
+#include "src/cpp/graph/datastructure/dgraph.cpp"
+// ```
+// 
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641044#1
-// %require
-// cpp/graph/datastructure/dgraph.cpp
 //
 // %references
 //

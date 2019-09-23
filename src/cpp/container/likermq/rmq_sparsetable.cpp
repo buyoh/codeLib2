@@ -19,6 +19,11 @@
 // void SparseTable::getminrangeIdx(int begin, int end)
 // ; 区間[begin,end)の最小値を計算する
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // http://yukicoder.me/submissions/172470
 //

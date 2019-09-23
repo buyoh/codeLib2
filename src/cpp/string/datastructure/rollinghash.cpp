@@ -9,6 +9,12 @@
 // pair<rh_t, rh_t> rollinghash::operator()(int begin, int end)
 // 連続した部分文字列str[begin,end)のハッシュの組を取得する
 //
+// %require
+// ```
+#include <vector>
+#include <string>
+using namespace std;
+// ```
 // %verified
 // csaで使ったはず
 // %references

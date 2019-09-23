@@ -8,6 +8,16 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <cstdint>
+#include <cassert>
+#include <type_traits>
+#include <algorithm>
+#include <limits>
+using namespace std;
+// ```
 // %verified
 // todo
 //

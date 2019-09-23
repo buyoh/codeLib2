@@ -8,6 +8,11 @@
 // %usage
 // for (pair<int,int> xy : DreamcastScan(20)){}
 //
+// %require
+// ```
+#include <algorithm>
+using namespace std;
+// ```
 // %words
 // yuyuko
 // %verified

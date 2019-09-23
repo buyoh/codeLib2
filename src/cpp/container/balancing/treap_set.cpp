@@ -22,6 +22,14 @@
 // void Treap::erase(key_t key)
 // ; keyを削除する．
 //
+// %require
+// ```
+#include <memory>
+#include <algorithm>
+#include <random>
+#include <functional>
+using namespace std;
+// ```
 // %verified
 //
 // %references
@@ -131,42 +139,3 @@ class Treap {
   }
 };
 Treap::randevice_type Treap::rnd = randevice_type();
-
-// validate
-
-// mt19937_64 randdev(8901016);
-// inline int rand_range(int l, int h) {
-//     return uniform_int_distribution<int>(l, h)(randdev);
-// }
-//
-// int main() {
-//
-//     Treap tp;
-//     map<int, int> mp;
-//
-//     unordered_set<int> erased;
-//
-//     for (int lop = 0; lop < 200000; ++lop) {
-//         int k = rand_range(1, 5000);
-//         int v = rand_range(0, 5000);
-//         if (v == 0) {
-//             tp.erase(k);
-//             mp.erase(k);
-//             erased.insert(k);
-//         }
-//         else {
-//             tp[k] = v;
-//             mp[k] = v;
-//             if (erased.count(k)) erased.erase(k);
-//         }
-//     }
-//
-//     for (auto p : mp) {
-//         assert(tp[p.first] == p.second);
-//     }
-//     for (auto e : erased) {
-//         assert(bool(tp.find(e)) == bool(mp.count(e)));
-//     }
-//
-//     return 0;
-// }

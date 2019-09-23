@@ -9,12 +9,24 @@
 // vector<int> find_eulerialTrail(const GraphE& graph)
 // @ret : 辿り方．頂点番号，辺番号，頂点番号，…と交互に記述される．
 //
+// %require
+// ```
+#include <vector>
+#include <algorithm>
+#include <stack>
+#include <map>
+using namespace std;
+#include "src/cpp/graph/datastructure/unionfind.cpp"
+#include "src/cpp/graph/datastructure/dgraphe.cpp"
+// ```
 // %verified
 // [TODO]
 // %references
 // http://shonen9th.blog.fc2.com/blog-entry-147.html
 // %words
 // euler
+// %tag
+// wip, unverified
 
 // オイラー路が存在するかどうか
 // 存在しなかったら(-1,-1)，存在したら(始点,終点)
@@ -24,7 +36,7 @@ pair<int, int> has_eulerialTrail(const DGraphE& graph) {
 
   int vstart = -1, vgoal = -1;
 
-  repeat(i, graph.size()) {
+  for(int i = 0; i < graph.size(); ++i) {
     if (graph.vertex_from[i].size() + 1 == graph.vertex_to[i].size()) {
       if (vstart >= 0)
         return make_pair(-1, -1);

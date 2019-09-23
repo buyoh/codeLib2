@@ -9,6 +9,11 @@
 // TVAL& operator()(IBEGIN begin, IEND end)
 // 配列[begin,end)に対応するTVALの参照を返す
 //
+// %require
+// ```
+#include <map>
+using namespace std;
+// ```
 // %verified
 // (旧) : http://yukicoder.me/submissions/123054
 // %references

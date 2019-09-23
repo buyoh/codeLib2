@@ -5,6 +5,13 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <string>
+#include <cassert>
+using namespace std;
+// ```
 // %verified
 // tested
 // %references

@@ -7,6 +7,15 @@
 // %usage
 // "+*?." を特殊文字扱いする．
 //
+// %require
+// ```
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <cassert>
+#include <tuple>
+using namespace std;
+// ```
 //
 // %verified
 //
@@ -300,5 +309,5 @@ void test() {
     assert(r.match("[[ooxx]") == false);
   }
 
-  cout << "ok" << endl;
+  // cout << "ok" << endl;
 }

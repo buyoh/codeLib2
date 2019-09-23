@@ -10,13 +10,21 @@
 // %usage
 // vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph, int start = 0, bool* detectNegativeCycle = nullptr)
 // detectNegativeCycle = nullptrと置くと負閉路検出を無効化する
+// %require
+// ```
+#include <vector>
+#include <queue>
+#include <limits>
+using namespace std;
+#include "src/cpp/graph/datastructure/dgraphe.cpp"
+// ```
 // %verified
 // https://atcoder.jp/contests/abc137/submissions/7173578
+// 
 // %references
 // http://hogloid.hatenablog.com/entry/20120409/1333973448
 // https://tubo28.me/compprog/algorithm/spfa/
-// %require
-// cpp/graph/datastructure/dgraphe.cpp
+// 
 
 vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph, int start = 0, bool* detectNegativeCycle = nullptr){
     using T = DGraphE::W_T;

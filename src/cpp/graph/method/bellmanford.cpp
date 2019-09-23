@@ -4,17 +4,23 @@
 // %overview
 // bellmanFord法。
 // 頂点数と辺情報を引数とする。
+// ループする場合、空のvectorを返す。
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <limits>
+using namespace std;
+#include "src/cpp/graph/datastructure/dgraphe.cpp"
+// ```
 // %verified
 // https://atcoder.jp/contests/abc137/submissions/6908127
 // 
 // %references
 // %words
 // bellmanford
-// %require
-// cpp/graph/datastructure/dgraphe.cpp
 
 vector<DGraphE::W_T> bellmanFord(int n, const vector<DGraphE::Arc>& arcs, int start = 0) {
     using T = DGraphE::W_T;

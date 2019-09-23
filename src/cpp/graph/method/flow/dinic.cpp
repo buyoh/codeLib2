@@ -2,7 +2,8 @@
 // dinic(最大流ソルバー)
 //
 // %overview
-// LPの特殊な形．
+// dinic法で最大流問題を解く。
+// LPの特殊な形とも捉えることができる。
 //
 // %usage
 // void dinic(DGraphF &graph, vector<DGraphF::cap_t>& result, int i_source, int i_sink)
@@ -11,6 +12,16 @@
 // i_source : 源
 // i_sink   : 流し台
 //
+// %require
+// ```
+#include <vector>
+#include <functional>
+#include <queue>
+#include <cassert>
+using namespace std;
+#include "src/cpp/graph/datastructure/graphflow.cpp"
+// ```
+//
 // %verified
 // [TODO] リファクタリング後のコードのverify
 // https://yukicoder.me/submissions/208764
@@ -18,6 +29,9 @@
 // %references
 // http://tubo28.me/algorithm/dinic/
 // http://topcoder.g.hatena.ne.jp/Mi_Sawa/20140311
+// 
+// %tag
+// wip
 
 void dinic(DGraphF& graph, vector<DGraphF::cap_t>& result, int i_source, int i_sink) {
   assert(i_source != i_sink);

@@ -12,6 +12,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <cmath>
+using namespace std;
+// ```
 // %verified
 //
 // %references

@@ -7,12 +7,14 @@
 // マラソンマッチ用
 //
 // %usage
+// %require
+// ```
+using namespace std;
+// ```
 // %verified
 // %references
 // %words
 // kyopuro
-// %require
-//
 
 template <typename T1, typename T2>
 struct Tag {

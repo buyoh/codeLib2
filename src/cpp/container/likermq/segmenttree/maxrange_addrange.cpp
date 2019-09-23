@@ -25,6 +25,11 @@
 // void SegmentTree::get_maxrangeIdx(int idx, T e)
 // ; 区間[begin,end)の最大値が存在する要素のインデックスを取得する
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3208410#1 (setval, getminrange)
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3208412#1 (addvalrange, getval)

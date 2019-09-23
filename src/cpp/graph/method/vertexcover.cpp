@@ -1,5 +1,5 @@
 // %title
-// 最小頂点被覆
+// 最小頂点被覆 (半分全列挙)
 //
 // %overview
 // グラフの最小頂点被覆の大きさと選ぶ頂点集合を求める．
@@ -9,6 +9,14 @@
 // %usage
 // int vertexCover(const Graph& graph)
 //
+// %require
+// ```
+#include <vector>
+#include <bitset>
+#include <algorithm>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
 // %verified
 // http://buyoh.hateblo.jp/entry/2017/12/10/184345
 // https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/4065305

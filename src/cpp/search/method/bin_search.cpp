@@ -13,12 +13,17 @@
 // func : ある定数tを持ち，(t<=x)を返す関数func(x)．二分探索はtを探す．
 // @ret :
 //
+// %require
+// ```
+#include <functional>
+using namespace std;
+// ```
 // %verified
 // ABC020-C
 // %references
 // めぐる式
 
-typedef ll bsearch_t;
+using bsearch_t = long long;
 bsearch_t binarySearch(bsearch_t false_val, bsearch_t true_val, function<bool(bsearch_t)> func) {
   while (abs(true_val - false_val) > 1) {
     bsearch_t c = (true_val + false_val) / 2;

@@ -11,6 +11,12 @@
 //     cout << p.first << ',' << p.second << endl;
 // }
 //
+// %require
+// ```
+#include <algorithm>
+using namespace std;
+// ```
+//
 // %words
 // iterator,index
 // %verified

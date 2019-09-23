@@ -10,6 +10,10 @@
 //
 // %usage
 //
+// %require
+// ```
+using namespace std;
+// ```
 // %verified
 // 乱数
 //

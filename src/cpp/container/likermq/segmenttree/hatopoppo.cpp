@@ -12,6 +12,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // 乱数テスト
 //

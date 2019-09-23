@@ -5,17 +5,23 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <queue>
+#include <limits>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
 // %words
 // dijkstra
-// %require
-// cpp/graph/datastructure/graph.cpp
 // %verified
 //
 // %references
 //
 
-template <typename T, typename ITER>
-vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const ITER& weight) {
+template <typename T, typename VECTOR>
+vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTOR& weight) {
   vector<T> dist(graph.size(), numeric_limits<int>::max());
 
   priority_queue<pair<T, int>> que;  // <dist, idx>

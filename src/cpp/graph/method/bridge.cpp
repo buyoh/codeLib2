@@ -2,20 +2,25 @@
 // 橋検出
 //
 // %overview
-// [TODO] validation
 //
 // %usage
 // detect_bridge(const GraphE& graph, vector<int>& out)
 // out : out[辺番号] = 橋 ? 1 : 0
-//
+// 
+// %require
+// ```
+#include <vector>
+#include <algorithm>
+#include <functional>
+using namespace std;
+#include "src/cpp/graph/datastructure/graphe.cpp"
+// ```
 // %verified
 // contests/abc075/submissions/1688087
 //
 // %references
 // %words
 // bridge
-// %require
-// cpp/graph/datastructure/graph.cpp
 
 // 橋を探す
 //
