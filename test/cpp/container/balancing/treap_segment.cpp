@@ -32,10 +32,9 @@ int main() {
        repeat(i, cnt) {
            (tp.find(i))->value;
            //cout << make_pair(vc[i], (tp.find(i))->value) << endl;
-           assert(vc[i] == (tp.find(i))->value);
+           CHKEQ(vc[i], (tp.find(i))->value);
        }
    }
-
 
    return 0;
 }
