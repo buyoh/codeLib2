@@ -2,10 +2,17 @@
 // 2次元グリッドと二次元座標
 //
 // %overview
-// 特記事項なし
+// ゲームAI用。
+// クラス名は極端に短くしてある。
 //
 // %usage
 //
+// %require
+// ```
+#include <cmath>
+#include <ostream>
+using namespace std;
+// ```
 //
 // %verified
 //
@@ -13,9 +20,7 @@
 // %references
 //
 // %words
-// grid, field, point
-// %require
-//
+// grid, field, point, game
 
 struct P {
   using T = int;

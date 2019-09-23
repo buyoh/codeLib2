@@ -10,6 +10,14 @@
 // ; 解が存在するならばtrueを返す
 // ; result_edge[make_pair(u,v)] で辺の流量
 //
+// %require
+// ```
+#include <vector>
+#include <map>
+using namespace std;
+#include "src/cpp/graph/datastructure/graphflow.cpp"
+#include "src/cpp/graph/method/flow/dinic.cpp"
+// ```
 // %verified
 // http://yukicoder.me/submissions/137248
 // http://yukicoder.me/submissions/143696
@@ -17,10 +25,6 @@
 // http://snuke.hatenablog.com/entry/2016/07/10/043918
 // %words
 // maxflow,dinic
-// %require
-// cpp/graph/datastructure/graphflow.cpp
-// cpp/graph/method/flow/dinic.cpp
-
 // #### (昔書いた)解説
 // 最小流量制限付き最大フローは，普通の最大フローに置き換えることができる．
 //

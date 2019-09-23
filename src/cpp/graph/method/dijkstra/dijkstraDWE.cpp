@@ -5,10 +5,16 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <queue>
+#include <limits>
+using namespace std;
+#include "src/cpp/graph/datastructure/dgraphe.cpp"
+// ```
 // %words
 // dijkstra
-// %require
-// cpp/graph/datastructure/dgraphe.cpp
 // %verified
 //
 // %references

@@ -8,13 +8,21 @@
 // detect_articulation_point(const GraphE& graph, vector<int>& out)
 // out : out[頂点番号] = 関節点 ? 1 : 0
 //
+// %require
+// ```
+#include <vector>
+#include <functional>
+#include <algorithm>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
 // %verified
 //
 // %references
 // %words
 // articulation
-// %require
-// cpp/graph/datastructure/graph.cpp
+// %tag
+// unverified
 
 void detect_articulation_point(const Graph& graph, vector<int>& out) {
   out.resize(graph.n);

@@ -8,13 +8,14 @@
 // output_float<double>(M_PI, 6);
 // ; piを小数点以下6桁までoutput
 //
+// %require
+// ```
+#include "src/cpp/implements/datastructure/io/stdio.cpp"
+// ```
 // %verified
 // https://yukicoder.me/submissions/285892
 // %words
 // io
-// %require
-// cpp/implements/stdio.cpp
-// %references
 
 template <typename T>
 void output_float(T var, int d) noexcept {

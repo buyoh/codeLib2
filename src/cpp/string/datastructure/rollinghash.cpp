@@ -9,13 +9,21 @@
 // pair<rh_t, rh_t> rollinghash::operator()(int begin, int end)
 // 連続した部分文字列str[begin,end)のハッシュの組を取得する
 //
+// %require
+// ```
+#include <vector>
+#include <string>
+using namespace std;
+// ```
 // %verified
 // csaで使ったはず
 // %references
 // プログラミングチャレンジブック
 
 class RollingHash {
+public:
   using rh_t = unsigned long long;
+private:
   static const rh_t MD_1 = (rh_t)(1e9 + 21);
   static const rh_t PW = (rh_t)(1e9 + 7);
   static vector<rh_t> pow_table__[2];
@@ -59,25 +67,3 @@ class RollingHash {
   }
 };
 vector<RollingHash::rh_t> RollingHash::pow_table__[2];
-
-// チェック
-
-int main() {
-  string str = "abracadabra";
-  n = str.size();
-
-  RollingHash rh(str);
-
-  repeat(i, n) {
-    iterate(j, i, n) {
-      iterate(k, j, n) {
-        int m = k - j + 1;
-        cout << str.substr(i, m) << " <=> " << str.substr(j, m) << '\n';
-        assert((str.substr(i, m) == str.substr(j, m)) == (rh(i, i + m) == rh(j, j + m)));
-      }
-      //
-    }
-  }
-
-  return 0;
-}

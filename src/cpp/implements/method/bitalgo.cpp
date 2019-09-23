@@ -10,6 +10,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <cstdint>
+using namespace std;
+// ```
 // %verified
 // 乱数
 //

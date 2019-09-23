@@ -6,7 +6,7 @@
 // 強連結成分分解は内包済み．DGraphが必要．
 //
 // %usage
-// Sat_2(size_t n)
+// Sat_2(int n)
 // ;
 // void Sat_2::emplace(int a, int b)
 // ; 節を追加する．節は2つのリテラルから構成される．
@@ -17,21 +17,25 @@
 // ; result[i]は，i番目のリテラルがTかFか．
 // ; result[0]はdontcare
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+#include "src/cpp/graph/datastructure/dgraph.cpp"
+// ```
+// 
 // %verified
 // http://yukicoder.me/submissions/142141
-//
-// %require
-// cpp/graph/datastructure/dgraph.cpp
 //
 // %references
 // http://www.prefield.com/algorithm/misc/2-sat.html
 
 class Sat_2 {
  public:
-  size_t n;
+  int n;
   DGraph graph;
 
-  Sat_2(size_t n) : n(n), graph(n * 2 + 1) {}
+  Sat_2(int n) : n(n), graph(n * 2 + 1) {}
 
  private:
   inline int _cv(int v) { return 0 < v ? v : -v + n; }

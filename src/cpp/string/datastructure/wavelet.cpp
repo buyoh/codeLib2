@@ -7,6 +7,13 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <string>
+#include "src/cpp/container/likermq/bit.cpp"
+using namespace std;
+// ```
 //
 // %verified
 //
@@ -53,13 +60,13 @@ class Wavelet {
     }
   }
 
-  void dump() {
-    for (int d = 0; d < kChrSizeLg; ++d) {
-      for (int i = 0; i < size_; ++i)
-        cout << tree_[d].get(i + 1);
-      cout << endl;
-    }
-  }
+  // void dump() {
+  //   for (int d = 0; d < kChrSizeLg; ++d) {
+  //     for (int i = 0; i < size_; ++i)
+  //       cout << tree_[d].get(i + 1);
+  //     cout << endl;
+  //   }
+  // }
 
   Wavelet(const vector<char>& _raw) : size_(_raw.size()) { build(_raw); }
 

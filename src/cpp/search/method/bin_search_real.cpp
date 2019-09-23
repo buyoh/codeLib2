@@ -13,6 +13,11 @@
 // func : ある定数tを持ち，(t<=x)を返す関数func(x)
 // @ret :
 //
+// %require
+// ```
+#include <functional>
+using namespace std;
+// ```
 // %verified
 //
 // %references

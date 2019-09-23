@@ -23,6 +23,12 @@
 // ; printer << (ll)(v.size()) << '\n' とするか，
 // ; printer.output_integer<unsigned long long>(var_ull); と書く(こちらの書き方は保証外)．
 //
+// %require
+// ```
+#include <cstdio>
+#include <string>
+using namespace std;
+// ```
 // %verified
 // http://codeforces.com/contest/71/submission/33012760
 // https://csacademy.com/contest/archive/task/addition/
@@ -30,7 +36,6 @@
 //
 // %words
 // io
-// %require
 // %references
 // cLay
 

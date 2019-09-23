@@ -6,6 +6,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 //
 // %references
@@ -16,7 +21,7 @@
 class DGraphF {
  public:
   typedef int cap_t;
-  size_t n_;
+  int n_;
   struct Arc {
     int from, to;
     // 残量
@@ -40,10 +45,10 @@ class DGraphF {
   DGraphF(int n = 1) : n_(n), vertex_to(n), vertex_from(n) {}
 
   void connect(int from, int to, cap_t left) {
-    vertex_to[(size_t)from].push_back((int)edges.size());  // toto
-    vertex_from[(size_t)to].push_back((int)edges.size());  // fromfrom
+    vertex_to[(int)from].push_back((int)edges.size());  // toto
+    vertex_from[(int)to].push_back((int)edges.size());  // fromfrom
     edges.emplace_back(from, to, left);
   }
 
-  inline size_t size() const { return n_; }
+  inline int size() const { return n_; }
 };

@@ -6,6 +6,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <string>
+using namespace std;
+// ```
 // %verified
 //
 // %references

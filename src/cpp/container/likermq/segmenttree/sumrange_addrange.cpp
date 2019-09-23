@@ -15,6 +15,11 @@
 // getsumrange(range) getval(index) getmaxrange(range)
 // addvalrange(range)
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // http://yukicoder.me/submissions/170798
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2521353#1 (addvalrange, getsumrange)

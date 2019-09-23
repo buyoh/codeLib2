@@ -6,6 +6,12 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <algorithm>
+using namespace std;
+// ```
 // %verified
 // rand
 //

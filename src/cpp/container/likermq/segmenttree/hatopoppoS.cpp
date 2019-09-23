@@ -7,14 +7,19 @@
 // - 区間の要素をすべて0にする．
 // - 1になっている区間の要素の個数を求める．
 // 0-indexedで，[begin,end)．beginを含み，endを含まない．
-// インデックスは size_t ではなく int で扱う．[TODO]
 // 反転クエリも書ける。
 //
 // %usage
 //
+// %require
+// ```
+#include <memory>
+using namespace std;
+using ll = long long;
+// ```
 // %verified
 // https://yukicoder.me/submissions/251514
-// アカン
+// 速度が出てない
 //
 // %references
 //

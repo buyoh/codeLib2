@@ -8,6 +8,14 @@
 // %usage
 //
 //
+// %require
+// ```
+#include <functional>
+#include <queue>
+using namespace std;
+#include "src/cpp/grid/datastructure/euclid.cpp"
+using ll = long long;
+// ```
 // %verified
 // https://yukicoder.me/submissions/294734
 //
@@ -15,8 +23,6 @@
 //
 // %words
 // grid, dij
-// %require
-// cpp/grid/datastructure/euclid.cpp
 
 ;
 /// <summary>

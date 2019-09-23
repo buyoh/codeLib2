@@ -4,10 +4,12 @@
 // %overview
 //
 // %usage
-// 
+//
 // %require
 // ```
-#include "bits/stdc++.h"
+#include <vector>
+#include <string>
+#include <cassert>
 using namespace std;
 // ```
 // 

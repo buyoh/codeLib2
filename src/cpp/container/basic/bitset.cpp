@@ -5,6 +5,12 @@
 // 乱数で雑に性能評価したがあんまり速度差が無い(環境によって若干速い・遅い)
 // vector<bool> がバグる環境用
 //
+// %require
+// ```
+#include <cstdint>
+#include <memory>
+using namespace std;
+// ```
 // %usage
 //
 // %verified

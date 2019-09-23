@@ -17,12 +17,6 @@
 ## 注意
 - 別の構造体を前提とするコードがあります(example: `maxflow`は`Flow`が必要．)
 
-```
-#include "bits/stdc++.h"
-using namespace std;
-using ll = int64_t; // long long
-```
-
 ## document
 
 - sinatraによる雑な整理ツールを作っています
@@ -71,22 +65,25 @@ ubuntuの場合、
 // x    : 引数についての説明
 // @ret : 返り値についての説明
 //
+// %require
+// 必要な別のスニペットや記述
+// ```
+#include <vector>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
+//
 // %verified
 // 検証されたかどうか．
 // 
 // %references
 // 参考資料など．
+// 
 // %words
 // キーワード
-// %require
-// 必要な別のスニペット
-// ```
-#include "bits/stdc++.h"
-using namespace std;
-using ll = long long;
-// ```
+// 
 // %tags
-// nolint, (wip:未実装), (unverified:未実装)
+// nolint, (wip: 未実装), (unverified: 未検証), (deprecated: 非推奨)
 ```
 
 ### test

@@ -8,12 +8,17 @@
 // %usage
 // void connect(int from, int to, W_T dist = 1)
 // ;つなげる．ループ辺は非推奨．
-// void resize(size_t _n)
+// void resize(int _n)
 // ;頂点数を変更する．
 // ;global変数として宣言した時に用いる．
 // inline W_T& operator()(int y, int x);
 // ;行列の値の参照
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 //
 // %references
@@ -24,17 +29,17 @@
 class Graph2d {
  public:
   using W_T = int;
-  size_t n;
+  int n;
   vector<W_T> matrix;
 
-  Graph2d(size_t size) : n(size), matrix(size * size){};
+  Graph2d(int size) : n(size), matrix(size * size){};
 
-  inline size_t size() const { return n; }
-  void resize(size_t s) {
+  inline int size() const { return n; }
+  void resize(int s) {
     n = s;
     matrix.resize(n * n);
   }
-  void resize(size_t s, W_T val) {
+  void resize(int s, W_T val) {
     n = s;
     matrix.resize(n * n, val);
   }

@@ -7,6 +7,12 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <unordered_set>
+#include <unordered_map>
+using namespace std;
+// ```
 // %verified
 //
 // %references

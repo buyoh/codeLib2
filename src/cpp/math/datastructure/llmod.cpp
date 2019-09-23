@@ -8,6 +8,10 @@
 //
 // %usage
 // [TODO]
+// %require
+// ```
+#include <ostream>
+// ```
 //
 // %verified
 // verify: https://yukicoder.me/submissions/183521
@@ -21,7 +25,7 @@ class llmod {
   value_type val_;
   // inline ll cut(ll v) const { return ((v%MOD) + MOD) % MOD; } // safe
  public:
-  static const value_type MOD = MD;  // <=
+  static const value_type MOD = 1000000007;  // <=
 
   llmod() : val_(0) {}
   llmod(value_type num) : val_(((num % MOD) + MOD) % MOD) {}
@@ -76,7 +80,7 @@ class llmod {
   }
   friend llmod pow(llmod, long long);
 };
-inline ostream& operator<<(ostream& os, const llmod& l) {
+inline std::ostream& operator<<(std::ostream& os, const llmod& l) {
   os << *l;
   return os;
 }

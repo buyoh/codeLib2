@@ -11,6 +11,12 @@
 // ; 非負整数，区間最大値の場合．
 // SegmentTreeQ<int> s(10, [](int x, int y) {return max(x, y); }, 0);
 //
+// %require
+// ```
+#include <vector>
+#include <functional>
+using namespace std;
+// ```
 // %verified
 // https://beta.atcoder.jp/contests/dwacon2018-final-open/submissions/2050384
 //

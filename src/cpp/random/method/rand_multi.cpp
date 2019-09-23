@@ -22,6 +22,13 @@
 // ; 整数idxを次回以降の乱数生成で選ばれないように設定する．
 // ; 既にdisableした値をもう一度disableする操作はinvalid．
 //
+// %require
+// ```
+#include <vector>
+#include <unordered_map>
+using namespace std;
+// rand_int の実装
+// ```
 // %verified
 //
 // %references

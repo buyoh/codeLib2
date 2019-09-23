@@ -8,6 +8,15 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+#include <cassert>
+#include <type_traits>
+#include <algorithm>
+#include <limits>
+using namespace std;
+// ```
 // %verified
 // todo
 //
@@ -16,7 +25,7 @@
 
 class RadixHeap {
  public:
-  using value_type = uint64_t;
+  using value_type = long long;
 
  private:
   value_type last_;

@@ -17,6 +17,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3208770#1
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3208769#1

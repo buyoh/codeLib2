@@ -11,6 +11,8 @@
 //
 // %words
 // euler
+// %tag
+// wiip
 
 DGraphE gen_random_eulerialTrail(int N, int M) {
   vector<pair<int, int>> route;

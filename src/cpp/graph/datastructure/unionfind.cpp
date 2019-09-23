@@ -3,7 +3,7 @@
 //
 // %overview
 // 頂点数N，辺∅のグラフがある．
-// グラフに対して，辺の追加と同じ連結成分かどうかの判定を行う．
+// グラフに対して，辺の追加と同じ連結成分かどうかの判定を行う．int
 //
 // %usage
 // bool connect(int x, int y)
@@ -12,6 +12,12 @@
 // int root(int x)
 // int size(int x)
 //
+// %require
+// ```
+#include <vector>
+#include <algorithm>
+using namespace std;
+// ```
 // %verified
 //
 // %references
@@ -20,8 +26,8 @@
 class Unionfind {
  public:
   vector<int> data;
-  Unionfind(size_t size) : data(size, -1) {}
-  bool connect(size_t x, size_t y) {
+  Unionfind(int size) : data(size, -1) {}
+  bool connect(int x, int y) {
     x = root(x);
     y = root(y);
     if (x != y) {
@@ -32,7 +38,7 @@ class Unionfind {
     }
     return x != y;
   }
-  inline bool same(size_t x, size_t y) { return root(x) == root(y); }
-  inline size_t root(size_t x) { return (size_t)(data[x] < 0 ? x : data[x] = root(data[x])); }
-  inline int size(size_t x) { return -data[root(x)]; }
+  inline bool same(int x, int y) { return root(x) == root(y); }
+  inline int root(int x) { return (int)(data[x] < 0 ? x : data[x] = root(data[x])); }
+  inline int size(int x) { return -data[root(x)]; }
 };

@@ -16,6 +16,11 @@
 // vector<value_t> mebius_transform(int n, vector<value_t> func)
 // ; 集合はビットで表現．
 // ; func.size() >= (1 << n) を満たす．
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 //
 // %verified
 // unverified!!!
@@ -26,8 +31,6 @@
 // 講義資料
 // %words
 // zeta, mebius
-// %require
-// cpp/graph/datastructure/dgraph.cpp
 //
 
 using value_t = int;

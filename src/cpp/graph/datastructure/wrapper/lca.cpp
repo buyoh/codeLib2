@@ -13,6 +13,14 @@
 // ; rootを根としたgraphに対してLCAを構築する
 // int LCATable::operator()(int u, int v)
 // ; 頂点u,vに共通する最も若い祖先の頂点番号を取得する
+// 
+// %require
+// ```
+#include <vector>
+using namespace std;
+#include "src/cpp/container/likermq/rmq_sparsetable.cpp"
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
 //
 // %verified
 // problem.
@@ -21,9 +29,6 @@
 // thanks.
 // %words
 // lca
-// %require
-// cpp/graph/datastructure/graph.cpp
-// cpp/container/likermq/rmq_sparsetable.cpp
 
 class LCATable {
   vector<int> visited_;

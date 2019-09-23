@@ -8,6 +8,10 @@
 //
 // %usage
 // ll kaibunsu(ll val)
+// %require
+// ```
+using ll = long long;
+// ```
 //
 // %verified
 // %references

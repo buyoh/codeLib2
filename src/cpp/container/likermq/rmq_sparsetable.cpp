@@ -6,7 +6,6 @@
 // - 区間の最小値を計算する．
 // 0-indexedで，[begin,end)．beginを含み，endを含まない．
 // 何度も加減算を繰り返すと内部でオーバーフローを起こす可能性．
-// インデックスは size_t ではなく int で扱う．[TODO]
 // O(log^2N)．最大値のみの機能なら出来そう．[TODO]
 //
 // %usage
@@ -19,6 +18,11 @@
 // void SparseTable::getminrangeIdx(int begin, int end)
 // ; 区間[begin,end)の最小値を計算する
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 // http://yukicoder.me/submissions/172470
 //
@@ -29,7 +33,7 @@ template <typename T>
 class SparseTable {
  public:
   int size;
-  const vector<int> log2;
+  vector<int> log2;
   vector<T> data;
   vector<T> dp;
 

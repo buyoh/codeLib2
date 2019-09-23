@@ -9,6 +9,13 @@
 //
 // %usage
 //
+// ```
+#include <vector>
+#include <memory>
+#include <cassert>
+#include <algorithm>
+using namespace std;
+// ```
 // %verified
 // 乱数
 //

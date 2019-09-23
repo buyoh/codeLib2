@@ -1,5 +1,5 @@
 // %title
-// 最小頂点被覆
+// 最小頂点被覆 (半分全列挙)
 //
 // %overview
 // グラフの最小頂点被覆の大きさと選ぶ頂点集合を求める．
@@ -9,6 +9,14 @@
 // %usage
 // int vertexCover(const Graph& graph)
 //
+// %require
+// ```
+#include <vector>
+#include <bitset>
+#include <algorithm>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph.cpp"
+// ```
 // %verified
 // http://buyoh.hateblo.jp/entry/2017/12/10/184345
 // https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/4065305
@@ -64,7 +72,7 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
   }
 
   // dp[S] Sは独立集合ではない
-  vector<int8_t> not_independent_B(1 << n_B, 0);
+  vector<bool> not_independent_B(1 << n_B, 0);
   for (int _i = 0; _i < n_B; ++_i) {
     int bit = 1 << _i;
     for (int j : graph.vertex_to[n_A + _i])
@@ -75,7 +83,7 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
     if (bitcount(bit) <= 1)
       continue;
     for (int _i = 0; _i < n_B; ++_i) {
-      not_independent_B[bit | (1 << _i)] |= not_independent_B[bit];
+      not_independent_B[bit | (1 << _i)] = not_independent_B[bit | (1 << _i)] | not_independent_B[bit];
     }
   }
 

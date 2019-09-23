@@ -9,16 +9,21 @@
 // %usage
 // void connect(int from, int to, W_T dist = 1)
 // ;つなげる．ループ辺は非推奨．
-// void resize(size_t _n)
+// void resize(int _n)
 // ;頂点数を変更する．
 // ;global変数として宣言した時に用いる．
 // inline W_T& operator()(int y, int x);
 // ;行列の値の参照
 //
+// %require
+// ```
+#include <vector>
+#include <algorithm>
+using namespace std;
+#include "src/cpp/graph/datastructure/graph2d.cpp"
+// ```
 // %words
 // tsp
-// %require
-// cpp/graph/datastructure/graph.cpp
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2588066#1
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641075#1
@@ -28,8 +33,8 @@
 // cpp/graph/datastructure/graph2dcpp
 
 vector<int> tsProblem(int n, const Graph2d& graph) {
-  typedef ll dist_T;
-  typedef unsigned long long ull;
+  using dist_T = long long;
+  using ull = unsigned long long;
 
   if (n <= 1)
     return {0};

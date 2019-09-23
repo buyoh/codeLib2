@@ -11,6 +11,14 @@
 // vector<value_t> get()
 // ; 現在のスタックの状態を取得する
 //
+// %require
+// ```
+#include <vector>
+#include <algorithm>
+#include <cassert>
+using namespace std;
+// ```
+// 
 // %verified
 // 乱数
 //
@@ -68,7 +76,7 @@ struct PersistentStack {
       }
       p = &(history[p->next_idx]);
     }
-    reverse(ALL(res));
+    reverse(res.begin(), res.end());
     return res;
   }
 };

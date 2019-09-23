@@ -11,6 +11,12 @@
 // right :
 // @ret : 部分文字列str[left..right]が回文かどうか．
 //
+// %require
+// ```
+#include <vector>
+#include <string>
+using namespace std;
+// ```
 // %verified
 // https://yukicoder.me/submissions/139334
 //
@@ -57,8 +63,8 @@ class Manacher {
   inline bool operator()(int left, int right) { return radius_[left + right] > right - left; }
 
   // 回文の個数を求める．
-  ll count_num() {
-    ll r = 0;
+  long long count_num() {
+    long long r = 0;
     for (auto it = radius_.begin(); it < radius_.end(); ++it, ++it) {
       r += (*it + 1ll) / 2ll;
     }
@@ -68,14 +74,14 @@ class Manacher {
     return r;
   }
 
-  void print(const string& str) {
-    for (int i = 0; i < str.size(); i++) {
-      cout << str[i] << " ";
-    }
-    cout << endl;
-    for (int i = 0; i < radius_.size(); i++) {
-      cout << radius_[i];
-    }
-    cout << endl;
-  }
+  // void print(const string& str) {
+  //   for (int i = 0; i < str.size(); i++) {
+  //     cout << str[i] << " ";
+  //   }
+  //   cout << endl;
+  //   for (int i = 0; i < radius_.size(); i++) {
+  //     cout << radius_[i];
+  //   }
+  //   cout << endl;
+  // }
 };

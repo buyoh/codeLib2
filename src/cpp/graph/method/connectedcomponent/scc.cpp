@@ -3,18 +3,24 @@
 //
 // %overview
 // [TODO] validation
+// よく使っているので問題ないとは思いますが…
 //
 // %usage
 //
-//
+// %require
+// ```
+#include <vector>
+#include <stack>
+#include <functional>
+#include "src/cpp/graph/datastructure/dgraph.cpp"
+#include "src/cpp/graph/datastructure/unionfind.cpp"
+// ```
+// 
 // %verified
 //
 // %references
 // %words
 // scc
-// %require
-// cpp/graph/datastructure/dgraph.cpp
-// cpp/graph/datastructure/unionfind.cpp
 
 int strongly_connected_components(const DGraph& graph, Unionfind& result) {
   stack<int> stk;

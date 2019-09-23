@@ -15,6 +15,11 @@
 // void connect(vector<Edges>&& edges)
 // ; edgesを基に構築（グラフは空であること）
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 //
 // %references

@@ -7,7 +7,7 @@
 // 空間計算量 O(size) に注意する．
 //
 // %usage
-// RandChooser(size_t size)
+// RandChooser(int size)
 // ; [0, size-1] の範囲の整数の乱数を生成するようなインスタンスの生成
 // inline int RandChooser::operator()(RANDOM &rd)
 // rd : 乱数生成器．
@@ -16,24 +16,29 @@
 // ; 整数idxを次回以降の乱数生成で選ばれないように設定する．
 // ; 既にdisableした値をもう一度disableする操作はinvalid．
 //
+// %require
+// ```
+#include <vector>
+using namespace std;
+// ```
 // %verified
 //
 // %references
 //
 
 class RandChooser {
-  size_t size;
-  size_t left_size;
+  int size;
+  int left_size;
   vector<int> swapper;
   vector<int> unswapper;
 
  public:
-  RandChooser(size_t s) : size(s), left_size(s), swapper(s), unswapper(s) {
+  RandChooser(int s) : size(s), left_size(s), swapper(s), unswapper(s) {
     for (int i = 0; i < s; ++i) {
       swapper[i] = unswapper[i] = i;
     }
   }
-  inline size_t left() { return left_size; }
+  inline int left() { return left_size; }
 
   template <typename RANDOM>
   inline int operator()(RANDOM& rd) {

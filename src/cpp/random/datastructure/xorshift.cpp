@@ -9,6 +9,12 @@
 // XorShift randdev;
 // int motivation = uniform_int_distribution<int>(-9, 9)(randdev);
 //
+// %require
+// ```
+#include <limits>
+#include <cstdint>
+using namespace std;
+// ```
 // %verified
 // 目視
 //

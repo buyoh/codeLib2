@@ -27,6 +27,14 @@
 // value_t& Treap::operator[](int index)
 // ; index番目の要素に対応するvalの参照を得る．無いなら爆発する．
 //
+// %require
+// ```
+#include <memory>
+#include <algorithm>
+#include <random>
+#include <functional>
+using namespace std;
+// ```
 // %verified
 //
 // %references
@@ -103,6 +111,7 @@ class Treap : public unique_ptr<TreapNode> {
 
   // anotherをthisの後ろにmergeする
   inline void concat(Treap& another) { _concat(*this, another); }
+  inline void concat(Treap&& another) { auto a = move(another); _concat(*this, a); }
 
   // TODO: あまりにも下手
   static unique_ptr<TreapNode> _split(unique_ptr<TreapNode>& node, int size) {
@@ -212,61 +221,16 @@ class Treap : public unique_ptr<TreapNode> {
     dfs(*this, 1);
   }
 
-  void print_tour(unique_ptr<TreapNode>& node) {
-    if (!node) {
-      cout << "NIL ";
-      return;
-    }
-    cout << "L[" << node->value << "] ";
-    print_tour(node->childlen[0]);
-    cout << "C[" << node->value << "] ";
-    print_tour(node->childlen[1]);
-    cout << "R[" << node->value << "] ";
-  }
-  inline void print_tour() { print_tour(*this); }
+  // void print_tour(unique_ptr<TreapNode>& node) {
+  //   if (!node) {
+  //     cout << "NIL ";
+  //     return;
+  //   }
+  //   cout << "L[" << node->value << "] ";
+  //   print_tour(node->childlen[0]);
+  //   cout << "C[" << node->value << "] ";
+  //   print_tour(node->childlen[1]);
+  //   cout << "R[" << node->value << "] ";
+  // }
+  // inline void print_tour() { print_tour(*this); }
 };
-
-//// validate
-//
-// mt19937_64 randdev(8901016);
-// inline int rand_range(int l, int h) {
-//    return uniform_int_distribution<int>(l, h)(randdev);
-//}
-//
-// int main() {
-//
-//    Treap tp;
-//    deque<int> vc;
-//    int cnt = 0;
-//
-//    for (int lop = 0; lop < 200000; ++lop) {
-//        //cout << "lop" << lop << endl;
-//        int k = rand_range(0, cnt);
-//        int v = lop;// rand_range(0, 10);
-//        if (rand_range(0, 3)) {
-//            auto it = vc.begin();
-//            advance(it, k);
-//            //vc.insert(it, v);
-//            tp.insert(k, v);
-//            ++cnt;
-//        }
-//        else {
-//            if (k == 0) continue;
-//            --k;
-//            auto it = vc.begin();
-//            advance(it, k);
-//            //vc.erase(it);
-//            tp.erase(k);
-//            --cnt;
-//        }
-//        //tp.print_tour();
-//        repeat(i, cnt) {
-//            (tp.find(i))->value;
-//            //cout << make_pair(vc[i], (tp.find(i))->value) << endl;
-//            //assert(vc[i] == (tp.find(i))->value);
-//        }
-//    }
-//
-//
-//    return 0;
-//}
