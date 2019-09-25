@@ -1,6 +1,9 @@
 Dir.chdir __dir__
 require './dbhelper/collector.rb'
 
+@search = ARGV[0]
+@search = Regexp.new(@search) if @search
+
 @tempdir = './tmp'
 
 
@@ -30,6 +33,7 @@ Dir.chdir('../') do
   Dir.mkdir @tempdir unless Dir.exist? @tempdir
 
   Document.test_files.each do |path|
+    next if @search && !(path =~ @search)
     puts "test: #{path}"
     lang = path.split('/')[1]
     tester = Test.const_get(lang.upcase).new(path, @tempdir)
