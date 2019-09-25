@@ -4,7 +4,6 @@
 // %overview
 // 二次元座標上の点を表す構造体
 // 
-//
 // %usage
 // 
 // %require
@@ -13,12 +12,11 @@
 using namespace std;
 // ```
 // %verified
-// problem.
 //
 // %references
-// thanks.
+// 
 // %words
-// bsearch, nibuntansaku
+// 
 
 
 struct P {
