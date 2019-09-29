@@ -15,9 +15,6 @@ jobs:
         sudo apt install ruby gem g++ npm
         sudo npm i -g eslint 
         sudo npm i -g node npm eslint
-    - name: autotest
-      run: |
-        ruby tools/autotest.rb
     - name: refactor
       run: |
         ruby tools/refactor.rb --inplace
