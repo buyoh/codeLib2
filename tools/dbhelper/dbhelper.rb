@@ -1,4 +1,4 @@
-require './dbhelper/dbwrapper.rb'
+require "#{__dir__}/dbwrapper"
 
 class DBHelper
 

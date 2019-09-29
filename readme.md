@@ -20,20 +20,7 @@
 ### document(webdoc)
 
 - sinatraによる雑な整理ツールを作っています
-- http://codelib.ukibune.blue に同様のものがあります
-
-#### setup
-
-- カレントディレクトリを `tools` に移動してから、
-- `bundle install`
-
-失敗する場合、おそらく必要なアプリケーションがインストールされていない。
-- `sudo apt install ruby ruby-dev gem sqlite3 libsqlite3-dev`(ubuntu)
-
-#### 実行
-
-- カレントディレクトリを `tools` に移動してから、
-- `bundle exec ruby webdoc.rb`
+- http://codelib.ukibune.blue に同様のものがありますs
 
 ### test
 

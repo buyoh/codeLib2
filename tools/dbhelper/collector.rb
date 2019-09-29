@@ -1,5 +1,5 @@
-require './code/codeparser.rb'
-require './markup/markup.rb'
+require "#{__dir__}/../code/codeparser.rb"
+require "#{__dir__}/../markup/markup.rb"
 
 module Document
 
