@@ -30,19 +30,14 @@ class DGraphF {
     cap_t cap;
 
     Arc(int from = 0, int to = 0, cap_t w = 1) : from(from), to(to), left(w), cap(w) {}
-    inline bool operator<(const Arc& a) const {
-      return (left != a.left) ? left < a.left
-                              : (left < a.left) | (cap < a.cap) | (from < a.from) | (to < a.to);
-    }
-    inline bool operator==(const Arc& a) const {
-      return (from == a.from) && (to == a.to) && (left == a.left) && (cap == a.cap);
-    }
+    inline bool operator<(const Arc& a) const { return (left != a.left) ? left < a.left : (left < a.left) | (cap < a.cap) | (from < a.from) | (to < a.to); }
+    inline bool operator==(const Arc& a) const { return (from == a.from) && (to == a.to) && (left == a.left) && (cap == a.cap); }
   };
   vector<vector<int>> vertex_to;
   vector<vector<int>> vertex_from;
   vector<Arc> edges;
 
-  DGraphF(int n = 1) : n_(n), vertex_to(n), vertex_from(n) {}
+  explicit DGraphF(int n = 1) : n_(n), vertex_to(n), vertex_from(n) {}
 
   void connect(int from, int to, cap_t left) {
     vertex_to[(int)from].push_back((int)edges.size());  // toto

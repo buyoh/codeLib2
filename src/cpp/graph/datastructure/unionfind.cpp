@@ -26,7 +26,7 @@ using namespace std;
 class Unionfind {
  public:
   vector<int> data;
-  Unionfind(int size) : data(size, -1) {}
+  explicit Unionfind(int size) : data(size, -1) {}
   bool connect(int x, int y) {
     x = root(x);
     y = root(y);

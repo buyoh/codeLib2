@@ -29,7 +29,7 @@ class Graph {
   int n;
   vector<vector<int>> vertex_to;
 
-  Graph(int n = 1) : n(n), vertex_to(n) {}
+  explicit Graph(int n = 1) : n(n), vertex_to(n) {}
 
   inline int size() const { return n; }
   void resize(int _n) { vertex_to.resize(n = _n); }

@@ -32,7 +32,7 @@ class Graph2d {
   int n;
   vector<W_T> matrix;
 
-  Graph2d(int size) : n(size), matrix(size * size){};
+  explicit Graph2d(int size) : n(size), matrix(size * size){};
 
   inline int size() const { return n; }
   void resize(int s) {

@@ -39,7 +39,7 @@ class DGraphE {
   vector<vector<int>> vertex_from;
   vector<Arc> arcs;
 
-  DGraphE(int n = 1) : n(n), vertex_to(n), vertex_from(n) {}
+  explicit DGraphE(int n = 1) : n(n), vertex_to(n), vertex_from(n) {}
 
   inline int size() const { return n; }
   void resize(int _n) {

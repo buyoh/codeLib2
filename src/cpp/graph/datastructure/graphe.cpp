@@ -41,7 +41,7 @@ class GraphE {
   vector<vector<int>> vertex_to;
   vector<Edge> edges;
 
-  GraphE(int n = 1) : n(n), vertex_to(n) {}
+  explicit GraphE(int n = 1) : n(n), vertex_to(n) {}
 
   inline size_t size() const noexcept { return n; }
   void resize(size_t _n) { vertex_to.resize(n = _n); }

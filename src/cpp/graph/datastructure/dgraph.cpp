@@ -30,7 +30,7 @@ class DGraph {
   vector<vector<int>> vertex_to;
   vector<vector<int>> vertex_from;
 
-  DGraph(int n = 1) : n(n), vertex_to(n), vertex_from(n) {}
+  explicit DGraph(int n = 1) : n(n), vertex_to(n), vertex_from(n) {}
 
   inline int size() const { return n; }
   void resize(int _n) {
