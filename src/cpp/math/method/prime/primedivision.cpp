@@ -2,28 +2,30 @@
 // 素因数分解
 //
 // %overview
-// 素因数分解やるだけ．
-// 素数情報を必要としない．
+// 素因数分解やるだけ。
+// 素数情報を必要としない。（素数情報を使うと早くなるはず）
 // 計算量は O(HlogH),H=sqrt(N)
 //
 // %usage
-// void prime_division(ll num, ARRAY& result)
-// result :
-// num    :
-// resultの型はvector<ll>かmap<ll,ll>
+// map<ll, int> primeDivision(num);
+// ; <素数, 個数> の map として格納
 //
+// %require
+// ```
+#include <map>
+// ```
 // %verified
 //
 // %references
 
-map<ll, int> primeDivision(ll _num) {
-  map<ll, int> result;
-  ll num = _num;
+std::map<long long, int> primeDivision(const long long _num) {
+  std::map<long long, int> result;
+  long long num = _num;
   while ((num & 1) == 0) {
     num /= 2;
     ++result[2];
   }
-  for (ll i = 3; 1 < num && i <= _num; i += 2) {
+  for (long long i = 3; 1 < num && i <= _num; i += 2) {
     while (num / i * i == num) {
       num /= i;
       ++result[i];

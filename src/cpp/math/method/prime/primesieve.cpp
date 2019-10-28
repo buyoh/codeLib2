@@ -17,8 +17,12 @@
 // map<ll, int> PrimeListC::divison(ll);
 // ; 素因数分解する．
 //
+// %require
+// ```
+#include <map>
+// ```
 // %verified
-//
+// [TODO]
 //
 // %references
 //
@@ -97,10 +101,10 @@ class PrimeListC {
   constexpr PrimeListC::iterator<Max> begin() const { return PrimeListC::iterator<Max>(*this, 0); }
   constexpr PrimeListC::iterator<Max> end() const { return PrimeListC::iterator<Max>(*this, Max); }
 
-  map<ll, int> division(ll number) const {
-    map<ll, int> div;
+  std::map<long long, int> division(long long number) const {
+    std::map<long long, int> div;
     for (int i = 0; number > 1 && i < Max; ++i) {
-      ll p = d_[i];
+      long long p = d_[i];
       int c = 0;
       while (number / p * p == number)
         ++c, number /= p;
