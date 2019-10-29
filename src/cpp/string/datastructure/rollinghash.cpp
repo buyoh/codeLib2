@@ -21,9 +21,10 @@ using namespace std;
 // プログラミングチャレンジブック
 
 class RollingHash {
-public:
+ public:
   using rh_t = unsigned long long;
-private:
+
+ private:
   static const rh_t MD_1 = (rh_t)(1e9 + 21);
   static const rh_t PW = (rh_t)(1e9 + 7);
   static vector<rh_t> pow_table__[2];
@@ -35,9 +36,8 @@ private:
   RollingHash(const string& s) { build(s); }
 
   inline pair<rh_t, rh_t> operator()(int begin, int end) {
-    return pair<rh_t, rh_t>(
-        (hashes_[0][end] - hashes_[0][begin] * pow_table__[0][end - begin]),
-        (hashes_[1][end] - (hashes_[1][begin] * pow_table__[1][end - begin]) % MD_1 + MD_1) % MD_1);
+    return pair<rh_t, rh_t>((hashes_[0][end] - hashes_[0][begin] * pow_table__[0][end - begin]),
+                            (hashes_[1][end] - (hashes_[1][begin] * pow_table__[1][end - begin]) % MD_1 + MD_1) % MD_1);
   }
 
   void build_pow(size_t size) {

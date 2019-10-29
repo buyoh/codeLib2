@@ -65,10 +65,7 @@ class RadixHeap {
       return vec[0].front();
     for (int i = 1; i < 65; ++i)
       if (!vec[i].empty())
-        return *min_element(vec[i].begin(), vec[i].end(),
-                            [](const pair<value_type, T>& l, const pair<value_type, T>& r) {
-                              return l.first < r.first;
-                            });
+        return *min_element(vec[i].begin(), vec[i].end(), [](const pair<value_type, T>& l, const pair<value_type, T>& r) { return l.first < r.first; });
     assert(false && "RadixHeap is empty.");
     return vec[0].front();
   }
@@ -78,11 +75,7 @@ class RadixHeap {
       for (int i = 1; i < 65; ++i) {
         if (vec[i].empty())
           continue;
-        last_ = min_element(vec[i].begin(), vec[i].end(),
-                            [](const pair<value_type, T>& l, const pair<value_type, T>& r) {
-                              return l.first < r.first;
-                            })
-                    ->first;
+        last_ = min_element(vec[i].begin(), vec[i].end(), [](const pair<value_type, T>& l, const pair<value_type, T>& r) { return l.first < r.first; })->first;
         for (auto& p : vec[i])
           vec[bsr(p.first ^ last_) + 1].push_back(move(p));
         vec[i].clear();

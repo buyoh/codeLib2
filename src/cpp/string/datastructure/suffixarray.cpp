@@ -12,7 +12,7 @@
 #include <cassert>
 using namespace std;
 // ```
-// 
+//
 // %verified
 // tested
 // %references

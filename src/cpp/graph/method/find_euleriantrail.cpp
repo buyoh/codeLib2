@@ -36,7 +36,7 @@ pair<int, int> has_eulerialTrail(const DGraphE& graph) {
 
   int vstart = -1, vgoal = -1;
 
-  for(int i = 0; i < graph.size(); ++i) {
+  for (int i = 0; i < graph.size(); ++i) {
     if (graph.vertex_from[i].size() + 1 == graph.vertex_to[i].size()) {
       if (vstart >= 0)
         return make_pair(-1, -1);

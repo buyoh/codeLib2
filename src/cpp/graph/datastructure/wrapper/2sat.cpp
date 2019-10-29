@@ -23,7 +23,7 @@
 using namespace std;
 #include "src/cpp/graph/datastructure/dgraph.cpp"
 // ```
-// 
+//
 // %verified
 // http://yukicoder.me/submissions/142141
 //

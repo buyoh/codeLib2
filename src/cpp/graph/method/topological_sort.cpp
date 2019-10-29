@@ -18,7 +18,7 @@
 using namespace std;
 #include "src/cpp/graph/datastructure/dgraph.cpp"
 // ```
-// 
+//
 // %verified
 // http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=2641044#1
 //

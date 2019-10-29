@@ -6,7 +6,7 @@
 // %usage
 // detect_bridge(const GraphE& graph, vector<int>& out)
 // out : out[辺番号] = 橋 ? 1 : 0
-// 
+//
 // %require
 // ```
 #include <vector>

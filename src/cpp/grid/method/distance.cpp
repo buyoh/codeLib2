@@ -18,10 +18,7 @@
 //
 
 template <typename T>
-F<int> make_distancetable(int height,
-                          int width,
-                          const vector<P>& start_point,
-                          function<bool(P)> ismoveable) {
+F<int> make_distancetable(int height, int width, const vector<P>& start_point, function<bool(P)> ismoveable) {
   constexpr int inf = numeric_limits<int>::max();
 
   F<int> result(height, width);

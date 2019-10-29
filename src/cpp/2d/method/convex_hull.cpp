@@ -3,11 +3,11 @@
 //
 // %overview
 // 凸包を求める。
-// 
+//
 // %usage
 // pair<P, int> になっているが、secondのintには何を入れてもok（多分）。
 // インデックス情報が入ることを期待している。
-// 
+//
 // %require
 // ```
 #include <vector>
@@ -37,4 +37,3 @@ vector<pair<P, int>> convex_hull(const vector<pair<P, int>>& points) {
   ch.resize(k - 1);
   return ch;
 }
-

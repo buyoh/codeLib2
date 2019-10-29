@@ -4,9 +4,9 @@
 // %overview
 // 二次元座標上の点を表す構造体
 // a -> b -> c と進むときの方向を判定する。
-// 
+//
 // %usage
-// 
+//
 // %require
 // ```
 #include "src/cpp/2d/datastructure/basic.cpp"

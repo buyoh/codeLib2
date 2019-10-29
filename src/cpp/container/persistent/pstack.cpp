@@ -18,7 +18,7 @@
 #include <cassert>
 using namespace std;
 // ```
-// 
+//
 // %verified
 // 乱数
 //

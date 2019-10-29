@@ -49,8 +49,7 @@ class SegmentTreeQ {
     index += size_;
     data_[index] = e;
     while (1 < index) {
-      data_[index >> 1] =
-          func_(data_[index], data_[index ^ 1]);  // TODO : この部分の計算順序は正確か？
+      data_[index >> 1] = func_(data_[index], data_[index ^ 1]);  // TODO : この部分の計算順序は正確か？
       index >>= 1;
     }
   }

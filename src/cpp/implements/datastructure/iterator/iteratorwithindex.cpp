@@ -40,9 +40,7 @@ class IteratorWithIndex {
       ++it, ++i;
       return *this;
     }
-    inline auto operator!=(const Iterator& another) const -> decltype(it != another.it) {
-      return it != another.it;
-    }
+    inline auto operator!=(const Iterator& another) const -> decltype(it != another.it) { return it != another.it; }
   };
   inline Iterator begin() const { return Iterator(begin_, 0); }
   inline Iterator end() const { return Iterator(end_, 0); }

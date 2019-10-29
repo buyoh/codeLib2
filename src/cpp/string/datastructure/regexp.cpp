@@ -44,9 +44,7 @@ struct RegExp {
 
     void push(const Range<char>& r, bool negative = false) { ranges_.emplace_back(r, negative); }
     inline bool cover(char c) const {
-      return any_of(ranges_.begin(), ranges_.end(), [c](const pair<Range<char>, bool>& p) {
-        return p.second ^ (p.first.cover(c));
-      });
+      return any_of(ranges_.begin(), ranges_.end(), [c](const pair<Range<char>, bool>& p) { return p.second ^ (p.first.cover(c)); });
     }
     static const CharSet Any;
   };
@@ -203,8 +201,7 @@ struct RegExp {
     return dp1[pattern_.size()];
   }
 };
-const RegExp::CharSet RegExp::CharSet::Any =
-    RegExp::CharSet(RegExp::Range(numeric_limits<char>::min(), numeric_limits<char>::max()));
+const RegExp::CharSet RegExp::CharSet::Any = RegExp::CharSet(RegExp::Range(numeric_limits<char>::min(), numeric_limits<char>::max()));
 
 void test() {
   {

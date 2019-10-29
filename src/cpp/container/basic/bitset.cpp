@@ -28,17 +28,12 @@ class BitSet64 {
   uint64_t* mem_;
 
  public:
-  inline BitSet64(int _n = 1) : nBlock_((_n + 63) >> 6) {
-    mem_ = allocator_traits<allocator_type>::allocate(alloc_, nBlock_);
-  }
+  inline BitSet64(int _n = 1) : nBlock_((_n + 63) >> 6) { mem_ = allocator_traits<allocator_type>::allocate(alloc_, nBlock_); }
   inline BitSet64(const BitSet64& another) : nBlock_(another.nBlock_) {
     mem_ = allocator_traits<allocator_type>::allocate(alloc_, nBlock_);
     std::copy(another.mem_, another.mem_ + nBlock_, mem_);
   }
-  inline BitSet64(BitSet64&& another)
-      : alloc_(another.alloc_), nBlock_(another.nBlock_), mem_(another.mem_) {
-    another.mem_ = nullptr;
-  }
+  inline BitSet64(BitSet64&& another) : alloc_(another.alloc_), nBlock_(another.nBlock_), mem_(another.mem_) { another.mem_ = nullptr; }
   ~BitSet64() {
     if (mem_ != nullptr) {
       allocator_traits<allocator_type>::deallocate(alloc_, mem_, nBlock_);
@@ -54,9 +49,7 @@ class BitSet64 {
   }
   inline void set(uint64_t index) { mem_[index >> 6] |= uint64_t(1) << (index & 0x3f); }
   inline void reset(uint64_t index) { mem_[index >> 6] &= ~(uint64_t(1) << (index & 0x3f)); }
-  inline void fill(bool v) {
-    std::fill(mem_, mem_ + nBlock_, v ? numeric_limits<uint64_t>::max() : (uint64_t)0);
-  }
+  inline void fill(bool v) { std::fill(mem_, mem_ + nBlock_, v ? numeric_limits<uint64_t>::max() : (uint64_t)0); }
   inline void resize(int newSize) {
     newSize >>= 6;
     uint64_t* newmem_ = allocator_traits<allocator_type>::allocate(alloc_, nBlock_);

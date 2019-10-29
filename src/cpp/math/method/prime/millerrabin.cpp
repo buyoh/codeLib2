@@ -9,7 +9,7 @@
 // bool isprime_mr(ll val)
 // x : N
 // @ret : is N prime?
-// 
+//
 // %require
 // ```
 using ll = long long;

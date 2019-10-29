@@ -3,9 +3,9 @@
 //
 // %overview
 // 二次元座標上の点を表す構造体
-// 
+//
 // %usage
-// 
+//
 // %require
 // ```
 #include <cmath>
@@ -14,10 +14,9 @@ using namespace std;
 // %verified
 //
 // %references
-// 
+//
 // %words
-// 
-
+//
 
 struct P {
   using value_t = double;

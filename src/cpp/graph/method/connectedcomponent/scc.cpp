@@ -15,7 +15,7 @@
 #include "src/cpp/graph/datastructure/dgraph.cpp"
 #include "src/cpp/graph/datastructure/unionfind.cpp"
 // ```
-// 
+//
 // %verified
 //
 // %references

@@ -11,7 +11,7 @@
 //    3, 1, 2,
 //    2, 3, 1
 // });
-// 
+//
 // %require
 // ```
 #include <valarray>
@@ -30,13 +30,10 @@ class Matrix {
  public:
   size_t height_, width_;
   valarray<T> data_;
-  Matrix(size_t height = 1, size_t width = 1)
-      : height_(height), width_(width), data_(height * width) {}
+  Matrix(size_t height = 1, size_t width = 1) : height_(height), width_(width), data_(height * width) {}
   template <typename V>
-  Matrix(size_t height, size_t width, const V& data)
-      : height_(height), width_(width), data_(data) {}
-  Matrix(size_t height, size_t width, initializer_list<T> init)
-      : height_(height), width_(width), data_(init) {}
+  Matrix(size_t height, size_t width, const V& data) : height_(height), width_(width), data_(data) {}
+  Matrix(size_t height, size_t width, initializer_list<T> init) : height_(height), width_(width), data_(init) {}
 
   inline T& operator()(size_t y, size_t x) { return data_[y * width_ + x]; }
   inline T operator()(size_t y, size_t x) const { return data_[y * width_ + x]; }

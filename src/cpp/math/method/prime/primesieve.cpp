@@ -87,12 +87,8 @@ class PrimeListC {
       ptr++;
       return *this;
     }  // prefix
-    constexpr inline bool operator!=(const iterator<_Max>& it) const {
-      return ptr != it.ptr ? !(_Max < ptr && _Max < it.ptr) : false;
-    }
-    constexpr inline bool operator==(const iterator<_Max>& it) const {
-      return ptr != it.ptr ? (_Max < ptr && _Max < it.ptr) : true;
-    }
+    constexpr inline bool operator!=(const iterator<_Max>& it) const { return ptr != it.ptr ? !(_Max < ptr && _Max < it.ptr) : false; }
+    constexpr inline bool operator==(const iterator<_Max>& it) const { return ptr != it.ptr ? (_Max < ptr && _Max < it.ptr) : true; }
   };
   constexpr PrimeListC::iterator<Max> begin() const { return PrimeListC::iterator<Max>(*this, 0); }
   constexpr PrimeListC::iterator<Max> end() const { return PrimeListC::iterator<Max>(*this, Max); }

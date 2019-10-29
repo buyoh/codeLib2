@@ -29,7 +29,7 @@ using namespace std;
 // %references
 // http://tubo28.me/algorithm/dinic/
 // http://topcoder.g.hatena.ne.jp/Mi_Sawa/20140311
-// 
+//
 // %tag
 // wip
 
@@ -40,8 +40,7 @@ void dinic(DGraphF& graph, vector<DGraphF::cap_t>& result, int i_source, int i_s
   vector<int> dist(graph.n_);
   vector<bool> visited(graph.n_);
 
-  function<DGraphF::cap_t(int, int, DGraphF::cap_t)> _dfs =
-      [&](int u, int i_sink, DGraphF::cap_t mini) -> DGraphF::cap_t {
+  function<DGraphF::cap_t(int, int, DGraphF::cap_t)> _dfs = [&](int u, int i_sink, DGraphF::cap_t mini) -> DGraphF::cap_t {
     // DAG
     // TODO: 経路再利用
     if (i_sink == u)

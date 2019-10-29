@@ -101,8 +101,7 @@ struct SegmentTree {
       return data[idx];
 
     int center = (right + left) / 2;
-    return _count_range(begin, end, idx * 2, left, center) +
-           _count_range(begin, end, idx * 2 + 1, center, right);
+    return _count_range(begin, end, idx * 2, left, center) + _count_range(begin, end, idx * 2 + 1, center, right);
   }
 
   inline int count_range(int begin, int end) { return _count_range(begin, end, 1, 0, n); }

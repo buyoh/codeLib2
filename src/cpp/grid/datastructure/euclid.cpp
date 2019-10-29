@@ -73,8 +73,7 @@ inline ostream& operator<<(ostream& os, P p) {
 
 const P FourMoving[] = {P(-1, 0), P(0, 1), P(1, 0), P(0, -1)};
 const P FiveMoving[] = {P(-1, 0), P(0, 1), P(1, 0), P(0, -1), P(0, 0)};
-const P EightMoving[] = {P(-1, 0),  P(0, 1),  P(1, 0),  P(0, -1),
-                         P(-1, -1), P(-1, 1), P(1, -1), P(1, 1)};
+const P EightMoving[] = {P(-1, 0), P(0, 1), P(1, 0), P(0, -1), P(-1, -1), P(-1, 1), P(1, -1), P(1, 1)};
 
 inline P operator*(P::T m, P p) noexcept {
   return P(m * p.y, m * p.x);

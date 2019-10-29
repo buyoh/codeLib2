@@ -10,7 +10,7 @@
 // ; count回数もとに戻る
 // vector<value_t> get()
 // ; 現在の配列を取得する
-// 
+//
 // %require
 // ```
 #include <vector>
@@ -27,7 +27,7 @@ using namespace std;
 // persistent,stack,eizoku
 // %tag
 // wip
-// 
+//
 
 struct PersistentArray {
   using value_t = int;

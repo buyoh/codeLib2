@@ -34,7 +34,7 @@ class IntervalHeap {
   using TT = pair<T, T>;  // first <= second
 
   vector<TT> data_;  // data_の配列要素は2つの要素を持つ．data_.size() は (size_ + 1) / 2 と等価
-  int size_;  // データ構造が持つ要素の数
+  int size_;         // データ構造が持つ要素の数
 
   // data_[ptr]は1つの要素しか持っていない？
   inline bool one(int ptr) const noexcept {
@@ -97,10 +97,7 @@ class IntervalHeap {
         swap(data_[child + 1].first, data_[ptr].first);  // 左端
       rightfix = true;
     }
-    if (one(child + 1) ||
-        data_[child].second >
-            data_[child + 1]
-                .second) {  // 左の子が右の子より大きい または 右の子は1要素しかもっていない
+    if (one(child + 1) || data_[child].second > data_[child + 1].second) {  // 左の子が右の子より大きい または 右の子は1要素しかもっていない
       if (data_[child].second > data_[ptr].second)
         swap(data_[child].second, data_[ptr].second);  // 右端
       leftfix = true;
