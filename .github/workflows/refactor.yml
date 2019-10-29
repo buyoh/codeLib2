@@ -16,7 +16,6 @@ jobs:
         sudo apt install clang-format
         sudo apt install ruby gem g++ npm
         sudo npm i -g eslint 
-        sudo npm i -g node npm eslint
     - name: refactor
       run: |
         ruby tools/refactor.rb --inplace
