@@ -2,8 +2,7 @@
 // 組合せ計算(前計算)
 //
 // %overview
-// inverse, conbination, permutation, factorial を構築時に計算する
-// constexprを付けられないことは無い
+// inverse, conbination, permutation, factorial を構築時に計算する\
 //
 //
 // %usage
@@ -22,7 +21,7 @@ class Combinatorics {
   // value_type inv_[MaxN + 1]; // iranai
 
  public:
-  value_type pow(value_type x, value_type p) {
+  constexpr value_type pow(value_type x, value_type p) const {
     value_type y = 1;
     x = x % Mod;
     for (; 0 < p; p >>= 1) {
@@ -33,7 +32,7 @@ class Combinatorics {
     return y;
   }
 
-  Combinatorics() : fact_() {
+  constexpr Combinatorics() : fact_() {
     fact_[0] = 1;
     fact_[1] = 1;
     for (value_type n = 2; n <= MaxN; ++n)
@@ -41,21 +40,21 @@ class Combinatorics {
     // inv_[Max] := calculate;
     // iterate => inv_[i] = inv_[i+1] * (i+1) % MD;
   }
-  inline value_type fact(int n) const { return fact_[n]; }
+  constexpr value_type fact(int n) const { return fact_[n]; }
 
-  inline value_type inv(value_type n) { return pow(n, MD - 2); }
+  constexpr value_type inv(value_type n) const { return pow(n, MD - 2); }
 
-  inline value_type nPr(value_type n, value_type r) {
+  constexpr value_type nPr(value_type n, value_type r) const {
     if (r < 0 || n < r)
       return 0;
     return fact_[n] * inv(fact_[n - r]) % MD;
   }
-  inline value_type nCr(value_type n, value_type r) {
+  constexpr value_type nCr(value_type n, value_type r) const {
     if (n < r)
       return 0;
     return ((fact_[n] * inv(fact_[n - r]) % MD) * inv(fact_[r])) % MD;
   }
-  inline value_type nHr(value_type n, value_type r) {
+  constexpr value_type nHr(value_type n, value_type r) const {
     if (n == 0 && r == 0)
       return 1;
     if (n == 0)
