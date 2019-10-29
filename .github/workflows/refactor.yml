@@ -12,7 +12,6 @@ jobs:
     - name: install tools
       run: |
         sudo add-apt-repository 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main'
-        sudo add-apt-repository 'deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main'
         sudo apt update
         sudo apt install clang-format
         sudo apt install ruby gem g++ npm
