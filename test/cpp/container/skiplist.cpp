@@ -16,7 +16,7 @@ struct SkipList {
     Skip* next;
     Skip* prev;
 
-    inline Skip(Node* _node, Skip* _next = nullptr, Skip* _prev = nullptr) : up(), node(_node), next(_next), prev(_prev) {}
+    inline explicit Skip(Node* _node, Skip* _next = nullptr, Skip* _prev = nullptr) : up(), node(_node), next(_next), prev(_prev) {}
 
     void detach() {
       if (up) {
@@ -43,16 +43,16 @@ struct SkipList {
 
   struct Elem : public Node {
     T value;
-    inline Elem(const T& _value = T()) : Node(), value(_value) {}
+    inline explicit Elem(const T& _value = T()) : Node(), value(_value) {}
   };
 
   struct iterator {
    private:
     Node* ptr;
 
-   public:
-    inline iterator(Node* _ptr) : ptr(_ptr) {}
+    inline explicit iterator(Node* _ptr) : ptr(_ptr) {}
 
+   public:
     inline T& operator*() { return static_cast<Elem*>(ptr)->value; }
     inline T* operator->() const {  // we don't need implement without const
       return &(static_cast<Elem*>(ptr)->value);
@@ -76,52 +76,96 @@ struct SkipList {
   //
 
   Node head, *tail_ptr;
+  Skip *headSkipTop_ptr, *tailSkipTop_ptr;  // TODO: unnecessary?
 
   //
 
   // TODO: portable
   static mt19937 randMT;
-  static inline bool randBool() { return randMT() > mt19937::max() >> 1; }
+  static bool randBool() { return randMT() > mt19937::max() >> 1; }
 
   // private
-  Skip& growHeadSkipTower() {
-    unique_ptr<Skip>* s = &(head.up);
-    while (*s)
-      s = &((*s)->up);
-    return *(*s = make_unique<Skip>(&head));
+  inline Skip& growHeadSkipTower() {
+    return headSkipTop_ptr ? *(headSkipTop_ptr->up = make_unique<Skip>(&head)) : *(headSkipTop_ptr = &*(head.up = make_unique<Skip>(&head)));
   }
 
   // private
-  Skip& growHeadTailTower() {
-    unique_ptr<Skip>* s = &(tail_ptr->up);
-    while (*s)
-      s = &((*s)->up);
-    return *(*s = make_unique<Skip>(tail_ptr));
+  Skip& growTailSkipTower() {
+    return tailSkipTop_ptr ? *(tailSkipTop_ptr->up = make_unique<Skip>(tail_ptr)) : *(tailSkipTop_ptr = &*(tail_ptr->up = make_unique<Skip>(tail_ptr)));
   }
 
-  // private
-  void createSkipTower(unique_ptr<Skip>& uskip, Node* root) {
+  void createSkipTowerMore(Skip& skip) {
     if (randBool())
       return;
-    uskip = make_unique<Skip>(root);
-    Skip* ptr = uskip.get();
-    // before
+    skip.up = make_unique<Skip>(skip.node);
 
-    /*
+    // to find same height neighbor skip...
+    Skip *sFoward, *sBackUp, *sFowardUp;
+    // move to increment-direction
+    sFoward = &skip;
+    while (sFoward->next) {
+      sFoward = sFoward->next;
+      if (sFoward->up)
+        break;
+    }
+    // not found -> sFoward is TAIL
+    if (!(sFoward->up))
+      sFoward->up = make_unique<Skip>(tail_ptr);
+    sFowardUp = &*sFoward->up;
+    // immediately, we can find sBack = sFoward->up->prev
+    if (sFowardUp->prev)
+      sBackUp = sFowardUp->prev;
+    // not found -> sBack is HEAD
+    else
+      sBackUp = &growHeadSkipTower();
+    // connect
+    sBackUp->next = &*skip.up;
+    skip.up->next = sFowardUp;
+    sFowardUp->prev = &*skip.up;
+    skip.up->prev = sBackUp;
 
-    うーん設計が破綻してきたような。綺麗じゃない。
-    今の設計だと、1段目のskip作成が特殊実装になってしまう。全隣接の要素を持つクラスはSkipではないので
-    Skipにすると、Skipの所有者は上だけか右だけにしか伸ばさない実装にしたいので、全部繋げられない。
-    全リンクのSkip層を用意すれば楽だが、冗長。
+    createSkipTowerMore(*skip.up);
+  }
 
+  // private
+  void createSkipTower(Node& node) {
+    if (randBool())
+      return;
+    // to find same height neighbor skip...
+    Node* sFoward;
+    Skip *sBackUp, *sFowardUp;
+    // move to increment-direction
+    sFoward = &node;
+    while (sFoward->next) {
+      sFoward = &*sFoward->next;
+      if (sFoward->up)
+        break;
+    }
+    // not found -> sFoward is TAIL
+    if (!(sFoward->up))
+      sFoward->up = make_unique<Skip>(tail_ptr);
+    sFowardUp = &*sFoward->up;
+    // immediately, we can find sBack = sFoward->up->prev
+    if (sFowardUp->prev)
+      sBackUp = sFowardUp->prev;
+    // not found -> sBack is HEAD
+    else
+      sBackUp = &growHeadSkipTower();
+    // connect
+    sBackUp->next = &*node.up;
+    node.up->next = sFowardUp;
+    sFowardUp->prev = &*node.up;
+    node.up->prev = sBackUp;
 
-    */
+    createSkipTowerMore(*node.up);
   }
 
   void clear() {
     head.next = make_unique<Node>();
     head.up.reset();
     tail_ptr = head.next.get();
+    headSkipTop_ptr = nullptr;
+    tailSkipTop_ptr = nullptr;
   }
 
   inline iterator begin() { return iterator(head.next.get()); }
@@ -148,7 +192,7 @@ struct SkipList {
     return iterator(&*(node->next));
   }
 
-  inline SkipList() {}
+  inline SkipList() { clear(); }
 };
 
 //
