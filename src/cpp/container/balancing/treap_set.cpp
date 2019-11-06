@@ -53,7 +53,8 @@ class Treap {
     unique_ptr<Node> childlen[2];
     randevice_type::result_type priority;
 
-    Node(const key_type& k = key_type(), const value_type& v = value_type()) : key(k), value(v), priority(rnd() | 1) {}
+    Node(const key_type& k = key_type(), const value_type& v = value_type())
+        : key(k), value(v), priority(rnd() | 1) {}
     Node(key_type k, value_type v, randevice_type::result_type p) : key(k), value(v), priority(p) {}
 
     // inline Node& operator[](size_t i) { return *childlen[i & 1]; }
@@ -98,14 +99,18 @@ class Treap {
     return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key);
   }
   // keyが等しいnodeを探す
-  static unique_ptr<Node>& _find(unique_ptr<Node>& ptr, key_type key) { return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key); }
+  static unique_ptr<Node>& _find(unique_ptr<Node>& ptr, key_type key) {
+    return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key);
+  }
 
   // ptrを削除する．
   static void _erase(unique_ptr<Node>& ptr) {
     if (!ptr->childlen[0] && !ptr->childlen[1]) {
       ptr.release();
     } else {
-      bool i = ptr->childlen[0] ? 0 : ptr->childlen[1] ? 1 : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
+      bool i = ptr->childlen[0]
+                   ? 0
+                   : ptr->childlen[1] ? 1 : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
       _rotate(ptr, i);
       _erase(ptr->childlen[i ^ 1]);
     }

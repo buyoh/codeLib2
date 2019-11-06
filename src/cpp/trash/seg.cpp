@@ -269,7 +269,8 @@ struct SegmentTreeSP {
       childlen[1][0]->set_range(sy, sx, ty, tx, centery, left, bottom, centerx);
       childlen[1][1]->set_range(sy, sx, ty, tx, centery, centerx, bottom, right);
       // merge
-      data = childlen[0][0]->data + childlen[0][1]->data + childlen[1][0]->data + childlen[1][1]->data;
+      data =
+          childlen[0][0]->data + childlen[0][1]->data + childlen[1][0]->data + childlen[1][1]->data;
     }
 
     void reset_range(int sy, int sx, int ty, int tx, int top, int left, int bottom, int right) {
@@ -293,7 +294,8 @@ struct SegmentTreeSP {
       childlen[1][0]->reset_range(sy, sx, ty, tx, centery, left, bottom, centerx);
       childlen[1][1]->reset_range(sy, sx, ty, tx, centery, centerx, bottom, right);
       // merge
-      data = childlen[0][0]->data + childlen[0][1]->data + childlen[1][0]->data + childlen[1][1]->data;
+      data =
+          childlen[0][0]->data + childlen[0][1]->data + childlen[1][0]->data + childlen[1][1]->data;
     }
 
     volume_t count_range(int sy, int sx, int ty, int tx, int top, int left, int bottom, int right) {
@@ -332,11 +334,17 @@ struct SegmentTreeSP {
     root->data = 0;
   }
 
-  inline void set_range(int sy, int sx, int ty, int tx) { root->set_range(sy, sx, ty, tx, 0, 0, height, width); }
+  inline void set_range(int sy, int sx, int ty, int tx) {
+    root->set_range(sy, sx, ty, tx, 0, 0, height, width);
+  }
 
-  inline void reset_range(int sy, int sx, int ty, int tx) { root->reset_range(sy, sx, ty, tx, 0, 0, height, width); }
+  inline void reset_range(int sy, int sx, int ty, int tx) {
+    root->reset_range(sy, sx, ty, tx, 0, 0, height, width);
+  }
 
-  inline volume_t count_range(int sy, int sx, int ty, int tx) { return root->count_range(sy, sx, ty, tx, 0, 0, height, width); }
+  inline volume_t count_range(int sy, int sx, int ty, int tx) {
+    return root->count_range(sy, sx, ty, tx, 0, 0, height, width);
+  }
 };
 
 ll m, n, kei;

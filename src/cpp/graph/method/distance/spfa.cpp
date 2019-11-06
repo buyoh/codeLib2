@@ -8,8 +8,8 @@
 // ただし閉路検出が遅いような気がする。
 //
 // %usage
-// vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph, int start = 0, bool* detectNegativeCycle = nullptr)
-// detectNegativeCycle = nullptrと置くと負閉路検出を無効化する
+// vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph, int start = 0, bool*
+// detectNegativeCycle = nullptr) detectNegativeCycle = nullptrと置くと負閉路検出を無効化する
 // %require
 // ```
 #include <vector>
@@ -26,7 +26,9 @@ using namespace std;
 // https://tubo28.me/compprog/algorithm/spfa/
 //
 
-vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph, int start = 0, bool* detectNegativeCycle = nullptr) {
+vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph,
+                                                 int start = 0,
+                                                 bool* detectNegativeCycle = nullptr) {
   using T = DGraphE::W_T;
   const int n = graph.n;
   vector<bool> incl(n);

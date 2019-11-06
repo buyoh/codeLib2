@@ -39,8 +39,12 @@ class SegmentTree {
     int idx;
     VI(T val = 0, int idx = 0) : val(val), idx(idx) {}
 
-    static inline const VI& max(const VI& a, const VI& b) { return a.val == b.val ? (a.idx < b.idx ? a : b) : (a.val >= b.val ? a : b); }
-    static inline const VI& min(const VI& a, const VI& b) { return a.val == b.val ? (a.idx < b.idx ? a : b) : (a.val <= b.val ? a : b); }
+    static inline const VI& max(const VI& a, const VI& b) {
+      return a.val == b.val ? (a.idx < b.idx ? a : b) : (a.val >= b.val ? a : b);
+    }
+    static inline const VI& min(const VI& a, const VI& b) {
+      return a.val == b.val ? (a.idx < b.idx ? a : b) : (a.val <= b.val ? a : b);
+    }
 
     inline bool operator==(const VI& e) const { return val == e.val && idx == e.idx; }
     inline bool operator<(const VI& e) const { return (val < e.val) || (idx > e.idx); }
@@ -151,7 +155,8 @@ class SegmentTree {
     _applyDown(ptr);
 
     int rangemid = (rangebegin + rangeend) / 2;
-    return _getsumrange(begin, end, ptr * 2 + 1, rangebegin, rangemid) + _getsumrange(begin, end, ptr * 2 + 2, rangemid, rangeend);
+    return _getsumrange(begin, end, ptr * 2 + 1, rangebegin, rangemid) +
+           _getsumrange(begin, end, ptr * 2 + 2, rangemid, rangeend);
   }
   // 区間[begin,end)の和を求める
   inline T getsumrange(int begin, int end) { return _getsumrange(begin, end, 0, 0, size); }

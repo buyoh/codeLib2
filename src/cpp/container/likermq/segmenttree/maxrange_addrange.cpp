@@ -57,8 +57,12 @@ class SegmentTree {
     }
     inline bool operator<(const T& t) const { return value < t; }
     inline bool operator==(const T& t) const { return value == t; }
-    inline bool operator<(const IdxVal& iv) const { return value < iv.value || (value == iv.value && index < iv.index); }
-    inline bool operator==(const IdxVal& iv) const { return index == iv.index && value == iv.value; }
+    inline bool operator<(const IdxVal& iv) const {
+      return value < iv.value || (value == iv.value && index < iv.index);
+    }
+    inline bool operator==(const IdxVal& iv) const {
+      return index == iv.index && value == iv.value;
+    }
   };
 
   struct Node {
@@ -209,7 +213,9 @@ class SegmentTree {
 
  public:
   // 区間[begin,end)にeを加算する
-  inline void addValueRange(int begin, int end, const T e) { _addValueRange(begin, end, e, 1, 0, size_); }
+  inline void addValueRange(int begin, int end, const T e) {
+    _addValueRange(begin, end, e, 1, 0, size_);
+  }
 
   // 区間[begin,end)の最大値を計算する
   inline IdxVal getMaxRange(int begin, int end) const {

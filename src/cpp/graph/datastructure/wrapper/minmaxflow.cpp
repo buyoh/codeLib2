@@ -100,5 +100,7 @@ class FlowMinMax {
     }
   }
 
-  inline bool solve_maxflow_edge(map<pair<int, int>, int>& result_edge, int i_source, int i_sink) { return _solve_maxflow_edge(result_edge, i_source, i_sink); }
+  inline bool solve_maxflow_edge(map<pair<int, int>, int>& result_edge, int i_source, int i_sink) {
+    return _solve_maxflow_edge(result_edge, i_source, i_sink);
+  }
 };

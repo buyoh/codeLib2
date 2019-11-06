@@ -83,7 +83,8 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
     if (bitcount(bit) <= 1)
       continue;
     for (int _i = 0; _i < n_B; ++_i) {
-      not_independent_B[bit | (1 << _i)] = not_independent_B[bit | (1 << _i)] | not_independent_B[bit];
+      not_independent_B[bit | (1 << _i)] =
+          not_independent_B[bit | (1 << _i)] | not_independent_B[bit];
     }
   }
 

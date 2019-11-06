@@ -36,8 +36,9 @@ class RollingHash {
   RollingHash(const string& s) { build(s); }
 
   inline pair<rh_t, rh_t> operator()(int begin, int end) {
-    return pair<rh_t, rh_t>((hashes_[0][end] - hashes_[0][begin] * pow_table__[0][end - begin]),
-                            (hashes_[1][end] - (hashes_[1][begin] * pow_table__[1][end - begin]) % MD_1 + MD_1) % MD_1);
+    return pair<rh_t, rh_t>(
+        (hashes_[0][end] - hashes_[0][begin] * pow_table__[0][end - begin]),
+        (hashes_[1][end] - (hashes_[1][begin] * pow_table__[1][end - begin]) % MD_1 + MD_1) % MD_1);
   }
 
   void build_pow(size_t size) {

@@ -36,7 +36,9 @@ class LCATable {
   SparseTable<int> depth_;
 
  public:
-  LCATable(const Graph& g, int root = 0) : visited_(g.n * 2), visited_inv_(g.n), depth_(g.n * 2) { build(g, root); }
+  LCATable(const Graph& g, int root = 0) : visited_(g.n * 2), visited_inv_(g.n), depth_(g.n * 2) {
+    build(g, root);
+  }
 
   int _tour_dfs(const Graph& g, int idx, int from = -1, int step = 0, int dep = 0) {
     depth_[step] = dep;
@@ -59,6 +61,9 @@ class LCATable {
   }
 
   inline int operator()(int u, int v) {
-    return visited_inv_[u] <= visited_inv_[v] ? visited_[depth_.getminrangeIdx(visited_inv_[u], visited_inv_[v])] : operator()(v, u);
+    return visited_inv_[u] <= visited_inv_[v]
+               ? visited_[depth_.getminrangeIdx(visited_inv_[u], visited_inv_[v])]
+               :
+               operator()(v, u);
   }
 };

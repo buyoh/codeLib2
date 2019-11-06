@@ -167,7 +167,8 @@ class Treap : public unique_ptr<TreapNode> {
       return node;
     node->update_before();
     if (!node->childlen[0])
-      return 0 < index ? _find(node->childlen[1], index - 1) : index == 0 ? node : node->childlen[0];
+      return 0 < index ? _find(node->childlen[1], index - 1)
+                       : index == 0 ? node : node->childlen[0];
     if (node->childlen[0]->n_node < index)
       return _find(node->childlen[1], index - node->childlen[0]->n_node - 1);
     if (node->childlen[0]->n_node > index)
@@ -210,7 +211,8 @@ class Treap : public unique_ptr<TreapNode> {
       x = TreapNode::rnd();
     sort(rr.begin(), rr.end());
 
-    function<void(unique_ptr<TreapNode>&, int)> dfs = [&size, &rr, &val, &dfs](unique_ptr<TreapNode>& node, int idx1) {
+    function<void(unique_ptr<TreapNode>&, int)> dfs = [&size, &rr, &val, &dfs](
+                                                          unique_ptr<TreapNode>& node, int idx1) {
       if (idx1 > size)
         return;
       node.reset(new TreapNode(val, rr[idx1 - 1]));

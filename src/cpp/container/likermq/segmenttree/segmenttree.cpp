@@ -49,8 +49,12 @@ class SegmentTree {
     }
     inline bool operator<(const T& t) const { return value < t; }
     inline bool operator==(const T& t) const { return value == t; }
-    inline bool operator<(const IdxVal& iv) const { return value < iv.value || (value == iv.value && index < iv.index); }
-    inline bool operator==(const IdxVal& iv) const { return index == iv.index && value == iv.value; }
+    inline bool operator<(const IdxVal& iv) const {
+      return value < iv.value || (value == iv.value && index < iv.index);
+    }
+    inline bool operator==(const IdxVal& iv) const {
+      return index == iv.index && value == iv.value;
+    }
   };
 
   enum struct Cmd { None, Add, Flat };
@@ -310,10 +314,14 @@ class SegmentTree {
   }
 
   // 区間[begin,end)全てにvalをセットする
-  inline void setValueRange(int begin, int end, T val) { _setValueRange(begin, end, val, 1, 0, size_); }
+  inline void setValueRange(int begin, int end, T val) {
+    _setValueRange(begin, end, val, 1, 0, size_);
+  }
 
   // 区間[begin,end)に一様にvalを加算する
-  inline void addValueRange(int begin, int end, T val) { _addValueRange(begin, end, val, 1, 0, size_); }
+  inline void addValueRange(int begin, int end, T val) {
+    _addValueRange(begin, end, val, 1, 0, size_);
+  }
 
   // 区間[begin,end)の和を求める
   inline T getSumRange(int begin, int end) { return _getSumRange(begin, end, 1, 0, size_); }

@@ -91,7 +91,8 @@ struct SegmentTreeS {
       if (val_ == 0 || val_ == right - left)
         return val_;
       ll center = (right + left) / 2;
-      return bottom[0]->count_range(begin, end, left, center) + bottom[1]->count_range(begin, end, center, right);
+      return bottom[0]->count_range(begin, end, left, center) +
+             bottom[1]->count_range(begin, end, center, right);
     }
   };
 
