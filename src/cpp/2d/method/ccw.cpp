@@ -18,7 +18,6 @@
 // %words
 // ccw
 
-// http://www.prefield.com/algorithm/geometry/convex_hull.html
 int ccw(P a, P b, P c) {
   b.x -= a.x;
   b.y -= a.y;
