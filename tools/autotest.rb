@@ -10,27 +10,10 @@ prm, arr = ap.parse(ARGV)
 @filter = prm['--filter']
 @filter = Regexp.new(@filter) if @filter
 
-@tempdir = './tmp'
+@tempdir = '/tmp'
 
 
-module Test
-  class CPP
-    def initialize(testpath, tempdir)
-      @testpath = testpath
-      @tempdir = tempdir
-    end
-    def compile
-      system "g++ -I ./ -o #{@tempdir}/a.out #{@testpath} -std=c++17 -lm"
-    end
-    def execute
-      res = nil
-      Dir.chdir(@tempdir) do
-        res = system "./a.out"
-      end
-      res
-    end
-  end
-end
+require './test/test.rb'
 
 
 
