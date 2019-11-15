@@ -2,6 +2,8 @@ Dir.chdir __dir__
 require './util/argv.rb'
 require './dbhelper/collector.rb'
 
+require './test/test.rb'
+
 ap = ArgParser.new
 ap.define_param('--filter')
 
@@ -12,11 +14,6 @@ prm, arr = ap.parse(ARGV)
 
 @tempdir = '/tmp'
 
-
-require './test/test.rb'
-
-
-
 failed = false
 Dir.chdir('../') do
   Dir.mkdir @tempdir unless Dir.exist? @tempdir
@@ -25,11 +22,16 @@ Dir.chdir('../') do
     next if @filter && !(path =~ @filter)
     puts "test: #{path}"
     lang = path.split('/')[1]
-    tester = Test.const_get(lang.upcase).new(path, @tempdir)
+    langc = Test.const_get(lang.upcase)
+    unless langc
+      puts 'not implemented language: ' + lang
+      next
+    end
+    tester = langc.new(path, @tempdir)
     if tester.compile && tester.execute
-      puts "ok"
+      puts 'ok'
     else
-      puts "failed!!"
+      puts 'failed!!'
     end
   end
 end
