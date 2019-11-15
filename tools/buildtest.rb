@@ -26,11 +26,11 @@ Dir.chdir('../') do
     next if @filter && !(path =~ @filter)
     puts "test: #{path}"
     lang = path.split('/')[1]
-    langc = Test.const_get(lang.upcase)
-    unless langc
+    unless Test.const_defined?(lang.upcase)
       puts 'not implemented language: ' + lang
       next
     end
+    langc = Test.const_get(lang.upcase)
     tester = langc.new(path, @tempdir)
     result = tester.test_compilable
     if result['default']
@@ -41,7 +41,7 @@ Dir.chdir('../') do
       end
     else
       puts 'failed!!'
-      false = true
+      failed = true
     end
   end
 end

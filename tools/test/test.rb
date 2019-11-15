@@ -1,7 +1,7 @@
 module Test
   class CPP
     CC = 'g++'
-    OPTIONS = '-I ./ -lm'
+    OPTIONS = '-I ./ -lm -Wall'
 
     def initialize(testpath, tempdir)
       @testpath = testpath
