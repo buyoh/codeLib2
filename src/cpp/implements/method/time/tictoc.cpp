@@ -18,7 +18,6 @@
 // ```
 #include <chrono>
 #include <iostream>
-using namespace std;
 // ```
 // %words
 // time,tic,toc
@@ -26,14 +25,14 @@ using namespace std;
 //
 // %references
 
-#define TIME chrono::system_clock::now()
-#define MILLISEC(t) (chrono::duration_cast<chrono::milliseconds>(t).count())
+#define TIME std::chrono::system_clock::now()
+#define MILLISEC(t) (std::chrono::duration_cast<std::chrono::milliseconds>(t).count())
 namespace {
 std::chrono::system_clock::time_point ttt;
 inline void tic() {
   ttt = TIME;
 }
 inline void toc() {
-  clog << "TIME : " << MILLISEC(TIME - ttt) << '\n';
+  std::clog << "TIME : " << MILLISEC(TIME - ttt) << '\n';
 }
 }  // namespace
