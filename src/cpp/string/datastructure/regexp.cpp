@@ -40,7 +40,7 @@ struct RegExp {
     inline CharSet(const CharSet& cs) : ranges_(cs.ranges_) {}
     inline CharSet(CharSet&& cs) : ranges_(move(cs.ranges_)) {}
     inline explicit CharSet(const Range<char>& r) { push(r); }
-    inline explicit CharSet(char c) { push(Range(c)); }
+    inline explicit CharSet(char c) { push(Range<char>(c)); }
 
     void push(const Range<char>& r, bool negative = false) { ranges_.emplace_back(r, negative); }
     inline bool cover(char c) const {
@@ -89,7 +89,7 @@ struct RegExp {
       if (escape == 0 && c == ']') {
         assert(enable_range == false);
         if (enable_holderLastChr)  // charが余っているならばcharsetに入れる
-          charset.push(Range(holderLastChr));
+          charset.push(Range<char>(holderLastChr));
         return make_tuple(i, charset);
       } else if (escape == 0 && c == '-') {
         assert(enable_holderLastChr == true);
@@ -104,15 +104,15 @@ struct RegExp {
         if (enable_range) {
           assert(enable_holderLastChr == true);
           if (holderLastChr > c)
-            charset.push(Range(c, holderLastChr));
+            charset.push(Range<char>(c, holderLastChr));
           else
-            charset.push(Range(holderLastChr, c));
+            charset.push(Range<char>(holderLastChr, c));
           enable_holderLastChr = false;
           enable_range = false;
           negative = false;
         } else {
           if (enable_holderLastChr)  // charが余っているならばcharsetに入れる
-            charset.push(Range(holderLastChr), negative), negative = false;
+            charset.push(Range<char>(holderLastChr), negative), negative = false;
           enable_holderLastChr = true;
           holderLastChr = c;  // holderLastChrに値を入れておく
         }
@@ -204,7 +204,7 @@ struct RegExp {
   }
 };
 const RegExp::CharSet RegExp::CharSet::Any =
-    RegExp::CharSet(RegExp::Range(numeric_limits<char>::min(), numeric_limits<char>::max()));
+    RegExp::CharSet(RegExp::Range<char>(numeric_limits<char>::min(), numeric_limits<char>::max()));
 
 void test() {
   {

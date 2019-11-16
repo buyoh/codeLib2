@@ -12,7 +12,7 @@
 // ```
 #include <vector>
 using namespace std;
-#include "src/cpp/2d/datastructure/basic.cpp"
+// #include "src/cpp/2d/datastructure/basic.cpp" // duplicate
 #include "src/cpp/2d/method/ccw.cpp"
 // ```
 // %verified

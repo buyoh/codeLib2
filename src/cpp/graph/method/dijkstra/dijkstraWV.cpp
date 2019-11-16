@@ -29,7 +29,7 @@ vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTO
   dist[startIndex] = 0;
 
   while (!que.empty()) {
-    GraphE::W_T d = -que.top().first;
+    T d = -que.top().first;
     int v = que.top().second;
     que.pop();
     if (dist[v] < d)

@@ -21,7 +21,7 @@ module Test
       opt.each do |o|
         std.each do |s|
           args = "#{o} #{s}"
-          result[args] = system("#{CC} #{OPTIONS} -c -o #{@tempdir}/a.o #{@testpath} #{o} -std=#{s}")
+          result[args] = system("#{CC} #{OPTIONS} -Wno-unused-variable -Wno-comment -c -o #{@tempdir}/a.o #{@testpath} #{o} -std=#{s}")
         end
       end
       result

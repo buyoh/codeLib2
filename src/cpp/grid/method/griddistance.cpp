@@ -11,6 +11,7 @@
 // %require
 // ```
 #include <functional>
+#include <limits>
 #include <queue>
 using namespace std;
 #include "src/cpp/grid/datastructure/euclid.cpp"

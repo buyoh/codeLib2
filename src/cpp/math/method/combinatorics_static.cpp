@@ -6,7 +6,7 @@
 //
 //
 // %usage
-// Combinatorics<2000100, MD> wakame;
+// Combinatorics<2000100, Mod> wakame;
 //
 // %words
 // fact,ncr,npr,nck,npk
@@ -38,21 +38,21 @@ class Combinatorics {
     for (value_type n = 2; n <= MaxN; ++n)
       fact_[n] = (fact_[n - 1] * n) % Mod;
     // inv_[Max] := calculate;
-    // iterate => inv_[i] = inv_[i+1] * (i+1) % MD;
+    // iterate => inv_[i] = inv_[i+1] * (i+1) % Mod;
   }
   constexpr value_type fact(int n) const { return fact_[n]; }
 
-  constexpr value_type inv(value_type n) const { return pow(n, MD - 2); }
+  constexpr value_type inv(value_type n) const { return pow(n, Mod - 2); }
 
   constexpr value_type nPr(value_type n, value_type r) const {
     if (r < 0 || n < r)
       return 0;
-    return fact_[n] * inv(fact_[n - r]) % MD;
+    return fact_[n] * inv(fact_[n - r]) % Mod;
   }
   constexpr value_type nCr(value_type n, value_type r) const {
     if (n < r)
       return 0;
-    return ((fact_[n] * inv(fact_[n - r]) % MD) * inv(fact_[r])) % MD;
+    return ((fact_[n] * inv(fact_[n - r]) % Mod) * inv(fact_[r])) % Mod;
   }
   constexpr value_type nHr(value_type n, value_type r) const {
     if (n == 0 && r == 0)

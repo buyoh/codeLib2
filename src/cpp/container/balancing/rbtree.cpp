@@ -1,4 +1,6 @@
 
+#include <bits/stdc++.h>
+using namespace std;
 // child < parentを満たす．
 class RBTree {
  public:

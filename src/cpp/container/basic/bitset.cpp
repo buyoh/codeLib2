@@ -9,6 +9,7 @@
 // ```
 #include <cstdint>
 #include <memory>
+#include <limits>
 using namespace std;
 // ```
 // %usage

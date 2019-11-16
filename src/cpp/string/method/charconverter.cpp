@@ -1,4 +1,5 @@
 
+#include <initializer_list>
 
 class CharConverter {
   int IdxAlphaL;

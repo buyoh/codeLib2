@@ -14,6 +14,7 @@
 //
 // %require
 // ```
+#include <iomanip>
 #include <valarray>
 #include <ostream>
 using namespace std;

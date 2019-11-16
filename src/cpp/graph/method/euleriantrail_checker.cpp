@@ -5,6 +5,11 @@
 //
 // %usage
 //
+// %require
+// ```
+#include "src/cpp/implements/compe.cpp"
+#include "src/cpp/graph/datastructure/DGraphE.cpp"
+// ```
 // %verified
 //
 // %references

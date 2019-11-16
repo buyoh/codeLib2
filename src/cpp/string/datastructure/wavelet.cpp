@@ -81,5 +81,5 @@ class Wavelet {
   }
 
   // [0,i)の文字cの出現回数
-  int rank(int i, char c) {}
+  int rank(int i, char c) { return 0; }  // TODO:
 };

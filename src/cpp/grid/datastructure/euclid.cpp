@@ -11,6 +11,8 @@
 // ```
 #include <cmath>
 #include <ostream>
+#include <iomanip>
+#include <vector>
 using namespace std;
 // ```
 //
@@ -43,9 +45,9 @@ struct P {
     x -= p.x;
     return *this;
   }
-  inline P& operator-=(T m) {
+  inline P& operator*=(T m) {
     y *= m;
-    x;
+    x *= m;
     return *this;
   }
   inline T distM(P p) const { return abs(y - p.y) + abs(x - p.x); }
@@ -96,7 +98,7 @@ struct F {
   inline bool safe(int y, int x) const { return 0 <= y && y < height && 0 <= x && x < width; }
   inline bool safe(P p) const { return 0 <= p.y && p.y < height && 0 <= p.x && p.x < width; }
 
-  inline void fill(T e) { std::fill(ALL(data), e); }
+  inline void fill(T e) { std::fill(data.begin(), data.end(), e); }
   inline void resize(int h, int w) {
     height = h;
     width = w;
