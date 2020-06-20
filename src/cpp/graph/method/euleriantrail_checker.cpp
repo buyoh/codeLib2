@@ -8,7 +8,11 @@
 // %require
 // ```
 #include "src/cpp/implements/compe.cpp"
-#include "src/cpp/graph/datastructure/DGraphE.cpp"
+#include "src/cpp/graph/datastructure/dgraphe.cpp"
+#include <vector>
+#include <algorithm>
+#include <numeric>
+using namespace std;
 // ```
 // %verified
 //
@@ -28,11 +32,11 @@ DGraphE gen_random_eulerialTrail(int N, int M) {
     route.emplace_back(la, e);
     la = e;
   }
-  shuffle(ALL(route), randdev);
+  shuffle(route.begin(), route.end(), randdev);
 
   vector<int> shuffler(N);
-  iota(ALL(shuffler), 0);
-  shuffle(ALL(shuffler), randdev);
+  iota(shuffler.begin(), shuffler.end(), 0);
+  shuffle(shuffler.begin(), shuffler.end(), randdev);
 
   DGraphE graph(N);
   for (auto p : route)

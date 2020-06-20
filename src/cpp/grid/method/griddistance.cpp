@@ -24,8 +24,6 @@ using ll = long long;
 //
 // %words
 // grid, dij
-
-;
 /// <summary>
 /// 全てのセルに対してstartからの距離を求める
 /// </summary>

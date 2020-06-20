@@ -6,7 +6,7 @@ class CharConverter {
   int IdxAlphaS;
   int IdxNumber;
   int IdxOther;
-  initializer_list<char> Li;
+  std::initializer_list<char> Li;
 
   inline char otherwise(char c) {
     char i = 0;
@@ -20,10 +20,10 @@ class CharConverter {
 
  public:
   inline char operator[](char c) {
-    return 'A' <= c && c <= 'Z'   ? IdxAlphaL - 'A' + c
-           : 'a' <= c && c <= 'z' ? IdxAlphaS - 'a' + c
-           : '0' <= c && c <= '9' ? IdxNumber - '0'
-                                  : otherwise(c);
+    return 'A' <= c && c <= 'Z'
+               ? IdxAlphaL - 'A' + c
+               : 'a' <= c && c <= 'z' ? IdxAlphaS - 'a' + c
+                                      : '0' <= c && c <= '9' ? IdxNumber - '0' : otherwise(c);
     ;
   }
 };
