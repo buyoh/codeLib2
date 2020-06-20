@@ -1,4 +1,4 @@
-#include "test/common/testutil.cpp"
+#include "test/common/testutil.hpp"
 #include "src/cpp/container/balancing/treap_segment.cpp"
 
 int main() {

@@ -1,5 +1,5 @@
-require "#{__dir__}/../code/codeparser"
-require "#{__dir__}/../markup/markup"
+require_relative '../code/codeparser'
+require_relative '../markup/markup'
 
 module Document
 

@@ -1,16 +1,11 @@
 Dir.chdir __dir__
-require './util/argv.rb'
-require './dbhelper/collector.rb'
+require 'optparse'
+require_relative './dbhelper/collector.rb'
 
-require './test/test.rb'
-
-ap = ArgParser.new
-ap.define_param('--filter')
-
-prm, arr = ap.parse(ARGV)
-
-@filter = prm['--filter']
-@filter = Regexp.new(@filter) if @filter
+@filter = nil
+optparser = OptionParser.new
+optparser.on('--filter regexp'){|e| @filter = Regexp.new(e) }
+optparser.parse!(ARGV)
 
 @tempdir = '/tmp'
 

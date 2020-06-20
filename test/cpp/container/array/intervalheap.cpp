@@ -1,4 +1,4 @@
-#include "test/common/testutil.cpp"
+#include "test/common/testutil.hpp"
 #include "src/cpp/container/array/intervalheap.cpp"
 
 void testrand() {
@@ -34,7 +34,7 @@ void testrand() {
   }
 }
 
-int main(){
-    testrand();
-    return 0;
+int main() {
+  testrand();
+  return 0;
 }
