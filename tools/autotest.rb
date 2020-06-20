@@ -1,6 +1,7 @@
 Dir.chdir __dir__
 require 'optparse'
 require_relative './dbhelper/collector.rb'
+require_relative './test/test.rb'
 
 @filter = nil
 optparser = OptionParser.new
