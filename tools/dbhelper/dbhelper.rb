@@ -1,6 +1,6 @@
-require "#{__dir__}/dbwrapper"
-require "#{__dir__}/collector"
-require "#{__dir__}/gitlog"
+require_relative './dbwrapper'
+require_relative './collector'
+require_relative './gitlog'
 
 class DBHelper
 
@@ -17,38 +17,41 @@ class DBHelper
   # 必要に応じてレコードの更新・削除など．
   def update_db()
 
-    docs = nil
-    lastcommits = nil
+    # gather from Directory
+    dir_docs = nil
+    dir_lastcommits = nil
     Dir.chdir('../') do
-      docs = Document.collect_documents()
-      lastcommits = GitLog.collect_all_latest_nocache(docs.map{|doc| doc[:path]})
+      dir_docs = Document.collect_documents()
+      dir_lastcommits = GitLog.collect_all_latest_nocache(dir_docs.map{|doc| doc[:path]})
     end
-    index = all_index_db()
-    shas = gather_sha()
+    # gather from Database
+    db_index = all_index_db()
+    db_shas = gather_sha()
 
-    docs.each do |doc|
+    dir_docs.each do |doc|
       doc[:words] = '' unless doc[:words]
 
-      commit = lastcommits[doc[:path]] || {sha: '#invalid', date: Time.local(2000), message: ''}
-      sha_exists = shas[commit[:sha]]
+      commit = dir_lastcommits[doc[:path]] || {sha: '#invalid', date: Time.local(2000), message: ''}
+      sha_exists = db_shas[commit[:sha]]
 
       commitId = nil
       if sha_exists
         commitId = sha_exists[:id]
       else
+        # TODO: override #invalid ???
         sha = commit[:sha]
         @dbwrapper.insert_gitcommit(sha, commit[:date].to_i, commit[:message])
-        commitId = @dbwrapper.get_gitcommit_sha(sha)[0]
-        shas[sha] = {id: commitId, date: commit[:date].to_i, message: commit[:message]}
+        commitId = @dbwrapper.get_gitcommit_sha(sha)[0]  # 何やってるんだっけ？
+        db_shas[sha] = {id: commitId, date: commit[:date].to_i, message: commit[:message]}
       end
 
-      article_exists = index.select{|article| article[:path] == doc[:path]}
+      article_exists = db_index.select{|article| article[:path] == doc[:path]}
 
       id = nil
       if article_exists.empty?
         @dbwrapper.insert_article(doc[:path], doc[:title], doc[:words], commitId)
         id = @dbwrapper.getid_article(doc[:path])
-        index << {id: id, path: doc[:path], title: doc[:title], words: doc[:words], checked: true}
+        db_index << {id: id, path: doc[:path], title: doc[:title], words: doc[:words], checked: true}
       else
         article_exists[0][:checked] = true
         a = article_exists[0]
@@ -68,7 +71,7 @@ class DBHelper
       end
     end
 
-    index.each do |article|
+    db_index.each do |article|
       unless article[:checked]
         @dbwrapper.delete_article(article[:id])
         @dbwrapper.delete_descriptors_by_article_id(article[:id])
@@ -133,7 +136,7 @@ class DBHelper
   end
 
 
-  # 
+  # key: sha, value: {id, date, message} な Hash を返す
   def gather_sha()
     h = {}
     @dbwrapper.all_gitcommits.each do |id, sha, date, message|

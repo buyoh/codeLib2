@@ -1,5 +1,5 @@
 require 'time'
-require "#{__dir__}/collector.rb"
+require_relative './collector.rb'
 
 module GitLog
 
@@ -17,22 +17,23 @@ module GitLog
         commit = nil
         while line = io.gets
           line.chomp!
-          if line == ''
+          if line.empty?
             commit = nil
             next
-          else
-            none = false
           end
+          none = false
           if commit.nil?
             # commit line
-            s,d,m = line.split(';')
+            s, d, m = line.split(';')
             commit = {sha: s, date: Time.parse(d), message: m}
           else
-            # filename
+            # filename line
             filename = line
             next unless filename =~ /^src\/.+\//
-            remain -= 1 if db[filename].nil?
-            db[filename] ||= commit
+            if db[filename].nil?
+              remain -= 1
+              db[filename] = commit
+            end
           end
         end
         io.close
@@ -47,7 +48,7 @@ module GitLog
   # @return: [{sha, date, message}, ...]
   def self.history(path, options)
     `git log --oneline --pretty=format:'%H;%cd;%s' $path #{self.format_options(options)}`.split("\n") \
-      .reject{|l| l.empty }.map{|l| s,d,m = l.split(';'); {sha: s, date: Time.parse(d), message: m}}
+      .reject{|l| l.empty? }.map{|l| s,d,m = l.split(';'); {sha: s, date: Time.parse(d), message: m}}
   end
 
   def self.format_options(hash, ignore = {})
