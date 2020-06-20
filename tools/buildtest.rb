@@ -7,13 +7,13 @@ require './test/test.rb'
 @filter = nil
 optparser = OptionParser.new
 optparser.on('--filter regexp'){|e| @filter = Regexp.new(e) }
-optparser.on('--log-path path'){|e| @log_path = e }
+# optparser.on('--log-path path'){|e| @log_path = e }
 optparser.parse!(ARGV)
 
 
 @tempdir = '/tmp'
 
-logio = @log_path ? open(@log_path) : nil
+# logio = @log_path ? open(@log_path, 'w') : nil
 
 failed = false
 Dir.chdir('../') do
@@ -43,7 +43,7 @@ Dir.chdir('../') do
   end
 end
 
-logio.close if logio
+# logio.close if logio
 
 abort if failed
 exit 0
