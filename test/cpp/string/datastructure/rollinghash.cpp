@@ -1,4 +1,4 @@
-#include "test/common/testutil.cpp"
+#include "test/common/testutil.hpp"
 #include "src/cpp/string/datastructure/rollinghash.cpp"
 
 int main() {

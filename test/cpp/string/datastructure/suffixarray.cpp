@@ -1,5 +1,5 @@
 
-#include "test/common/testutil.cpp"
+#include "test/common/testutil.hpp"
 #include "src/cpp/string/datastructure/suffixarray.cpp"
 
 namespace Local {
@@ -30,7 +30,8 @@ class SuffixArray {
       sa[i] = data + i;
     }
 
-    sort(sa.begin(), sa.end(), [](const char* l, const char* r) { return 0 > strcmp(l, r); });  // TODO: sais
+    sort(sa.begin(), sa.end(),
+         [](const char* l, const char* r) { return 0 > strcmp(l, r); });  // TODO: sais
   }
   void build_2() {
     sa.resize(size);
@@ -48,7 +49,8 @@ class SuffixArray {
       rank[sa[i] - data] = rank[sa[i - 1] - data] + (*sa[i - 1] < *sa[i]);
     for (int d = 1; d < size; d *= 2) {
       auto compare = [this, d, &rank](const char* l, const char* r) {
-        return rank[l - data] != rank[r - data] ? rank[l - data] < rank[r - data] : rank[l + d - data] < rank[r + d - data];
+        return rank[l - data] != rank[r - data] ? rank[l - data] < rank[r - data]
+                                                : rank[l + d - data] < rank[r + d - data];
       };
       sort(sa.begin(), sa.end(), compare);
       tmp[sa[0] - data] = 0;
@@ -168,15 +170,16 @@ const vector<tuple<string, VS, VI>> testcases = {
                               0,
                               -1,
                           }},
-    tuple<string, VS, VI>{"sumomomomomomomomonouti",
-                          VS{
-                              "momo",
-                              "momomo",
-                              "mo",
-                          },
-                          VI{
-                              2, 4, 6, 8, 10, 12, 14, -1, 2, 4, 6, 8, 10, 12, -1, 2, 4, 6, 8, 10, 12, 14, 16, -1,
-                          }},
+    tuple<string, VS, VI>{
+        "sumomomomomomomomonouti",
+        VS{
+            "momo",
+            "momomo",
+            "mo",
+        },
+        VI{
+            2, 4, 6, 8, 10, 12, 14, -1, 2, 4, 6, 8, 10, 12, -1, 2, 4, 6, 8, 10, 12, 14, 16, -1,
+        }},
 };
 
 void check_case() {
