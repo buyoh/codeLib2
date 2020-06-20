@@ -13,7 +13,7 @@ module Test
     end
 
     def test_compilable
-      return {'default' => false} unless system("#{CC} #{OPTIONS} -c -o #{@tempdir}/a.o #{@testpath}")
+      return {'default' => false} unless system("#{CC} #{OPTIONS} -fsyntax-only #{@testpath}")
 
       opt = ['-O2', '-O3']
       std = ['c++11', 'c++14', 'c++17']
@@ -21,7 +21,7 @@ module Test
       opt.each do |o|
         std.each do |s|
           args = "#{o} #{s}"
-          result[args] = system("#{CC} #{OPTIONS} -Wno-unused-variable -Wno-comment -c -o #{@tempdir}/a.o #{@testpath} #{o} -std=#{s}")
+          result[args] = system("#{CC} #{OPTIONS} -Wno-unused-variable -Wno-comment -fsyntax-only #{@testpath} #{o} -std=#{s}")
         end
       end
       result
