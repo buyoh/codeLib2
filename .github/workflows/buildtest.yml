@@ -1,0 +1,21 @@
+name: buildtest
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: install tools
+      run: |
+        sudo apt install ruby g++ npm clang
+    - name: test
+      run: |
+        ruby tools/buildtest.rb

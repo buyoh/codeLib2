@@ -9,6 +9,7 @@
 // %usage
 // %require
 // ```
+#include <utility>
 using namespace std;
 // ```
 // %verified

@@ -19,6 +19,7 @@
 // %require
 // ```
 #include <vector>
+#include <random>
 using namespace std;
 // ```
 // %verified

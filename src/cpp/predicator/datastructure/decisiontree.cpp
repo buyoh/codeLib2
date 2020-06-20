@@ -9,6 +9,7 @@
 // %require
 // ```
 #include <memory>
+#include <functional>
 using namespace std;
 // ```
 // %verified

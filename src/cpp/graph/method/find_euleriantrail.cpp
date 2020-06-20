@@ -4,6 +4,7 @@
 // %overview
 // 要は一筆書き．
 // まだ汚いのでそのうち
+// TODO: fix -Wsign-compare
 //
 // %usage
 // vector<int> find_eulerialTrail(const GraphE& graph)
@@ -84,7 +85,7 @@ vector<int> find_eulerialTrail(const DGraphE& graph, int startEdge = 0) {
       continue;
 
     group[idx] = groupCount++;
-    int tail = graph.arcs[idx].from;
+    // int tail = graph.arcs[idx].from;
     int v = graph.arcs[idx].to;
 
     int tim = 0;

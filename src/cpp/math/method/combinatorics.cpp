@@ -14,6 +14,10 @@
 // T nHr_md(T n, T r, T mod = MD)
 //
 //
+// %require
+// ```
+const long long MD = 1000000007;
+// ```
 // %words
 // pow,fact,ncr,npr,nhr,nck,npk,nhk
 // %verified

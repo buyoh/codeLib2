@@ -28,6 +28,7 @@
 #include <unordered_map>
 using namespace std;
 // rand_int の実装
+int rand_int(int, int);
 // ```
 // %verified
 //

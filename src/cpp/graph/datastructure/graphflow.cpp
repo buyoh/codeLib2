@@ -18,6 +18,9 @@ using namespace std;
 // %words
 // graphstruct
 
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW__  // << prototype implementation!!!
+#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW__
+
 class DGraphF {
  public:
   typedef int cap_t;
@@ -52,3 +55,5 @@ class DGraphF {
 
   inline int size() const { return n_; }
 };
+
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW__
