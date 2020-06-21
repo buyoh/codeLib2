@@ -28,6 +28,7 @@ Dir.chdir('../') do
       puts 'ok'
     else
       puts 'failed!!'
+      failed = true
     end
   end
 end
