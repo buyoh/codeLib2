@@ -1,5 +1,5 @@
 #include "test/common/testutil.hpp"
-#include "src/cpp/container/balancing/treap_set.cpp"
+#include "src/cpp/container/balancing/treap_set.hpp"
 
 int main() {
   Treap tp;

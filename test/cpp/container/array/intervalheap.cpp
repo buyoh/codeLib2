@@ -1,5 +1,5 @@
 #include "test/common/testutil.hpp"
-#include "src/cpp/container/array/intervalheap.cpp"
+#include "src/cpp/container/array/intervalheap.hpp"
 
 void testrand() {
   IntervalHeap<int> ih;
