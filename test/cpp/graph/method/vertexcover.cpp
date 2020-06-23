@@ -1,7 +1,7 @@
 #include "test/common/testutil.hpp"
 #include "test/common/graph_generator.hpp"
-#include "src/cpp/graph/method/vertexcover.cpp"
-#include "src/cpp/graph/method/independentset.cpp"
+#include "src/cpp/graph/method/vertexcover.hpp"
+#include "src/cpp/graph/method/independentset.hpp"
 
 // mode = 1 : vertex cover
 // mode = 2 : independent set
