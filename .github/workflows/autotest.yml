@@ -15,4 +15,4 @@ jobs:
         sudo apt install ruby g++ npm clang
     - name: autotest
       run: |
-        ruby tools/autotest.rb
+        ruby tools/autotest.rb -j 2
