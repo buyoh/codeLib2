@@ -18,4 +18,4 @@ jobs:
         sudo apt install ruby g++ npm clang
     - name: test
       run: |
-        ruby tools/buildtest.rb
+        ruby tools/buildtest.rb -j 2
