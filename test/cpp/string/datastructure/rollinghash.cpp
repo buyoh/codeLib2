@@ -1,5 +1,5 @@
 #include "test/common/testutil.hpp"
-#include "src/cpp/string/datastructure/rollinghash.cpp"
+#include "src/cpp/string/datastructure/rollinghash.hpp"
 
 int main() {
   string str = "abracadabra";

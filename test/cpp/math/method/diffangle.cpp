@@ -1,5 +1,5 @@
 #include "test/common/testutil.hpp"
-#include "src/cpp/math/method/diffangle.cpp"
+#include "src/cpp/math/method/diffangle.hpp"
 
 int main() {
   assert(diffangle(0.0, 0.0, 10.0) == 0.0);

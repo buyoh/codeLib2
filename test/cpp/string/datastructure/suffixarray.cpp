@@ -1,6 +1,6 @@
 
 #include "test/common/testutil.hpp"
-#include "src/cpp/string/datastructure/suffixarray.cpp"
+#include "src/cpp/string/datastructure/suffixarray.hpp"
 
 namespace Local {
 
