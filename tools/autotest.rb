@@ -21,14 +21,14 @@ optparser.parse!(ARGV)
 @tempdir = '/tmp/codelib2'
 
 def do_job(path, workerid = 0)
-  return if @filter && !(path =~ @filter)
+  return true if @filter && !(path =~ @filter)
   puts "test: #{path}"
 
   lang = path.split('/')[1]
   langc = Test.const_get(lang.upcase)
   unless langc
     puts 'not implemented language: ' + lang
-    return
+    return true
   end
 
   tempdir_worker = @tempdir + '__' + workerid.to_s
@@ -49,7 +49,7 @@ Dir.chdir('../') do
 
   if @jobs == 1
     Document.test_files.each do |path|
-      failed ||= !(do_job(path))
+      failed |= !(do_job(path))
     end
   else
     mtx = Mutex.new
@@ -65,7 +65,7 @@ Dir.chdir('../') do
     @jobs.times.map do |tid|
       Thread.new(tid) do |tid|
         while path = pop_paths.call()
-          failed ||= !(do_job(path, tid))
+          failed |= !(do_job(path, tid))
         end
       end
     end.each{|t| t.join}
