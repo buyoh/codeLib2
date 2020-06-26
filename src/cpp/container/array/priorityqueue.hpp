@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // PriorityQueue
 //
@@ -17,6 +18,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 template <typename T>
 class PriorityQueue {

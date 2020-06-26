@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ぐるぐるイテレータ
 //
@@ -18,6 +19,7 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END
 
 struct DreamcastScan {
   const int Width;

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // Treap(set)
 //
@@ -35,6 +36,7 @@ using namespace std;
 // %references
 // https://www.slideshare.net/iwiwi/2-12188757
 // http://www.prefield.com/algorithm/container/treap.html
+// %=END
 
 class Treap {
  public:
@@ -108,9 +110,9 @@ class Treap {
     if (!ptr->childlen[0] && !ptr->childlen[1]) {
       ptr.release();
     } else {
-      bool i = ptr->childlen[0]   ? 0
-               : ptr->childlen[1] ? 1
-                                  : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
+      bool i = ptr->childlen[0]
+                   ? 0
+                   : ptr->childlen[1] ? 1 : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
       _rotate(ptr, i);
       _erase(ptr->childlen[i ^ 1]);
     }

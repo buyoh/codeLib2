@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 組合せ計算(都度計算)
 //
@@ -23,6 +24,7 @@ const long long MD = 1000000007;
 // %verified
 //
 // %references
+// %=END
 
 // MEMO : 逆元...pow_md(n,MOD-2,MOD)
 template <typename T>

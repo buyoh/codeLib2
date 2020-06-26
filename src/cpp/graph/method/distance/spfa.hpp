@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // SPFA
 //
@@ -25,6 +26,7 @@ using namespace std;
 // http://hogloid.hatenablog.com/entry/20120409/1333973448
 // https://tubo28.me/compprog/algorithm/spfa/
 //
+// %=END
 
 vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph,
                                                  int start = 0,

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ダイクストラ法(有向・重み無し)
 //
@@ -19,6 +20,7 @@ using namespace std;
 // https://atcoder.jp/contests/abc132/submissions/6175759
 // %references
 //
+// %=END
 
 vector<int> dijkstraD(const DGraph& graph, int startIndex) {
   vector<int> dist(graph.size(), numeric_limits<int>::max());

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ローリングハッシュ
 //
@@ -19,6 +20,7 @@ using namespace std;
 // csaで使ったはず
 // %references
 // プログラミングチャレンジブック
+// %=END
 
 class RollingHash {
  public:

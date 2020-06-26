@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 禁止可能な一様分布の乱数
 //
@@ -26,6 +27,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 class RandChooser {
   int size;

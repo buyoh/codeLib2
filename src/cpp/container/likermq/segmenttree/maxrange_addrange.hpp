@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // セグメント木(区間加算，区間最大，単独書換)[deprecated]
 //
@@ -42,6 +43,7 @@ using namespace std;
 // %references
 // プログラミングコンテストチャレンジブック
 // https://www.slideshare.net/kazumamikami1/ss-15160153
+// %=END
 
 template <typename T>
 // using T = ll;

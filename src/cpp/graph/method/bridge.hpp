@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 橋検出
 //
@@ -21,6 +22,7 @@ using namespace std;
 // %references
 // %words
 // bridge
+// %=END
 
 // 橋を探す
 //

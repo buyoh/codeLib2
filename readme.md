@@ -57,6 +57,7 @@ ruby tools/autotest.rb
 空行なしで行頭にコメント行文字を入れると、メタ情報として認識されます。
 
 ```cpp
+// %=BEGIN
 // %title
 // タイトル
 // 
@@ -87,6 +88,7 @@ using namespace std;
 // 
 // %tags
 // nolint, (wip: 未実装), (unverified: 未検証), (deprecated: 非推奨)
+// %=END
 ```
 
 ## なぜcodelib '2' なのか

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 約数列挙
 //
@@ -18,6 +19,7 @@
 //
 // %words
 // divisor
+// %=END
 
 std::vector<long long> generateDivisor(long long n) {
   std::vector<long long> divs;

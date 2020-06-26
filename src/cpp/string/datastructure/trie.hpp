@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // trie tree
 //
@@ -18,6 +19,7 @@ using namespace std;
 // (旧) : http://yukicoder.me/submissions/123054
 // %references
 // プログラミングチャレンジブック
+// %=END
 
 template <typename TKEY = char, typename TVAL = int>
 struct TrieTree {

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 無向グラフ(辺集合)
 //
@@ -26,6 +27,7 @@ using namespace std;
 //
 // %words
 // graphstruct
+// %=END
 
 // Edge構造体を定義する無向グラフ
 class GraphE {

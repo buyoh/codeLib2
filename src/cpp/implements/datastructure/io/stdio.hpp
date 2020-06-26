@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // getc,putcによる入出力実装．
 //
@@ -38,6 +39,7 @@ using namespace std;
 // io
 // %references
 // cLay
+// %=END
 
 #if defined(_WIN32) || defined(_WIN64)
 #define getc_x _getc_nolock

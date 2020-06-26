@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 無向グラフ(隣接頂点)
 //
@@ -23,6 +24,7 @@ using namespace std;
 //
 // %words
 // graphstruct
+// %=END
 
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__  // << prototype implementation!!!
 #define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__

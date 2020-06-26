@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // エラトステネスの篩
 //
@@ -26,6 +27,7 @@
 //
 // %references
 //
+// %=END
 
 template <int Max = 2000>
 class IsPrimeC {

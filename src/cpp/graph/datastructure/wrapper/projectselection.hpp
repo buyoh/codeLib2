@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ProjectSelection
 //
@@ -29,6 +30,7 @@
 // %references
 // https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem#Project_selection_problem
 // http://tokoharuland.hateblo.jp/entry/2017/11/12/234636
+// %=END
 
 class ProjectSelection {
  public:

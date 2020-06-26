@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 永続配列
 //
@@ -28,6 +29,7 @@ using namespace std;
 // %tag
 // wip
 //
+// %=END
 
 struct PersistentArray {
   using value_t = int;

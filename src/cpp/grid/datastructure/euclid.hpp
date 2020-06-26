@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 2次元グリッドと二次元座標
 //
@@ -23,6 +24,7 @@ using namespace std;
 //
 // %words
 // grid, field, point, game
+// %=END
 
 struct P {
   using T = int;

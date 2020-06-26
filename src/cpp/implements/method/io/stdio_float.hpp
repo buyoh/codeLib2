@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 浮動小数点の高速入出力
 //
@@ -16,6 +17,7 @@
 // https://yukicoder.me/submissions/285892
 // %words
 // io
+// %=END
 
 template <typename T>
 void output_float(T var, int d) noexcept {

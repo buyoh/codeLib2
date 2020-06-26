@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 素因数分解
 //
@@ -17,6 +18,7 @@
 // %verified
 //
 // %references
+// %=END
 
 std::map<long long, int> primeDivision(const long long _num) {
   std::map<long long, int> result;

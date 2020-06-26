@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 行列の基本操作
 //
@@ -24,6 +25,7 @@ using namespace std;
 // https://beta.atcoder.jp/contests/arc027/submissions/3095831
 // など
 // %references
+// %=END
 
 template <typename T>
 // using T = double;

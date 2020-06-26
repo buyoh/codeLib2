@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // LeftistHeap
 //
@@ -21,6 +22,7 @@ using namespace std;
 //
 // %references
 // http://hos.ac/blog/#blog0001
+// %=END
 
 template <typename T>
 // using T = int;

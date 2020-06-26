@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 最小頂点被覆 (半分全列挙)
 //
@@ -28,6 +29,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 inline int bitcount(int x) {
   return bitset<31>(x).count();

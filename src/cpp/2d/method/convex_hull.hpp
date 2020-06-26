@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 凸包
 //
@@ -22,6 +23,7 @@ using namespace std;
 // http://www.prefield.com/algorithm/geometry/convex_hull.html
 // %words
 // convex
+// %=END
 
 vector<pair<P, int>> convex_hull(const vector<pair<P, int>>& points) {
   // pointsはソート済みであること

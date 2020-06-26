@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 有向グラフ(隣接頂点)
 //
@@ -23,6 +24,7 @@ using namespace std;
 //
 // %words
 // graphstruct
+// %=END
 
 class DGraph {
  public:

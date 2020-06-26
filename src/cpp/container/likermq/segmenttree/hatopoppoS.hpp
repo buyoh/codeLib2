@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 遅延セグメント木(bitset風味)(sparse)
 //
@@ -24,6 +25,7 @@ using ll = long long;
 // %references
 //
 //
+// %=END
 
 struct SegmentTreeS {
   struct Node {

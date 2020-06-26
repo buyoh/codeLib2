@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 永続スタック
 //
@@ -28,6 +29,7 @@ using namespace std;
 // persistent,stack,eizoku
 // %require
 //
+// %=END
 
 struct PersistentStack {
   using value_t = int;

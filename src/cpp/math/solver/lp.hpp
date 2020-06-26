@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 簡易線形計画問題ソルバー[TODO]
 //
@@ -21,6 +22,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 class EasyLP {
  public:

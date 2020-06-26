@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 組合せ計算(前計算)
 //
@@ -13,6 +14,7 @@
 // %verified
 // https://yukicoder.me/submissions/286997
 // %references
+// %=END
 
 template <int MaxN, long long Mod>
 class Combinatorics {

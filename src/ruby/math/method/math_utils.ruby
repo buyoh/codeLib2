@@ -1,3 +1,4 @@
+# %=BEGIN
 # %title
 # GCD,LCM,組み合わせ計算
 # 
@@ -18,7 +19,7 @@
 # math
 # %require
 # 
-# 
+# %=END
 
 def pow_md(x, w, mod)
   y = 1

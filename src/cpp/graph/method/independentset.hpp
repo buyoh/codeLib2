@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 最大独立集合 (分岐限定法)
 //
@@ -26,6 +27,7 @@
 // FV Fomin, Exact Exponential Algorithms, Springer.
 // %tag
 // wip
+// %=END
 
 pair<int, vector<int>> independentSet(const Graph& graph) {
   int bestScore = 0;

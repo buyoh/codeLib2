@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // さいころの回転
 // 
@@ -20,6 +21,7 @@
 // %require
 // 
 // 
+// %=END
 
 
 class Dice { // eslint-disable-line no-unused-vars

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 組合せ・順列列挙
 // 
@@ -17,18 +18,19 @@
 // shuffle
 // %require
 // 
+// %=END
 
-Array.prototype.permutation = function*() {
+Array.prototype.permutation = function* () {
     if (this.length <= 0) return;
     const n = this.length;
     const this_ = this;
     function* dfs(p) {
-        if (p.length == n){
+        if (p.length == n) {
             yield p.map(i => this_[i]);
-            return ;
+            return;
         }
-        for (let i = 0; i < n; ++i){
-            if (p.some(e => e==i)) continue;
+        for (let i = 0; i < n; ++i) {
+            if (p.some(e => e == i)) continue;
             p.push(i);
             for (let r of dfs(p)) yield r;
             p.pop();
@@ -37,23 +39,23 @@ Array.prototype.permutation = function*() {
     for (let r of dfs([])) yield r;
 };
 
-Array.prototype.combination = function*(k) {
+Array.prototype.combination = function* (k) {
     if (this.length <= 0 || (this.length < k)) return;
     const n = this.length;
     const this_ = this;
     function* dfs(c, idx) {
         if (n - idx < k - c.length) return;
-        if (idx == n){
+        if (idx == n) {
             if (c.length == k)
                 yield c.map(i => this_[i]);
-            return ;
+            return;
         }
         if (k > c.length) {
             c.push(idx);
-            for (let r of dfs(c, idx+1)) yield r;
+            for (let r of dfs(c, idx + 1)) yield r;
             c.pop();
         }
-        for (let r of dfs(c, idx+1)) yield r;
+        for (let r of dfs(c, idx + 1)) yield r;
     }
     for (let r of dfs([], 0)) yield r;
 };

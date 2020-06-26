@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 回文判定
 //
@@ -15,6 +16,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 bool iskaibun(const string& str) {
   for (int left = 0, right = (int)str.size() - 1; left < right; ++left, --right)

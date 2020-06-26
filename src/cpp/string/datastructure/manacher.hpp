@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // manacher(一括回文判定)
 //
@@ -24,6 +25,7 @@ using namespace std;
 // http://snuke.hatenablog.com/entry/2014/12/02/235837
 // https://yukicoder.me/problems/no/464/editorial
 //
+// %=END
 
 class Manacher {
  public:

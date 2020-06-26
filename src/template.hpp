@@ -1,6 +1,7 @@
+// %=BEGIN
 // %title
 // algorithm name here
-// 
+//
 // %overview
 // my nice algorithm.
 //
@@ -11,16 +12,17 @@
 //
 // %verified
 // problem.
-// 
+//
 // %references
 // thanks.
 // %words
 // bsearch, nibuntansaku
 // %require
 // cpp/graph/datastructure/dgraph.hpp
-// 
+//
+// %=END
 
-int func(int x){}
+int func(int x) {}
 
 // C++
 // クラス名    : CamelCase
@@ -28,8 +30,7 @@ int func(int x){}
 // メンバ変数  : underscore_, underscore__(static)
 // メソッド    : snake_case
 // サブメソッド: _snake_case
-// 
+//
 // 例外
 // llmod のクラス名 (プリミティブ同様に扱うことを目的とするため)
 // Graph 等のメンバ変数 (C#で言うプロパティに似せた．外部参照が多いもの．厳格にはgetsetを書くべき．)
-

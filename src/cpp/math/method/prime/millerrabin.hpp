@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // Miller–Rabin primality test
 //
@@ -21,6 +22,7 @@ using ll = long long;
 // %references
 // https://qiita.com/gushwell/items/ff9ed83ba55350aaa369
 // https://yukicoder.me/submissions/210680
+// %=END
 
 ll powm_strict(ll x, ll p, ll mod = 1000000007ll) {
   using ll128 = __int128_t;

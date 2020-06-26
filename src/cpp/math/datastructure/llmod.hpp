@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 剰余演算付き整数型(llmod)
 //
@@ -18,6 +19,7 @@
 // verify: https://yukicoder.me/submissions/183523
 //
 // %references
+// %=END
 
 class llmod {
  private:

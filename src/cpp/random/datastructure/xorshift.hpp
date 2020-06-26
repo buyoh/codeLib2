@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // XorShift
 //
@@ -20,6 +21,7 @@ using namespace std;
 //
 // %references
 // https://ja.wikipedia.org/wiki/Xorshift
+// %=END
 
 struct XorShift {
   using result_type = uint64_t;

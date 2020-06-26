@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // セグメント木
 //
@@ -34,6 +35,7 @@ using namespace std;
 // %references
 // プログラミングコンテストチャレンジブック
 // https://www.slideshare.net/kazumamikami1/ss-15160153
+// %=END
 
 template <typename T>
 // using T = ll;

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // オイラー路検出(テスト用)
 //
@@ -22,6 +23,7 @@ using namespace std;
 // euler
 // %tag
 // wiip
+// %=END
 
 DGraphE gen_random_eulerialTrail(int N, int M) {
   vector<pair<int, int>> route;

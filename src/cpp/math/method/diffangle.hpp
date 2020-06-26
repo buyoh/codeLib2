@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 回転角
 //
@@ -20,6 +21,7 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END
 
 // 1周をmodで表現するような角度の単位系で，
 // 角度xから角度yへ向きを変えるとき，xに加算するべき値

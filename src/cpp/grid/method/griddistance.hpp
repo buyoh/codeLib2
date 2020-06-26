@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 2次元グリッド上のダイクストラ
 //
@@ -24,6 +25,8 @@ using ll = long long;
 //
 // %words
 // grid, dij
+// %=END
+
 /// <summary>
 /// 全てのセルに対してstartからの距離を求める
 /// </summary>

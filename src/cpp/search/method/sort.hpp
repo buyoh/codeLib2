@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 並び替えないソート
 //
@@ -19,6 +20,7 @@ using namespace std;
 // atcoder
 // %references
 //
+// %=END
 
 // ソートしてi番目の値は 元々idx[i]番目の値
 // 元々i番目の値は ソートするとidxr[i]番目の値

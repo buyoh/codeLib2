@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 幾何頂点
 //
@@ -17,6 +18,7 @@ using namespace std;
 //
 // %words
 //
+// %=END
 
 struct P {
   using value_t = double;

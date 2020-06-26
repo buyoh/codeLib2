@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // iterator with index
 //
@@ -22,6 +23,7 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END
 
 template <typename ITER>
 class IteratorWithIndex {

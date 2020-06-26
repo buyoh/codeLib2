@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 無向グラフ(隣接行列)
 //
@@ -25,6 +26,7 @@ using namespace std;
 //
 // %words
 // graphstruct
+// %=END
 
 class Graph2d {
  public:

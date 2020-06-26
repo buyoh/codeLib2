@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // std::hashの追加定義
 //
@@ -16,6 +17,7 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END
 
 namespace std {
 template <typename T1, typename T2>

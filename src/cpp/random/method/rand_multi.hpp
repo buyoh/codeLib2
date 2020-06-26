@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 1からnまでの乱数をm個重複せずランダムに選ぶ
 //
@@ -34,6 +35,7 @@ int rand_int(int, int);
 //
 // %references
 //
+// %=END
 
 //
 void pick_multirand(int n, int m, vector<int>& out) {

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 有向グラフ(最大流用)
 //
@@ -17,6 +18,7 @@ using namespace std;
 //
 // %words
 // graphstruct
+// %=END
 
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW__  // << prototype implementation!!!
 #define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW__

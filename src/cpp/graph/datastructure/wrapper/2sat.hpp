@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 2-SAT Solver
 //
@@ -29,6 +30,7 @@ using namespace std;
 //
 // %references
 // http://www.prefield.com/algorithm/misc/2-sat.html
+// %=END
 
 class Sat_2 {
  public:

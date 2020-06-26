@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 正規表現[TODO]
 //
@@ -22,6 +23,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 struct RegExp {
   template <typename T>

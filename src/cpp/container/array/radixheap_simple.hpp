@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // RadixHeap(simple)
 //
@@ -22,6 +23,7 @@ using namespace std;
 //
 // %references
 // https://www.slideshare.net/yosupo/ss-46612984
+// %=END
 
 class RadixHeap {
  public:

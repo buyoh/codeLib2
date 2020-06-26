@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 可変長bitset
 //
@@ -18,6 +19,7 @@ using namespace std;
 // resizeが出来ていない
 //
 // %references
+// %=END
 
 class BitSet64 {
  public:

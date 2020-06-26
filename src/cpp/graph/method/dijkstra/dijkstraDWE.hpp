@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ダイクストラ法(有向・辺重み)
 //
@@ -19,6 +20,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 vector<DGraphE::W_T> dijkstraDEdgeWeighted(const DGraphE& graph, int startIndex) {
   using T = DGraphE::W_T;

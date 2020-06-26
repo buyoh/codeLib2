@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // bellmanFord
 //
@@ -21,6 +22,7 @@ using namespace std;
 // %references
 // %words
 // bellmanford
+// %=END
 
 vector<DGraphE::W_T> bellmanFord(int n, const vector<DGraphE::Arc>& arcs, int start = 0) {
   using T = DGraphE::W_T;

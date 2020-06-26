@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ccw(進行方向)
 //
@@ -17,6 +18,7 @@
 // http://www.prefield.com/algorithm/geometry/ccw.html
 // %words
 // ccw
+// %=END
 
 int ccw(P a, P b, P c) {
   b.x -= a.x;

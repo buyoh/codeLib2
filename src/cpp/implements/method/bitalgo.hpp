@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ビット演算
 //
@@ -23,6 +24,7 @@ using namespace std;
 // http://www.nminoru.jp/~nminoru/programming/bitcount.html
 // http://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html
 // https://docs.microsoft.com/ja-jp/cpp/intrinsics/alphabetical-listing-of-intrinsic-functions
+// %=END
 
 namespace BitAlgo {
 // 1が立っている数(f(1) = 1, f(6) = 2)

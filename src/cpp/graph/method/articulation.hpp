@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 関節点検出
 //
@@ -23,6 +24,7 @@ using namespace std;
 // articulation
 // %tag
 // unverified
+// %=END
 
 void detect_articulation_point(const Graph& graph, vector<int>& out) {
   out.resize(graph.n);

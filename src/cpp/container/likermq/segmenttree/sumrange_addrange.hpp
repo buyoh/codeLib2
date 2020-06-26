@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // セグメント木(区間加算，区間最大，区間総和)[deprecated]
 //
@@ -27,6 +28,7 @@ using namespace std;
 // %references
 // プログラミングコンテストチャレンジブック
 //
+// %=END
 
 template <typename T>
 // typedef int T;

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 二分探索（実数）
 //
@@ -22,6 +23,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 const double EPS = 1e-9;
 double binarySearchReal(double false_value, double true_value, function<bool(double)> func) {

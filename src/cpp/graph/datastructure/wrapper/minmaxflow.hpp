@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 最小流量制限付き最大フロー
 //
@@ -40,6 +41,7 @@ using namespace std;
 // %words
 // maxflow,dinic
 //
+// %=END
 
 class FlowMinMax {
  public:

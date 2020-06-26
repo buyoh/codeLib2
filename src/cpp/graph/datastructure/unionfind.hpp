@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // Unionfind
 //
@@ -22,6 +23,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 class Unionfind {
  public:

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // warshall-floyd
 //
@@ -17,6 +18,7 @@
 //
 // %references
 //
+// %=END
 
 void warshall_floyd(Graph2d& g) {
   int i, j, k;

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // Tag
 //
@@ -16,6 +17,7 @@ using namespace std;
 // %references
 // %words
 // kyopuro
+// %=END
 
 template <typename T1, typename T2>
 struct Tag {

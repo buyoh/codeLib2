@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // Binary Indexed Tree(単独加算，区間総和)
 //
@@ -28,6 +29,7 @@ using namespace std;
 //
 // %references
 // プログラミングコンテストチャレンジブック
+// %=END
 
 template <typename T = long long>
 class Bitree {

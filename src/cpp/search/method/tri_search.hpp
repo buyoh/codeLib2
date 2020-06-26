@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 三分探索
 //
@@ -21,6 +22,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 using tsearch_t = long long;
 using fval_t = long long;

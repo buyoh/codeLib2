@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 幾何(点と線と円)
 // 
@@ -16,6 +17,7 @@
 // %require
 // 
 // 
+// %=END
 
 class Point {
     /**

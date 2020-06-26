@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 有向グラフ(辺集合)
 //
@@ -24,6 +25,7 @@ using namespace std;
 //
 // %words
 // graphstruct
+// %=END
 
 class DGraphE {
  public:

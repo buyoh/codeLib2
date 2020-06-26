@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // LCA
 //
@@ -29,6 +30,7 @@ using namespace std;
 // thanks.
 // %words
 // lca
+// %=END
 
 class LCATable {
   vector<int> visited_;

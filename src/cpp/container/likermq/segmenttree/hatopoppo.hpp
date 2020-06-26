@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 遅延セグメント木(bitset風味)
 //
@@ -22,6 +23,7 @@ using namespace std;
 // %references
 //
 //
+// %=END
 
 struct SegmentTree {
   struct LZ {

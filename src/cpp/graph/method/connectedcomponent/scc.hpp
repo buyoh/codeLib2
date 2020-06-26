@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 強連結成分分解
 //
@@ -21,6 +22,7 @@
 // %references
 // %words
 // scc
+// %=END
 
 int strongly_connected_components(const DGraph& graph, Unionfind& result) {
   stack<int> stk;

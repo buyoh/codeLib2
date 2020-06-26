@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 黄金探索[TODO]
 //
@@ -19,3 +20,4 @@
 //
 // %references
 // http://naoyat.hatenablog.jp/entry/2012/01/04/231801
+// %=END

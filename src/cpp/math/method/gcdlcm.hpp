@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 最大公約数・最小公倍数
 //
@@ -17,6 +18,7 @@
 //
 // %words
 // gcd,lcm
+// %=END
 
 template <typename T>
 inline T gcd(T a, T b) {

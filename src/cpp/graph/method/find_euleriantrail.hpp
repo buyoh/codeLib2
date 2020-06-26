@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // オイラー路検出
 //
@@ -28,6 +29,7 @@ using namespace std;
 // euler
 // %tag
 // wip, unverified
+// %=END
 
 // オイラー路が存在するかどうか
 // 存在しなかったら(-1,-1)，存在したら(始点,終点)

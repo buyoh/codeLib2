@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 高速ゼータ変換（メビウス逆変換）
 //
@@ -32,6 +33,7 @@ using namespace std;
 // %words
 // zeta, mebius
 //
+// %=END
 
 using value_t = int;
 vector<value_t> zeta_transform(int n, vector<value_t> func) {

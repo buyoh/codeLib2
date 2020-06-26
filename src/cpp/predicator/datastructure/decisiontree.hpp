@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 決定木
 //
@@ -16,6 +17,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 template <typename input_t, typename output_t>
 class DecisionTree {

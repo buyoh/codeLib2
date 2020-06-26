@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 一次方程式
 //
@@ -13,6 +14,7 @@
 //
 // %verified
 // %references
+// %=END
 
 inline double lerp(double px, double py, double qx, double qy, double x) {
   return py + (qy - py) * (x - px) / (qx - px);

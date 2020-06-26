@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 2次元グリッド上の距離(マンハッタン距離)
 //
@@ -24,6 +25,7 @@ using namespace std;
 // grid, field, point
 // %require
 //
+// %=END
 
 template <typename T>
 F<int> make_distancetable(int height,

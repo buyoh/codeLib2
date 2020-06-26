@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // ダイクストラ法(無向・頂点重み)
 //
@@ -19,6 +20,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 template <typename T, typename VECTOR>
 vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTOR& weight) {

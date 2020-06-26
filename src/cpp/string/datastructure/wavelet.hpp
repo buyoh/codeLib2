@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // Wavelet Tree (Wavelet Matrix)
 //
@@ -19,6 +20,7 @@ using namespace std;
 //
 // %references
 // 岡之原大輔，高速文字列解析の世界，岩波書店．
+// %=END
 
 class Wavelet {
  public:

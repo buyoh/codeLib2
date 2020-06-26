@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 巡回セールスマン問題(bitDP)
 //
@@ -31,6 +32,7 @@ using namespace std;
 //
 // %require
 // cpp/graph/datastructure/graph2dcpp
+// %=END
 
 vector<int> tsProblem(int n, const Graph2d& graph) {
   using dist_T = long long;

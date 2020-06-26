@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // dinic(最大流ソルバー)
 //
@@ -32,6 +33,7 @@ using namespace std;
 //
 // %tag
 // wip
+// %=END
 
 void dinic(DGraphF& graph, vector<DGraphF::cap_t>& result, int i_source, int i_sink) {
   assert(i_source != i_sink);

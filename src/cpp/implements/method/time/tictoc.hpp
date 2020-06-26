@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 時間計測用マクロ．
 //
@@ -24,6 +25,7 @@
 // %verified
 //
 // %references
+// %=END
 
 #define TIME std::chrono::system_clock::now()
 #define MILLISEC(t) (std::chrono::duration_cast<std::chrono::milliseconds>(t).count())

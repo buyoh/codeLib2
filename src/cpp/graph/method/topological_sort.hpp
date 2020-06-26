@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // トポロジカルソート
 //
@@ -24,6 +25,7 @@ using namespace std;
 //
 // %references
 //
+// %=END
 
 vector<int> topologicalSort(const DGraph& graph) {
   const int n = graph.n;

@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // 回文数の数え上げ
 //
@@ -15,6 +16,7 @@ using ll = long long;
 //
 // %verified
 // %references
+// %=END
 
 // 1以上10^i-1以下の整数
 ll _kaibunsu_dec(int keta) {

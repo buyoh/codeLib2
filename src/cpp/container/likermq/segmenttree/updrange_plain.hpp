@@ -1,3 +1,4 @@
+// %=BEGIN
 // %title
 // セグメント木(単独書き換え，区間演算)
 //
@@ -24,6 +25,7 @@ using namespace std;
 // http://d.hatena.ne.jp/komiyam/20131202/1385992406
 // http://proc-cpuinfo.fixstars.com/2017/07/optimize-segment-tree/
 // https://beta.atcoder.jp/contests/dwacon2018-final-open/submissions/2049865
+// %=END
 
 template <typename T>
 // typedef int T;
