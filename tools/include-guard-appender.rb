@@ -1,0 +1,92 @@
+Dir.chdir __dir__
+require_relative './dbhelper/collector.rb'
+
+# easy implementation
+
+
+# @tempdir = '/tmp/codelib2'
+
+def do_task(path)
+  identifier = path.gsub(/\W/, '_').upcase + '__'
+  puts path
+
+  builder = ''
+  need_update = false
+  check_satisfied_guard = false
+  checked_doc_begin = false
+  checked_doc_end = false
+  check_satisfied_guard_terminal = false
+
+  io = open(path, 'r')
+  while raw_line = io.gets
+    line = raw_line.chomp
+    if line.start_with? "#ifndef #{identifier}"
+      check_satisfied_guard = true
+    elsif line.downcase.start_with? '// %=begin'
+      if !check_satisfied_guard
+        need_update = true
+        builder << "#ifndef #{identifier}\n"
+        builder << "#define #{identifier}\n"
+      end
+      checked_doc_begin = true
+    elsif line.downcase.start_with? '// %=end'
+      checked_doc_end = true
+    elsif line.start_with? "#endif  // #{identifier}"
+      check_satisfied_guard_terminal = true
+    end
+    builder << raw_line.chomp << "\n"
+  end
+  io.close
+
+  if !check_satisfied_guard && check_satisfied_guard_terminal
+    puts 'ERROR: not found IFNDEF, but found ENDIF'
+    return [false, :fail]
+  end
+
+  if checked_doc_begin != checked_doc_end
+    puts 'ERROR: wrong document block'
+    return [false, :fail]
+  end
+
+  if !checked_doc_begin && !checked_doc_end
+    puts 'SKIP: nodoc'
+    return [true, :skip]
+  end
+
+  if !check_satisfied_guard_terminal
+    need_update = true
+    builder << "#endif  // #{identifier}\n"
+  end
+
+  if need_update
+    puts 'OK: updated'
+    IO.write(path, builder)
+    return [true, :updated]
+  end
+
+  puts 'OK: checked'
+  return [true, :ok]
+end
+
+counter = Hash.new(0)
+failed = false
+Dir.chdir('../') do
+  # Dir.mkdir @tempdir unless Dir.exist? @tempdir
+
+  Document.src_files.each do |path|
+    next if @filter && !(path =~ @filter)
+    lang = path.split('/')[1].downcase
+    next if lang != 'cpp'
+
+    ok, s = do_task(path)
+    failed |= !ok
+    counter[s] += 1
+    counter[:total] += 1 
+  end
+end
+
+p counter
+
+abort if failed
+exit 0
+
