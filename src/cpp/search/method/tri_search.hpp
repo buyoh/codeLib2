@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_SEARCH_METHOD_TRI_SEARCH_HPP__
+#define SRC_CPP_SEARCH_METHOD_TRI_SEARCH_HPP__
 // %=BEGIN
 // %title
 // 三分探索
@@ -52,3 +54,4 @@ tsearch_t ternarySearchMinimize(tsearch_t left, tsearch_t right, function<fval_t
   }
   return bestidx;
 }
+#endif  // SRC_CPP_SEARCH_METHOD_TRI_SEARCH_HPP__

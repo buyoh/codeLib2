@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_HATOPOPPO_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_HATOPOPPO_HPP__
 // %=BEGIN
 // %title
 // 遅延セグメント木(bitset風味)
@@ -109,3 +111,4 @@ struct SegmentTree {
 
   inline int count_range(int begin, int end) { return _count_range(begin, end, 1, 0, n); }
 };
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_HATOPOPPO_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_BRIDGE_HPP__
+#define SRC_CPP_GRAPH_METHOD_BRIDGE_HPP__
 // %=BEGIN
 // %title
 // 橋検出
@@ -56,3 +58,4 @@ void detect_bridge(const GraphE& graph, vector<int>& out) {
   visited[0] = 1;
   dfs(0, -1);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_BRIDGE_HPP__

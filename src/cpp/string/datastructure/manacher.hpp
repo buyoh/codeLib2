@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_MANACHER_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_MANACHER_HPP__
 // %=BEGIN
 // %title
 // manacher(一括回文判定)
@@ -87,3 +89,4 @@ class Manacher {
   //   cout << endl;
   // }
 };
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_MANACHER_HPP__

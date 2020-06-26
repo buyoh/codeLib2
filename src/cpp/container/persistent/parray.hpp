@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_PERSISTENT_PARRAY_HPP__
+#define SRC_CPP_CONTAINER_PERSISTENT_PARRAY_HPP__
 // %=BEGIN
 // %title
 // 永続配列
@@ -79,3 +81,4 @@ struct PersistentArray {
     return res;
   }
 };
+#endif  // SRC_CPP_CONTAINER_PERSISTENT_PARRAY_HPP__

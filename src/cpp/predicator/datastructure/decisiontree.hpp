@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_PREDICATOR_DATASTRUCTURE_DECISIONTREE_HPP__
+#define SRC_CPP_PREDICATOR_DATASTRUCTURE_DECISIONTREE_HPP__
 // %=BEGIN
 // %title
 // 決定木
@@ -50,3 +52,4 @@ class DecisionTree {
 
   output_t eval(input_t val) { return leaf() ? out_ : childlen_[comparator_(val)]->eval(val); }
 };
+#endif  // SRC_CPP_PREDICATOR_DATASTRUCTURE_DECISIONTREE_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_BELLMANFORD_HPP__
+#define SRC_CPP_GRAPH_METHOD_BELLMANFORD_HPP__
 // %=BEGIN
 // %title
 // bellmanFord
@@ -42,3 +44,4 @@ vector<DGraphE::W_T> bellmanFord(int n, const vector<DGraphE::Arc>& arcs, int st
   }
   return dist;
 }
+#endif  // SRC_CPP_GRAPH_METHOD_BELLMANFORD_HPP__

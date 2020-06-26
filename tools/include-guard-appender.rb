@@ -64,7 +64,7 @@ def do_task(path)
     return [true, :updated]
   end
 
-  puts 'OK: checked'
+  puts 'OK: no update'
   return [true, :ok]
 end
 

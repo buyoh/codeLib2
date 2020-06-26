@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_METHOD_BITALGO_HPP__
+#define SRC_CPP_IMPLEMENTS_METHOD_BITALGO_HPP__
 // %=BEGIN
 // %title
 // ビット演算
@@ -153,3 +155,4 @@ inline int clz64(uint64_t x) noexcept {
 #endif
 }
 }  // namespace BitAlgo
+#endif  // SRC_CPP_IMPLEMENTS_METHOD_BITALGO_HPP__

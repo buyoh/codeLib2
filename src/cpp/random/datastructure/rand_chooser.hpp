@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_RANDOM_DATASTRUCTURE_RAND_CHOOSER_HPP__
+#define SRC_CPP_RANDOM_DATASTRUCTURE_RAND_CHOOSER_HPP__
 // %=BEGIN
 // %title
 // 禁止可能な一様分布の乱数
@@ -55,3 +57,4 @@ class RandChooser {
     return --left_size;
   }
 };
+#endif  // SRC_CPP_RANDOM_DATASTRUCTURE_RAND_CHOOSER_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_HPP__
+#define SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_HPP__
 // %=BEGIN
 // %title
 // RadixHeap
@@ -96,3 +98,4 @@ class RadixHeap {
     vec[0].pop_back();
   }
 };
+#endif  // SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_HPP__

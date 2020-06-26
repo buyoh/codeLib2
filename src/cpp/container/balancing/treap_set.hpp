@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__
+#define SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__
 // %=BEGIN
 // %title
 // Treap(set)
@@ -141,3 +143,4 @@ class Treap {
   }
 };
 Treap::randevice_type Treap::rnd = randevice_type();
+#endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__

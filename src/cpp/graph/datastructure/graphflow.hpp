@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW_HPP__
 // %=BEGIN
 // %title
 // 有向グラフ(最大流用)
@@ -54,3 +56,4 @@ class DGraphF {
 
   inline int size() const { return n_; }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW_HPP__

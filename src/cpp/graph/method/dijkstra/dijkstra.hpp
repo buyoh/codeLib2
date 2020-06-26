@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRA_HPP__
+#define SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRA_HPP__
 // %=BEGIN
 // %title
 // ダイクストラ法(無向・重み無し)
@@ -42,3 +44,4 @@ vector<int> dijkstra(const Graph& graph, int startIndex) {
   }
   return move(dist);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRA_HPP__

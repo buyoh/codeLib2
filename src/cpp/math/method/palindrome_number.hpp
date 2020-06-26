@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_PALINDROME_NUMBER_HPP__
+#define SRC_CPP_MATH_METHOD_PALINDROME_NUMBER_HPP__
 // %=BEGIN
 // %title
 // 回文数の数え上げ
@@ -83,3 +85,4 @@ int hetakuso(int val) {
   }
   return count;
 }
+#endif  // SRC_CPP_MATH_METHOD_PALINDROME_NUMBER_HPP__

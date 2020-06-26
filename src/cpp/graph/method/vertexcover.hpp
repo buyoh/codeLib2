@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_VERTEXCOVER_HPP__
+#define SRC_CPP_GRAPH_METHOD_VERTEXCOVER_HPP__
 // %=BEGIN
 // %title
 // 最小頂点被覆 (半分全列挙)
@@ -175,3 +177,4 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
 
   return make_pair(best, selection);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_VERTEXCOVER_HPP__

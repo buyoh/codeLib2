@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_RANDOM_DATASTRUCTURE_XORSHIFT_HPP__
+#define SRC_CPP_RANDOM_DATASTRUCTURE_XORSHIFT_HPP__
 // %=BEGIN
 // %title
 // XorShift
@@ -39,3 +41,4 @@ struct XorShift {
   }
 };
 XorShift randdev;
+#endif  // SRC_CPP_RANDOM_DATASTRUCTURE_XORSHIFT_HPP__

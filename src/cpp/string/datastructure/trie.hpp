@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_TRIE_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_TRIE_HPP__
 // %=BEGIN
 // %title
 // trie tree
@@ -34,3 +36,4 @@ struct TrieTree {
     return (begin == end) ? value : trie[*begin](++begin_succ, end);
   }
 };
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_TRIE_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_SEARCH_METHOD_GOLD_SEARCH_HPP__
+#define SRC_CPP_SEARCH_METHOD_GOLD_SEARCH_HPP__
 // %=BEGIN
 // %title
 // 黄金探索[TODO]
@@ -21,3 +23,4 @@
 // %references
 // http://naoyat.hatenablog.jp/entry/2012/01/04/231801
 // %=END
+#endif  // SRC_CPP_SEARCH_METHOD_GOLD_SEARCH_HPP__

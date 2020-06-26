@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_SEARCH_METHOD_SORT_HPP__
+#define SRC_CPP_SEARCH_METHOD_SORT_HPP__
 // %=BEGIN
 // %title
 // 並び替えないソート
@@ -35,3 +37,4 @@ void sortedIndex(const ITER begin, const ITER end, vector<int>& idx, vector<int>
   for (int i = 0; i < n; ++i)
     idxr[idx[i]] = i;
 }
+#endif  // SRC_CPP_SEARCH_METHOD_SORT_HPP__

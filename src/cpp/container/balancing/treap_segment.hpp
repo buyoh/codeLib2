@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
+#define SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
 // %=BEGIN
 // %title
 // Treap(segment)(plain)
@@ -239,3 +241,4 @@ class Treap : public unique_ptr<TreapNode> {
   // }
   // inline void print_tour() { print_tour(*this); }
 };
+#endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__

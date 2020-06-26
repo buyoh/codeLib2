@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPH_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPH_HPP__
 // %=BEGIN
 // %title
 // 有向グラフ(隣接頂点)
@@ -45,3 +47,4 @@ class DGraph {
     vertex_from[(int)to].emplace_back(from);
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPH_HPP__

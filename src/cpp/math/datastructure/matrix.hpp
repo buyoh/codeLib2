@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_DATASTRUCTURE_MATRIX_HPP__
+#define SRC_CPP_MATH_DATASTRUCTURE_MATRIX_HPP__
 // %=BEGIN
 // %title
 // 行列の基本操作
@@ -168,3 +170,4 @@ Matrix<T> pow(Matrix<T> a, long long p) {
   }
   return b;
 }
+#endif  // SRC_CPP_MATH_DATASTRUCTURE_MATRIX_HPP__

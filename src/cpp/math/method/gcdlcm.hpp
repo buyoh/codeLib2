@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_GCDLCM_HPP__
+#define SRC_CPP_MATH_METHOD_GCDLCM_HPP__
 // %=BEGIN
 // %title
 // 最大公約数・最小公倍数
@@ -33,3 +35,4 @@ template <typename T>
 inline T lcm(T a, T b) {
   return a * b / gcd(a, b);
 }
+#endif  // SRC_CPP_MATH_METHOD_GCDLCM_HPP__

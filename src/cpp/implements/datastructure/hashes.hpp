@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_HASHES_HPP__
+#define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_HASHES_HPP__
 // %=BEGIN
 // %title
 // std::hashの追加定義
@@ -27,3 +29,4 @@ struct hash<pair<T1, T2>> {
   }
 };
 }  // namespace std
+#endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_HASHES_HPP__

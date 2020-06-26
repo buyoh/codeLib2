@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_PRIME_PRIMESIEVE_HPP__
+#define SRC_CPP_MATH_METHOD_PRIME_PRIMESIEVE_HPP__
 // %=BEGIN
 // %title
 // エラトステネスの篩
@@ -116,3 +118,4 @@ class PrimeListC {
     return div;
   }
 };
+#endif  // SRC_CPP_MATH_METHOD_PRIME_PRIMESIEVE_HPP__

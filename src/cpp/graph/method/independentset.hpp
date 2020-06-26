@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_INDEPENDENTSET_HPP__
+#define SRC_CPP_GRAPH_METHOD_INDEPENDENTSET_HPP__
 // %=BEGIN
 // %title
 // 最大独立集合 (分岐限定法)
@@ -149,3 +151,4 @@ pair<int, vector<int>> independentSet(const Graph& graph) {
   idxs.shrink_to_fit();
   return make_pair(bestScore, idxs);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_INDEPENDENTSET_HPP__

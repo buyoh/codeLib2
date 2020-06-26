@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_SIMPLE_HPP__
+#define SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_SIMPLE_HPP__
 // %=BEGIN
 // %title
 // RadixHeap(simple)
@@ -92,3 +94,4 @@ class RadixHeap {
     --lastcnt_;
   }
 };
+#endif  // SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_SIMPLE_HPP__

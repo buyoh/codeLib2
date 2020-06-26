@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_ARRAY_INTERVALHEAP_HPP__
+#define SRC_CPP_CONTAINER_ARRAY_INTERVALHEAP_HPP__
 // %=BEGIN
 // %title
 // IntervalHeap
@@ -203,3 +205,4 @@ class IntervalHeap {
     }
   }
 };
+#endif  // SRC_CPP_CONTAINER_ARRAY_INTERVALHEAP_HPP__

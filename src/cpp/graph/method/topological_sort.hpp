@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_TOPOLOGICAL_SORT_HPP__
+#define SRC_CPP_GRAPH_METHOD_TOPOLOGICAL_SORT_HPP__
 // %=BEGIN
 // %title
 // トポロジカルソート
@@ -54,3 +56,4 @@ vector<int> topologicalSort(const DGraph& graph) {
     dfs(s);
   return result;
 }
+#endif  // SRC_CPP_GRAPH_METHOD_TOPOLOGICAL_SORT_HPP__

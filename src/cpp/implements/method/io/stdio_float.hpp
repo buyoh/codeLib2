@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_METHOD_IO_STDIO_FLOAT_HPP__
+#define SRC_CPP_IMPLEMENTS_METHOD_IO_STDIO_FLOAT_HPP__
 // %=BEGIN
 // %title
 // 浮動小数点の高速入出力
@@ -34,3 +36,4 @@ void output_float(T var, int d) noexcept {
     var -= i;
   }
 }
+#endif  // SRC_CPP_IMPLEMENTS_METHOD_IO_STDIO_FLOAT_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRADWE_HPP__
+#define SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRADWE_HPP__
 // %=BEGIN
 // %title
 // ダイクストラ法(有向・辺重み)
@@ -47,3 +49,4 @@ vector<DGraphE::W_T> dijkstraDEdgeWeighted(const DGraphE& graph, int startIndex)
   }
   return move(dist);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRADWE_HPP__

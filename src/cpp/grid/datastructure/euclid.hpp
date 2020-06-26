@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRID_DATASTRUCTURE_EUCLID_HPP__
+#define SRC_CPP_GRID_DATASTRUCTURE_EUCLID_HPP__
 // %=BEGIN
 // %title
 // 2次元グリッドと二次元座標
@@ -115,3 +117,4 @@ struct F {
     }
   }
 };
+#endif  // SRC_CPP_GRID_DATASTRUCTURE_EUCLID_HPP__

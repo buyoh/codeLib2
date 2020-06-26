@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_FIND_EULERIANTRAIL_HPP__
+#define SRC_CPP_GRAPH_METHOD_FIND_EULERIANTRAIL_HPP__
 // %=BEGIN
 // %title
 // オイラー路検出
@@ -176,3 +178,4 @@ vector<int> find_eulerialTrail(const DGraphE& graph, int startEdge = 0) {
 
   return result;
 }
+#endif  // SRC_CPP_GRAPH_METHOD_FIND_EULERIANTRAIL_HPP__

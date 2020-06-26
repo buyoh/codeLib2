@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_LCA_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_LCA_HPP__
 // %=BEGIN
 // %title
 // LCA
@@ -69,3 +71,4 @@ class LCATable {
                operator()(v, u);
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_LCA_HPP__

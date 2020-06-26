@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__
+#define SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__
 // %=BEGIN
 // %title
 // ダイクストラ法(無向・頂点重み)
@@ -43,3 +45,4 @@ vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTO
   }
   return move(dist);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__

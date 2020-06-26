@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_MAXRANGE_ADDRANGE_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_MAXRANGE_ADDRANGE_HPP__
 // %=BEGIN
 // %title
 // セグメント木(区間加算，区間最大，単独書換)[deprecated]
@@ -226,3 +228,4 @@ class SegmentTree {
     return _getMaxRange(begin, end, 1, 0, size_);
   }
 };
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_MAXRANGE_ADDRANGE_HPP__

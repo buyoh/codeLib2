@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_REGEXP_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_REGEXP_HPP__
 // %=BEGIN
 // %title
 // 正規表現[TODO]
@@ -313,3 +315,4 @@ void test() {
 
   // cout << "ok" << endl;
 }
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_REGEXP_HPP__

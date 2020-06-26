@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__
 // %=BEGIN
 // %title
 // 2-SAT Solver
@@ -87,3 +89,4 @@ class Sat_2 {
     return true;
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__

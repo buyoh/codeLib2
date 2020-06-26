@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPHE_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPHE_HPP__
 // %=BEGIN
 // %title
 // 有向グラフ(辺集合)
@@ -55,3 +57,4 @@ class DGraphE {
     arcs.emplace_back(from, to, val);
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPHE_HPP__

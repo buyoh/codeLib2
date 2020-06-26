@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_ITERATOR_ITERATORWITHINDEX_HPP__
+#define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_ITERATOR_ITERATORWITHINDEX_HPP__
 // %=BEGIN
 // %title
 // iterator with index
@@ -53,3 +55,4 @@ template <typename ITER>
 inline IteratorWithIndex<ITER> make_IteratorWithIndex(ITER _begin, ITER _end) {
   return IteratorWithIndex<ITER>(_begin, _end);
 }
+#endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_ITERATOR_ITERATORWITHINDEX_HPP__

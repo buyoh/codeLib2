@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_MINMAXFLOW_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_MINMAXFLOW_HPP__
 // %=BEGIN
 // %title
 // 最小流量制限付き最大フロー
@@ -106,3 +108,4 @@ class FlowMinMax {
     return _solve_maxflow_edge(result_edge, i_source, i_sink);
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_MINMAXFLOW_HPP__

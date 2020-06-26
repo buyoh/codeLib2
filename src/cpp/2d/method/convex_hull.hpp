@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_2D_METHOD_CONVEX_HULL_HPP__
+#define SRC_CPP_2D_METHOD_CONVEX_HULL_HPP__
 // %=BEGIN
 // %title
 // 凸包
@@ -39,3 +41,4 @@ vector<pair<P, int>> convex_hull(const vector<pair<P, int>>& points) {
   ch.resize(k - 1);
   return ch;
 }
+#endif  // SRC_CPP_2D_METHOD_CONVEX_HULL_HPP__

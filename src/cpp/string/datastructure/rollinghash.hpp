@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_ROLLINGHASH_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_ROLLINGHASH_HPP__
 // %=BEGIN
 // %title
 // ローリングハッシュ
@@ -70,3 +72,4 @@ class RollingHash {
   }
 };
 vector<RollingHash::rh_t> RollingHash::pow_table__[2];
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_ROLLINGHASH_HPP__

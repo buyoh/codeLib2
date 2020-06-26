@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_2D_METHOD_CCW_HPP__
+#define SRC_CPP_2D_METHOD_CCW_HPP__
 // %=BEGIN
 // %title
 // ccw(進行方向)
@@ -35,3 +37,4 @@ int ccw(P a, P b, P c) {
     return -2;  // a - b - c
   return 0;     // a - c - b
 }
+#endif  // SRC_CPP_2D_METHOD_CCW_HPP__

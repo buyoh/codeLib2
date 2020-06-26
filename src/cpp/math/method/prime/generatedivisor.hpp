@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_PRIME_GENERATEDIVISOR_HPP__
+#define SRC_CPP_MATH_METHOD_PRIME_GENERATEDIVISOR_HPP__
 // %=BEGIN
 // %title
 // 約数列挙
@@ -33,3 +35,4 @@ std::vector<long long> generateDivisor(long long n) {
     divs.pop_back();
   return divs;
 }
+#endif  // SRC_CPP_MATH_METHOD_PRIME_GENERATEDIVISOR_HPP__

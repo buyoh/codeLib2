@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_PROJECTSELECTION_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_PROJECTSELECTION_HPP__
 // %=BEGIN
 // %title
 // ProjectSelection
@@ -58,3 +60,4 @@ class ProjectSelection {
     return potential_ - result[n_ + 1];
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_PROJECTSELECTION_HPP__

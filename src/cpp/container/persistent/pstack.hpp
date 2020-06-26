@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_PERSISTENT_PSTACK_HPP__
+#define SRC_CPP_CONTAINER_PERSISTENT_PSTACK_HPP__
 // %=BEGIN
 // %title
 // 永続スタック
@@ -82,3 +84,4 @@ struct PersistentStack {
     return res;
   }
 };
+#endif  // SRC_CPP_CONTAINER_PERSISTENT_PSTACK_HPP__

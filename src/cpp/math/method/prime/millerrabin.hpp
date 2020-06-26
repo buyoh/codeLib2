@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_PRIME_MILLERRABIN_HPP__
+#define SRC_CPP_MATH_METHOD_PRIME_MILLERRABIN_HPP__
 // %=BEGIN
 // %title
 // Miller–Rabin primality test
@@ -67,3 +69,4 @@ bool isprime_MillerRabin(ll val) {
   }
   return true;
 }
+#endif  // SRC_CPP_MATH_METHOD_PRIME_MILLERRABIN_HPP__

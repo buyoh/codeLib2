@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHE_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHE_HPP__
 // %=BEGIN
 // %title
 // 無向グラフ(辺集合)
@@ -60,3 +62,4 @@ class GraphE {
     }
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHE_HPP__

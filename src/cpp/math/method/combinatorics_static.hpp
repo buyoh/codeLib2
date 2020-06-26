@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__
+#define SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__
 // %=BEGIN
 // %title
 // 組合せ計算(前計算)
@@ -64,3 +66,4 @@ class Combinatorics {
     return nCr(n - 1 + r, n - 1);
   }
 };
+#endif  // SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__

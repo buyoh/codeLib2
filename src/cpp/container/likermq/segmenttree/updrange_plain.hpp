@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_UPDRANGE_PLAIN_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_UPDRANGE_PLAIN_HPP__
 // %=BEGIN
 // %title
 // セグメント木(単独書き換え，区間演算)
@@ -70,3 +72,4 @@ class SegmentTreeQ {
     return func_(rl, rr);
   }
 };
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_UPDRANGE_PLAIN_HPP__

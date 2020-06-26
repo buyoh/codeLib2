@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_EULERIANTRAIL_CHECKER_HPP__
+#define SRC_CPP_GRAPH_METHOD_EULERIANTRAIL_CHECKER_HPP__
 // %=BEGIN
 // %title
 // オイラー路検出(テスト用)
@@ -69,3 +71,4 @@ bool check_eulerialTrail(const DGraphE& graph, vector<int> trail) {
   }
   return true;
 }
+#endif  // SRC_CPP_GRAPH_METHOD_EULERIANTRAIL_CHECKER_HPP__

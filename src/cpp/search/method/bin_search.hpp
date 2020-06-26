@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_SEARCH_METHOD_BIN_SEARCH_HPP__
+#define SRC_CPP_SEARCH_METHOD_BIN_SEARCH_HPP__
 // %=BEGIN
 // %title
 // 二分探索
@@ -33,3 +35,4 @@ bsearch_t binarySearch(bsearch_t false_val, bsearch_t true_val, function<bool(bs
   }
   return true_val;
 }
+#endif  // SRC_CPP_SEARCH_METHOD_BIN_SEARCH_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_MATH_METHOD_COMBINATORICS_HPP__
+#define SRC_CPP_MATH_METHOD_COMBINATORICS_HPP__
 // %=BEGIN
 // %title
 // 組合せ計算(都度計算)
@@ -81,3 +83,4 @@ template <typename T>
 inline T nHr(T n, T r) {
   return nCr(n - 1 + r, n - 1);
 }
+#endif  // SRC_CPP_MATH_METHOD_COMBINATORICS_HPP__

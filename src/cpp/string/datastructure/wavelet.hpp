@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_WAVELET_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_WAVELET_HPP__
 // %=BEGIN
 // %title
 // Wavelet Tree (Wavelet Matrix)
@@ -85,3 +87,4 @@ class Wavelet {
   // [0,i)の文字cの出現回数
   int rank(int i, char c) { return 0; }  // TODO:
 };
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_WAVELET_HPP__

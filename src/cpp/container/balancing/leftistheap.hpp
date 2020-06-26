@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_BALANCING_LEFTISTHEAP_HPP__
+#define SRC_CPP_CONTAINER_BALANCING_LEFTISTHEAP_HPP__
 // %=BEGIN
 // %title
 // LeftistHeap
@@ -63,3 +65,4 @@ class LeftistHeap {
   inline void pop() { root = meldNode(move(root->left), move(root->right)); }
   inline void meld(LeftistHeap&& another) { root = meldNode(move(root), move(another.root)); }
 };
+#endif  // SRC_CPP_CONTAINER_BALANCING_LEFTISTHEAP_HPP__

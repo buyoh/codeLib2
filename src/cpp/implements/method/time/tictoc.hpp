@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__
+#define SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__
 // %=BEGIN
 // %title
 // 時間計測用マクロ．
@@ -38,3 +40,4 @@ inline void toc() {
   std::clog << "TIME : " << MILLISEC(TIME - ttt) << '\n';
 }
 }  // namespace
+#endif  // SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__

@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_UNIONFIND_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_UNIONFIND_HPP__
 // %=BEGIN
 // %title
 // Unionfind
@@ -44,3 +46,4 @@ class Unionfind {
   inline int root(int x) { return (int)(data[x] < 0 ? x : data[x] = root(data[x])); }
   inline int size(int x) { return -data[root(x)]; }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_UNIONFIND_HPP__

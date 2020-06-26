@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_TAG_HPP__
+#define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_TAG_HPP__
 // %=BEGIN
 // %title
 // Tag
@@ -31,3 +33,4 @@ struct Tag {
   inline bool operator==(const Tag& t) const { return first == t.first; }
   inline bool operator<(const Tag& t) const { return first < t.first; }
 };
+#endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_TAG_HPP__

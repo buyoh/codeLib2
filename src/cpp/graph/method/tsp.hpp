@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_TSP_HPP__
+#define SRC_CPP_GRAPH_METHOD_TSP_HPP__
 // %=BEGIN
 // %title
 // 巡回セールスマン問題(bitDP)
@@ -96,3 +98,4 @@ vector<int> tsProblem(int n, const Graph2d& graph) {
   reverse(tourist.begin(), tourist.end());
   return tourist;
 }
+#endif  // SRC_CPP_GRAPH_METHOD_TSP_HPP__

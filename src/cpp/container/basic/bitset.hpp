@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_BASIC_BITSET_HPP__
+#define SRC_CPP_CONTAINER_BASIC_BITSET_HPP__
 // %=BEGIN
 // %title
 // 可変長bitset
@@ -68,3 +70,4 @@ class BitSet64 {
     nBlock_ = newSize;
   }
 };
+#endif  // SRC_CPP_CONTAINER_BASIC_BITSET_HPP__

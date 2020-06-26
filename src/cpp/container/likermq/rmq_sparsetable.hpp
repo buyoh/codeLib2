@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_RMQ_SPARSETABLE_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_RMQ_SPARSETABLE_HPP__
 // %=BEGIN
 // %title
 // SparseTable(区間最小)
@@ -74,3 +76,4 @@ class SparseTable {
     return (data[i1] <= data[i2]) ? i1 : i2;  // minimum
   }
 };
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_RMQ_SPARSETABLE_HPP__

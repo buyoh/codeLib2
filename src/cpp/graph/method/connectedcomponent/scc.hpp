@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_CONNECTEDCOMPONENT_SCC_HPP__
+#define SRC_CPP_GRAPH_METHOD_CONNECTEDCOMPONENT_SCC_HPP__
 // %=BEGIN
 // %title
 // 強連結成分分解
@@ -101,3 +103,4 @@ class SCComps {
   inline const vector<int>& vertex_from(int v) const { return sccg.vertex_from[v]; }
   inline int size() const { return sccg.n; }
 };
+#endif  // SRC_CPP_GRAPH_METHOD_CONNECTEDCOMPONENT_SCC_HPP__

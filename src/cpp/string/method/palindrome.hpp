@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_STRING_METHOD_PALINDROME_HPP__
+#define SRC_CPP_STRING_METHOD_PALINDROME_HPP__
 // %=BEGIN
 // %title
 // 回文判定
@@ -24,3 +26,4 @@ bool iskaibun(const string& str) {
       return false;
   return true;
 }
+#endif  // SRC_CPP_STRING_METHOD_PALINDROME_HPP__

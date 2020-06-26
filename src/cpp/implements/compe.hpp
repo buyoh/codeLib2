@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_COMPE_HPP__
+#define SRC_CPP_IMPLEMENTS_COMPE_HPP__
 // %=BEGIN
 // %title
 // 競技プログラミング用デバッグ・効率化
@@ -218,3 +220,4 @@ class MaiPrinter {
 };
 MaiScanner scanner(stdin);
 MaiPrinter printer(stdout);
+#endif  // SRC_CPP_IMPLEMENTS_COMPE_HPP__

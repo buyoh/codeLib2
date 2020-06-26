@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH_HPP__
 // %=BEGIN
 // %title
 // 無向グラフ(隣接頂点)
@@ -40,3 +42,4 @@ class Graph {
     vertex_to[(int)to].emplace_back(from);
   }
 };
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH_HPP__

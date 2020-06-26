@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__
+#define SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__
 // %=BEGIN
 // %title
 // SPFA
@@ -67,3 +69,4 @@ vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph,
   }
   return move(dist);
 }
+#endif  // SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__

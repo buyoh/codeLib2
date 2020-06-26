@@ -1,3 +1,5 @@
+#ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_IO_STDIO_HPP__
+#define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_IO_STDIO_HPP__
 // %=BEGIN
 // %title
 // getc,putcによる入出力実装．
@@ -144,3 +146,4 @@ class MaiPrinter {
 };
 MaiScanner scanner(stdin);
 MaiPrinter printer(stdout);
+#endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_IO_STDIO_HPP__
