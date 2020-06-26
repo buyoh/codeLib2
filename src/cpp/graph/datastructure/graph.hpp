@@ -26,9 +26,6 @@ using namespace std;
 // graphstruct
 // %=END
 
-#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__  // << prototype implementation!!!
-#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__
-
 class Graph {
  public:
   int n;
@@ -43,5 +40,3 @@ class Graph {
     vertex_to[(int)to].emplace_back(from);
   }
 };
-
-#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__
