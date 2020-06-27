@@ -1,8 +1,9 @@
 require 'kconv'
 
 module Code
+  module_function
 
-  def self.fileload(path)
+  def fileload(path)
     dic = {}
     tag = nil
     iscode = false
@@ -34,4 +35,11 @@ module Code
     dic
   end
   
+end
+
+class << Code
+  private
+  def comment_line(line)
+    return nil unless line =~ /^(?:#|\/\/)\s*(\S?.*)$/
+    return $1
 end

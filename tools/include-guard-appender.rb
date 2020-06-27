@@ -13,8 +13,8 @@ def do_task(path)
   builder = ''
   need_update = false
   check_satisfied_guard = false
-  checked_doc_begin = false
-  checked_doc_end = false
+  checked_doc_begin = 0
+  checked_doc_end = 0
   check_satisfied_guard_terminal = false
 
   io = open(path, 'r')
@@ -28,9 +28,9 @@ def do_task(path)
         builder << "#ifndef #{identifier}\n"
         builder << "#define #{identifier}\n"
       end
-      checked_doc_begin = true
+      checked_doc_begin += 1
     elsif line.downcase.start_with? '// %=end'
-      checked_doc_end = true
+      checked_doc_end += 1
     elsif line.start_with? "#endif  // #{identifier}"
       check_satisfied_guard_terminal = true
     end
@@ -44,11 +44,11 @@ def do_task(path)
   end
 
   if checked_doc_begin != checked_doc_end
-    puts 'ERROR: wrong document block'
+    puts 'ERROR: wrong block'
     return [false, :fail]
   end
 
-  if !checked_doc_begin && !checked_doc_end
+  if checked_doc_begin > 0 && checked_doc_end > 0
     puts 'SKIP: nodoc'
     return [true, :skip]
   end
