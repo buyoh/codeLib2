@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_STRING_DATASTRUCTURE_MANACHER_HPP__
 #define SRC_CPP_STRING_DATASTRUCTURE_MANACHER_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // manacher(一括回文判定)
 //
@@ -27,7 +27,8 @@ using namespace std;
 // http://snuke.hatenablog.com/entry/2014/12/02/235837
 // https://yukicoder.me/problems/no/464/editorial
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class Manacher {
  public:
@@ -89,4 +90,5 @@ class Manacher {
   //   cout << endl;
   // }
 };
+// %=END CODE
 #endif  // SRC_CPP_STRING_DATASTRUCTURE_MANACHER_HPP__

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_MATH_METHOD_ZETA_HPP__
 #define SRC_CPP_MATH_METHOD_ZETA_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 高速ゼータ変換（メビウス逆変換）
 //
@@ -35,7 +35,8 @@ using namespace std;
 // %words
 // zeta, mebius
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 using value_t = int;
 vector<value_t> zeta_transform(int n, vector<value_t> func) {
@@ -54,4 +55,5 @@ vector<value_t> mebius_transform(int n, vector<value_t> func) {
         func[b] -= func[b | (1 << i)];
   return func;
 }
+// %=END CODE
 #endif  // SRC_CPP_MATH_METHOD_ZETA_HPP__

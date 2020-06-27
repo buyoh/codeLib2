@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_TAG_HPP__
 #define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_TAG_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // Tag
 //
@@ -19,7 +19,8 @@ using namespace std;
 // %references
 // %words
 // kyopuro
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T1, typename T2>
 struct Tag {
@@ -33,4 +34,5 @@ struct Tag {
   inline bool operator==(const Tag& t) const { return first == t.first; }
   inline bool operator<(const Tag& t) const { return first < t.first; }
 };
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_TAG_HPP__

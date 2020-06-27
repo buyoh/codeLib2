@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_METHOD_VERTEXCOVER_HPP__
 #define SRC_CPP_GRAPH_METHOD_VERTEXCOVER_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 最小頂点被覆 (半分全列挙)
 //
@@ -31,7 +31,8 @@ using namespace std;
 //
 // %references
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 inline int bitcount(int x) {
   return bitset<31>(x).count();
@@ -177,4 +178,5 @@ pair<int, vector<int>> vertexCover(const Graph& graph) {
 
   return make_pair(best, selection);
 }
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_VERTEXCOVER_HPP__

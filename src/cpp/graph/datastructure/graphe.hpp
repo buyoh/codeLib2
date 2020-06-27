@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHE_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 無向グラフ(辺集合)
 //
@@ -29,7 +29,8 @@ using namespace std;
 //
 // %words
 // graphstruct
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 // Edge構造体を定義する無向グラフ
 class GraphE {
@@ -62,4 +63,5 @@ class GraphE {
     }
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHE_HPP__

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_STRING_DATASTRUCTURE_REGEXP_HPP__
 #define SRC_CPP_STRING_DATASTRUCTURE_REGEXP_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 正規表現[TODO]
 //
@@ -25,7 +25,8 @@ using namespace std;
 //
 // %references
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 struct RegExp {
   template <typename T>
@@ -315,4 +316,5 @@ void test() {
 
   // cout << "ok" << endl;
 }
+// %=END CODE
 #endif  // SRC_CPP_STRING_DATASTRUCTURE_REGEXP_HPP__

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_IMPLEMENTS_METHOD_BITALGO_HPP__
 #define SRC_CPP_IMPLEMENTS_METHOD_BITALGO_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // ビット演算
 //
@@ -26,7 +26,8 @@ using namespace std;
 // http://www.nminoru.jp/~nminoru/programming/bitcount.html
 // http://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html
 // https://docs.microsoft.com/ja-jp/cpp/intrinsics/alphabetical-listing-of-intrinsic-functions
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 namespace BitAlgo {
 // 1が立っている数(f(1) = 1, f(6) = 2)
@@ -155,4 +156,5 @@ inline int clz64(uint64_t x) noexcept {
 #endif
 }
 }  // namespace BitAlgo
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_METHOD_BITALGO_HPP__

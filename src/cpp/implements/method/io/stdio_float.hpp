@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_IMPLEMENTS_METHOD_IO_STDIO_FLOAT_HPP__
 #define SRC_CPP_IMPLEMENTS_METHOD_IO_STDIO_FLOAT_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 浮動小数点の高速入出力
 //
@@ -19,7 +19,8 @@
 // https://yukicoder.me/submissions/285892
 // %words
 // io
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 void output_float(T var, int d) noexcept {
@@ -36,4 +37,5 @@ void output_float(T var, int d) noexcept {
     var -= i;
   }
 }
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_METHOD_IO_STDIO_FLOAT_HPP__

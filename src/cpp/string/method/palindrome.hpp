@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_STRING_METHOD_PALINDROME_HPP__
 #define SRC_CPP_STRING_METHOD_PALINDROME_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 回文判定
 //
@@ -18,7 +18,8 @@ using namespace std;
 //
 // %references
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 bool iskaibun(const string& str) {
   for (int left = 0, right = (int)str.size() - 1; left < right; ++left, --right)
@@ -26,4 +27,5 @@ bool iskaibun(const string& str) {
       return false;
   return true;
 }
+// %=END CODE
 #endif  // SRC_CPP_STRING_METHOD_PALINDROME_HPP__

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_SEARCH_METHOD_BIN_SEARCH_HPP__
 #define SRC_CPP_SEARCH_METHOD_BIN_SEARCH_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 二分探索
 //
@@ -25,7 +25,8 @@ using namespace std;
 // ABC020-C
 // %references
 // めぐる式
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 using bsearch_t = long long;
 bsearch_t binarySearch(bsearch_t false_val, bsearch_t true_val, function<bool(bsearch_t)> func) {
@@ -35,4 +36,5 @@ bsearch_t binarySearch(bsearch_t false_val, bsearch_t true_val, function<bool(bs
   }
   return true_val;
 }
+// %=END CODE
 #endif  // SRC_CPP_SEARCH_METHOD_BIN_SEARCH_HPP__

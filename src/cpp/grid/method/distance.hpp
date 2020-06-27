@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRID_METHOD_DISTANCE_HPP__
 #define SRC_CPP_GRID_METHOD_DISTANCE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 2次元グリッド上の距離(マンハッタン距離)
 //
@@ -27,7 +27,8 @@ using namespace std;
 // grid, field, point
 // %require
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 F<int> make_distancetable(int height,
@@ -58,4 +59,5 @@ F<int> make_distancetable(int height,
   }
   return result;
 }
+// %=END CODE
 #endif  // SRC_CPP_GRID_METHOD_DISTANCE_HPP__

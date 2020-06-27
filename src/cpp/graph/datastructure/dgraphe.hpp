@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPHE_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPHE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 有向グラフ(辺集合)
 //
@@ -27,7 +27,8 @@ using namespace std;
 //
 // %words
 // graphstruct
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class DGraphE {
  public:
@@ -57,4 +58,5 @@ class DGraphE {
     arcs.emplace_back(from, to, val);
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPHE_HPP__

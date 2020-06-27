@@ -1,4 +1,4 @@
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // algorithm name here
 //
@@ -20,7 +20,8 @@
 // %require
 // cpp/graph/datastructure/dgraph.hpp
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 int func(int x) {}
 

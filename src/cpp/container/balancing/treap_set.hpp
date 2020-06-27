@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__
 #define SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // Treap(set)
 //
@@ -38,7 +38,8 @@ using namespace std;
 // %references
 // https://www.slideshare.net/iwiwi/2-12188757
 // http://www.prefield.com/algorithm/container/treap.html
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class Treap {
  public:
@@ -143,4 +144,5 @@ class Treap {
   }
 };
 Treap::randevice_type Treap::rnd = randevice_type();
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__

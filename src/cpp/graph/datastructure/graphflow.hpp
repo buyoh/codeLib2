@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 有向グラフ(最大流用)
 //
@@ -20,7 +20,8 @@ using namespace std;
 //
 // %words
 // graphstruct
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class DGraphF {
  public:
@@ -56,4 +57,5 @@ class DGraphF {
 
   inline int size() const { return n_; }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPHFLOW_HPP__

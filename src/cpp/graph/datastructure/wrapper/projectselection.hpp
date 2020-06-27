@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_PROJECTSELECTION_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_PROJECTSELECTION_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // ProjectSelection
 //
@@ -32,7 +32,8 @@
 // %references
 // https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem#Project_selection_problem
 // http://tokoharuland.hateblo.jp/entry/2017/11/12/234636
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class ProjectSelection {
  public:
@@ -60,4 +61,5 @@ class ProjectSelection {
     return potential_ - result[n_ + 1];
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_PROJECTSELECTION_HPP__

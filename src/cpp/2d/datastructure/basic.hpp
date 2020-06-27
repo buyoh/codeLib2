@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_2D_DATASTRUCTURE_BASIC_HPP__
 #define SRC_CPP_2D_DATASTRUCTURE_BASIC_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 幾何頂点
 //
@@ -20,7 +20,8 @@ using namespace std;
 //
 // %words
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 struct P {
   using value_t = double;
@@ -51,4 +52,5 @@ struct P {
 P operator*(P::value_t a, P p) {
   return P(a * p.x, a * p.y);
 }
+// %=END CODE
 #endif  // SRC_CPP_2D_DATASTRUCTURE_BASIC_HPP__

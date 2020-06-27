@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_IO_STDIO_HPP__
 #define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_IO_STDIO_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // getc,putcによる入出力実装．
 //
@@ -41,7 +41,8 @@ using namespace std;
 // io
 // %references
 // cLay
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 #if defined(_WIN32) || defined(_WIN64)
 #define getc_x _getc_nolock
@@ -146,4 +147,5 @@ class MaiPrinter {
 };
 MaiScanner scanner(stdin);
 MaiPrinter printer(stdout);
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_IO_STDIO_HPP__

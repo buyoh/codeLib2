@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
 #define SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // Treap(segment)(plain)
 //
@@ -43,7 +43,8 @@ using namespace std;
 // %references
 // https://www.slideshare.net/iwiwi/2-12188757
 // http://www.prefield.com/algorithm/container/treap.html
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 struct TreapNode {
   typedef long long value_t;
@@ -241,4 +242,5 @@ class Treap : public unique_ptr<TreapNode> {
   // }
   // inline void print_tour() { print_tour(*this); }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__

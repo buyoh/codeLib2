@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_LIKERMQ_RMQ_SPARSETABLE_HPP__
 #define SRC_CPP_CONTAINER_LIKERMQ_RMQ_SPARSETABLE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // SparseTable(区間最小)
 //
@@ -31,7 +31,8 @@ using namespace std;
 //
 // %references
 // http://tookunn.hatenablog.com/entry/2016/07/13/211148
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 class SparseTable {
@@ -76,4 +77,5 @@ class SparseTable {
     return (data[i1] <= data[i2]) ? i1 : i2;  // minimum
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_LIKERMQ_RMQ_SPARSETABLE_HPP__

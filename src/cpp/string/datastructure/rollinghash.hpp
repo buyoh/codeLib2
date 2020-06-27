@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_STRING_DATASTRUCTURE_ROLLINGHASH_HPP__
 #define SRC_CPP_STRING_DATASTRUCTURE_ROLLINGHASH_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // ローリングハッシュ
 //
@@ -22,7 +22,8 @@ using namespace std;
 // csaで使ったはず
 // %references
 // プログラミングチャレンジブック
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class RollingHash {
  public:
@@ -72,4 +73,5 @@ class RollingHash {
   }
 };
 vector<RollingHash::rh_t> RollingHash::pow_table__[2];
+// %=END CODE
 #endif  // SRC_CPP_STRING_DATASTRUCTURE_ROLLINGHASH_HPP__

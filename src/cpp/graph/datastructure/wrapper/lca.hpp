@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_LCA_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_LCA_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // LCA
 //
@@ -32,7 +32,8 @@ using namespace std;
 // thanks.
 // %words
 // lca
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class LCATable {
   vector<int> visited_;
@@ -71,4 +72,5 @@ class LCATable {
                operator()(v, u);
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_LCA_HPP__

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_SEGMENTTREE_HPP__
 #define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_SEGMENTTREE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // セグメント木
 //
@@ -37,7 +37,8 @@ using namespace std;
 // %references
 // プログラミングコンテストチャレンジブック
 // https://www.slideshare.net/kazumamikami1/ss-15160153
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 // using T = ll;
@@ -333,4 +334,5 @@ class SegmentTree {
   // 区間[begin,end)の最大値とその位置を求める
   inline IdxVal getMaxRange(int begin, int end) { return _getMaxRange(begin, end, 1, 0, size_); }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_SEGMENTTREE_HPP__

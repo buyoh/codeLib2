@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_2D_METHOD_CONVEX_HULL_HPP__
 #define SRC_CPP_2D_METHOD_CONVEX_HULL_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 凸包
 //
@@ -25,7 +25,8 @@ using namespace std;
 // http://www.prefield.com/algorithm/geometry/convex_hull.html
 // %words
 // convex
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 vector<pair<P, int>> convex_hull(const vector<pair<P, int>>& points) {
   // pointsはソート済みであること
@@ -41,4 +42,5 @@ vector<pair<P, int>> convex_hull(const vector<pair<P, int>>& points) {
   ch.resize(k - 1);
   return ch;
 }
+// %=END CODE
 #endif  // SRC_CPP_2D_METHOD_CONVEX_HULL_HPP__

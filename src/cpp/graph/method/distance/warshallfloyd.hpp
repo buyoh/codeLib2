@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_METHOD_DISTANCE_WARSHALLFLOYD_HPP__
 #define SRC_CPP_GRAPH_METHOD_DISTANCE_WARSHALLFLOYD_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // warshall-floyd
 //
@@ -20,7 +20,8 @@
 //
 // %references
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 void warshall_floyd(Graph2d& g) {
   int i, j, k;
@@ -32,4 +33,5 @@ void warshall_floyd(Graph2d& g) {
     }
   }
 }
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_DISTANCE_WARSHALLFLOYD_HPP__

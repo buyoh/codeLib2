@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_METHOD_EULERIANTRAIL_CHECKER_HPP__
 #define SRC_CPP_GRAPH_METHOD_EULERIANTRAIL_CHECKER_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // オイラー路検出(テスト用)
 //
@@ -25,7 +25,8 @@ using namespace std;
 // euler
 // %tag
 // wiip
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 DGraphE gen_random_eulerialTrail(int N, int M) {
   vector<pair<int, int>> route;
@@ -71,4 +72,5 @@ bool check_eulerialTrail(const DGraphE& graph, vector<int> trail) {
   }
   return true;
 }
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_EULERIANTRAIL_CHECKER_HPP__

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_PERSISTENT_PARRAY_HPP__
 #define SRC_CPP_CONTAINER_PERSISTENT_PARRAY_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 永続配列
 //
@@ -31,7 +31,8 @@ using namespace std;
 // %tag
 // wip
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 struct PersistentArray {
   using value_t = int;
@@ -81,4 +82,5 @@ struct PersistentArray {
     return res;
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_PERSISTENT_PARRAY_HPP__

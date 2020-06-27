@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_HATOPOPPOS_HPP__
 #define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_HATOPOPPOS_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 遅延セグメント木(bitset風味)(sparse)
 //
@@ -27,7 +27,8 @@ using ll = long long;
 // %references
 //
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 struct SegmentTreeS {
   struct Node {
@@ -113,4 +114,5 @@ struct SegmentTreeS {
   inline void reset_range(ll begin, ll end) { root.reset_range(begin, end, 0, width); }
   inline ll count_range(ll begin, ll end) { return root.count_range(begin, end, 0, width); }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_HATOPOPPOS_HPP__

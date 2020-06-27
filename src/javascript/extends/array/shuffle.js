@@ -1,4 +1,4 @@
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // shuffle (Fisher–Yates)
 // 
@@ -17,7 +17,8 @@
 // shuffle
 // %require
 // 
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 
 Array.prototype.shuffle = function () {
@@ -29,3 +30,4 @@ Array.prototype.shuffle = function () {
     }
     return this;
 };
+// %=END CODE

@@ -1,4 +1,4 @@
-# %=BEGIN
+# %=BEGIN DOC
 # %title
 # ccw(進行方向)
 #
@@ -14,7 +14,8 @@
 # http://www.prefield.com/algorithm/geometry/ccw.html
 # %words
 # ccw
-# %=END
+# %=END DOC
+# %=BEGIN CODE
 
 def ccw(a,b,c)
   ax,ay = a
@@ -30,3 +31,5 @@ def ccw(a,b,c)
   bx*bx+by*by < cx*cx+cy*cy ? -2 # a - b - c
                             :  0 # a - c - b
 end
+
+# %=END CODE

@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPH_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPH_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 有向グラフ(隣接頂点)
 //
@@ -26,7 +26,8 @@ using namespace std;
 //
 // %words
 // graphstruct
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class DGraph {
  public:
@@ -47,4 +48,5 @@ class DGraph {
     vertex_from[(int)to].emplace_back(from);
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_DGRAPH_HPP__

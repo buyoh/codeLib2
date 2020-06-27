@@ -1,4 +1,4 @@
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 組合せ・順列列挙
 // 
@@ -18,7 +18,8 @@
 // shuffle
 // %require
 // 
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 Array.prototype.permutation = function* () {
     if (this.length <= 0) return;
@@ -59,3 +60,4 @@ Array.prototype.combination = function* (k) {
     }
     for (let r of dfs([], 0)) yield r;
 };
+// %=END CODE

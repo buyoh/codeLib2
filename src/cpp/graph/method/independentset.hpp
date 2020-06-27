@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_METHOD_INDEPENDENTSET_HPP__
 #define SRC_CPP_GRAPH_METHOD_INDEPENDENTSET_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 最大独立集合 (分岐限定法)
 //
@@ -29,7 +29,8 @@
 // FV Fomin, Exact Exponential Algorithms, Springer.
 // %tag
 // wip
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 pair<int, vector<int>> independentSet(const Graph& graph) {
   int bestScore = 0;
@@ -151,4 +152,5 @@ pair<int, vector<int>> independentSet(const Graph& graph) {
   idxs.shrink_to_fit();
   return make_pair(bestScore, idxs);
 }
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_INDEPENDENTSET_HPP__

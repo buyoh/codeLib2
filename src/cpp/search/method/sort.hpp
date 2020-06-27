@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_SEARCH_METHOD_SORT_HPP__
 #define SRC_CPP_SEARCH_METHOD_SORT_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 並び替えないソート
 //
@@ -22,7 +22,8 @@ using namespace std;
 // atcoder
 // %references
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 // ソートしてi番目の値は 元々idx[i]番目の値
 // 元々i番目の値は ソートするとidxr[i]番目の値
@@ -37,4 +38,5 @@ void sortedIndex(const ITER begin, const ITER end, vector<int>& idx, vector<int>
   for (int i = 0; i < n; ++i)
     idxr[idx[i]] = i;
 }
+// %=END CODE
 #endif  // SRC_CPP_SEARCH_METHOD_SORT_HPP__

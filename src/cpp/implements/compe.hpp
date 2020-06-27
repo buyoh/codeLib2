@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_IMPLEMENTS_COMPE_HPP__
 #define SRC_CPP_IMPLEMENTS_COMPE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 競技プログラミング用デバッグ・効率化
 //
@@ -16,7 +16,8 @@
 //
 // %tags
 // nolint
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 #pragma GCC optimize("O3")
 #include "bits/stdc++.h"
@@ -220,4 +221,5 @@ class MaiPrinter {
 };
 MaiScanner scanner(stdin);
 MaiPrinter printer(stdout);
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_COMPE_HPP__

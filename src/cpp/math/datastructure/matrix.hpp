@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_MATH_DATASTRUCTURE_MATRIX_HPP__
 #define SRC_CPP_MATH_DATASTRUCTURE_MATRIX_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 行列の基本操作
 //
@@ -27,7 +27,8 @@ using namespace std;
 // https://beta.atcoder.jp/contests/arc027/submissions/3095831
 // など
 // %references
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 // using T = double;
@@ -170,4 +171,5 @@ Matrix<T> pow(Matrix<T> a, long long p) {
   }
   return b;
 }
+// %=END CODE
 #endif  // SRC_CPP_MATH_DATASTRUCTURE_MATRIX_HPP__

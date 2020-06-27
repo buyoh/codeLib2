@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_HPP__
 #define SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // RadixHeap
 //
@@ -25,7 +25,8 @@ using namespace std;
 //
 // %references
 // https://www.slideshare.net/yosupo/ss-46612984
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 // using T = int;
@@ -98,4 +99,5 @@ class RadixHeap {
     vec[0].pop_back();
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_HPP__

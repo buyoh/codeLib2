@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_SEARCH_METHOD_TRI_SEARCH_HPP__
 #define SRC_CPP_SEARCH_METHOD_TRI_SEARCH_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 三分探索
 //
@@ -24,7 +24,8 @@ using namespace std;
 //
 // %references
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 using tsearch_t = long long;
 using fval_t = long long;
@@ -54,4 +55,5 @@ tsearch_t ternarySearchMinimize(tsearch_t left, tsearch_t right, function<fval_t
   }
   return bestidx;
 }
+// %=END CODE
 #endif  // SRC_CPP_SEARCH_METHOD_TRI_SEARCH_HPP__

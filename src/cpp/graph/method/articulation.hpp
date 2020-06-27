@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_METHOD_ARTICULATION_HPP__
 #define SRC_CPP_GRAPH_METHOD_ARTICULATION_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 関節点検出
 //
@@ -26,7 +26,8 @@ using namespace std;
 // articulation
 // %tag
 // unverified
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 void detect_articulation_point(const Graph& graph, vector<int>& out) {
   out.resize(graph.n);
@@ -63,4 +64,5 @@ void detect_articulation_point(const Graph& graph, vector<int>& out) {
   if (2 <= start_degree)
     out[0] = 1;
 }
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_ARTICULATION_HPP__

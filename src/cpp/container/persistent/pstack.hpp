@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_CONTAINER_PERSISTENT_PSTACK_HPP__
 #define SRC_CPP_CONTAINER_PERSISTENT_PSTACK_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 永続スタック
 //
@@ -31,7 +31,8 @@ using namespace std;
 // persistent,stack,eizoku
 // %require
 //
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 struct PersistentStack {
   using value_t = int;
@@ -84,4 +85,5 @@ struct PersistentStack {
     return res;
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_CONTAINER_PERSISTENT_PSTACK_HPP__

@@ -1,4 +1,4 @@
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // さいころの回転
 // 
@@ -21,7 +21,8 @@
 // %require
 // 
 // 
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 
 class Dice { // eslint-disable-line no-unused-vars
@@ -61,3 +62,4 @@ class Dice { // eslint-disable-line no-unused-vars
             this.vecs[i] = [this.vecs[i][0], sign * this.vecs[i][2], -sign * this.vecs[i][1]];
     }
 }
+// %=END CODE

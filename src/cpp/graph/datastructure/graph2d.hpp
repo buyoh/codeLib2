@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH2D_HPP__
 #define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH2D_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 無向グラフ(隣接行列)
 //
@@ -28,7 +28,8 @@ using namespace std;
 //
 // %words
 // graphstruct
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 class Graph2d {
  public:
@@ -58,4 +59,5 @@ class Graph2d {
     at(from, to) = dist;
   }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH2D_HPP__

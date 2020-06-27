@@ -1,6 +1,6 @@
 #ifndef SRC_CPP_GRID_METHOD_GRIDDISTANCE_HPP__
 #define SRC_CPP_GRID_METHOD_GRIDDISTANCE_HPP__
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // 2次元グリッド上のダイクストラ
 //
@@ -27,7 +27,8 @@ using ll = long long;
 //
 // %words
 // grid, dij
-// %=END
+// %=END DOC
+// %=BEGIN CODE
 
 /// <summary>
 /// 全てのセルに対してstartからの距離を求める
@@ -65,4 +66,5 @@ F<ll> gridDistance(int height, int width, P start, function<ll(P, P)> costFunc) 
 
   return dist;
 }
+// %=END CODE
 #endif  // SRC_CPP_GRID_METHOD_GRIDDISTANCE_HPP__
