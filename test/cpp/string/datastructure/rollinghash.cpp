@@ -2,7 +2,11 @@
 #include "src/cpp/string/datastructure/rollinghash.hpp"
 
 int main() {
-  string str = "abracadabra";
+  string str =
+      "zuorhi viyantas was festsu ruor proi "
+      "yuk dalfe suoivo swenne yat vu henvi nes "
+      "sho fu briyu praffi stassui tsenva chies "
+      "ien ryus sois nyat pyaro shennie fru ";
   int n = str.size();
 
   RollingHash rh(str);
