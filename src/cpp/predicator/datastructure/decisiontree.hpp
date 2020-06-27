@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_PREDICATOR_DATASTRUCTURE_DECISIONTREE_HPP__
+#define SRC_CPP_PREDICATOR_DATASTRUCTURE_DECISIONTREE_HPP__
+// %=BEGIN DOC
 // %title
 // 決定木
 //
@@ -16,6 +19,8 @@ using namespace std;
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename input_t, typename output_t>
 class DecisionTree {
@@ -48,3 +53,5 @@ class DecisionTree {
 
   output_t eval(input_t val) { return leaf() ? out_ : childlen_[comparator_(val)]->eval(val); }
 };
+// %=END CODE
+#endif  // SRC_CPP_PREDICATOR_DATASTRUCTURE_DECISIONTREE_HPP__

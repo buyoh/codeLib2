@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_SOLVER_LP_HPP__
+#define SRC_CPP_MATH_SOLVER_LP_HPP__
+// %=BEGIN DOC
 // %title
 // 簡易線形計画問題ソルバー[TODO]
 //
@@ -21,6 +24,8 @@ using namespace std;
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 class EasyLP {
  public:
@@ -154,3 +159,5 @@ int main() {
   }
   return 0;
 }
+// %=END CODE
+#endif  // SRC_CPP_MATH_SOLVER_LP_HPP__

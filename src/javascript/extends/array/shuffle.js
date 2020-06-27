@@ -1,3 +1,4 @@
+// %=BEGIN DOC
 // %title
 // shuffle (Fisher–Yates)
 // 
@@ -16,10 +17,12 @@
 // shuffle
 // %require
 // 
+// %=END DOC
+// %=BEGIN CODE
 
 
-Array.prototype.shuffle = function() {
-    for(let i = this.length - 1; i > 0; --i){
+Array.prototype.shuffle = function () {
+    for (let i = this.length - 1; i > 0; --i) {
         let r = Math.floor(Math.random() * (i + 1));
         let t = this[i];
         this[i] = this[r];
@@ -27,3 +30,4 @@ Array.prototype.shuffle = function() {
     }
     return this;
 };
+// %=END CODE

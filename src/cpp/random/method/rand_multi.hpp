@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_RANDOM_METHOD_RAND_MULTI_HPP__
+#define SRC_CPP_RANDOM_METHOD_RAND_MULTI_HPP__
+// %=BEGIN DOC
 // %title
 // 1からnまでの乱数をm個重複せずランダムに選ぶ
 //
@@ -34,6 +37,8 @@ int rand_int(int, int);
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 //
 void pick_multirand(int n, int m, vector<int>& out) {
@@ -52,3 +57,5 @@ void pick_multirand(int n, int m, vector<int>& out) {
     memo[r] = e ? e : low;
   }
 }
+// %=END CODE
+#endif  // SRC_CPP_RANDOM_METHOD_RAND_MULTI_HPP__

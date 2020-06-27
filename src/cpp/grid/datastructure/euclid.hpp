@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRID_DATASTRUCTURE_EUCLID_HPP__
+#define SRC_CPP_GRID_DATASTRUCTURE_EUCLID_HPP__
+// %=BEGIN DOC
 // %title
 // 2次元グリッドと二次元座標
 //
@@ -23,6 +26,8 @@ using namespace std;
 //
 // %words
 // grid, field, point, game
+// %=END DOC
+// %=BEGIN CODE
 
 struct P {
   using T = int;
@@ -113,3 +118,5 @@ struct F {
     }
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_GRID_DATASTRUCTURE_EUCLID_HPP__

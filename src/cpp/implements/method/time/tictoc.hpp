@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__
+#define SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__
+// %=BEGIN DOC
 // %title
 // 時間計測用マクロ．
 //
@@ -24,6 +27,8 @@
 // %verified
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 #define TIME std::chrono::system_clock::now()
 #define MILLISEC(t) (std::chrono::duration_cast<std::chrono::milliseconds>(t).count())
@@ -36,3 +41,5 @@ inline void toc() {
   std::clog << "TIME : " << MILLISEC(TIME - ttt) << '\n';
 }
 }  // namespace
+// %=END CODE
+#endif  // SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__

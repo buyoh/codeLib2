@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_METHOD_COMBINATORICS_HPP__
+#define SRC_CPP_MATH_METHOD_COMBINATORICS_HPP__
+// %=BEGIN DOC
 // %title
 // 組合せ計算(都度計算)
 //
@@ -23,6 +26,8 @@ const long long MD = 1000000007;
 // %verified
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 // MEMO : 逆元...pow_md(n,MOD-2,MOD)
 template <typename T>
@@ -79,3 +84,5 @@ template <typename T>
 inline T nHr(T n, T r) {
   return nCr(n - 1 + r, n - 1);
 }
+// %=END CODE
+#endif  // SRC_CPP_MATH_METHOD_COMBINATORICS_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_FIND_EULERIANTRAIL_HPP__
+#define SRC_CPP_GRAPH_METHOD_FIND_EULERIANTRAIL_HPP__
+// %=BEGIN DOC
 // %title
 // オイラー路検出
 //
@@ -28,6 +31,8 @@ using namespace std;
 // euler
 // %tag
 // wip, unverified
+// %=END DOC
+// %=BEGIN CODE
 
 // オイラー路が存在するかどうか
 // 存在しなかったら(-1,-1)，存在したら(始点,終点)
@@ -174,3 +179,5 @@ vector<int> find_eulerialTrail(const DGraphE& graph, int startEdge = 0) {
 
   return result;
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_FIND_EULERIANTRAIL_HPP__

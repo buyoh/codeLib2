@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_RANDOM_DATASTRUCTURE_XORSHIFT_HPP__
+#define SRC_CPP_RANDOM_DATASTRUCTURE_XORSHIFT_HPP__
+// %=BEGIN DOC
 // %title
 // XorShift
 //
@@ -20,6 +23,8 @@ using namespace std;
 //
 // %references
 // https://ja.wikipedia.org/wiki/Xorshift
+// %=END DOC
+// %=BEGIN CODE
 
 struct XorShift {
   using result_type = uint64_t;
@@ -37,3 +42,5 @@ struct XorShift {
   }
 };
 XorShift randdev;
+// %=END CODE
+#endif  // SRC_CPP_RANDOM_DATASTRUCTURE_XORSHIFT_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_METHOD_PRIME_PRIMEDIVISION_HPP__
+#define SRC_CPP_MATH_METHOD_PRIME_PRIMEDIVISION_HPP__
+// %=BEGIN DOC
 // %title
 // 素因数分解
 //
@@ -17,6 +20,8 @@
 // %verified
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 std::map<long long, int> primeDivision(const long long _num) {
   std::map<long long, int> result;
@@ -33,3 +38,5 @@ std::map<long long, int> primeDivision(const long long _num) {
   }
   return result;
 }
+// %=END CODE
+#endif  // SRC_CPP_MATH_METHOD_PRIME_PRIMEDIVISION_HPP__

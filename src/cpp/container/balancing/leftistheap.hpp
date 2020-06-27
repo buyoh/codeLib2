@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_BALANCING_LEFTISTHEAP_HPP__
+#define SRC_CPP_CONTAINER_BALANCING_LEFTISTHEAP_HPP__
+// %=BEGIN DOC
 // %title
 // LeftistHeap
 //
@@ -21,6 +24,8 @@ using namespace std;
 //
 // %references
 // http://hos.ac/blog/#blog0001
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 // using T = int;
@@ -61,3 +66,5 @@ class LeftistHeap {
   inline void pop() { root = meldNode(move(root->left), move(root->right)); }
   inline void meld(LeftistHeap&& another) { root = meldNode(move(root), move(another.root)); }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_BALANCING_LEFTISTHEAP_HPP__

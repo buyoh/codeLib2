@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_CONNECTEDCOMPONENT_SCC_HPP__
+#define SRC_CPP_GRAPH_METHOD_CONNECTEDCOMPONENT_SCC_HPP__
+// %=BEGIN DOC
 // %title
 // 強連結成分分解
 //
@@ -21,6 +24,8 @@
 // %references
 // %words
 // scc
+// %=END DOC
+// %=BEGIN CODE
 
 int strongly_connected_components(const DGraph& graph, Unionfind& result) {
   stack<int> stk;
@@ -99,3 +104,5 @@ class SCComps {
   inline const vector<int>& vertex_from(int v) const { return sccg.vertex_from[v]; }
   inline int size() const { return sccg.n; }
 };
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_CONNECTEDCOMPONENT_SCC_HPP__

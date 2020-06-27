@@ -1,3 +1,4 @@
+// %=BEGIN DOC
 // %title
 // 幾何(点と線と円)
 // 
@@ -16,6 +17,8 @@
 // %require
 // 
 // 
+// %=END DOC
+// %=BEGIN CODE
 
 class Point {
     /**
@@ -216,3 +219,4 @@ class Line {
     }
 
 }
+// %=END CODE

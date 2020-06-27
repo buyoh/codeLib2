@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__
+#define SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__
+// %=BEGIN DOC
 // %title
 // ダイクストラ法(無向・頂点重み)
 //
@@ -19,6 +22,8 @@ using namespace std;
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T, typename VECTOR>
 vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTOR& weight) {
@@ -41,3 +46,5 @@ vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTO
   }
   return move(dist);
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_METHOD_PRIME_PRIMESIEVE_HPP__
+#define SRC_CPP_MATH_METHOD_PRIME_PRIMESIEVE_HPP__
+// %=BEGIN DOC
 // %title
 // エラトステネスの篩
 //
@@ -26,6 +29,8 @@
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 template <int Max = 2000>
 class IsPrimeC {
@@ -114,3 +119,5 @@ class PrimeListC {
     return div;
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_MATH_METHOD_PRIME_PRIMESIEVE_HPP__

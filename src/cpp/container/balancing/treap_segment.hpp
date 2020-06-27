@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
+#define SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
+// %=BEGIN DOC
 // %title
 // Treap(segment)(plain)
 //
@@ -40,6 +43,8 @@ using namespace std;
 // %references
 // https://www.slideshare.net/iwiwi/2-12188757
 // http://www.prefield.com/algorithm/container/treap.html
+// %=END DOC
+// %=BEGIN CODE
 
 struct TreapNode {
   typedef long long value_t;
@@ -167,9 +172,8 @@ class Treap : public unique_ptr<TreapNode> {
       return node;
     node->update_before();
     if (!node->childlen[0])
-      return 0 < index    ? _find(node->childlen[1], index - 1)
-             : index == 0 ? node
-                          : node->childlen[0];
+      return 0 < index ? _find(node->childlen[1], index - 1)
+                       : index == 0 ? node : node->childlen[0];
     if (node->childlen[0]->n_node < index)
       return _find(node->childlen[1], index - node->childlen[0]->n_node - 1);
     if (node->childlen[0]->n_node > index)
@@ -238,3 +242,5 @@ class Treap : public unique_ptr<TreapNode> {
   // }
   // inline void print_tour() { print_tour(*this); }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__

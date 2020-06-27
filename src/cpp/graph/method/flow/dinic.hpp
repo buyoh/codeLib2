@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_FLOW_DINIC_HPP__
+#define SRC_CPP_GRAPH_METHOD_FLOW_DINIC_HPP__
+// %=BEGIN DOC
 // %title
 // dinic(最大流ソルバー)
 //
@@ -32,6 +35,8 @@ using namespace std;
 //
 // %tag
 // wip
+// %=END DOC
+// %=BEGIN CODE
 
 void dinic(DGraphF& graph, vector<DGraphF::cap_t>& result, int i_source, int i_sink) {
   assert(i_source != i_sink);
@@ -124,3 +129,5 @@ void dinic(DGraphF& graph, vector<DGraphF::cap_t>& result, int i_source, int i_s
       result[i_source] += _dfs(i_source, i_sink, -1);
   }
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_FLOW_DINIC_HPP__

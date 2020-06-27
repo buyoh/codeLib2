@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_SUMRANGE_ADDRANGE_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_SUMRANGE_ADDRANGE_HPP__
+// %=BEGIN DOC
 // %title
 // セグメント木(区間加算，区間最大，区間総和)[deprecated]
 //
@@ -27,6 +30,8 @@ using namespace std;
 // %references
 // プログラミングコンテストチャレンジブック
 //
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 // typedef int T;
@@ -183,3 +188,5 @@ class SegmentTree {
   // 区間[begin,end)の最大値とその位置を求める
   inline VI getmaxrange(int begin, int end) { return _getmaxrange(begin, end, 0, 0, size); }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_SUMRANGE_ADDRANGE_HPP__

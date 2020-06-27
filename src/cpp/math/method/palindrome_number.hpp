@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_METHOD_PALINDROME_NUMBER_HPP__
+#define SRC_CPP_MATH_METHOD_PALINDROME_NUMBER_HPP__
+// %=BEGIN DOC
 // %title
 // 回文数の数え上げ
 //
@@ -15,6 +18,8 @@ using ll = long long;
 //
 // %verified
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 // 1以上10^i-1以下の整数
 ll _kaibunsu_dec(int keta) {
@@ -81,3 +86,5 @@ int hetakuso(int val) {
   }
   return count;
 }
+// %=END CODE
+#endif  // SRC_CPP_MATH_METHOD_PALINDROME_NUMBER_HPP__

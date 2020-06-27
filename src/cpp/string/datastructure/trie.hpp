@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_TRIE_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_TRIE_HPP__
+// %=BEGIN DOC
 // %title
 // trie tree
 //
@@ -18,6 +21,8 @@ using namespace std;
 // (旧) : http://yukicoder.me/submissions/123054
 // %references
 // プログラミングチャレンジブック
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename TKEY = char, typename TVAL = int>
 struct TrieTree {
@@ -32,3 +37,5 @@ struct TrieTree {
     return (begin == end) ? value : trie[*begin](++begin_succ, end);
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_TRIE_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__
+#define SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__
+// %=BEGIN DOC
 // %title
 // SPFA
 //
@@ -25,6 +28,8 @@ using namespace std;
 // http://hogloid.hatenablog.com/entry/20120409/1333973448
 // https://tubo28.me/compprog/algorithm/spfa/
 //
+// %=END DOC
+// %=BEGIN CODE
 
 vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph,
                                                  int start = 0,
@@ -65,3 +70,5 @@ vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph,
   }
   return move(dist);
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__

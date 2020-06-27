@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_DATASTRUCTURE_LLMOD_HPP__
+#define SRC_CPP_MATH_DATASTRUCTURE_LLMOD_HPP__
+// %=BEGIN DOC
 // %title
 // 剰余演算付き整数型(llmod)
 //
@@ -18,6 +21,8 @@
 // verify: https://yukicoder.me/submissions/183523
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 class llmod {
  private:
@@ -111,3 +116,5 @@ llmod pow(llmod x, long long p) {
 inline llmod& operator/=(llmod& l, const llmod& r) {
   return l *= pow(r, llmod::MOD - 2);
 }
+// %=END CODE
+#endif  // SRC_CPP_MATH_DATASTRUCTURE_LLMOD_HPP__

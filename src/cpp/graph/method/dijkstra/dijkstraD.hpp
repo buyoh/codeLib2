@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAD_HPP__
+#define SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAD_HPP__
+// %=BEGIN DOC
 // %title
 // ダイクストラ法(有向・重み無し)
 //
@@ -19,6 +22,8 @@ using namespace std;
 // https://atcoder.jp/contests/abc132/submissions/6175759
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 vector<int> dijkstraD(const DGraph& graph, int startIndex) {
   vector<int> dist(graph.size(), numeric_limits<int>::max());
@@ -40,3 +45,5 @@ vector<int> dijkstraD(const DGraph& graph, int startIndex) {
   }
   return move(dist);
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAD_HPP__

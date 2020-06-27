@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_BIT_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_BIT_HPP__
+// %=BEGIN DOC
 // %title
 // Binary Indexed Tree(単独加算，区間総和)
 //
@@ -28,6 +31,8 @@ using namespace std;
 //
 // %references
 // プログラミングコンテストチャレンジブック
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T = long long>
 class Bitree {
@@ -107,3 +112,5 @@ class Bitree {
     return p + 1;
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_BIT_HPP__

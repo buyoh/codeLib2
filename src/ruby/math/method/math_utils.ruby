@@ -1,3 +1,4 @@
+# %=BEGIN DOC
 # %title
 # GCD,LCM,組み合わせ計算
 # 
@@ -18,7 +19,8 @@
 # math
 # %require
 # 
-# 
+# %=END DOC
+# %=BEGIN CODE
 
 def pow_md(x, w, mod)
   y = 1
@@ -41,3 +43,5 @@ def nCr_md(n, r, mod)
   end
   num * pow_md(den, mod-2, mod) % mod
 end
+
+# %=END CODE

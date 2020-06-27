@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_ARRAY_INTERVALHEAP_HPP__
+#define SRC_CPP_CONTAINER_ARRAY_INTERVALHEAP_HPP__
+// %=BEGIN DOC
 // %title
 // IntervalHeap
 //
@@ -28,6 +31,8 @@ using namespace std;
 //
 // %references
 // https://topcoder.g.hatena.ne.jp/spaghetti_source/20121006/1349491389
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 class IntervalHeap {
@@ -201,3 +206,5 @@ class IntervalHeap {
     }
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_ARRAY_INTERVALHEAP_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_ARRAY_PRIORITYQUEUE_HPP__
+#define SRC_CPP_CONTAINER_ARRAY_PRIORITYQUEUE_HPP__
+// %=BEGIN DOC
 // %title
 // PriorityQueue
 //
@@ -17,6 +20,8 @@ using namespace std;
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 class PriorityQueue {
@@ -48,3 +53,5 @@ class PriorityQueue {
     push_heap(data_.begin(), data_.end());
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_ARRAY_PRIORITYQUEUE_HPP__

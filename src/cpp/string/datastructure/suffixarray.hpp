@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_SUFFIXARRAY_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_SUFFIXARRAY_HPP__
+// %=BEGIN DOC
 // %title
 // SuffixArray
 //
@@ -17,7 +20,9 @@ using namespace std;
 // tested
 // %references
 // 蟻本
-// http://wk1080id.hatenablog.com/entry/2018/12/25/005926
+// http://wk1080id.hatenablog.com/entry/2018/12/25/005926v
+// %=END DOC
+// %=BEGIN CODE
 
 class SuffixArray {
   const char* str;
@@ -127,3 +132,5 @@ class SuffixArray {
 
   inline int foundToIdx(int found) { return sa[found] - str; }
 };
+// %=END CODE
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_SUFFIXARRAY_HPP__

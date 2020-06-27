@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_BASIC_BITSET_HPP__
+#define SRC_CPP_CONTAINER_BASIC_BITSET_HPP__
+// %=BEGIN DOC
 // %title
 // 可変長bitset
 //
@@ -18,6 +21,8 @@ using namespace std;
 // resizeが出来ていない
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 class BitSet64 {
  public:
@@ -66,3 +71,5 @@ class BitSet64 {
     nBlock_ = newSize;
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_BASIC_BITSET_HPP__

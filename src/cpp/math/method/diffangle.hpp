@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_METHOD_DIFFANGLE_HPP__
+#define SRC_CPP_MATH_METHOD_DIFFANGLE_HPP__
+// %=BEGIN DOC
 // %title
 // 回転角
 //
@@ -20,6 +23,8 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 // 1周をmodで表現するような角度の単位系で，
 // 角度xから角度yへ向きを変えるとき，xに加算するべき値
@@ -27,3 +32,5 @@ inline double diffangle(double x, double y, double mod) {
   double a1 = fmod(y - x, mod), a2 = fmod(y - x + mod, mod), a3 = fmod(y - x - mod, mod);
   return abs(a2) < abs(a1) ? (abs(a3) < abs(a2) ? a3 : a2) : (abs(a3) < abs(a1) ? a3 : a1);
 }
+// %=END CODE
+#endif  // SRC_CPP_MATH_METHOD_DIFFANGLE_HPP__

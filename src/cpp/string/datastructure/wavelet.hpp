@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_STRING_DATASTRUCTURE_WAVELET_HPP__
+#define SRC_CPP_STRING_DATASTRUCTURE_WAVELET_HPP__
+// %=BEGIN DOC
 // %title
 // Wavelet Tree (Wavelet Matrix)
 //
@@ -19,6 +22,8 @@ using namespace std;
 //
 // %references
 // 岡之原大輔，高速文字列解析の世界，岩波書店．
+// %=END DOC
+// %=BEGIN CODE
 
 class Wavelet {
  public:
@@ -83,3 +88,5 @@ class Wavelet {
   // [0,i)の文字cの出現回数
   int rank(int i, char c) { return 0; }  // TODO:
 };
+// %=END CODE
+#endif  // SRC_CPP_STRING_DATASTRUCTURE_WAVELET_HPP__

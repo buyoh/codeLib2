@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_SIMPLE_HPP__
+#define SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_SIMPLE_HPP__
+// %=BEGIN DOC
 // %title
 // RadixHeap(simple)
 //
@@ -22,6 +25,8 @@ using namespace std;
 //
 // %references
 // https://www.slideshare.net/yosupo/ss-46612984
+// %=END DOC
+// %=BEGIN CODE
 
 class RadixHeap {
  public:
@@ -90,3 +95,5 @@ class RadixHeap {
     --lastcnt_;
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_ARRAY_RADIXHEAP_SIMPLE_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_ITERATOR_DREAMCAST_HPP__
+#define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_ITERATOR_DREAMCAST_HPP__
+// %=BEGIN DOC
 // %title
 // ぐるぐるイテレータ
 //
@@ -18,6 +21,8 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 struct DreamcastScan {
   const int Width;
@@ -47,3 +52,5 @@ struct DreamcastScan {
   constexpr inline Iterator begin() const { return Iterator(Width, 0, 0); }
   constexpr inline Iterator end() const { return Iterator(-(Width & 1), 0, 0); }
 };
+// %=END CODE
+#endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_ITERATOR_DREAMCAST_HPP__

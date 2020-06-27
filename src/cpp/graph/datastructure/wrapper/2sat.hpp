@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__
+// %=BEGIN DOC
 // %title
 // 2-SAT Solver
 //
@@ -29,6 +32,8 @@ using namespace std;
 //
 // %references
 // http://www.prefield.com/algorithm/misc/2-sat.html
+// %=END DOC
+// %=BEGIN CODE
 
 class Sat_2 {
  public:
@@ -85,3 +90,5 @@ class Sat_2 {
     return true;
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_RANDOM_DATASTRUCTURE_RAND_CHOOSER_HPP__
+#define SRC_CPP_RANDOM_DATASTRUCTURE_RAND_CHOOSER_HPP__
+// %=BEGIN DOC
 // %title
 // 禁止可能な一様分布の乱数
 //
@@ -26,6 +29,8 @@ using namespace std;
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 class RandChooser {
   int size;
@@ -53,3 +58,5 @@ class RandChooser {
     return --left_size;
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_RANDOM_DATASTRUCTURE_RAND_CHOOSER_HPP__

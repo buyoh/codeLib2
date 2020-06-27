@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_BELLMANFORD_HPP__
+#define SRC_CPP_GRAPH_METHOD_BELLMANFORD_HPP__
+// %=BEGIN DOC
 // %title
 // bellmanFord
 //
@@ -21,6 +24,8 @@ using namespace std;
 // %references
 // %words
 // bellmanford
+// %=END DOC
+// %=BEGIN CODE
 
 vector<DGraphE::W_T> bellmanFord(int n, const vector<DGraphE::Arc>& arcs, int start = 0) {
   using T = DGraphE::W_T;
@@ -40,3 +45,5 @@ vector<DGraphE::W_T> bellmanFord(int n, const vector<DGraphE::Arc>& arcs, int st
   }
   return dist;
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_BELLMANFORD_HPP__

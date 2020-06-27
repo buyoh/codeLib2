@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_METHOD_TSP_HPP__
+#define SRC_CPP_GRAPH_METHOD_TSP_HPP__
+// %=BEGIN DOC
 // %title
 // 巡回セールスマン問題(bitDP)
 //
@@ -31,6 +34,8 @@ using namespace std;
 //
 // %require
 // cpp/graph/datastructure/graph2dcpp
+// %=END DOC
+// %=BEGIN CODE
 
 vector<int> tsProblem(int n, const Graph2d& graph) {
   using dist_T = long long;
@@ -94,3 +99,5 @@ vector<int> tsProblem(int n, const Graph2d& graph) {
   reverse(tourist.begin(), tourist.end());
   return tourist;
 }
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_METHOD_TSP_HPP__

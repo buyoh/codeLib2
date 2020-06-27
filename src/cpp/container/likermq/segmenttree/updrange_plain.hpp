@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_UPDRANGE_PLAIN_HPP__
+#define SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_UPDRANGE_PLAIN_HPP__
+// %=BEGIN DOC
 // %title
 // セグメント木(単独書き換え，区間演算)
 //
@@ -24,6 +27,8 @@ using namespace std;
 // http://d.hatena.ne.jp/komiyam/20131202/1385992406
 // http://proc-cpuinfo.fixstars.com/2017/07/optimize-segment-tree/
 // https://beta.atcoder.jp/contests/dwacon2018-final-open/submissions/2049865
+// %=END DOC
+// %=BEGIN CODE
 
 template <typename T>
 // typedef int T;
@@ -68,3 +73,5 @@ class SegmentTreeQ {
     return func_(rl, rr);
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_CONTAINER_LIKERMQ_SEGMENTTREE_UPDRANGE_PLAIN_HPP__

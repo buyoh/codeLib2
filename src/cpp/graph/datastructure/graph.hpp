@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH_HPP__
+#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH_HPP__
+// %=BEGIN DOC
 // %title
 // 無向グラフ(隣接頂点)
 //
@@ -23,9 +26,8 @@ using namespace std;
 //
 // %words
 // graphstruct
-
-#ifndef SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__  // << prototype implementation!!!
-#define SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__
+// %=END DOC
+// %=BEGIN CODE
 
 class Graph {
  public:
@@ -41,5 +43,5 @@ class Graph {
     vertex_to[(int)to].emplace_back(from);
   }
 };
-
-#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH__
+// %=END CODE
+#endif  // SRC_CPP_GRAPH_DATASTRUCTURE_GRAPH_HPP__

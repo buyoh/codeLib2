@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__
+#define SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__
+// %=BEGIN DOC
 // %title
 // 組合せ計算(前計算)
 //
@@ -13,6 +16,8 @@
 // %verified
 // https://yukicoder.me/submissions/286997
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 template <int MaxN, long long Mod>
 class Combinatorics {
@@ -62,3 +67,5 @@ class Combinatorics {
     return nCr(n - 1 + r, n - 1);
   }
 };
+// %=END CODE
+#endif  // SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_SEARCH_METHOD_BIN_SEARCH_REAL_HPP__
+#define SRC_CPP_SEARCH_METHOD_BIN_SEARCH_REAL_HPP__
+// %=BEGIN DOC
 // %title
 // 二分探索（実数）
 //
@@ -22,6 +25,8 @@ using namespace std;
 //
 // %references
 //
+// %=END DOC
+// %=BEGIN CODE
 
 const double EPS = 1e-9;
 double binarySearchReal(double false_value, double true_value, function<bool(double)> func) {
@@ -31,3 +36,5 @@ double binarySearchReal(double false_value, double true_value, function<bool(dou
   }
   return true_value;
 }
+// %=END CODE
+#endif  // SRC_CPP_SEARCH_METHOD_BIN_SEARCH_REAL_HPP__

@@ -1,3 +1,6 @@
+#ifndef SRC_CPP_IMPLEMENTS_DATASTRUCTURE_HASHES_HPP__
+#define SRC_CPP_IMPLEMENTS_DATASTRUCTURE_HASHES_HPP__
+// %=BEGIN DOC
 // %title
 // std::hashの追加定義
 //
@@ -16,6 +19,8 @@ using namespace std;
 // %verified
 //
 // %references
+// %=END DOC
+// %=BEGIN CODE
 
 namespace std {
 template <typename T1, typename T2>
@@ -25,3 +30,5 @@ struct hash<pair<T1, T2>> {
   }
 };
 }  // namespace std
+// %=END CODE
+#endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_HASHES_HPP__
