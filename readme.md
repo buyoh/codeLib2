@@ -54,10 +54,8 @@ ruby tools/autotest.rb
 
 ### テンプレート
 
-空行なしで行頭にコメント行文字を入れると、メタ情報として認識されます。
-
 ```cpp
-// %=BEGIN
+// %=BEGIN DOC
 // %title
 // タイトル
 // 
@@ -88,7 +86,14 @@ using namespace std;
 // 
 // %tags
 // nolint, (wip: 未実装), (unverified: 未検証), (deprecated: 非推奨)
-// %=END
+// %=END DOC
+
+// %=BEGIN CODE
+template<typename T, typename U>
+U plus(const T& t1, const T& t2) {
+  return t1 + t2;
+}
+// %=END CODE
 ```
 
 ## なぜcodelib '2' なのか
