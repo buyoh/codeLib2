@@ -11,6 +11,28 @@ using ll = int64_t;
 #define repeat(cnt, l) for (auto cnt = remove_reference<decltype(l)>::type(); (cnt) < (l); ++(cnt))
 #define iterate(it, be, en) for (auto it = (be); it != (en); ++it)
 
+template <typename T1, typename T2>
+inline ostream& operator<<(ostream& o, const pair<T1, T2> p) {
+  o << '(' << p.first << ':' << p.second << ')';
+  return o;
+}
+template <typename Vec>
+inline ostream& _ostream_vecprint(ostream& os, const Vec& a) {
+  os << '[';
+  for (const auto& e : a)
+    os << ' ' << e << ' ';
+  os << ']';
+  return os;
+}
+template <typename T>
+inline ostream& operator<<(ostream& o, const vector<T>& v) {
+  return _ostream_vecprint(o, v);
+}
+template <typename T, size_t S>
+inline ostream& operator<<(ostream& o, const array<T, S>& v) {
+  return _ostream_vecprint(o, v);
+}
+
 // assertion
 #define CHK(cond)                                               \
   if (!(cond)) {                                                \
@@ -34,9 +56,9 @@ auto _chkerr_eq_dump(const E& e, const A& a) -> decltype(e << a, nullptr) {
   cerr << "left = " << e << ", right = " << a << endl;
   return nullptr;
 }
-auto _chkerr_eq_dump(...) -> decltype(nullptr) {
-  return nullptr;
-}
+// auto _chkerr_eq_dump(...) -> decltype(nullptr) {
+//   return nullptr;
+// }
 }  // namespace
 
 namespace Rand {
