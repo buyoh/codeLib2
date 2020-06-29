@@ -26,11 +26,18 @@ module Test
       end
       result
     end
+    
 
-    def execute
+    def execute(nochdir: false)
       res = nil
-      Dir.chdir(@tempdir) do
-        res = system "./a.out"
+      if nochdir
+        p "#{@tempdir}/a.out"
+        res = system "#{@tempdir}/a.out"
+        p $?
+      else
+        Dir.chdir(@tempdir) do
+          res = system "./a.out"
+        end
       end
       res
     end
