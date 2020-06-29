@@ -21,6 +21,7 @@
 //
 // %require
 // ```
+#include <cassert>
 #include <vector>
 using namespace std;
 #include "src/cpp/graph/datastructure/dgraph.hpp"
