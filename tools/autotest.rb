@@ -6,6 +6,7 @@ require_relative './test/test.rb'
 
 @filter = nil
 @jobs = 1
+@verbose = false
 optparser = OptionParser.new
 optparser.on('--filter regexp'){|e| @filter = Regexp.new(e) }
 optparser.on('-j', '--jobs number') do |e|
@@ -14,7 +15,7 @@ optparser.on('-j', '--jobs number') do |e|
   @jobs = e
 end
 # optparser.on('--log-path path'){|e| }
-# optparser.on('--verbose'){|f| }
+optparser.on('--verbose'){|f| @verbose = true}
 # optparser.on('--quiet'){|f| }
 optparser.parse!(ARGV)
 
@@ -22,12 +23,12 @@ optparser.parse!(ARGV)
 
 def do_job(path, workerid = 0)
   return true if @filter && !(path =~ @filter)
-  puts "test: #{path}"
+  puts "test: #{path}" if @verbose
 
   lang = path.split('/')[1]
   langc = Test.const_get(lang.upcase)
   unless langc
-    puts 'not implemented language: ' + lang
+    puts 'not implemented language: ' + lang if @verbose
     return true
   end
 
@@ -36,10 +37,10 @@ def do_job(path, workerid = 0)
   tester = langc.new(path, tempdir_worker)
 
   if tester.compile && tester.execute(nochdir: true)
-    puts 'ok'
+    puts 'ok' if @verbose
     return true
   else
-    puts 'failed!!'
+    puts "failed test: #{path}"
     return false
   end
 end
@@ -72,5 +73,5 @@ Dir.chdir('../') do
   end
 end
 
-abort if failed
+abort 'failed tests' if failed
 exit 0

@@ -1,7 +1,7 @@
 module Test
   class CPP
     CC = 'g++'
-    OPTIONS = '-I ./ -lm -Wall'
+    OPTIONS = '-I ./ -lm -Wall -Werror'
 
     def initialize(testpath, tempdir)
       @testpath = testpath
@@ -12,12 +12,13 @@ module Test
       system "#{CC} #{OPTIONS} -o #{@tempdir}/a.out #{@testpath} -std=c++17"
     end
 
-    def test_compilable
+    def test_compilable(easy = false)
       return {'default' => false} unless system("#{CC} #{OPTIONS} -fsyntax-only #{@testpath}")
 
       opt = ['-O2', '-O3']
       std = ['c++11', 'c++14', 'c++17']
       result = {'default' => true}
+      return result if easy
       opt.each do |o|
         std.each do |s|
           args = "#{o} #{s}"

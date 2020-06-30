@@ -7,6 +7,8 @@ require './test/test.rb'
 
 @filter = nil
 @jobs = 1
+@verbose = false
+@easy = false
 optparser = OptionParser.new
 optparser.on('--filter regexp'){|e| @filter = Regexp.new(e) }
 optparser.on('-j', '--jobs number') do |e|
@@ -15,6 +17,8 @@ optparser.on('-j', '--jobs number') do |e|
   @jobs = e
 end
 # optparser.on('--log-path path'){|e| @log_path = e }
+optparser.on('--easy'){|f| @easy = true}
+optparser.on('--verbose'){|f| @verbose = true}
 optparser.parse!(ARGV)
 
 
@@ -24,11 +28,11 @@ optparser.parse!(ARGV)
 
 def do_job(path, tid = 0)
   return true if @filter && !(path =~ @filter)
-  puts "test: #{path}"
+  puts "test: #{path}" if @verbose
 
   lang = path.split('/')[1]
   unless Test.const_defined?(lang.upcase)
-    puts 'not implemented language: ' + lang
+    puts 'not implemented language: ' + lang if @verbose
     return true
   end
 
@@ -37,16 +41,16 @@ def do_job(path, tid = 0)
   langc = Test.const_get(lang.upcase)
   tester = langc.new(path, tempdir)
 
-  result = tester.test_compilable
+  result = tester.test_compilable @easy
   if result['default']
     if result.all?{|k,v| v}
-      puts 'ok'
+      puts 'ok' if @verbose
     else
-      puts 'partially ok'
+      puts "partially ok: #{path}"
     end
     return true
   else
-    puts 'failed!!'
+    puts "failed: #{path}"
     return false
   end
 
@@ -83,5 +87,5 @@ end
 
 # logio.close if logio
 
-abort if failed
+abort 'failed tests' if failed
 exit 0
