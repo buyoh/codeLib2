@@ -78,7 +78,6 @@ class SuffixArray {
       sfx2.swap(sfx);
       vector<int> div2(size);
       div2[sfx[0]] = 0;
-      int acc = 0;
       for (int i = 1; i < size; ++i) {
         pair<int, int> curr = {div[sfx[i]], div[(sfx[i] + d) % size]};
         pair<int, int> prev = {div[sfx[i - 1]], div[(sfx[i - 1] + d) % size]};
@@ -92,7 +91,7 @@ class SuffixArray {
   }
 
   pair<bool, pair<int, int>> find(const string& keyword) {
-    auto n = keyword.size();
+    const int n = keyword.size();
 
     if (n == 0)
       return make_pair(false, make_pair(0, -1));

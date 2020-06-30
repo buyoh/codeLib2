@@ -56,7 +56,7 @@ bool check_eulerialTrail(const DGraphE& graph, vector<int> trail) {
 
   int v = trail[0];
 
-  for (int i = 1; i < trail.size(); ++i) {
+  for (int i = 1; i < (int)trail.size(); ++i) {
     int t = trail[i];
     if (i % 2 == 1) {
       auto e = graph.arcs[t];

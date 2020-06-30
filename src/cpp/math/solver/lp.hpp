@@ -65,7 +65,7 @@ class EasyLP {
       int target = -1;
       {
         double val, lim = 0;
-        for (int i = 0; i < equation.size(); ++i) {
+        for (int i = 0; i < (int)equation.size(); ++i) {
           if (equation[i][idx] == 0)
             continue;  // 0除算防止
           val = offset[i] / equation[i][idx];
@@ -87,7 +87,7 @@ class EasyLP {
         offset[target] /= p;
 
         // ピボット列の掃き出し
-        for (int i = 0; i < equation.size(); ++i) {
+        for (int i = 0; i < (int)equation.size(); ++i) {
           if (i == target)
             continue;
 
@@ -118,7 +118,7 @@ class EasyLP {
   }
 
   void printTableau() {
-    for (int i = 0; i < equation.size(); ++i) {
+    for (int i = 0; i < (int)equation.size(); ++i) {
       for (double a : equation[i]) {
         printf(" %7.2f", a);
       }

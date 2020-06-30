@@ -43,7 +43,7 @@ vector<int> dijkstraD(const DGraph& graph, int startIndex) {
       if (d + 1 < dist[u])
         que.emplace(dist[u] = d + 1, u);
   }
-  return move(dist);
+  return dist;
 }
 // %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAD_HPP__

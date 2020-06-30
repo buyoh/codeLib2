@@ -44,7 +44,7 @@ vector<T> dijkstraVertexWeighted(const Graph& graph, int startIndex, const VECTO
       if (d + weight[u] < dist[u])
         que.emplace(-(dist[u] = d + weight[u]), u);
   }
-  return move(dist);
+  return dist;
 }
 // %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRAWV_HPP__

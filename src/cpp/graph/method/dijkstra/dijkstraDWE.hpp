@@ -48,7 +48,7 @@ vector<DGraphE::W_T> dijkstraDEdgeWeighted(const DGraphE& graph, int startIndex)
       }
     }
   }
-  return move(dist);
+  return dist;
 }
 // %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_DIJKSTRA_DIJKSTRADWE_HPP__
