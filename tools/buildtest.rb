@@ -61,7 +61,7 @@ Dir.chdir('../') do
 
   if @jobs == 1
     Document.src_files.each do |path|
-      failed |= do_job(path)
+      failed |= !(do_job(path))
     end
   else
     mtx = Mutex.new

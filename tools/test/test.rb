@@ -1,7 +1,7 @@
 module Test
   class CPP
     CC = 'g++'
-    OPTIONS = '-I ./ -lm -Wall -Werror'
+    OPTIONS = '-I ./ -lm -Wall -Werror -Wno-error=comment -Wno-comment'
 
     def initialize(testpath, tempdir)
       @testpath = testpath
