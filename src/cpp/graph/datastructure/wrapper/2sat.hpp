@@ -11,84 +11,116 @@
 // %usage
 // Sat_2(int n)
 // ;
-// void Sat_2::emplace(int a, int b)
+// void Sat_2::push(int a, int b)
 // ; 節を追加する．節は2つのリテラルから構成される．
 // ; リテラルの番号は1-indexed．
 // ; 負のインデックスを指定すると，否定として扱われる．
-// bool Sat_2::solve(vector<int>& result)
-// @ret : 充足可能かどうか
-// ; result[i]は，i番目のリテラルがTかFか．
-// ; result[0]はdontcare
+// vector<int> Sat_2::solve()
+// ; 充足不能なら、empty。
+// ; result[i]は，i番目のリテラルがTかFか．0-indexed
 //
 // %require
 // ```
+#include <cassert>
 #include <vector>
 using namespace std;
 #include "src/cpp/graph/datastructure/dgraph.hpp"
 // ```
 //
 // %verified
-// http://yukicoder.me/submissions/142141
+// https://yukicoder.me/submissions/496242
 //
 // %references
 // http://www.prefield.com/algorithm/misc/2-sat.html
+// プログラミングコンテストチャレンジブック
 // %=END DOC
+
+// 考察メモ:
+// 強連結を考察する上で、強連結を纏めるとDAGになる、という定義を常にイメージしておくと良さそう
+// DAGと書くと難しいが、DAGの例としてPATHをイメージすると、
+// 強連結が1つの層で、トポロジカル順が階層になっている、がわかりやすい。
+// solve_dfs1
+// - postorder(帰りがけ順)を作る
+// solve_dfs2
+// - グラフの辺を逆にして開始
+// - postorderの逆順(最後にpushした頂点から順)にsolve_dfs2を叩いていく
+// - 到達済みはreject
+// - よってdfsの開始番号から大きいものへ辿ることは無い
+// - DAGであれば、開始番号より小さいものへ辿れない
+// - 遡れたら、その辺はfeedback辺である
+// - 最初の1つ目は、開始番号より小さい頂点
+// - そして何故か、番号関係なく逆方向の辺を辿っていくと強連結を洗い出せる
+// - ここがよくわからないが、動いているからヨシ！
+// - .
+// - 真偽を付けるには、トポロジカル順序が必要
+// - 既に強連結が分かっているので、3つ目のdfsをすれば（証明は）楽。
+// - 2つ目のdfsを使い回すことを考えてみる。これは、あっさり出来る。
+// - 2つ目の再帰中に辿る頂点たちは強連結なので、これは同じトポ順である。
+// - よって、正しいトポ順かどうか見るには、postorderだけに注目すれば良い
+// - これは、辺を逆にしている効果が効いてくる。
+// - 辺を逆にしていない方のグラフで、有向先に行くことは無いので、トポ順は正しい…
+
+// ループ1つにしたほうが早そう
+// https://yukicoder.me/submissions/496242
+
 // %=BEGIN CODE
 
-class Sat_2 {
+class Sat2 {
  public:
   int n;
   DGraph graph;
 
-  Sat_2(int n) : n(n), graph(n * 2 + 1) {}
+  Sat2(int n) : n(n), graph(n * 2) {}
 
  private:
-  inline int _cv(int v) { return 0 < v ? v : -v + n; }
+  inline int _cv(int v) { return 0 < v ? (v - 1) * 2 : (-v - 1) * 2 + 1; }
 
-  void _scc_dfs1(int v, vector<int>& ord, vector<int>& num, int k) {
-    if (0 <= num[v])
+  vector<int> label_, postorder_;
+
+  void solveScc_dfs1(int v) {
+    if (label_[v] < 0)
       return;
-    num[v] = k;
+    label_[v] = -1;
     for (int to : graph.vertex_to[v])
-      _scc_dfs1(to, ord, num, k);
-
-    ord.push_back(v);
+      solveScc_dfs1(to);
+    postorder_.push_back(v);
   }
-  void _scc_dfs2(int v, vector<int>& num, int k) {
-    if (num[v] < 0)
+
+  void solveScc_dfs2(int v, int rank) {
+    if (label_[v] > 0)
       return;
-    num[v] = -k;
+    label_[v] = rank;
     for (int to : graph.vertex_from[v])
-      _scc_dfs2(to, num, k);
+      solveScc_dfs2(to, rank);
   }
 
  public:
   // 1 <= a <= n OR -1 >= a >= -n
   // 正ならばx_a，負ならばNOT x_aを表現．
-  inline void emplace(int a, int b) {
-    // assert(a!=0 && b!=0);
+  inline void push(int a, int b) {
+    assert(a != 0 && b != 0);
     graph.connect(_cv(-a), _cv(b));
     graph.connect(_cv(-b), _cv(a));
   }
 
-  bool solve(vector<int>& result) {
-    vector<int> num(graph.n, -1), ord;
-    ord.reserve(graph.n + 1);
+  vector<int> solve() {
+    label_.resize(graph.n);
+    postorder_.reserve(graph.n);
 
     for (int i = 0; i < graph.n; ++i)
-      _scc_dfs1(i, ord, num, i);
+      solveScc_dfs1(i);
+    for (int i = (int)postorder_.size() - 1; 0 <= i; --i)
+      solveScc_dfs2(postorder_[i], i + 1);
 
-    for (int i = (int)ord.size() - 1; 0 <= i; --i)
-      _scc_dfs2(ord[i], num, i + 1);
-
-    result.resize(n + 1);
-    for (int i = 1; i <= n; ++i) {
-      if (num[i] == num[i + n])
-        return false;
-      result[i] = (num[i] < num[i + n]);
+    vector<int> result(n);
+    for (int i = 0; i < n; ++i) {
+      if (label_[i * 2] == label_[i * 2 + 1])
+        return {};
+      result[i] = (label_[i * 2] < label_[i * 2 + 1]);
     }
-    return true;
+    return result;
   }
 };
+
 // %=END CODE
 #endif  // SRC_CPP_GRAPH_DATASTRUCTURE_WRAPPER_2SAT_HPP__
