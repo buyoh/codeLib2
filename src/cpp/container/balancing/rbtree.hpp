@@ -25,7 +25,7 @@ class RBTree {
 
   void push(value_t val) {}
 
-  Node* _merge(Node* a, Node* b) {}
+  // Node* _merge(Node* a, Node* b) {}
 
   // another を this に加える．
   // another は空になる．

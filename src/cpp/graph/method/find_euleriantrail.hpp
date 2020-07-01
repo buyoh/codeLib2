@@ -79,7 +79,7 @@ vector<int> find_eulerialTrail(const DGraphE& graph, int startEdge = 0) {
   int groupCount = 0;
 
   // ループ辺は独立した1つのサイクルとして分割
-  for (int ei = 0; ei < graph.arcs.size(); ++ei)
+  for (int ei = 0; ei < (int)graph.arcs.size(); ++ei)
     if (graph.arcs[ei].from == graph.arcs[ei].to)
       group[ei] = groupCount++;
 
@@ -126,7 +126,7 @@ vector<int> find_eulerialTrail(const DGraphE& graph, int startEdge = 0) {
 
   group[startEdge] = -1;
 
-  for (int step = 1; step < graph.arcs.size(); ++step) {
+  for (int step = 1; step < (int)graph.arcs.size(); ++step) {
     bool prfound = false;
     map<int, pair<int, int>> connected;  // [group] = prior, edgeid
     for (int ie : graph.vertex_to[curr]) {

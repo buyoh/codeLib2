@@ -88,8 +88,8 @@ struct RegExp {
 
     for (size_t i = startPtr; i < rawPattern.size(); ++i) {
       char c = rawPattern[i];
-      char cL = rawPattern[i - 1];  // C++11
-      char cP = rawPattern[i + 1];
+      // char cL = rawPattern[i - 1];  // C++11
+      // char cP = rawPattern[i + 1];
 
       if (escape == 0 && c == ']') {
         assert(enable_range == false);

@@ -7,7 +7,6 @@
 // %overview
 // inverse, conbination, permutation, factorial を構築時に計算する\
 //
-//
 // %usage
 // Combinatorics<2000100, Mod> wakame;
 //

@@ -64,11 +64,11 @@ vector<DGraphE::W_T> shortestPathFasterAlgorithm(const DGraphE& graph,
 
       if (detectNegativeCycle && ++counter[a.to] >= n) {
         *detectNegativeCycle = true;
-        return move(dist);
+        return dist;
       }
     }
   }
-  return move(dist);
+  return dist;
 }
 // %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_DISTANCE_SPFA_HPP__
