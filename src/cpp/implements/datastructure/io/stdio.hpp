@@ -54,9 +54,9 @@ using namespace std;
 #define getc_x getc
 #define putc_x putc
 #endif
-#define isvisiblechar(c) (0x21 <= (c) && (c) <= 0x7E)
 class MaiScanner {
   FILE* fp_;
+  constexpr bool isvisiblechar(char c) noexcept { return (0x21 <= (c) && (c) <= 0x7E); }
 
  public:
   inline MaiScanner(FILE* fp) : fp_(fp) {}
@@ -73,12 +73,9 @@ class MaiScanner {
     var = var * sign;
   }
   inline int c() noexcept { return getc_x(fp_); }
-  inline MaiScanner& operator>>(int& var) noexcept {
-    input_integer<int>(var);
-    return *this;
-  }
-  inline MaiScanner& operator>>(long long& var) noexcept {
-    input_integer<long long>(var);
+  template <typename T, typename enable_if<is_integral<T>::value, nullptr_t>::type = nullptr>
+  inline MaiScanner& operator>>(T& var) noexcept {
+    input_integer<T>(var);
     return *this;
   }
   inline MaiScanner& operator>>(string& var) {
@@ -119,12 +116,9 @@ class MaiPrinter {
     putc_x(c, fp_);
     return *this;
   }
-  inline MaiPrinter& operator<<(int var) noexcept {
-    output_integer<int>(var);
-    return *this;
-  }
-  inline MaiPrinter& operator<<(long long var) noexcept {
-    output_integer<long long>(var);
+  template <typename T, typename enable_if<is_integral<T>::value, nullptr_t>::type = nullptr>
+  inline MaiPrinter& operator<<(T var) noexcept {
+    output_integer<T>(var);
     return *this;
   }
   inline MaiPrinter& operator<<(char* str_p) noexcept {
