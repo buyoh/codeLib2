@@ -2,25 +2,18 @@
 #define SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__
 // %=BEGIN DOC
 // %title
-// 時間計測用マクロ．
+// 時間計測用マクロ
 //
 // %overview
-//
+// ticで開始、tocで経過時間を返す。
+// tic/tocという名称はmatlabで使われている。
 //
 // %usage
-// void tic()
-// ;計測開始
-// void toc()
-// ;ticからtocまでに掛かった時間を表示する
-// TIME
-// ;chrono::system_clock::now()
-// MILLISEC
-// ;TIMEの差分をミリ秒に変換
 //
 // %require
 // ```
 #include <chrono>
-#include <iostream>
+#include <ostream>
 // ```
 // %words
 // time,tic,toc
@@ -29,17 +22,18 @@
 // %references
 // %=END DOC
 // %=BEGIN CODE
+template <typename C = std::chrono::milliseconds>
+class Timer {
+  std::chrono::system_clock::time_point tp_;
 
-#define TIME std::chrono::system_clock::now()
-#define MILLISEC(t) (std::chrono::duration_cast<std::chrono::milliseconds>(t).count())
-namespace {
-std::chrono::system_clock::time_point ttt;
-inline void tic() {
-  ttt = TIME;
+ public:
+  static inline auto now() { return std::chrono::system_clock::now(); }
+  inline void tic() { tp_ = now(); }
+  inline auto toc() const { return std::chrono::duration_cast<C>(now() - tp_).count(); }
+  inline Timer() : tp_(now()) {}
+};
+inline std::ostream& operator<<(std::ostream& o, const Timer<>& t) {
+  return o << (long long)t.toc();
 }
-inline void toc() {
-  std::clog << "TIME : " << MILLISEC(TIME - ttt) << '\n';
-}
-}  // namespace
 // %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_METHOD_TIME_TICTOC_HPP__
