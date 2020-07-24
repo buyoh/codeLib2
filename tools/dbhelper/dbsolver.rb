@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module DBSolver
   # requrested_pathsが参照するrequireを全て集めたdocと依存順を返す．
   # requrested_paths: パスの配列

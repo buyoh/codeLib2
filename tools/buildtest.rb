@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Dir.chdir __dir__
 require 'fileutils'
 require 'optparse'

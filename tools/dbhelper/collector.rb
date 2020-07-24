@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../code/codeparser'
 require_relative '../markup/markup'
 
