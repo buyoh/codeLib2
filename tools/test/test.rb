@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 module Test
   class CPP
-    CC = 'g++'
-    OPTIONS = '-I ./ -lm -Wall'
+    CC = 'g++'.freeze
+    OPTIONS = '-I ./ -lm -Wall'.freeze
 
     def initialize(testpath, tempdir)
       @testpath = testpath

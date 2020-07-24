@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative './dbwrapper'
 require_relative './collector'
 require_relative './gitlog'

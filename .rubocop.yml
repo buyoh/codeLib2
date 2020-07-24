@@ -3,4 +3,6 @@ AsciiComments:
 
 Style/StderrPuts:
   Enabled: false
-  
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
