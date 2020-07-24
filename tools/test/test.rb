@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Test
   class CPP
     CC = 'g++'
@@ -13,11 +15,11 @@ module Test
     end
 
     def test_compilable
-      return {'default' => false} unless system("#{CC} #{OPTIONS} -fsyntax-only #{@testpath}")
+      return { 'default' => false } unless system("#{CC} #{OPTIONS} -fsyntax-only #{@testpath}")
 
       opt = ['-O2', '-O3']
       std = ['c++11', 'c++14', 'c++17']
-      result = {'default' => true}
+      result = { 'default' => true }
       opt.each do |o|
         std.each do |s|
           args = "#{o} #{s}"
@@ -26,17 +28,16 @@ module Test
       end
       result
     end
-    
 
     def execute(nochdir: false)
       res = nil
       if nochdir
         p "#{@tempdir}/a.out"
         res = system "#{@tempdir}/a.out"
-        p $?
+        p $CHILD_STATUS
       else
         Dir.chdir(@tempdir) do
-          res = system "./a.out"
+          res = system './a.out'
         end
       end
       res

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 Dir.chdir __dir__
 require 'fileutils'
 require 'optparse'
-require './dbhelper/collector.rb'
+require_relative './dbhelper/collector.rb'
 
-require './test/test.rb'
+require_relative './test/test.rb'
 
 @filter = nil
 @jobs = 1
 optparser = OptionParser.new
-optparser.on('--filter regexp'){|e| @filter = Regexp.new(e) }
+optparser.on('--filter regexp') { |e| @filter = Regexp.new(e) }
 optparser.on('-j', '--jobs number') do |e|
   e = e.to_i
   abort 'invalid arguments(jobs)' if e < 1
@@ -17,13 +19,13 @@ end
 # optparser.on('--log-path path'){|e| @log_path = e }
 optparser.parse!(ARGV)
 
-
 @tempdir = '/tmp/codelib2'
 
 # logio = @log_path ? open(@log_path, 'w') : nil
 
 def do_job(path, tid = 0)
-  return true if @filter && !(path =~ @filter)
+  return true if @filter && path !~ @filter
+
   puts "test: #{path}"
 
   lang = path.split('/')[1]
@@ -39,22 +41,20 @@ def do_job(path, tid = 0)
 
   result = tester.test_compilable
   if result['default']
-    if result.all?{|k,v| v}
+    if result.all? { |_k, v| v }
       puts 'ok'
     else
       puts 'partially ok'
     end
-    return true
+    true
   else
     puts 'failed!!'
-    return false
+    false
   end
-
 end
 
 failed = false
 Dir.chdir('../') do
-
   if @jobs == 1
     Document.src_files.each do |path|
       failed |= do_job(path)
@@ -72,13 +72,12 @@ Dir.chdir('../') do
 
     @jobs.times.map do |tid|
       Thread.new(tid) do |tid|
-        while path = pop_paths.call()
-          failed |= !(do_job(path, tid))
+        while path = pop_paths.call
+          failed |= !do_job(path, tid)
         end
       end
-    end.each{|t| t.join}
+    end.each(&:join)
   end
-
 end
 
 # logio.close if logio

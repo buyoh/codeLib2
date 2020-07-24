@@ -1,24 +1,22 @@
+# frozen_string_literal: true
+
 # TODO: replace...
 
-=begin rdoc
-Article {id: Integer, path: String, title: String, words: String, commit_id: Integer}
-=end
+# rdoc
+# Article {id: Integer, path: String, title: String, words: String, commit_id: Integer}
 Article = Struct.new('Article', :id, :path, :title, :words, :commit_id, keyword_init: true)
 
-=begin rdoc
-Commit {id: Integer, sha: String, date: Date}
-=end
+# rdoc
+# Commit {id: Integer, sha: String, date: Date}
 Commit = Struct.new('Commit', :id, :sha, :date, :message, keyword_init: true)
 
-=begin rdoc
-Descriptor {key: String, value: String}
-=end
+# rdoc
+# Descriptor {key: String, value: String}
 Descriptor = Struct.new('Descriptor', :key, :value, keyword_init: true)
 
-=begin rdoc
-Descriptors {article_id: Integer, values: Array<Descriptor>}
-=end
-Descriptor s= Struct.new('Descriptors', :article_id, :values, keyword_init: true)
+# rdoc
+# Descriptors {article_id: Integer, values: Array<Descriptor>}
+Descriptor s = Struct.new('Descriptors', :article_id, :values, keyword_init: true)
 
 # unnecessary... :(
 

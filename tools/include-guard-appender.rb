@@ -1,11 +1,11 @@
-Dir.chdir __dir__
+# frozen_string_literal: true
+
 require_relative './dbhelper/collector.rb'
 
 # easy implementation
 
-
 # @tempdir = '/tmp/codelib2'
-
+Dir.chdir __dir__
 def do_task(path)
   identifier = path.gsub(/\W/, '_').upcase + '__'
   puts path
@@ -23,7 +23,7 @@ def do_task(path)
     if line.start_with? "#ifndef #{identifier}"
       check_satisfied_guard = true
     elsif line.downcase.start_with? '// %=begin'
-      if !check_satisfied_guard
+      unless check_satisfied_guard
         need_update = true
         builder << "#ifndef #{identifier}\n"
         builder << "#define #{identifier}\n"
@@ -53,7 +53,7 @@ def do_task(path)
     return [true, :skip]
   end
 
-  if !check_satisfied_guard_terminal
+  unless check_satisfied_guard_terminal
     need_update = true
     builder << "#endif  // #{identifier}\n"
   end
@@ -65,7 +65,7 @@ def do_task(path)
   end
 
   puts 'OK: no update'
-  return [true, :ok]
+  [true, :ok]
 end
 
 counter = Hash.new(0)
@@ -74,14 +74,15 @@ Dir.chdir('../') do
   # Dir.mkdir @tempdir unless Dir.exist? @tempdir
 
   Document.src_files.each do |path|
-    next if @filter && !(path =~ @filter)
+    next if @filter && path !~ @filter
+
     lang = path.split('/')[1].downcase
     next if lang != 'cpp'
 
     ok, s = do_task(path)
     failed |= !ok
     counter[s] += 1
-    counter[:total] += 1 
+    counter[:total] += 1
   end
 end
 
@@ -89,4 +90,3 @@ p counter
 
 abort if failed
 exit 0
-

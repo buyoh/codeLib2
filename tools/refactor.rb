@@ -1,14 +1,13 @@
-Dir.chdir __dir__
-require './dbhelper/collector'
-require './code/codeparser'
+# frozen_string_literal: true
 
-@inplace = $*.include?('--inplace')
+require_relative './dbhelper/collector'
+require_relative './code/codeparser'
 
+@inplace = $ARGV.include?('--inplace')
 
 success = true
 
-Dir.chdir('../') do
-
+Dir.chdir(__dir__ + '/../') do
   Document.src_files.each do |path|
     info = Code.fileload(path)
     li = path.split('/')
@@ -20,20 +19,20 @@ Dir.chdir('../') do
     code = 0
     case li[1]
     when 'javascript'
-      if @inplace
-        code = system("eslint #{path} --fix")
-      else
-        code = system("eslint #{path}")
-      end
+      code = if @inplace
+               system("eslint #{path} --fix")
+             else
+               system("eslint #{path}")
+             end
     when 'cpp'
       if @inplace
         code = system("clang-format -i -style=file #{path}")
       else
         diff = `bash -c "diff <( clang-format -style=file #{path} ) #{path}"`
-        unless diff=~/^\s*$/
+        unless diff =~ /^\s*$/
           code = 1
           puts "clang-format assertion: #{path}"
-          puts "diff..."
+          puts 'diff...'
           puts diff
           puts ''
         end
@@ -42,8 +41,7 @@ Dir.chdir('../') do
     puts "failed: #{path}" unless code
     success &= code
   end
-
 end
 
-abort "refactor check failed" unless success
+abort 'refactor check failed' unless success
 exit 0
