@@ -17,7 +17,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: install tools
       run: |
-        sudo add-apt-repository 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal main'
         sudo apt update
         sudo apt install clang-format
         sudo apt install ruby gem g++ npm
