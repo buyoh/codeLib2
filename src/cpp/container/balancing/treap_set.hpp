@@ -113,9 +113,9 @@ class Treap {
     if (!ptr->childlen[0] && !ptr->childlen[1]) {
       ptr.release();
     } else {
-      bool i = ptr->childlen[0]   ? 0
-               : ptr->childlen[1] ? 1
-                                  : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
+      bool i = ptr->childlen[0]
+                   ? 0
+                   : ptr->childlen[1] ? 1 : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
       _rotate(ptr, i);
       _erase(ptr->childlen[i ^ 1]);
     }
