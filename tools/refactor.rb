@@ -1,7 +1,7 @@
 require_relative './dbhelper/collector'
 require_relative './code/codeparser'
 
-@inplace = $ARGV.include?('--inplace')
+@inplace = ARGV.include?('--inplace')
 
 success = true
 
