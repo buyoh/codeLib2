@@ -1,4 +1,4 @@
-require_relative './dbhelper/collector.rb'
+require_relative './collector/collector'
 
 # easy implementation
 

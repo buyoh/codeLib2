@@ -1,9 +1,9 @@
 Dir.chdir __dir__
 require 'fileutils'
 require 'optparse'
-require_relative './dbhelper/collector.rb'
+require_relative './collector/collector'
 
-require_relative './test/test.rb'
+require_relative './test/test'
 
 @filter = nil
 @jobs = 1

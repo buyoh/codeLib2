@@ -1,5 +1,5 @@
 require 'time'
-require_relative './collector.rb'
+require_relative './collector'
 
 module GitLog
   # 事前知識なしでfilesのすべてのlatest commitの情報を取得する。
