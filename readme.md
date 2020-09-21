@@ -1,33 +1,76 @@
-
 # codeLib2
 
 ## What's this?
+
 - 手法やアルゴリズムをまとめたチートシートです。
 
 ## 使う
+
 プロトタイププログラムに組み込むことを想定しています。大半のコードで入力値チェックを行いません。
 
-## ライブラリとは
-一般に『ライブラリ』とは、整形・整理した1つまたは複数のクラス・構造体・関数・メソッドを指します
-
 ## 注意
+
 - 別の構造体を前提とするコードがあります(example: `maxflow`は`Flow`が必要．)
 
-## tools
+## ドキュメント
+
+自分が検索しやすいように作ったものがあります
+
+### document(codeLib2-webdoc)
+
+https://github.com/buyoh/codeLib2-webdoc
+
+- 近いうちに deprecated になります
+- sinatraの勉強を兼ねて作成した雑な整理ツールです
+- https://codelib.ukibune.blue に同様のものがあります
+
+## スクリプト
 
 いくつかのツールを含んでいます。
 
-### document(webdoc)
+### autotest
 
-- sinatraによる雑な整理ツールを作っています
-- http://codelib.ukibune.blue に同様のものがありますs
-
-### test
-
-テストを実行します。
+テストを実行します。`-j` は、並列にテストを行うジョブの数を指定します。
 
 ```
-ruby tools/autotest.rb
+ruby tools/autotest.rb -j 4
+```
+
+特定の正規表現にマッチするファイルのみテストを行うこともできます。
+
+```
+ruby tools/autotest.rb --filter "*graph*"
+```
+
+### buildtest
+
+各ファイルがコンパイル可能かどうか検査します。
+`autotest` と同様のオプションが利用可能です。
+
+```
+ruby tools/buildtest.rb -j 4
+```
+
+### include-guard-appender
+
+新しくhppを追加した時にインクルードガードを勝手に挿入してもらうツールです。  
+
+```
+ruby tools/include-guard-appender.rb
+```
+
+### refactor
+
+整形出来ているかどうかチェックします。いわゆる `Beautify` です。
+
+```
+ruby tools/refactor.rb
+```
+
+勝手に修正しても良い場合は、`--inplace`を追加します。
+
+```
+ruby tools/refactor.rb --inplace
 ```
 
 #### 背景
@@ -41,16 +84,12 @@ ruby tools/autotest.rb
 
 ## 開発
 
-### シーケンス
+### 命名規則
 
-現状は最低限の規定のみ。
-
-- masterからブランチを作成
+- C++: chromium を適用
+- ブランチ名
   - test, src ならブランチ名は`src-lang-algorithmNameHere`
   - tools ならブランチ名は`tools-hoge`
-- 実装する
-- pull requestする
-- masterにsquashする
 
 ### テンプレート
 
