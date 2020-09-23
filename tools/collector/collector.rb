@@ -2,23 +2,23 @@ require_relative '../code/codeparser'
 require_relative '../markup/markup'
 
 module Document
-  def self.langs
+  def self.langs(basepath = '.')
     raise 'current directory is not root' unless File.directory?('src')
 
-    Dir.glob('./src/*').select { |path| File.directory? path }.map { |path| File.basename(path) }
+    Dir.glob("#{basepath}/src/*").select { |path| File.directory? path }.map { |path| File.basename(path) }
   end
 
-  def self.src_files
-    langs.map { |lang| Dir.glob("src/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
+  def self.src_files(basepath = '.')
+    langs(basepath).map { |lang| Dir.glob("#{basepath}/src/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
   end
 
-  def self.test_files
-    langs.map { |lang| Dir.glob("test/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
+  def self.test_files(basepath = '.')
+    langs(basepath).map { |lang| Dir.glob("#{basepath}/test/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
   end
 
-  def self.collect_documents
+  def self.collect_documents(basepath = '.')
     dic = []
-    src_files.each do |path|
+    src_files(basepath).each do |path|
       d = Code.fileload(path)
       next unless d.key?(:title)
 

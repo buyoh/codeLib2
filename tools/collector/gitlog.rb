@@ -5,14 +5,16 @@ module GitLog
   # 事前知識なしでfilesのすべてのlatest commitの情報を取得する。
   # files: Document.src_files
   # @result: filepath => {sha, date, message}
-  def self.collect_all_latest_nocache(files, per_skip = 4)
+  def self.collect_all_latest_nocache(files, per_skip = 4, base_path = nil)
+    arg_basepath = base_path ? "-C #{base_path}" : ''
     db = files.each_with_object({}) { |f, s| s[f] = nil; }
     remain = files.size
 
     skip = 0
     while remain > 0
       none = true
-      IO.popen("git log -n #{per_skip} --skip=#{skip} --name-only --oneline --pretty=format:'%H;%cd;%s'", 'r') do |io|
+      IO.popen("git log #{arg_basepath} -n #{per_skip} --skip=#{skip}" + \
+        " --name-only --oneline --pretty=format:'%H;%cd;%s'", 'r') do |io|
         commit = nil
         while line = io.gets
           line.chomp!
@@ -47,9 +49,11 @@ module GitLog
 
   # path のファイルに対して、全てのコミットログを取得する。
   # @return: [{sha, date, message}, ...]
-  def self.history(_path, options)
-    `git log --oneline --pretty=format:'%H;%cd;%s' $path #{format_options(options)}`.split("\n") \
-                                                                                    .reject(&:empty?).map { |l| s, d, m = l.split(';'); { sha: s, date: Time.parse(d), message: m } }
+  def self.history(_path, options, base_path = nil)
+    arg_basepath = base_path ? "-C #{base_path}" : ''
+    `git log #{arg_basepath} --oneline --pretty=format:'%H;%cd;%s' $path #{format_options(options)}` \
+      .split("\n") \
+      .reject(&:empty?).map { |l| s, d, m = l.split(';'); { sha: s, date: Time.parse(d), message: m } }
   end
 
   def self.format_options(hash, ignore = {})
