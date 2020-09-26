@@ -1,5 +1,4 @@
 require_relative '../code/codeparser'
-require_relative '../markup/markup'
 
 module Document
   def self.langs(basepath = '.')
@@ -22,9 +21,6 @@ module Document
       d = Code.fileload(path)
       next unless d.key?(:title)
 
-      d.keys.each do |k|
-        d[k] = Markup.parse(d[k])
-      end
       d[:path] = path
       dic << d
     end
