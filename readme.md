@@ -16,13 +16,20 @@
 
 自分が検索しやすいように作ったものがあります
 
+### document(codeLib2-htmldoc)
+
+https://github.com/buyoh/codeLib2-htmldoc
+
+- https://buyoh.github.io/codeLib2 に同様のものがあります
+- redux, webpack の勉強を兼ねて作成した雑な整理ツールです
+
 ### document(codeLib2-webdoc)
 
 https://github.com/buyoh/codeLib2-webdoc
 
-- 近いうちに deprecated になります
+- deprecated です
 - sinatraの勉強を兼ねて作成した雑な整理ツールです
-- https://codelib.ukibune.blue に同様のものがあります
+- ~~https://codelib.ukibune.blue に同様のものがあります~~
 
 ## スクリプト
 
