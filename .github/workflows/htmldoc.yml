@@ -32,9 +32,6 @@ jobs:
       run: |
         git config --global user.email "mai@ukibune.net"
         git config --global user.name "mai bot-worker"
-    - name: merge from master
-      run: |
-        git pull remotes/origin/master
     - name: get codeLib2-htmldoc
       run: |
         git clone https://github.com/buyoh/codeLib2-htmldoc.git /tmp/tools/htmldoc
