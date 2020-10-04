@@ -45,6 +45,8 @@ jobs:
         yarn build
         ruby tools/generate_release_directory.rb --output-path ${CODELIB_PATH}/docs
         popd
+        echo ${CODELIB_PATH}/docs
+        ls ${CODELIB_PATH}/docs
     - name: commit phase
       run: |
         if [ `git diff | wc -l` -ne 0 ] ; then
