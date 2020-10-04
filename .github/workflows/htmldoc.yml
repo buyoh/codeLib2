@@ -38,8 +38,7 @@ jobs:
     - name: generate by codeLib2-htmldoc
       run: |
         CODELIB_PATH=`pwd`
-        rm -rf ${CODELIB_PATH}/docs
-        mkdir -p ${CODELIB_PATH}/docs
+        mkdir -p /tmp/docs
         pushd /tmp/tools/htmldoc
         ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize
         yarn build
@@ -51,6 +50,7 @@ jobs:
         # ref: doc-codeLib2
     - name: commit phase
       run: |
+        rm -rf ./docs
         mv /tmp/docs ./
         git add docs/*
         git commit -m 'update htmldoc by Github Actions'
