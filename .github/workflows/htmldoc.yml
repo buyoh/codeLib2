@@ -45,10 +45,8 @@ jobs:
         yarn build
         ruby tools/generate_release_directory.rb --output-path ${CODELIB_PATH}/docs
         popd
-        ls docs
     - name: commit phase
       run: |
-        ls docs
         git diff
         git add docs/*
         git commit -m 'update htmldoc by Github Actions'
