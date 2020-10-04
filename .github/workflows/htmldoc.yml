@@ -34,7 +34,7 @@ jobs:
         git config --global user.name "mai bot-worker"
     - name: merge from master
       run: |
-        git merge remotes/origin/master
+        git pull remotes/origin/master
     - name: get codeLib2-htmldoc
       run: |
         git clone https://github.com/buyoh/codeLib2-htmldoc.git /tmp/tools/htmldoc
