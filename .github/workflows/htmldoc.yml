@@ -47,10 +47,9 @@ jobs:
         popd
     - name: commit phase
       run: |
-        if [ `git diff | wc -l` -ne 0 ] ; then
+        git diff
         git add ${CODELIB_PATH}/docs/*
         git commit -m 'update htmldoc by Github Actions'
-        fi
     - name: push
       run: |
         git push
