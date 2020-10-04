@@ -39,6 +39,7 @@ jobs:
     - name: generate by codeLib2-htmldoc
       run: |
         CODELIB_PATH=`pwd`
+        mkdir -p ${CODELIB_PATH}/docs
         pushd /tmp/tools/htmldoc
         ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize
         yarn build
