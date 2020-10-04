@@ -49,9 +49,9 @@ module GitLog
 
   # path のファイルに対して、全てのコミットログを取得する。
   # @return: [{sha, date, message}, ...]
-  def self.history(_path, options, base_path = nil)
+  def self.history(path, options, base_path = nil)
     arg_basepath = base_path ? "-C #{base_path}" : ''
-    `git log #{arg_basepath} --oneline --pretty=format:'%H;%cd;%s' $path #{format_options(options)}` \
+    `git #{arg_basepath} log --oneline --pretty=format:'%H;%cd;%s' #{format_options(options)} #{path}` \
       .split("\n") \
       .reject(&:empty?).map { |l| s, d, m = l.split(';'); { sha: s, date: Time.parse(d), message: m } }
   end

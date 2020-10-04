@@ -2,7 +2,7 @@ require_relative '../code/codeparser'
 
 module Document
   def self.langs(basepath = '.')
-    raise 'current directory is not root' unless File.directory?('src')
+    raise 'current directory is not root' unless File.directory?("#{basepath}/src")
 
     Dir.glob("#{basepath}/src/*").select { |path| File.directory? path }.map { |path| File.basename(path) }
   end
