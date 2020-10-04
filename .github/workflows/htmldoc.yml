@@ -26,8 +26,8 @@ jobs:
       with:
         node-version: '12'
     - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.7'
+      with:
+        ruby-version: '2.7'
     - name: Please tell me who you are.
       run: |
         git config --global user.email "mai@ukibune.net"
