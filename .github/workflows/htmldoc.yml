@@ -7,10 +7,12 @@ name: update-htmldoc
 # bundle update
 # Upgrade Gemfile.lock
 
-on: [push]
-# on:
-#   schedule:
-#     - cron: 0 12 * * 5  # At 12:00 on Friday.
+on:
+  push:
+    branches:
+    - master
+  schedule:
+    - cron: 0 12 * * 1  # At 12:00 on Monday.
 
 jobs:
   build:
