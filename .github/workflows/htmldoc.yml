@@ -20,8 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: doc-codeLib2-workflowtest
-        # ref: doc-codeLib2
+        ref: master
     - uses: actions/setup-node@v1
       with:
         node-version: '12'
@@ -39,15 +38,20 @@ jobs:
     - name: generate by codeLib2-htmldoc
       run: |
         CODELIB_PATH=`pwd`
+        rm -rf ${CODELIB_PATH}/docs
         mkdir -p ${CODELIB_PATH}/docs
         pushd /tmp/tools/htmldoc
         ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize
         yarn build
-        ruby tools/generate_release_directory.rb --output-path ${CODELIB_PATH}/docs
+        ruby tools/generate_release_directory.rb --output-path /tmp/docs
         popd
+    - uses: actions/checkout@v2
+      with:
+        ref: doc-codeLib2-workflowtest
+        # ref: doc-codeLib2
     - name: commit phase
       run: |
-        git diff
+        mv /tmp/docs ./
         git add docs/*
         git commit -m 'update htmldoc by Github Actions'
     - name: push
