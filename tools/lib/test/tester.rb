@@ -1,4 +1,4 @@
-module Test
+module Tester
   class CPP
     CC = 'g++'.freeze
     OPTIONS = '-I ./ -lm -Wall'.freeze

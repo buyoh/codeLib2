@@ -1,7 +1,9 @@
+#!/usr/bin/env ruby
+
 require 'fileutils'
 require 'optparse'
-require_relative './collector/collector'
-require_relative './test/test'
+require_relative './lib/collector/collector'
+require_relative './lib/test/tester'
 
 @filter = nil
 @jobs = 1
@@ -25,7 +27,7 @@ def do_job(path, lang, workerid = 0)
 
   puts "test: #{path}"
 
-  langc = Test.const_get(lang.upcase)
+  langc = Tester.const_defined?(lang.upcase) && Tester.const_get(lang.upcase)
   unless langc
     puts 'not implemented language: ' + lang
     return true
@@ -47,13 +49,13 @@ end
 failed = false
 Dir.chdir('../') do
   if @jobs == 1
-    Document.test_files.each do |path|
-      lang = path.split('/')[2] # /test/cpp/hoge...
+    Collector.test_files.each do |path|
+      lang = Collector.lang_from_path(path)
       failed |= !do_job(path, lang)
     end
   else
     mtx = Mutex.new
-    paths = Document.test_files.clone
+    paths = Collector.test_files.clone
     pop_paths = lambda do
       res = nil
       mtx.synchronize do
@@ -65,7 +67,7 @@ Dir.chdir('../') do
     @jobs.times.map do |tid|
       Thread.new(tid) do |tid|
         while path = pop_paths.call
-          lang = path.split('/')[2]
+          lang = Collector.lang_from_path(path)
           failed |= !do_job(path, lang, tid)
         end
       end

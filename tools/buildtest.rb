@@ -1,9 +1,10 @@
+#!/usr/bin/env ruby
+
 Dir.chdir __dir__
 require 'fileutils'
 require 'optparse'
-require_relative './collector/collector'
-
-require_relative './test/test'
+require_relative './lib/collector/collector'
+require_relative './lib/test/tester'
 
 @filter = nil
 @jobs = 1
@@ -21,20 +22,18 @@ optparser.parse!(ARGV)
 
 # logio = @log_path ? open(@log_path, 'w') : nil
 
-def do_job(path, tid = 0)
+def do_job(path, lang, tid = 0)
   return true if @filter && path !~ @filter
 
   puts "test: #{path}"
-
-  lang = path.split('/')[1]
-  unless Test.const_defined?(lang.upcase)
+  unless Tester.const_defined?(lang.upcase)
     puts 'not implemented language: ' + lang
     return true
   end
 
   tempdir = @tempdir + tid.to_s
   FileUtils.mkdir_p tempdir unless Dir.exist? tempdir
-  langc = Test.const_get(lang.upcase)
+  langc = Tester.const_get(lang.upcase)
   tester = langc.new(path, tempdir)
 
   result = tester.test_compilable
@@ -54,12 +53,13 @@ end
 failed = false
 Dir.chdir('../') do
   if @jobs == 1
-    Document.src_files.each do |path|
-      failed |= do_job(path)
+    Collector.src_files.each do |path|
+      lang = path.split('/')[2]
+      failed |= do_job(path, lang)
     end
   else
     mtx = Mutex.new
-    paths = Document.src_files.clone
+    paths = Collector.src_files.clone
     pop_paths = lambda do
       res = nil
       mtx.synchronize do
@@ -71,7 +71,8 @@ Dir.chdir('../') do
     @jobs.times.map do |tid|
       Thread.new(tid) do |tid|
         while path = pop_paths.call
-          failed |= !do_job(path, tid)
+          lang = path.split('/')[1]
+          failed |= !do_job(path, lang, tid)
         end
       end
     end.each(&:join)

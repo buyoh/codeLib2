@@ -1,6 +1,6 @@
 require_relative '../code/codeparser'
 
-module Document
+module Collector
   def self.langs(basepath = '.')
     raise 'current directory is not root' unless File.directory?("#{basepath}/src")
 
@@ -26,5 +26,9 @@ module Document
     end
 
     dic
+  end
+
+  def self.lang_from_path(path)
+    path.split('/').reject { |h| h[0] == '.' || h == 'src' || h == 'test'}[0]
   end
 end

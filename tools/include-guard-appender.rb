@@ -1,4 +1,6 @@
-require_relative './collector/collector'
+#!/usr/bin/env ruby
+
+require_relative './lib/collector/collector'
 
 # easy implementation
 
@@ -71,10 +73,10 @@ failed = false
 Dir.chdir('../') do
   # Dir.mkdir @tempdir unless Dir.exist? @tempdir
 
-  Document.src_files.each do |path|
+  Collector.src_files.each do |path|
     next if @filter && path !~ @filter
 
-    lang = path.split('/')[1].downcase
+    lang = Collector.lang_from_path(path)
     next if lang != 'cpp'
 
     ok, s = do_task(path)
