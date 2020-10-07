@@ -23,10 +23,6 @@ jobs:
       run: |
         mkdir -p coverage
         ruby tools/gather_coverage.rb > coverage/tested.json
-    - uses: actions/checkout@v2
-      with:
-        ref: doc-codeLib2-workflowtest
-        # ref: doc-codeLib2
     - name: commit phase
       run: |
         git add coverage/*
