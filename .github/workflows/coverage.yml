@@ -1,0 +1,32 @@
+name: update-coverage
+
+on:
+  push:
+    # branches:
+    # - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+    - name: Please tell me who you are.
+      run: |
+        git config --global user.email "mai@ukibune.net"
+        git config --global user.name "mai bot-worker"
+    - name: generate
+      run: |
+        mkdir -p coverage
+        ruby tools/gather_coverage.rb > coverage/tested.json
+    - name: commit phase
+      run: |
+        git add coverage/*
+        git commit -m 'update coverage by Github Actions'
+    - name: push
+      run: |
+        git push
