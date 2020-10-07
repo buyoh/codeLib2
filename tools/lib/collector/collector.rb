@@ -18,7 +18,7 @@ module Collector
   def self.collect_documents(basepath = '.')
     dic = []
     src_files(basepath).each do |path|
-      d = Code.fileload(path)
+      d = open(path, 'r') { |io| Code.read_docfile(io)}
       next unless d.key?(:title)
 
       d[:path] = path
@@ -29,6 +29,6 @@ module Collector
   end
 
   def self.lang_from_path(path)
-    path.split('/').reject { |h| h[0] == '.' || h == 'src' || h == 'test'}[0]
+    path.split('/').reject { |h| h[0] == '.' || h == 'src' || h == 'test' }[0]
   end
 end

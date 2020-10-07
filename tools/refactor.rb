@@ -9,8 +9,8 @@ success = true
 
 Dir.chdir(__dir__ + '/../') do
   Collector.src_files.each do |path|
-    info = Code.fileload(path)
     lang = Collector.lang_from_path(path)
+    info = open(path, 'r') { |io| Code.read_docfile(io)}
 
     tags = (info[:tags] || '').split(',').map(&:strip)
 

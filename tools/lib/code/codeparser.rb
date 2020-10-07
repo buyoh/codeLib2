@@ -3,7 +3,7 @@ require 'kconv'
 module Code
   module_function
 
-  def fileload(path)
+  def read_docfile(io)
     dic = {}
     tag = nil
     doc_type = nil
@@ -41,7 +41,6 @@ module Code
       dic[:code] << line_raw << "\n"
     end
 
-    io = open(path, 'r')
     while line_raw = io.gets
       line_raw = line_raw.toutf8.chomp
       line_com = comment_line(line_raw)
