@@ -89,7 +89,7 @@ class << Code
   private
 
   def comment_line(line)
-    return nil unless line =~ %r{^(?:#|//)\s+(\S?.*)$}
+    return nil unless line =~ %r{^(?:#|//)(?:\s+(\S?.*))?$}
 
     Regexp.last_match(1) || ''
   end
