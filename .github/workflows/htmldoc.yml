@@ -48,8 +48,7 @@ jobs:
         popd
     - uses: actions/checkout@v2
       with:
-        ref: doc-codeLib2-workflowtest
-        # ref: doc-codeLib2
+        ref: doc-codeLib2
     - name: commit phase
       run: |
         rm -rf ./docs
