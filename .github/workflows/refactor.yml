@@ -26,10 +26,8 @@ jobs:
     - name: refactor
       run: |
         ruby tools/refactor.rb --inplace
-        if [ `git diff | wc -l` -ne 0 ] ; then
         git add .
-        git commit -m 'refactor by Github Actions'
-        fi
+        git commit -m 'refactor by Github Actions' ||:
     - uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

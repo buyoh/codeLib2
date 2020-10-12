@@ -55,7 +55,7 @@ jobs:
         mv /tmp/docs ./
         rm `find ./docs -name .gitignore`
         git add docs/*
-        git commit -m 'update htmldoc by Github Actions'
+        git commit -m 'update htmldoc by Github Actions' ||:
     - name: push
       run: |
         git push
