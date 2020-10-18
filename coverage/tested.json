@@ -240,6 +240,11 @@
 
     ]
   },
+  "src/cpp/container/likermq/mosalgo.hpp": {
+    "tested_by": [
+
+    ]
+  },
   "src/cpp/container/likermq/rmq_sparsetable.hpp": {
     "tested_by": [
 
