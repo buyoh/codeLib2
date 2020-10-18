@@ -34,14 +34,13 @@
 class MoAlgo {
  private:
   int n_, sqn_;
-  std::vector<std::pair<int, int>> ranges_;
-  bool mosCompare(int l, int r) const {
-    return (ranges_[l].first / sqn_ != ranges_[r].first / sqn_)
-               ? ranges_[l].first < ranges_[r].first
-               : ranges_[l].second < ranges_[r].second;
-  }
 
  protected:
+  std::vector<std::pair<int, int>> ranges_;
+
+ protected:
+  // solveが呼ばれた直後に呼ばれる
+  virtual void init(){};
   // 現在の状態に要素indexを追加
   virtual void add(int index) = 0;
   // 現在の状態から要素indexを削除
@@ -55,11 +54,15 @@ class MoAlgo {
   // [b, e)
   void rangeEmplace(int b, int e) { ranges_.emplace_back(b, e); }
   void solve() {
-    const int sq = ;
+    init();
     const int q = ranges_.size();
     std::vector<int> qi(q);
     std::iota(qi.begin(), qi.end(), 0);
-    std::sort(qi.begin(), qi.end(), mosCompare);
+    std::sort(qi.begin(), qi.end(), [&](int l, int r) {
+      return (ranges_[l].first / sqn_ != ranges_[r].first / sqn_)
+                 ? ranges_[l].first < ranges_[r].first
+                 : ranges_[l].second < ranges_[r].second;
+    });
     int nl = 0, nr = 0;  // [nl,nr)
     for (int i : qi) {
       while (nl > ranges_[i].first)
@@ -70,7 +73,7 @@ class MoAlgo {
         del(nl), ++nl;
       while (nr > ranges_[i].second)
         --nr, del(nr);
-      query(nl, nr);
+      query(i);
     }
   }
 };
