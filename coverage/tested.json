@@ -242,7 +242,7 @@
   },
   "src/cpp/container/likermq/mosalgo.hpp": {
     "tested_by": [
-
+      "test/cpp/container/likermq/mosalgo.cpp"
     ]
   },
   "src/cpp/container/likermq/rmq_sparsetable.hpp": {
