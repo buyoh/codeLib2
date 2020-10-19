@@ -3,6 +3,7 @@
 ## What's this?
 
 - 手法やアルゴリズムをまとめたチートシートです。
+- https://buyoh.github.io/codeLib2
 
 ## 使う
 
@@ -29,7 +30,6 @@ https://github.com/buyoh/codeLib2-webdoc
 
 - deprecated です
 - sinatraの勉強を兼ねて作成した雑な整理ツールです
-- ~~https://codelib.ukibune.blue に同様のものがあります~~
 
 ## スクリプト
 
@@ -46,7 +46,7 @@ ruby tools/autotest.rb -j 4
 特定の正規表現にマッチするファイルのみテストを行うこともできます。
 
 ```
-ruby tools/autotest.rb --filter "*graph*"
+ruby tools/autotest.rb --filter ".*graph.*"
 ```
 
 ### buildtest
