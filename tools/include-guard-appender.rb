@@ -73,7 +73,7 @@ failed = false
 Dir.chdir('../') do
   # Dir.mkdir @tempdir unless Dir.exist? @tempdir
 
-  Collector.src_files.each do |path|
+  Collector.src_paths.each do |path|
     next if @filter && path !~ @filter
 
     lang = Collector.lang_from_path(path)

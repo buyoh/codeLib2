@@ -49,13 +49,13 @@ end
 failed = false
 Dir.chdir('../') do
   if @jobs == 1
-    Collector.test_files.each do |path|
+    Collector.test_paths.each do |path|
       lang = Collector.lang_from_path(path)
       failed |= !do_job(path, lang)
     end
   else
     mtx = Mutex.new
-    paths = Collector.test_files.clone
+    paths = Collector.test_paths.clone
     pop_paths = lambda do
       res = nil
       mtx.synchronize do

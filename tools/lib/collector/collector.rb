@@ -1,3 +1,4 @@
+require 'pathname'
 require_relative '../code/codeparser'
 
 module Collector
@@ -7,15 +8,23 @@ module Collector
     Dir.glob("#{basepath}/src/*").select { |path| File.directory? path }.map { |path| File.basename(path) }
   end
 
-  def self.src_files(basepath = '.')
+  def self.src_paths(basepath = '.')
     langs(basepath).map { |lang| Dir.glob("#{basepath}/src/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
   end
 
-  def self.test_files(basepath = '.')
+  def self.src_files(basepath = '.')  # TODO: rename src_paths
+    src_paths(basepath)
+  end
+
+  def self.test_paths(basepath = '.')
     langs(basepath).map { |lang| Dir.glob("#{basepath}/test/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
   end
 
-  def self.collect_documents(basepath = '.')
+  def self.test_files(basepath = '.') # TODO: rename test_paths
+    test_files(basepath)
+  end
+
+  def self.collect_documents(basepath = '.') # TODO: 引数はsrc_files
     dic = []
     src_files(basepath).each do |path|
       d = open(path, 'r') { |io| Code.read_docfile(io)}
@@ -26,6 +35,12 @@ module Collector
     end
 
     dic
+  end
+
+  # ./src/lang/foo/bar.ext の形式にする
+  def self.normalize_path(path, basepath)
+    base = File.dirname(File.absolute_path(basepath))
+    Pathname.new(File.absolute_path(path)).relative_path_from(base).to_s
   end
 
   def self.lang_from_path(path)

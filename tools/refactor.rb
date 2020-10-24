@@ -8,7 +8,7 @@ require_relative './lib/code/codeparser'
 success = true
 
 Dir.chdir(__dir__ + '/../') do
-  Collector.src_files.each do |path|
+  Collector.src_paths.each do |path|
     lang = Collector.lang_from_path(path)
     info = open(path, 'r') { |io| Code.read_docfile(io)}
 

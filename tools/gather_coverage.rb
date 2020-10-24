@@ -15,16 +15,16 @@ end
 @codelib_path = __dir__ + '/..'
 @codelib_path = File.absolute_path(@codelib_path)
 
-src_files_path = Collector.src_files(@codelib_path).map { |e| relative_path(e, @codelib_path + '/src')}
-p src_files_path[0]
+src_paths_path = Collector.src_paths(@codelib_path).map { |e| relative_path(e, @codelib_path + '/src')}
+
 coverages = {}
-src_files_path.each do |path|
+src_paths_path.each do |path|
   coverages[path] = {
     tested_by: []
   }
 end
 
-Collector.test_files(@codelib_path).each do |test_path|
+Collector.test_paths(@codelib_path).each do |test_path|
   nom_test_path = relative_path(test_path, @codelib_path + '/src')
   dfs = lambda do |path|
     code = open(path, 'r') { |io| Code.read_code(io, Collector.lang_from_path(path))}

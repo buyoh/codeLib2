@@ -30,9 +30,7 @@ module Tester
     def execute(nochdir: false)
       res = nil
       if nochdir
-        p "#{@tempdir}/a.out"
         res = system "#{@tempdir}/a.out"
-        p $CHILD_STATUS
       else
         Dir.chdir(@tempdir) do
           res = system './a.out'
