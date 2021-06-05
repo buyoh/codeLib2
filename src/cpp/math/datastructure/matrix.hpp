@@ -30,12 +30,12 @@ using namespace std;
 // %=END DOC
 // %=BEGIN CODE
 
-template <typename T>
+template <typename T, typename Container = valarray<T>>
 // using T = double;
 class Matrix {
  public:
   size_t height_, width_;
-  valarray<T> data_;
+  Container data_;
   Matrix(size_t height = 1, size_t width = 1)
       : height_(height), width_(width), data_(height * width) {}
   template <typename V>
@@ -46,6 +46,8 @@ class Matrix {
 
   inline T& operator()(size_t y, size_t x) { return data_[y * width_ + x]; }
   inline T operator()(size_t y, size_t x) const { return data_[y * width_ + x]; }
+  inline T& operator[](size_t i) { return data_[i]; }
+  inline T operator[](size_t i) const { return data_[i]; }
   inline T& at(size_t y, size_t x) { return data_[y * width_ + x]; }
   inline T at(size_t y, size_t x) const { return data_[y * width_ + x]; }
   inline void resize(size_t h, size_t w) {
@@ -59,7 +61,7 @@ class Matrix {
     data_.resize(h * w, val);
   }
   inline void fill(T val) { data_ = val; }
-  Matrix<T>& setDiag(T val) {
+  Matrix<T>& setDiag(T val) {  // TODO: rename to makeDiag and check dependencies
     for (size_t i = 0, en = min(width_, height_); i < en; ++i)
       at(i, i) = val;
     return *this;
