@@ -16,6 +16,7 @@
 // %require
 // ```
 #include "src/cpp/math/datastructure/matrix.hpp"
+#include <vector>
 using namespace std;
 // ```
 //
@@ -26,7 +27,6 @@ using namespace std;
 // %=BEGIN CODE
 template <typename T>
 class LUDecomposition {
- public:
   const size_t n_;
   vector<int> pivot_;
   vector<T> elem_;

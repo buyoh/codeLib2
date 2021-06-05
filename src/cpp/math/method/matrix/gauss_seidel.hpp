@@ -30,10 +30,10 @@ Matrix<T> gauss_seidel(const Matrix<T>& aa, const Matrix<T>& bb, int iter = 100)
   assert(bb.width_ == 1);
   auto n = bb.height_;
   auto xx = bb;
-  repeat(_, iter) {
-    repeat(i, n) {
+  for (int _ = iter; _ > 0; --iter) {
+    for (int i = 0; i < n; ++i) {
       T total = 0;
-      repeat(j, n) {
+      for (int j = 0; j < n; ++j) {
         if (j != i)
           total += aa(i, j) * xx(j, 0);
       }
