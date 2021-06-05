@@ -54,7 +54,7 @@ failed = false
 Dir.chdir('../') do
   if @jobs == 1
     Collector.src_files.each do |path|
-      lang = path.split('/')[2]
+      lang = Collector.lang_from_path(path)
       failed |= do_job(path, lang)
     end
   else
@@ -71,7 +71,7 @@ Dir.chdir('../') do
     @jobs.times.map do |tid|
       Thread.new(tid) do |tid|
         while path = pop_paths.call
-          lang = path.split('/')[1]
+          lang = Collector.lang_from_path(path)
           failed |= !do_job(path, lang, tid)
         end
       end
