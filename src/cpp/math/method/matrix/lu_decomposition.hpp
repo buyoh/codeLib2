@@ -1,3 +1,5 @@
+#ifndef __SRC_CPP_MATH_METHOD_MATRIX_LU_DECOMPOSITION_HPP__
+#define __SRC_CPP_MATH_METHOD_MATRIX_LU_DECOMPOSITION_HPP__
 // %=BEGIN DOC
 // %title
 // LU decomposition
@@ -40,41 +42,39 @@ class LUDecomposition {
     LUDecomposition lu(mat.height_);
     const int n = mat.height_;
 
-    vector<int> pv;
-    pv.reserve(n);  // TODO: pivot_だけにする
-    lu.pivot_.resize(n);
+    vector<int> pv(n);
+    lu.pivot_.reserve(n);
     for (int i = 0; i < n; ++i)
-      lu.pivot_[i] = i;
+      pv[i] = i;
 
     for (int i = 0; i < n; ++i) {
       int p = i;
       for (int j = i + 1; j < n; ++j)
-        if (abs(mat(lu.pivot_[j], i)) > abs(mat(lu.pivot_[p], i)))
+        if (abs(mat(pv[j], i)) > abs(mat(pv[p], i)))
           p = j;
       if (p != i) {
-        swap(lu.pivot_[p], lu.pivot_[i]);
+        swap(pv[p], pv[i]);
         lu.det_ *= -1;
       }
-      pv.push_back(p);
+      lu.pivot_.push_back(p);
 
       for (int j = i + 1; j < n; ++j) {
-        if (abs(mat(lu.pivot_[i], i)) <= eps)
+        if (abs(mat(pv[i], i)) <= eps)
           return LUDecomposition(0);
-        mat(lu.pivot_[j], i) /= mat(lu.pivot_[i], i);
+        mat(pv[j], i) /= mat(pv[i], i);
         for (int k = i + 1; k < n; ++k) {
-          mat(lu.pivot_[j], k) -= mat(lu.pivot_[i], k) * mat(lu.pivot_[j], i);
+          mat(pv[j], k) -= mat(pv[i], k) * mat(pv[j], i);
         }
-        lu.elem_.push_back(mat(lu.pivot_[j], i));
+        lu.elem_.push_back(mat(pv[j], i));
       }
     }
     for (int i = n - 1; i >= 0; --i) {
       for (int j = i + 1; j < n; ++j)
-        lu.elem_.push_back(mat(lu.pivot_[i], j));
-      auto t = mat(lu.pivot_[i], i);
+        lu.elem_.push_back(mat(pv[i], j));
+      auto t = mat(pv[i], i);
       lu.elem_.push_back(t);
       lu.det_ *= t;
     }
-    lu.pivot_ = move(pv);
     return lu;
   }
   template <typename V>
@@ -97,3 +97,5 @@ class LUDecomposition {
   }
   T det() const { return det_; }
 };
+// %=END CODE
+#endif  // __SRC_CPP_MATH_METHOD_MATRIX_LU_DECOMPOSITION_HPP__
