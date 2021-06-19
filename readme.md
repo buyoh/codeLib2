@@ -3,33 +3,20 @@
 ## What's this?
 
 - 手法やアルゴリズムをまとめたチートシートです。
-- https://buyoh.github.io/codeLib2
-
-## 使う
-
-プロトタイププログラムに組み込むことを想定しています。大半のコードで入力値チェックを行いません。
+- ドキュメントはこちら https://buyoh.github.io/codeLib2
 
 ## 注意
 
+- プロトタイププログラムに組み込むことを想定しています。大半のコードで入力値チェックを行いません。
 - 別の構造体を前提とするコードがあります(example: `maxflow`は`Flow`が必要．)
 
-## ドキュメント
-
-自分が検索しやすいように作ったものがあります
-
-### document(codeLib2-htmldoc)
+## ドキュメント(codeLib2-htmldoc)
 
 https://github.com/buyoh/codeLib2-htmldoc
 
+- この repository を検索しやすくするために作ったものです。
 - https://buyoh.github.io/codeLib2 に同様のものがあります
 - redux, webpack の勉強を兼ねて作成した雑な整理ツールです
-
-### document(codeLib2-webdoc)
-
-https://github.com/buyoh/codeLib2-webdoc
-
-- deprecated です
-- sinatraの勉強を兼ねて作成した雑な整理ツールです
 
 ## スクリプト
 
@@ -52,7 +39,7 @@ ruby tools/autotest.rb --filter ".*graph.*"
 ### buildtest
 
 各ファイルがコンパイル可能かどうか検査します。
-`autotest` と同様のオプションが利用可能です。
+`autotest` と同様に `-j` `--filter` オプションが利用可能です。
 
 ```
 ruby tools/buildtest.rb -j 4
@@ -60,7 +47,7 @@ ruby tools/buildtest.rb -j 4
 
 ### include-guard-appender
 
-新しくhppを追加した時にインクルードガードを勝手に挿入してもらうツールです。  
+新しくhppを追加した時にインクルードガードを勝手に挿入してもらうツールです。
 
 ```
 ruby tools/include-guard-appender.rb
@@ -80,23 +67,7 @@ ruby tools/refactor.rb
 ruby tools/refactor.rb --inplace
 ```
 
-#### 背景
-
-テストを書いた理由は以下の２つです。
-
-- 正当性確認のための乱数チェックの実装を残しておきたかった。
-- データ構造に互換性の無い変更を行った時に、修正すべきその他の関数を列挙できるようにしたかった。
-  - コンテスト中に最大流で型が合わない悲劇をしたことがあります。
-
-
 ## 開発
-
-### 命名規則
-
-- C++: chromium を適用
-- ブランチ名
-  - test, src ならブランチ名は`src-lang-algorithmNameHere`
-  - tools ならブランチ名は`tools-hoge`
 
 ### テンプレート
 
