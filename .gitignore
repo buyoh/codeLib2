@@ -46,11 +46,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# tools
-tools/.sass-cache
-tools/Gemfile.lock
-tools/tmp
-tools/log
-
 #tmp
 tmp

@@ -3,7 +3,7 @@ require_relative './collector'
 
 module GitLog
   # 事前知識なしでfilesのすべてのlatest commitの情報を取得する。
-  # files: Document.src_files
+  # files: Collector.src_paths
   # @result: filepath => {sha, date, message}
   def self.collect_all_latest_nocache(files, per_skip = 4, base_path = nil)
     arg_basepath = base_path ? "-C #{base_path}" : ''

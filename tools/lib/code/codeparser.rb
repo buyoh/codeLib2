@@ -3,7 +3,26 @@ require 'kconv'
 module Code
   module_function
 
-  def fileload(path)
+  def read_code_cpp(io)
+    info = { dependencies: [] }
+    while line_raw = io.gets
+      next if comment_line(line_raw)
+
+      next unless line_raw =~ /^#include "([^"]+)"/
+
+      path = Regexp.last_match(1)
+      info[:dependencies] << path
+    end
+    info
+  end
+
+  def read_code(io, lang)
+    return read_code_cpp(io) if lang.downcase == 'cpp'
+
+    { dependencies: [] }
+  end
+
+  def read_docfile(io)
     dic = {}
     tag = nil
     doc_type = nil
@@ -41,7 +60,6 @@ module Code
       dic[:code] << line_raw << "\n"
     end
 
-    io = open(path, 'r')
     while line_raw = io.gets
       line_raw = line_raw.toutf8.chomp
       line_com = comment_line(line_raw)
@@ -71,8 +89,8 @@ class << Code
   private
 
   def comment_line(line)
-    return nil unless line =~ %r{^(?:#|//)\s*(\S?.*)$}
+    return nil unless line =~ %r{^(?:#|//)(?:\s+(\S?.*))?$}
 
-    Regexp.last_match(1)
+    Regexp.last_match(1) || ''
   end
 end
