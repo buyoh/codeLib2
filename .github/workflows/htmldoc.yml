@@ -50,6 +50,9 @@ jobs:
           ref: doc-codeLib2
       - name: commit phase
         run: |
+          git fetch --unshallow ||:
+          git rev-list --all --count  # for logging
+          git merge origin/master -m "Merge branch 'master' into doc-codeLib2 by Github Actions" ||:
           rm -rf ./docs
           mv /tmp/docs ./
           rm `find ./docs -name .gitignore`
