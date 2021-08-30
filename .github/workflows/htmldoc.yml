@@ -3,59 +3,61 @@ name: update-htmldoc
 # yarn upgrade
 # Upgrade yarn.lock
 # cf. yarn upgrade --latest
-# 
+#
 # bundle update
 # Upgrade Gemfile.lock
 
 on:
   push:
     branches:
-    - master
+      - master
   schedule:
-    - cron: 0 12 * * 1  # At 12:00 on Monday.
+    - cron: 0 12 * * 1 # At 12:00 on Monday.
 
 jobs:
   build:
-
     runs-on: ubuntu-20.04
-    
+
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: master
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.7'
-    - name: Please tell me who you are.
-      run: |
-        git config --global user.email "mai@ukibune.net"
-        git config --global user.name "mai bot-worker"
-    - name: get codeLib2-htmldoc
-      run: |
-        git clone https://github.com/buyoh/codeLib2-htmldoc.git /tmp/tools/htmldoc
-        cd /tmp/tools/htmldoc && yarn 
-    - name: generate by codeLib2-htmldoc
-      run: |
-        CODELIB_PATH=`pwd`
-        mkdir -p /tmp/docs
-        pushd /tmp/tools/htmldoc
-        ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize
-        yarn build
-        ruby tools/generate_release_directory.rb --output-path /tmp/docs
-        popd
-    - uses: actions/checkout@v2
-      with:
-        ref: doc-codeLib2
-    - name: commit phase
-      run: |
-        rm -rf ./docs
-        mv /tmp/docs ./
-        rm `find ./docs -name .gitignore`
-        git add docs/*
-        git commit -m 'update htmldoc by Github Actions' ||:
-    - name: push
-      run: |
-        git push
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+      - name: Please tell me who you are.
+        run: |
+          git config --global user.email "mai@ukibune.net"
+          git config --global user.name "mai bot-worker"
+      - name: get codeLib2-htmldoc
+        run: |
+          git clone https://github.com/buyoh/codeLib2-htmldoc.git /tmp/tools/htmldoc
+          cd /tmp/tools/htmldoc && yarn
+      - name: generate by codeLib2-htmldoc
+        run: |
+          CODELIB_PATH=`pwd`
+          mkdir -p /tmp/docs
+          pushd /tmp/tools/htmldoc
+          ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize
+          yarn build
+          ruby tools/generate_release_directory.rb --output-path /tmp/docs
+          popd
+      - uses: actions/checkout@v2
+        with:
+          ref: doc-codeLib2
+      - name: commit phase
+        run: |
+          git fetch --unshallow ||:
+          git rev-list --all --count  # for logging
+          git merge origin/master -m "Merge branch 'master' into doc-codeLib2 by Github Actions" ||:
+          rm -rf ./docs
+          mv /tmp/docs ./
+          rm `find ./docs -name .gitignore`
+          git add docs/*
+          git commit -m 'update htmldoc by Github Actions' ||:
+      - name: push
+        run: |
+          git push
