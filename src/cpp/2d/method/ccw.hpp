@@ -23,7 +23,7 @@
 // %=END DOC
 // %=BEGIN CODE
 
-int ccw(P a, P b, P c) {
+int ccw(Pt a, Pt b, Pt c) {
   b.x -= a.x;
   b.y -= a.y;
   c.x -= a.x;
