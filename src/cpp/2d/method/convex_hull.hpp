@@ -15,7 +15,7 @@
 // ```
 #include <vector>
 using namespace std;
-#include "src/cpp/2d/datastructure/basic.hpp" // duplicate
+#include "src/cpp/2d/datastructure/basic.hpp"  // duplicate
 #include "src/cpp/2d/method/ccw.hpp"
 // ```
 // %verified

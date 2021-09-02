@@ -35,7 +35,9 @@ struct Pt {
   inline value_t hypot(Pt p) const { return std::hypot(x - p.x, y - p.y); }
   inline value_t dot(Pt p) const { return x * p.x + y * p.y; }
   inline value_t cross(Pt p) const { return x * p.y - y * p.x; }
-  inline Pt normalized() const { return x != 0 || y != 0 ? Pt(x / hypot(), y / hypot()) : Pt(0, 0); }
+  inline Pt normalized() const {
+    return x != 0 || y != 0 ? Pt(x / hypot(), y / hypot()) : Pt(0, 0);
+  }
   inline Pt operator+(Pt p) const { return Pt(x + p.x, y + p.y); }
   inline Pt operator-(Pt p) const { return Pt(x - p.x, y - p.y); }
   inline Pt& operator+=(Pt p) {
