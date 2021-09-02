@@ -32,6 +32,9 @@ jobs:
         run: |
           git config --global user.email "mai@ukibune.net"
           git config --global user.name "mai bot-worker"
+      - name: unshallow
+        run: |
+          git fetch --unshallow ||:
       - name: get codeLib2-htmldoc
         run: |
           git clone https://github.com/buyoh/codeLib2-htmldoc.git /tmp/tools/htmldoc
@@ -50,8 +53,6 @@ jobs:
           ref: doc-codeLib2
       - name: commit phase
         run: |
-          git fetch --unshallow ||:
-          git rev-list --all --count  # for logging
           git merge origin/master -m "Merge branch 'master' into doc-codeLib2 by Github Actions" ||:
           rm -rf ./docs
           mv /tmp/docs ./
