@@ -39,28 +39,28 @@
 // %=END DOC
 // %=BEGIN CODE
 
-
 template <int Max = 2000>
 class IsPrime {
- public:  // friend PrimeList
-  std::bitset<Max/2 + 1> d_;  // 1,3,5,...
+ public:                        // friend PrimeList
+  std::bitset<Max / 2 + 1> d_;  // 1,3,5,...
 
  public:
   // constexpr IsPrime() : d_() {
   IsPrime() : d_() {
     d_[0] = 1;
-    for (int i = 3; i*i <= Max; i += 2) {
-      if (d_[i/2] == 0) {
+    for (int i = 3; i * i <= Max; i += 2) {
+      if (d_[i / 2] == 0) {
         for (int j = i * i; j <= Max; j += i) {  // i*i
-          if (j&1) d_.set(j/2);
+          if (j & 1)
+            d_.set(j / 2);
         }
       }
     }
-    for (int i = 0; i <= Max/2; ++i)
+    for (int i = 0; i <= Max / 2; ++i)
       d_[i] = !d_[i];
   }
   constexpr inline bool operator[](int x) const {
-    return (x <= 2) ? (x == 2) : (x&1) ? d_[x/2] : false;
+    return (x <= 2) ? (x == 2) : (x & 1) ? d_[x / 2] : false;
   }
 };
 
@@ -86,13 +86,13 @@ class PrimeList {
         d_[n++] = x;
     }
   }
-  template<int M>
+  template <int M>
   PrimeList(const IsPrime<M>& is_prime) : d_() {
     int p = 0;
     d_[p++] = 2;
-    for (int x = 1; x < M/2; ++x) {
+    for (int x = 1; x < M / 2; ++x) {
       if (is_prime.d_[x]) {
-        d_[p++] = x*2 + 1;
+        d_[p++] = x * 2 + 1;
       }
     }
   }
