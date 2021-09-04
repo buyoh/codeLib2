@@ -71,8 +71,7 @@ class PrimeList {
  public:
   // constexpr PrimeListC() : d_() {
   PrimeList() : d_() {
-    clog << "we should construct with IsPrimeC" << endl;
-    abort();
+    // std::clog << "we should construct with IsPrimeC" << std::endl;
     int n = 1;
     d_[0] = 2;
     for (int x = 3; n < Cnt; ++x) {

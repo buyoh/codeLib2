@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-using ll = int64_t;
+using ll = long long;
 
 // util
 #define all(v) (v).begin(), (v).end()
