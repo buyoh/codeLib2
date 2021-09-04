@@ -15,7 +15,7 @@
 //
 // %require
 // ```
-using ll = long long;
+using ll = int64_t;
 // ```
 //
 // %verified
