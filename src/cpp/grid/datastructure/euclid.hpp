@@ -93,7 +93,8 @@ struct F {
   int height, width;
   vector<T> data;
 
-  F(int h = 1, int w = 1) : height(h), width(w), data(h * w) {}
+  explicit F(int h, int w) : height(h), width(w), data(h * w) {}
+  F() : F(1, 1) {}
 
   inline T& operator()(int y, int x) { return data[x + y * width]; }
   inline T& operator()(P p) { return data[p.x + p.y * width]; }
