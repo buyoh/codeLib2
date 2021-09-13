@@ -29,9 +29,8 @@ using namespace std;
 // %=END DOC
 // %=BEGIN CODE
 
-void detect_articulation_point(const Graph& graph, vector<int>& out) {
-  out.resize(graph.n);
-  fill(out.begin(), out.end(), 0);
+vector<int> detectArticulationPoint(const Graph& graph) {
+  vector<int> out(graph.n, 0);
   vector<int> visited(graph.n);
 
   int cnt = 1;
@@ -52,17 +51,22 @@ void detect_articulation_point(const Graph& graph, vector<int>& out) {
     // printf("%d: return %d\n",idx,p);
     return p;
   };
-  visited[0] = 1;
-  int start_degree = 0;
-  for (int to : graph.vertex_to[0]) {
-    if (!visited[to]) {
-      ++start_degree;
-      visited[to] = ++cnt;
-      dfs(to);
+  for (int root = 0; root < graph.n; ++root) {
+    if (visited[root])
+      continue;
+    visited[root] = 1;
+    int start_degree = 0;
+    for (int to : graph.vertex_to[root]) {
+      if (!visited[to]) {
+        ++start_degree;
+        visited[to] = ++cnt;
+        dfs(to);
+      }
     }
+    if (2 <= start_degree)
+      out[root] = 1;
   }
-  if (2 <= start_degree)
-    out[0] = 1;
+  return out;
 }
 // %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_ARTICULATION_HPP__
