@@ -1,7 +1,7 @@
 #include "test/common/testutil.hpp"
 #include "src/cpp/container/balancing/treap_segment.hpp"
 
-int main() {
+void test_insertAndDelete() {
   Treap tp;
   deque<int> vc;
   int cnt = 0;
@@ -26,13 +26,45 @@ int main() {
       tp.erase(k);
       --cnt;
     }
-    // tp.print_tour();
-    repeat(i, cnt) {
-      (tp.find(i))->value;
-      // cout << make_pair(vc[i], (tp.find(i))->value) << endl;
-      CHKEQ(vc[i], (tp.find(i))->value);
-    }
+    auto tpv = tp.toVector();
+    repeat(i, cnt) CHKEQ(vc[i], tpv[i]);
   }
+}
+
+void test_concatAndSplit() {
+  const int N = 30;
+
+  Treap tp;
+  repeat(i, N) tp.insert(i, i);
+
+  vector<int> vc(N);
+  iota(all(vc), 0);
+
+  repeat(i, N) CHKEQ(vc[i], tp[i]);
+
+  repeat(_, 1000) {
+    int n_left_split = Rand::i(1, N - 1);
+    {
+      auto a = tp.split(n_left_split);
+      tp.concat(move(a));
+    }
+    {
+      vector<int> vc2(N);
+
+      auto it = vc.begin();
+      advance(it, n_left_split);
+      auto it2 = copy(it, vc.end(), vc2.begin());
+      copy(vc.begin(), it, it2);
+
+      vc = move(vc2);
+    }
+    repeat(i, N) CHKEQ(vc[i], tp[i]);
+  }
+}
+
+int main() {
+  test_insertAndDelete();
+  test_concatAndSplit();
 
   return 0;
 }

@@ -11,11 +11,20 @@
 //
 // 実装したTreapは，配列っぽいインターフェースを持つ．split/mergeベースで記述．
 //
+// 遅延評価を想定するので、getter には const 修飾は使われていない。
 //
 // 区間クエリは書けそう．
-// 例えば『キーがx以下のNodeにyを加算する』は，treap[x]とtreap[x].childlen[0]に対してLazy実装で実現できる．
+// 例えば『キーがx以下のNodeにyを加算する』は，treap[x]とtreap[x].childlen[0]
+// に対してLazy実装で実現できる．
 //
+// 実装ノート:
+// Treap の平衡化実装と遅延評価等の区間演算実装を分離したい…
+// 遅延評価等の実装が一切無いクラスを TreapPlain として、Treap が TreapPlain を継承して
+// 機能追加したクラスとしたい。NodeFactory とか必要そう。vtable がパフォーマンスに影響する
+// 問題もある。
 // %usage
+// void Treap::create(int size, T val)
+// ; size要素から成るvalで初期化されたTreapを生成する
 // void Treap::concat(Treap& another)
 // ; thisの末尾にanotherを結合して，anotherを空にする．
 // Treap Treap::split(int size)
@@ -24,9 +33,6 @@
 // ; index番目の要素の手前にvalを挿入する．
 // void Treap::erase(int index)
 // ; index番目の要素を削除する．
-// unique_ptr<TreapNode>& Treap::find(int index)
-// ; index番目の要素のスマートポインタの参照を得る．
-// ; index番目の要素が存在しないなら，空のスマートポインタの参照を得る．
 // value_t& Treap::operator[](int index)
 // ; index番目の要素に対応するvalの参照を得る．無いなら爆発する．
 //
@@ -46,48 +52,58 @@ using namespace std;
 // %=END DOC
 // %=BEGIN CODE
 
-struct TreapNode {
-  typedef long long value_t;
-  typedef mt19937_64 randomizer_t;
-  static const value_t init_value_ = 0;
-  static randomizer_t rnd;
+class Treap {
+ public:
+  using value_t = long long;
+  using rng_t = mt19937_64;
+  static rng_t rnd;
 
-  unique_ptr<TreapNode> childlen[2];
-  value_t value;
-  randomizer_t::result_type priority;
-  int n_node;
+  struct NodeData {
+    value_t value;
+    NodeData(value_t val) : value(val) {}
+    inline void updateBefore() {}
+    inline void updateAfter() {}
+  };
 
-  TreapNode(value_t v = init_value_) : value(v), priority(rnd() | 1), n_node(1) {}
-  TreapNode(value_t v, randomizer_t::result_type p) : value(v), priority(p), n_node(1) {}
+ protected:
+  struct Node {
+    unique_ptr<Node> childlen[2];
+    NodeData data;
+    rng_t::result_type priority;
+    int n_node;
 
-  // 子の操作前に必ず実行
-  // todo: 十分に呼ばれているかどうかvalidate
-  inline void update_before() {}
+    Node(value_t v, rng_t::result_type p) : data(v), priority(p), n_node(1) {}
 
-  // 子の操作後に必ず実行
-  inline void update_after() {
-    n_node = 1;
-    if (childlen[0])
-      n_node += childlen[0]->n_node;
-    if (childlen[1])
-      n_node += childlen[1]->n_node;
+    inline void updateBefore() { data.updateBefore(); }
+    inline void updateAfter() {
+      // recalculate number of nodes
+      n_node = 1;
+      if (childlen[0])
+        n_node += childlen[0]->n_node;
+      if (childlen[1])
+        n_node += childlen[1]->n_node;
+      data.updateAfter();
+    }
+  };
+
+  static unique_ptr<Node> createNode(value_t val) {
+    // NOTE: 乱数の1ビットを潰す理由を忘却
+    return unique_ptr<Node>(new Node(val, rnd() | 1));
   }
 
-  // inline Node& operator[](size_t i) { return *childlen[i & 1]; }
-  // inline bool has(size_t i) { return (bool)childlen[i & 1]; }
-};
-TreapNode::randomizer_t TreapNode::rnd = TreapNode::randomizer_t();
+  unique_ptr<Node> root_;
 
-class Treap : public unique_ptr<TreapNode> {
  public:
-  using value_t = TreapNode::value_t;
-  static const value_t init_value_ = TreapNode::init_value_;
-
   Treap() {}
-  Treap(value_t val) : unique_ptr<TreapNode>(new TreapNode(val)) {}
-  Treap(unique_ptr<TreapNode>& p) { swap(p); }
+  Treap(value_t val) : root_(createNode(val)) {}
+  Treap(Treap&& p) : root_(move(p.root_)) {}
+  void swap(Treap& p) { std::swap(root_, p.root_); }
+  int size() const { return root_ ? root_->n_node : 0; }
 
-  static void _concat(unique_ptr<TreapNode>& treap1, unique_ptr<TreapNode>& treap2) {
+ private:
+  Treap(unique_ptr<Node>&& p) : root_(move(p)) {}
+
+  static void _concat(unique_ptr<Node>& treap1, unique_ptr<Node>& treap2) {
     if (!treap2)
       return;
     if (!treap1) {
@@ -95,13 +111,13 @@ class Treap : public unique_ptr<TreapNode> {
       return;
     }
     if (treap1->priority < treap2->priority) {
-      treap1->update_before();
+      treap1->updateBefore();
       if (!treap1->childlen[1])
         treap1->childlen[1] = move(treap2);
       else
         _concat(treap1->childlen[1], treap2);
     } else {
-      treap2->update_before();
+      treap2->updateBefore();
       if (!treap2->childlen[0]) {
         treap2->childlen[0] = move(treap1);
         treap1.swap(treap2);
@@ -111,66 +127,47 @@ class Treap : public unique_ptr<TreapNode> {
         treap1.swap(treap2);
       }
     }
-    treap1->update_after();
+    treap1->updateAfter();
   }
 
-  // anotherをthisの後ろにmergeする
-  inline void concat(Treap& another) { _concat(*this, another); }
-  inline void concat(Treap&& another) {
-    auto a = move(another);
-    _concat(*this, a);
-  }
-
-  // TODO: あまりにも下手
-  static unique_ptr<TreapNode> _split(unique_ptr<TreapNode>& node, int size) {
+  // TODO: refactoring?
+  static unique_ptr<Node> _split(unique_ptr<Node>& node, int size) {
     if (size <= 0)
-      return unique_ptr<TreapNode>();
+      return unique_ptr<Node>();
     if (!node->childlen[0]) {
       if (!node->childlen[1])
         return move(node);
-      node->update_before();
-      unique_ptr<TreapNode> cutted = move(node);
+      node->updateBefore();
+      unique_ptr<Node> cutted = move(node);
       node = move(cutted->childlen[1]);
       cutted->childlen[1] = move(_split(node, size - 1));
-      cutted->update_after();
-      node->update_after();
+      cutted->updateAfter();
+      node->updateAfter();
       return cutted;
     }
     if (node->childlen[0]->n_node > size) {
-      unique_ptr<TreapNode> res = _split(node->childlen[0], size);
-      node->update_after();
+      unique_ptr<Node> res = _split(node->childlen[0], size);
+      node->updateAfter();
       return res;
     } else if (node->childlen[0]->n_node < size) {
-      node->update_before();
-      unique_ptr<TreapNode> cutted = move(node);
+      node->updateBefore();
+      unique_ptr<Node> cutted = move(node);
       node = move(cutted->childlen[1]);
       cutted->childlen[1] = move(_split(node, size - cutted->childlen[0]->n_node - 1));
-      cutted->update_after();
-      node->update_after();
+      cutted->updateAfter();
+      node->updateAfter();
       return cutted;
     } else {
-      unique_ptr<TreapNode> res = move(node->childlen[0]);
-      node->update_after();
+      unique_ptr<Node> res = move(node->childlen[0]);
+      node->updateAfter();
       return res;
     }
   }
 
-  // 左からsize個切り取る
-  inline Treap split(int size) {
-    if (!(*this))
-      return Treap();
-    if ((*this)->n_node <= size) {
-      return move(*this);
-    }
-    unique_ptr<TreapNode> res = _split(*this, size);
-    (*this)->update_after();
-    return res;
-  }
-
-  static unique_ptr<TreapNode>& _find(unique_ptr<TreapNode>& node, int index) {
+  static unique_ptr<Node>& _find(unique_ptr<Node>& node, int index) {
     if (!node)
       return node;
-    node->update_before();
+    node->updateBefore();
     if (!node->childlen[0])
       return 0 < index ? _find(node->childlen[1], index - 1)
                        : index == 0 ? node : node->childlen[0];
@@ -181,15 +178,32 @@ class Treap : public unique_ptr<TreapNode> {
     return node;
   }
 
-  // 左からi番目のnodeを削除する
+ public:
+  // anotherをthisの後ろにmergeする
+  inline void concat(Treap& another) { _concat(root_, another.root_); }
+  inline void concat(Treap&& another) { _concat(root_, another.root_); }
+
+  // 左からsize個切り取る
+  inline Treap split(int size) {
+    if (!root_)
+      return Treap();
+    if (root_->n_node <= size) {
+      return move(root_);
+    }
+    unique_ptr<Node> res = _split(root_, size);
+    root_->updateAfter();
+    return res;
+  }
+
+  // 左からi番目のnodeを取得する
   // 存在しないなら空のunique_ptrの参照が返る
-  inline unique_ptr<TreapNode>& find(int index) { return _find(*this, index); }
+  // inline unique_ptr<Node>& find(int index) { return _find(root_, index); }
   // 安全でない
-  inline value_t& operator[](int index) { return find(index)->value; }
+  inline value_t& operator[](int index) { return _find(root_, index)->data.value; }
 
   // 左からidx番目のnodeを削除する
   inline void erase(int index) {
-    if (index < 0 && (*this)->n_node <= index)
+    if (index < 0 && root_->n_node <= index)
       return;
     Treap tmp = split(index);
     split(1);
@@ -205,42 +219,76 @@ class Treap : public unique_ptr<TreapNode> {
     swap(tmp);
   }
 
-  // size要素から成るvalで初期化されたTreapを生成する
-  // 空でないTreapでgenerateを呼び出したら何もしない．
-  // 乱数生成がボトルネックで，O(NlogN)時間
-  void generate(int size, value_t val = init_value_) {
-    if (size <= 0 || *this)
-      return;
-    vector<TreapNode::randomizer_t::result_type> rr(size);
-    for (auto& x : rr)
-      x = TreapNode::rnd();
-    sort(rr.begin(), rr.end());
-
-    function<void(unique_ptr<TreapNode>&, int)> dfs = [&size, &rr, &val, &dfs](
-                                                          unique_ptr<TreapNode>& node, int idx1) {
-      if (idx1 > size)
-        return;
-      node.reset(new TreapNode(val, rr[idx1 - 1]));
-      node->update_before();
-      dfs(node->childlen[0], idx1 * 2);
-      dfs(node->childlen[1], idx1 * 2 + 1);
-      node->update_after();
-    };
-    dfs(*this, 1);
+ private:
+  static unique_ptr<Node> create_dfs(int req_size,
+                                     const value_t& val,
+                                     const vector<rng_t::result_type>& rr,
+                                     int idx1) {
+    if (idx1 > req_size)
+      return unique_ptr<Node>();
+    unique_ptr<Node> node(new Node(val, rr[idx1 - 1]));
+    node->updateBefore();
+    node->childlen[0] = create_dfs(req_size, val, rr, idx1 * 2);
+    node->childlen[1] = create_dfs(req_size, val, rr, idx1 * 2 + 1);
+    node->updateAfter();
+    return node;
   }
 
-  // void print_tour(unique_ptr<TreapNode>& node) {
-  //   if (!node) {
-  //     cout << "NIL ";
-  //     return;
-  //   }
-  //   cout << "L[" << node->value << "] ";
-  //   print_tour(node->childlen[0]);
-  //   cout << "C[" << node->value << "] ";
-  //   print_tour(node->childlen[1]);
-  //   cout << "R[" << node->value << "] ";
-  // }
-  // inline void print_tour() { print_tour(*this); }
+  // size要素から成るvalで初期化されたTreapを生成する
+  // 乱数生成時のソートがボトルネックで，O(NlogN)時間
+ public:
+  static Treap create(int size, value_t val) {
+    vector<rng_t::result_type> rr(size);
+    for (auto& x : rr)
+      x = rnd();
+    sort(rr.begin(), rr.end());
+
+    return create_dfs(size, val, rr, 1);
+  }
+
+ private:
+  void printTour_dfs(unique_ptr<Node>& node) {
+    if (!node) {
+      cout << "NIL ";
+      return;
+    }
+    cout << "L[" << node->data.value << "] ";
+    printTour_dfs(node->childlen[0]);
+    cout << "C[" << node->data.value << "] ";
+    printTour_dfs(node->childlen[1]);
+    cout << "R[" << node->data.value << "] ";
+  }
+
+ public:
+  inline void printTour() { printTour_dfs(root_); }
+
+ private:
+  void toVector_dfs(unique_ptr<Node>& node, vector<value_t>& out) {
+    if (!node)
+      return;
+    toVector_dfs(node->childlen[0], out);
+    out.push_back(node->data.value);
+    toVector_dfs(node->childlen[1], out);
+  }
+
+ public:
+  inline vector<value_t> toVector() {
+    vector<value_t> out;
+    toVector_dfs(root_, out);
+    return out;
+  }
+
+  //
+
+  void setValue(int index, value_t value) {
+    auto& node = _find(root_, index);
+    if (!node)
+      return;
+    // TODO: updateAfter is not fired
+    node->data.value = value;
+  }
 };
+Treap::rng_t Treap::rnd = Treap::rng_t();
+
 // %=END CODE
 #endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SEGMENT_HPP__
