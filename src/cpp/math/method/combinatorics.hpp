@@ -5,7 +5,7 @@
 // 組合せ計算(都度計算)
 //
 // %overview
-//
+// 愚直に組合せの計算をする。
 //
 // %usage
 // T pow_md(T x, T p, T mod = MD)
@@ -19,7 +19,6 @@
 //
 // %require
 // ```
-const long long MD = 1000000007;
 // ```
 // %words
 // pow,fact,ncr,npr,nhr,nck,npk,nhk
@@ -29,9 +28,9 @@ const long long MD = 1000000007;
 // %=END DOC
 // %=BEGIN CODE
 
-// MEMO : 逆元...pow_md(n,MOD-2,MOD)
+// MEMO : inverse ...pow_md(n,MOD-2,MOD)
 template <typename T>
-T pow_md(T x, T p, T mod = MD) {
+T pow_md(T x, T p, T mod) {
   T y = 1;
   x = x % mod;
   for (; 0 < p; p >>= 1) {
@@ -42,21 +41,21 @@ T pow_md(T x, T p, T mod = MD) {
   return y;
 }
 template <typename T>
-T fact_md(T n, T mod = MD) {
+T fact_md(T n, T mod) {
   T p = 1;
   for (; 1 < n; p = (p * n--) % mod)
     ;
   return p;
 }
 template <typename T>
-T nPr_md(T n, T r, T mod = MD) {
+T nPr_md(T n, T r, T mod) {
   T p = 1;
   for (r = n - r; r < n; p = (p * n--) % mod)
     ;
   return p;
 }
 template <typename T>
-T nCr_md(T n, T r, T mod = MD) {
+T nCr_md(T n, T r, T mod) {
   if (n < 0 || r < 0 || n < r)
     return 0;
   if (n / 2 < r)
@@ -67,7 +66,11 @@ T nCr_md(T n, T r, T mod = MD) {
   return num * pow_md(den, mod - 2, mod) % mod;
 }
 template <typename T>
-inline T nHr_md(T n, T r, T mod = MD) {
+inline T nHr_md(T n, T r, T mod) {
+  if (n == 0 && r == 0)
+    return 1;
+  if (n == 0)
+    return 0;
   return nCr_md(n - 1 + r, n - 1, mod);
 }
 
@@ -82,6 +85,10 @@ T nCr(T n, T r) {
 }
 template <typename T>
 inline T nHr(T n, T r) {
+  if (n == 0 && r == 0)
+    return 1;
+  if (n == 0)
+    return 0;
   return nCr(n - 1 + r, n - 1);
 }
 // %=END CODE

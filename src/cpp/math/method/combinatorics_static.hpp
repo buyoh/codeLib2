@@ -2,11 +2,12 @@
 #define SRC_CPP_MATH_METHOD_COMBINATORICS_STATIC_HPP__
 // %=BEGIN DOC
 // %title
-// 組合せ計算(前計算)
+// 組合せ計算(階乗前計算)
 //
 // %overview
-// inverse, conbination, permutation, factorial を構築時に計算する\
-//
+// inverse, conbination, permutation, factorial を計算する。
+// factorial を事前に計算しメモすることで、conbination, permutation を高速に計算する。
+// 逆数の計算がボトルネックになっており、対数時間掛かる。
 //
 // %usage
 // Combinatorics<2000100, Mod> wakame;
