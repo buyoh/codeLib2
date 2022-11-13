@@ -44,7 +44,7 @@ jobs:
           CODELIB_PATH=`pwd`
           mkdir -p /tmp/docs
           pushd /tmp/tools/htmldoc
-          ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize
+          ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize --output-path ./public/data
           yarn build
           ruby tools/generate_release_directory.rb --output-path /tmp/docs
           popd
