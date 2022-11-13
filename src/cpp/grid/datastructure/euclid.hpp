@@ -120,29 +120,15 @@ struct F {
     return data[p.x + p.y * width];
   }
 #else
-  inline T& operator()(int y, int x) {
-    return data[x + y * width];
-  }
-  inline T& operator()(P p) {
-    return data[p.x + p.y * width];
-  }
-  inline T operator()(int y, int x) const {
-    return data[x + y * width];
-  }
-  inline T operator()(P p) const {
-    return data[p.x + p.y * width];
-  }
+  inline T& operator()(int y, int x) { return data[x + y * width]; }
+  inline T& operator()(P p) { return data[p.x + p.y * width]; }
+  inline T operator()(int y, int x) const { return data[x + y * width]; }
+  inline T operator()(P p) const { return data[p.x + p.y * width]; }
 #endif
-  inline bool safe(int y, int x) const {
-    return 0 <= y && y < height && 0 <= x && x < width;
-  }
-  inline bool safe(P p) const {
-    return 0 <= p.y && p.y < height && 0 <= p.x && p.x < width;
-  }
+  inline bool safe(int y, int x) const { return 0 <= y && y < height && 0 <= x && x < width; }
+  inline bool safe(P p) const { return 0 <= p.y && p.y < height && 0 <= p.x && p.x < width; }
 
-  inline void fill(T e) {
-    std::fill(data.begin(), data.end(), e);
-  }
+  inline void fill(T e) { std::fill(data.begin(), data.end(), e); }
   inline void resize(int h, int w) {
     height = h;
     width = w;
