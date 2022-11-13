@@ -38,6 +38,7 @@
 //
 // %require
 // ```
+#include <ostream>
 #include <memory>
 #include <algorithm>
 #include <random>
@@ -169,8 +170,9 @@ class Treap {
       return node;
     node->updateBefore();
     if (!node->childlen[0])
-      return 0 < index ? _find(node->childlen[1], index - 1)
-                       : index == 0 ? node : node->childlen[0];
+      return 0 < index    ? _find(node->childlen[1], index - 1)
+             : index == 0 ? node
+                          : node->childlen[0];
     if (node->childlen[0]->n_node < index)
       return _find(node->childlen[1], index - node->childlen[0]->n_node - 1);
     if (node->childlen[0]->n_node > index)
@@ -247,20 +249,20 @@ class Treap {
   }
 
  private:
-  void printTour_dfs(unique_ptr<Node>& node) {
+  void printTour_dfs(ostream& o, unique_ptr<Node>& node) {
     if (!node) {
-      cout << "NIL ";
+      o << "NIL ";
       return;
     }
-    cout << "L[" << node->data.value << "] ";
-    printTour_dfs(node->childlen[0]);
-    cout << "C[" << node->data.value << "] ";
-    printTour_dfs(node->childlen[1]);
-    cout << "R[" << node->data.value << "] ";
+    o << "L[" << node->data.value << "] ";
+    printTour_dfs(o, node->childlen[0]);
+    o << "C[" << node->data.value << "] ";
+    printTour_dfs(o, node->childlen[1]);
+    o << "R[" << node->data.value << "] ";
   }
 
  public:
-  inline void printTour() { printTour_dfs(root_); }
+  inline void printTour(ostream& o) { printTour_dfs(o, root_); }
 
  private:
   void toVector_dfs(unique_ptr<Node>& node, vector<value_t>& out) {
