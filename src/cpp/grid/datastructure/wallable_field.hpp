@@ -25,20 +25,15 @@ using namespace std;
 // %=END DOC
 // %=BEGIN CODE
 
-
-class WallableField: public F<int> {
-  public:
-  WallableField(int h, int w):F(h,w){}
-  WallableField():WallableField(1,1){}
+class WallableField : public F<int> {
+ public:
+  WallableField(int h, int w) : F(h, w) {}
+  WallableField() : WallableField(1, 1) {}
   // L U R D
   enum { DIR_L = 1, DIR_U = 2, DIR_R = 4, DIR_D = 8 };
 
-  inline bool safe(int y, int x) const {
-    return 0 <= y && y < height && 0 <= x && x < width;
-  }
-  inline bool safe(P p) const {
-    return 0 <= p.y && p.y < height && 0 <= p.x && p.x < width;
-  }
+  inline bool safe(int y, int x) const { return 0 <= y && y < height && 0 <= x && x < width; }
+  inline bool safe(P p) const { return 0 <= p.y && p.y < height && 0 <= p.x && p.x < width; }
 
   void setWall(int y, int x, int dir) {
     if (!safe(y, x))
@@ -82,12 +77,8 @@ class WallableField: public F<int> {
     return true;
   }
 
-  inline bool isWall(P p, int dir) const {
-    return isWall(p.y, p.x, dir);
-  }
-  inline bool isWall(P p, P dir) const {
-    return isWall(p.y, p.x, dir);
-  }
+  inline bool isWall(P p, int dir) const { return isWall(p.y, p.x, dir); }
+  inline bool isWall(P p, P dir) const { return isWall(p.y, p.x, dir); }
 };
 
 #endif  // SRC_CPP_GRID_DATASTRUCTURE_WALLABLE_FIELD_HPP__
