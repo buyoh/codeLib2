@@ -20,14 +20,10 @@ module Collector
     langs(basepath).map { |lang| Dir.glob("#{basepath}/test/#{lang}/**/*").select { |file| File.file?(file) } }.flatten
   end
 
-  def self.test_files(basepath = '.') # TODO: rename test_paths
-    test_files(basepath)
-  end
-
   def self.collect_documents(basepath = '.') # TODO: 引数はsrc_files
     dic = []
     src_files(basepath).each do |path|
-      d = open(path, 'r') { |io| Code.read_docfile(io)}
+      d = open(path, 'r') { |io| Code.read_docfile(io) }
       next unless d.key?(:title)
 
       d[:path] = path

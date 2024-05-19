@@ -63,11 +63,9 @@ module Code
     while line_raw = io.gets
       line_raw = line_raw.toutf8.chomp
       line_com = comment_line(line_raw)
-      if line_com || uncomment
-        if line_com && line_com =~ /^%=(.+)$/
-          do_block.call Regexp.last_match(1)
-          next
-        end
+      if (line_com || uncomment) && (line_com && line_com =~ /^%=(.+)$/)
+        do_block.call Regexp.last_match(1)
+        next
       end
 
       if doc_type == :doc
