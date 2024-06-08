@@ -147,3 +147,5 @@ impl<T: fmt::Display> fmt::Debug for Table<T> {
         self.write_fmt(f, |f, t| write!(f, "{} ", t))
     }
 }
+
+// %=END CODE

@@ -31,3 +31,4 @@ impl<T: PartialOrd> Ord for MinNonNan<T> {
         self.0.partial_cmp(&other.0).unwrap() // panic for NaN
     }
 }
+// %=END CODE

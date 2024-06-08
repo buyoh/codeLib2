@@ -50,4 +50,5 @@ class RootedTree {
   }
   const Node& node(int v) const { return node_[v]; }
 };
+// %=END CODE
 #endif  // SRC_CPP_GRAPH_METHOD_ROOTED_TREE_HPP__

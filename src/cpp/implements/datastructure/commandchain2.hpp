@@ -87,5 +87,5 @@ class CommandChain {
   Node node_;
   CommandChain() : prev_(), node_() {}
 };
-
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_COMMANDCHAIN2_HPP__

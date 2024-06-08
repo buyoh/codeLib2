@@ -192,5 +192,5 @@ struct Cu {
   //   }
   // }
 };
-
+// %=END CODE
 #endif  // SRC_CPP_GRID_DATASTRUCTURE_EUCLIDEXT_HPP__

@@ -77,5 +77,5 @@ class CommandChain {
   shared_ptr<CommandChain> prev_;
   T node_;
 };
-
+// %=END CODE
 #endif  // SRC_CPP_IMPLEMENTS_DATASTRUCTURE_COMMANDCHAIN_HPP__

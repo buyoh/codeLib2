@@ -178,3 +178,4 @@ impl Rect {
         }
     }
 }
+// %=END CODE

@@ -80,5 +80,5 @@ class WallableField : public F<int> {
   inline bool isWall(P p, int dir) const { return isWall(p.y, p.x, dir); }
   inline bool isWall(P p, P dir) const { return isWall(p.y, p.x, dir); }
 };
-
+// %=END CODE
 #endif  // SRC_CPP_GRID_DATASTRUCTURE_WALLABLE_FIELD_HPP__
