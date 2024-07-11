@@ -24,10 +24,10 @@ jobs:
           ref: master
       - uses: actions/setup-node@v1
         with:
-          node-version: "14"
+          node-version: "16"
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: "2.7"
+          ruby-version: "3.2"
       - name: Please tell me who you are.
         run: |
           git config --global user.email "mai@ukibune.net"

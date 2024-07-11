@@ -13,9 +13,12 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: "3.2"
     - name: install tools
       run: |
-        sudo apt install ruby g++ npm clang
+        sudo apt install g++ clang
     - name: test
       run: |
         ruby tools/buildtest.rb -j 2
