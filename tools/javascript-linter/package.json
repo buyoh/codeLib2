@@ -1,0 +1,10 @@
+{
+  "name": "javascript-linter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "eslint": "^9.6.0"
+  }
+}
