@@ -33,11 +33,11 @@ Array.prototype.permutation = function* () {
         for (let i = 0; i < n; ++i) {
             if (p.some(e => e == i)) continue;
             p.push(i);
-            for (let r of dfs(p)) yield r;
+            for (const r of dfs(p)) yield r;
             p.pop();
         }
     }
-    for (let r of dfs([])) yield r;
+    for (const r of dfs([])) yield r;
 };
 
 Array.prototype.combination = function* (k) {
@@ -53,11 +53,11 @@ Array.prototype.combination = function* (k) {
         }
         if (k > c.length) {
             c.push(idx);
-            for (let r of dfs(c, idx + 1)) yield r;
+            for (const r of dfs(c, idx + 1)) yield r;
             c.pop();
         }
-        for (let r of dfs(c, idx + 1)) yield r;
+        for (const r of dfs(c, idx + 1)) yield r;
     }
-    for (let r of dfs([], 0)) yield r;
+    for (const r of dfs([], 0)) yield r;
 };
 // %=END CODE

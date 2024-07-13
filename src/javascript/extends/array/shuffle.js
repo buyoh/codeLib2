@@ -23,8 +23,8 @@
 
 Array.prototype.shuffle = function () {
     for (let i = this.length - 1; i > 0; --i) {
-        let r = Math.floor(Math.random() * (i + 1));
-        let t = this[i];
+        const r = Math.floor(Math.random() * (i + 1));
+        const t = this[i];
         this[i] = this[r];
         this[r] = t;
     }
