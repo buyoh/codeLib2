@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - develop
   pull_request:
     tags:
     - review
@@ -15,12 +16,16 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: "16"
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: "3.2"
     - name: install tools
       run: |
         sudo apt update
-        sudo apt install clang-format
-        sudo apt install ruby gem g++ npm
-        sudo npm i -g eslint
+        sudo apt install clang-format g++
         git config --global user.email "53999520+mai-w@users.noreply.github.com"
         git config --global user.name "mai-w"
     - name: refactor
