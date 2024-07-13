@@ -25,6 +25,7 @@ jobs:
         git config --global user.name "mai-w"
     - name: refactor
       run: |
+        bash tools/javascript-linter/lint.sh
         ruby tools/refactor.rb --inplace
         git add .
         git commit -m 'refactor by Github Actions' ||:
