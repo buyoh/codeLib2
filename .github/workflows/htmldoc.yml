@@ -40,16 +40,18 @@ jobs:
           cd tools/codeLib2-htmldoc && yarn
       - name: prepare codeLib2-tools
         run: |
-          cd tools/codeLib2-tools && cargo build --release --bins
+          (cd tools/codeLib2-tools && cargo build --release --bins)
+          cp -ar .github/workflows /tmp/
       - name: generate by codeLib2-htmldoc
         run: |
-          bash ./github/workflows/htmldoc_gen.sh
+          bash ./.github/workflows/htmldoc_gen.sh
       - uses: actions/checkout@v2
         with:
           ref: doc
       - name: commit phase
         run: |
-          bash ./github/workflows/htmldoc_commit.sh
+          # scripts in the doc branch may be obsoleted
+          bash /tmp/workflows/htmldoc_commit.sh
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
