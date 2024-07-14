@@ -1,20 +1,43 @@
 name: autotest
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
+    - develop
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: "3.2"
-    - name: install tools
-      run: |
-        sudo apt update
-        sudo apt install g++ clang
-    - name: autotest
-      run: |
-        ruby tools/autotest.rb -j 2
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: install tools
+        run: |
+          sudo apt install g++ clang
+      - name: prepare codeLib2-tools
+        run: |
+          pushd tools/codeLib2-tools
+          cargo build --release --bins
+          popd > /dev/null
+      # - name: test
+      #   run: |
+      #     ruby tools/buildtest.rb -j 2
+      # - name: autotest
+      #   run: |
+      #     ruby tools/autotest.rb -j 2
+      - name: run autotest
+        run: |
+          bash .github/workflows/autotest_run.sh
+          cat /tmp/autotest.md >> $GITHUB_STEP_SUMMARY
+          # exit with 1 if failed
+          ruby tools/codeLib2-tools/tools/dump_result_to_markdown.rb \
+            --result-path /tmp/autotest.json \
+            --check-test-fail > /dev/null
