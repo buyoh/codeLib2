@@ -46,7 +46,7 @@ jobs:
           bash ./github/workflows/htmldoc_gen.sh
       - uses: actions/checkout@v2
         with:
-          ref: doc-codeLib2
+          ref: doc
       - name: commit phase
         run: |
           bash ./github/workflows/htmldoc_commit.sh
