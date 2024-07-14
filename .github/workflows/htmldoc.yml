@@ -11,8 +11,6 @@ on:
   push:
     branches:
       - master
-  schedule:
-    - cron: 0 12 * * 1 # At 12:00 on Monday.
 
 jobs:
   build:
@@ -22,12 +20,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: master
+          submodules: recursive
       - uses: actions/setup-node@v1
         with:
           node-version: "16"
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "3.2"
+      - uses: dtolnay/rust-toolchain@stable
       - name: Please tell me who you are.
         run: |
           git config --global user.email "53999520+mai-w@users.noreply.github.com"
@@ -35,30 +35,21 @@ jobs:
       - name: unshallow
         run: |
           git fetch --unshallow ||:
-      - name: get codeLib2-htmldoc
+      - name: prepare codeLib2-htmldoc
         run: |
-          git clone https://github.com/buyoh/codeLib2-htmldoc.git /tmp/tools/htmldoc
-          cd /tmp/tools/htmldoc && yarn
+          cd tools/codeLib2-htmldoc && yarn
+      - name: prepare codeLib2-tools
+        run: |
+          cd tools/codeLib2-tools && cargo build --release --bins
       - name: generate by codeLib2-htmldoc
         run: |
-          CODELIB_PATH=`pwd`
-          mkdir -p /tmp/docs
-          pushd /tmp/tools/htmldoc
-          ruby tools/codelib_json_bundler.rb --codelib-path ${CODELIB_PATH} --minimize --output-path ./public/data
-          yarn build
-          ruby tools/generate_release_directory.rb --output-path /tmp/docs
-          popd
+          bash ./github/workflows/htmldoc_gen.sh
       - uses: actions/checkout@v2
         with:
           ref: doc-codeLib2
       - name: commit phase
         run: |
-          git merge origin/master -m "Merge branch 'master' into doc-codeLib2 by Github Actions" ||:
-          rm -rf ./docs
-          mv /tmp/docs ./
-          rm `find ./docs -name .gitignore`
-          git add docs/*
-          git commit -m 'update htmldoc by Github Actions' ||:
+          bash ./github/workflows/htmldoc_commit.sh
       - name: push
         run: |
           git push
