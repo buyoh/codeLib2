@@ -50,6 +50,7 @@ jobs:
       - name: commit phase
         run: |
           bash ./github/workflows/htmldoc_commit.sh
-      - name: push
-        run: |
-          git push
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: doc
