@@ -38,9 +38,12 @@ class nCrTable {
   constexpr nCrTable() { build(); }
 
   constexpr value_type nCr(int n, int r) const {
-    return n < r ? 0
-                 : r > n ? nCr(n, n - r)
-                         : n == 0 && r == 0 ? 1 : n <= 0 ? 0 : r <= 0 ? 1 : table_[r - 1][n - 1];
+    return n < r              ? 0
+           : r > n            ? nCr(n, n - r)
+           : n == 0 && r == 0 ? 1
+           : n <= 0           ? 0
+           : r <= 0           ? 1
+                              : table_[r - 1][n - 1];
   }
 
   constexpr value_type nHr(value_type n, value_type r) const {

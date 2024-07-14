@@ -53,8 +53,12 @@ class RadixHeap {
  public:
   inline RadixHeap() : last_(0), size_(0) {}
 
-  inline bool empty() const noexcept { return size_ == 0; }
-  inline int size() const noexcept { return size_; }
+  inline bool empty() const noexcept {
+    return size_ == 0;
+  }
+  inline int size() const noexcept {
+    return size_;
+  }
 
   inline void push(value_type val) {
     assert(last_ <= val);

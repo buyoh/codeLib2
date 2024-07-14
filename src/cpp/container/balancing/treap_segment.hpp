@@ -170,8 +170,9 @@ class Treap {
       return node;
     node->updateBefore();
     if (!node->childlen[0])
-      return 0 < index ? _find(node->childlen[1], index - 1)
-                       : index == 0 ? node : node->childlen[0];
+      return 0 < index    ? _find(node->childlen[1], index - 1)
+             : index == 0 ? node
+                          : node->childlen[0];
     if (node->childlen[0]->n_node < index)
       return _find(node->childlen[1], index - node->childlen[0]->n_node - 1);
     if (node->childlen[0]->n_node > index)

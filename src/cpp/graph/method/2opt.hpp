@@ -36,7 +36,9 @@ vector<int> solveTSP2opt(const F<ll>& dist) {
   iota(all(sequence), 0);
 
   ll current_distance = dist(sequence[0], sequence[N - 1]);
-  repeat(i, N - 1) { current_distance += dist(sequence[i], sequence[i + 1]); }
+  repeat(i, N - 1) {
+    current_distance += dist(sequence[i], sequence[i + 1]);
+  }
 
   clog << current_distance << endl;
   repeat(_, 9999) {

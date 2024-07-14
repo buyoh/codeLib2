@@ -107,15 +107,29 @@ struct Sq {
     return data[p.x + p.y * width];
   }
 #else
-  inline T& operator()(int y, int x) { return data[x + y * width]; }
-  inline T& operator()(P p) { return data[p.x + p.y * width]; }
-  inline T operator()(int y, int x) const { return data[x + y * width]; }
-  inline T operator()(P p) const { return data[p.x + p.y * width]; }
+  inline T& operator()(int y, int x) {
+    return data[x + y * width];
+  }
+  inline T& operator()(P p) {
+    return data[p.x + p.y * width];
+  }
+  inline T operator()(int y, int x) const {
+    return data[x + y * width];
+  }
+  inline T operator()(P p) const {
+    return data[p.x + p.y * width];
+  }
 #endif
-  inline T getA(int i) const { return data[i]; }
-  inline T& getAmut(int i) { return data[i]; }
+  inline T getA(int i) const {
+    return data[i];
+  }
+  inline T& getAmut(int i) {
+    return data[i];
+  }
 
-  inline void fill(T e) { std::fill(data.begin(), data.end(), e); }
+  inline void fill(T e) {
+    std::fill(data.begin(), data.end(), e);
+  }
   inline void resize(int w) {
     width = w;
     data.resize(w * w);
@@ -170,15 +184,29 @@ struct Cu {
     return data[p.x + p.y * width + p.z * width * width];
   }
 #else
-  inline T& operator()(int z, int y, int x) { return data[x + y * width + z * width * width]; }
-  inline T operator()(int z, int y, int x) const { return data[x + y * width + z * width * width]; }
-  inline T& operator()(P3 p) { return data[p.x + p.y * width + p.z * width * width]; }
-  inline T operator()(P3 p) const { return data[p.x + p.y * width + p.z * width * width]; }
+  inline T& operator()(int z, int y, int x) {
+    return data[x + y * width + z * width * width];
+  }
+  inline T operator()(int z, int y, int x) const {
+    return data[x + y * width + z * width * width];
+  }
+  inline T& operator()(P3 p) {
+    return data[p.x + p.y * width + p.z * width * width];
+  }
+  inline T operator()(P3 p) const {
+    return data[p.x + p.y * width + p.z * width * width];
+  }
 #endif
-  inline T getA(int i) const { return data[i]; }
-  inline T& getAmut(int i) { return data[i]; }
+  inline T getA(int i) const {
+    return data[i];
+  }
+  inline T& getAmut(int i) {
+    return data[i];
+  }
 
-  inline void fill(T e) { std::fill(data.begin(), data.end(), e); }
+  inline void fill(T e) {
+    std::fill(data.begin(), data.end(), e);
+  }
   inline void resize(int w) {
     width = w;
     data.resize(w * w * w);
