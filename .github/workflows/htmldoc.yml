@@ -23,7 +23,7 @@ jobs:
           submodules: recursive
       - uses: actions/setup-node@v1
         with:
-          node-version: "16"
+          node-version: "20"
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "3.2"
