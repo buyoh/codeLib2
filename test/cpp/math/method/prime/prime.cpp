@@ -23,18 +23,18 @@ void test_is_prime() {
 void test_prime_list() {
   auto it_is_prime = prime_list.begin();
   auto it_prime = prime.begin();
- for (int last = -1; last < 200000;) {
+  for (int last = -1; last < 200000;) {
     const int r_is_prime = *it_is_prime;
     const int r_prime = *it_prime;
     CHKEQ(r_is_prime, r_prime);
     last = r_prime;
     ++it_is_prime;
     ++it_prime;
- }
+  }
 }
 
 void test_prime_division() {
-  for (int x = 100000-2500; x <= 100000+2500; ++x) {
+  for (int x = 100000 - 2500; x <= 100000 + 2500; ++x) {
     auto r_is_prime = prime_list.division(x);
     auto r_prime = prime.division(x);
     CHKEQ(r_is_prime.size(), r_prime.size());

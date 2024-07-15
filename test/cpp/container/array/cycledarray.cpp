@@ -10,7 +10,9 @@ int check1(vector<int> v, int mid, int term) {
   CycledVector<int> u2(v2);
   u1.set_loop(mid, term);
 
-  repeat(i, int(v.size())) { CHKEQ(v1[i], u1[i]); }
+  repeat(i, int(v.size())) {
+    CHKEQ(v1[i], u1[i]);
+  }
 
   {
     ll total = 0;

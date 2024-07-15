@@ -8,7 +8,9 @@ vector<int> dat;
 
 void check(int b, int e, int actual) {
   vector<int> bucket(kColor);
-  iterate(i, b, e) { bucket[dat[i]] = 1; }
+  iterate(i, b, e) {
+    bucket[dat[i]] = 1;
+  }
   int expected = 0;
   for (auto e : bucket)
     expected += e;

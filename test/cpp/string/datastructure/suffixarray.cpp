@@ -206,7 +206,9 @@ void check_build() {
   const int N = 100;
   repeat(counter, 10000) {
     string str;
-    repeat(i, N) { str.push_back(Rand::i('a', 'c')); }
+    repeat(i, N) {
+      str.push_back(Rand::i('a', 'c'));
+    }
     Local::SuffixArray l1(str);
     Local::SuffixArray l2(str);
     SuffixArray t(str);
