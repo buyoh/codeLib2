@@ -21,10 +21,18 @@ using namespace std;
 #include "src/cpp/grid/datastructure/euclid.hpp"
 using ll = long long;
 mt19937_64 randdev(8901016);
-template<typename T, typename Random = decltype(randdev), typename enable_if<is_integral<T>::value>::type* = nullptr>
-inline T rand(T l, T h, Random& rand = randdev) { return uniform_int_distribution<T>(l, h)(rand); }
-template<typename T, typename Random = decltype(randdev), typename enable_if<is_floating_point<T>::value>::type* = nullptr>
-inline T rand(T l, T h, Random& rand = randdev) { return uniform_real_distribution<T>(l, h)(rand); }
+template <typename T,
+          typename Random = decltype(randdev),
+          typename enable_if<is_integral<T>::value>::type* = nullptr>
+inline T rand(T l, T h, Random& rand = randdev) {
+  return uniform_int_distribution<T>(l, h)(rand);
+}
+template <typename T,
+          typename Random = decltype(randdev),
+          typename enable_if<is_floating_point<T>::value>::type* = nullptr>
+inline T rand(T l, T h, Random& rand = randdev) {
+  return uniform_real_distribution<T>(l, h)(rand);
+}
 template <typename T>
 // ```
 // %verified
