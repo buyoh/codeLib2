@@ -13,9 +13,19 @@
 //
 // %require
 // ```
+#include <algorithm>
+#include <numeric>
+#include <random>
 #include <vector>
 using namespace std;
 #include "src/cpp/grid/datastructure/euclid.hpp"
+using ll = long long;
+mt19937_64 randdev(8901016);
+template<typename T, typename Random = decltype(randdev), typename enable_if<is_integral<T>::value>::type* = nullptr>
+inline T rand(T l, T h, Random& rand = randdev) { return uniform_int_distribution<T>(l, h)(rand); }
+template<typename T, typename Random = decltype(randdev), typename enable_if<is_floating_point<T>::value>::type* = nullptr>
+inline T rand(T l, T h, Random& rand = randdev) { return uniform_real_distribution<T>(l, h)(rand); }
+template <typename T>
 // ```
 // %verified
 // yukicoder5007
@@ -26,6 +36,7 @@ using namespace std;
 // %=END DOC
 // %=BEGIN CODE
 
+ll swap2opt(const F<ll>& dist, int p, int q, int pb, int qa);
 ll swap2opt(const F<ll>& dist, int p, int q, int pb, int qa) {
   return dist(pb, q) + dist(p, qa) - dist(pb, p) - dist(q, qa);
 }
@@ -33,15 +44,14 @@ ll swap2opt(const F<ll>& dist, int p, int q, int pb, int qa) {
 vector<int> solveTSP2opt(const F<ll>& dist) {
   const int N = dist.width;
   vector<int> sequence(N);
-  iota(all(sequence), 0);
+  iota(sequence.begin(), sequence.end(), 0);
 
   ll current_distance = dist(sequence[0], sequence[N - 1]);
-  repeat(i, N - 1) {
+  for (int i = 0; i < N - 1; ++i) {
     current_distance += dist(sequence[i], sequence[i + 1]);
   }
 
-  clog << current_distance << endl;
-  repeat(_, 9999) {
+  for (int _ = 0; _ < 9999; ++_) {
     // repeat(_, 100) {
     // do not change startp
     int a = rand(1, N - 2);

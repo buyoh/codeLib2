@@ -16,6 +16,7 @@
 #include <cmath>
 #include <ostream>
 #include <iomanip>
+#include <iostream>
 #include <vector>
 #include "src/cpp/grid/datastructure/euclid.hpp"
 using namespace std;

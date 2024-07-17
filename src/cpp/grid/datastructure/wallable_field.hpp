@@ -11,6 +11,7 @@
 //
 // %require
 // ```
+#include <cassert>
 #include "src/cpp/grid/datastructure/euclid.hpp"
 using namespace std;
 // ```
