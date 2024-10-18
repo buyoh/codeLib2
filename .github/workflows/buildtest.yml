@@ -12,6 +12,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+      with:
+        submodules: recursive
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: "3.2"
