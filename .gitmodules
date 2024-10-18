@@ -4,3 +4,6 @@
 [submodule "tools/codeLib2-htmldoc"]
 	path = tools/codeLib2-htmldoc
 	url = https://github.com/buyoh/codeLib2-htmldoc.git
+[submodule "external/codeLib2-rust"]
+	path = external/codeLib2-rust
+	url = https://github.com/buyoh/codeLib2-rust.git
