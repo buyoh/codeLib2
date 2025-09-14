@@ -237,6 +237,13 @@ fn gen_2d_rangei(height: usize, width: usize) -> impl Iterator<Item = (i32, i32)
     (0..(height as i32)).flat_map(move |a| (0..(width as i32)).map(move |b| (a, b)))
 }
 
+const K_ADJACENTS: [(i32, i32); 4] = [
+    (-1, 0), // 上
+    (0, -1), // 左
+    (1, 0),  // 下
+    (0, 1),  // 右
+];
+
 fn gen_adjacentsi(center_yx: (i32, i32)) -> impl Iterator<Item = (i32, i32)> {
     K_ADJACENTS
         .iter()
