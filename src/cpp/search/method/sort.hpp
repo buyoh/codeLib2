@@ -27,6 +27,10 @@ using namespace std;
 
 // ソートしてi番目の値は 元々idx[i]番目の値
 // 元々i番目の値は ソートするとidxr[i]番目の値
+// [3 1 2] に対して、
+// - ソート後の配列は [1 2 3] で、
+// - idx = [1 2 0] となる。ソートして0番目の値はもともと1番目の値。
+// - idxr = [2 0 1] となる。もともと0番目の値はソートすると2番目の値。
 template <typename ITER>
 void sortedIndex(const ITER begin, const ITER end, vector<int>& idx, vector<int>& idxr) {
   size_t n = end - begin;
