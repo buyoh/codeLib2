@@ -37,9 +37,6 @@ jobs:
       - name: unshallow
         run: |
           git fetch --unshallow ||:
-      - name: prepare codeLib2-htmldoc
-        run: |
-          cd tools/codeLib2-htmldoc && yarn
       - name: prepare codeLib2-tools
         run: |
           (cd tools/codeLib2-tools && cargo build --release --bins)

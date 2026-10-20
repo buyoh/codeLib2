@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -euo pipefail
 
 # Check if the pwd is the root of the repository
 [ -d .git ]
