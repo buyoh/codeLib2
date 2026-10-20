@@ -18,8 +18,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
         with:
+          persist-credentials: false
           ref: master
           submodules: recursive
       - uses: actions/setup-node@v1
@@ -53,7 +54,7 @@ jobs:
         run: |
           # scripts in the doc branch may be obsoleted
           bash /tmp/workflows/htmldoc_commit.sh
-      - uses: ad-m/github-push-action@master
+      - uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: doc
