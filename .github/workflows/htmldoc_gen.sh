@@ -13,10 +13,13 @@ DOCS_WORKDIR=/tmp/docs
 mkdir -p "$DOCS_WORKDIR"
 tools/codeLib2-tools/target/release/gather \
   --basepath "$CODELIB_PATH" \
+  --strict \
   --output-path-article tools/codeLib2-htmldoc/public/data/codelib_full.json
 
 pushd tools/codeLib2-htmldoc
 pnpm install --frozen-lockfile
+pnpm test
+pnpm validate-data
 pnpm build
 ruby tools/generate_release_directory.rb --output-path "$DOCS_WORKDIR"
 popd

@@ -36,6 +36,7 @@ jobs:
       #     ruby tools/autotest.rb -j 2
       - name: test codeLib2-tools
         run: |
+          (cd tools/codeLib2-tools && cargo test)
           ruby tools/codeLib2-tools/tools/test/run.rb
       - name: run autotest
         run: |

@@ -9,6 +9,7 @@ CODELIB_PATH=$PWD
 
 tools/codeLib2-tools/target/release/gather \
   --basepath "$CODELIB_PATH" \
+  --strict \
   --output-path-article /tmp/codelib_full.json \
   --output-path-collection /tmp/codelib_collection.json
 
