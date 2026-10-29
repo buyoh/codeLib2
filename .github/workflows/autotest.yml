@@ -22,7 +22,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: install tools
         run: |
-          sudo apt install g++ clang
+          sudo apt install g++ clang clang-format
       - name: prepare codeLib2-tools
         run: |
           pushd tools/codeLib2-tools
@@ -34,10 +34,18 @@ jobs:
       # - name: autotest
       #   run: |
       #     ruby tools/autotest.rb -j 2
+      - name: test codeLib2-tools
+        run: |
+          ruby tools/codeLib2-tools/tools/test/run.rb
       - name: run autotest
         run: |
           bash .github/workflows/autotest_run.sh
-          cat /tmp/autotest.md >> $GITHUB_STEP_SUMMARY
+      - name: summary
+        if: always()
+        run: |
+          if [ -f /tmp/autotest.md ]; then cat /tmp/autotest.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: check autotest result
+        run: |
           # exit with 1 if failed
           ruby tools/codeLib2-tools/tools/dump_result_to_markdown.rb \
             --result-path /tmp/autotest.json \

@@ -40,7 +40,7 @@ jobs:
       run: |
         bash ./.github/workflows/refactor_run.sh
         git add .
-        git commit -m 'refactor by Github Actions' ||:
+        git diff --cached --quiet || git commit -m 'refactor by Github Actions'
     - uses: ad-m/github-push-action@v0.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

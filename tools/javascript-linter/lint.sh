@@ -1,12 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+# Lint src/javascript without moving it.
+# Usage: lint.sh [eslint options...]   (e.g. lint.sh --fix)
 
-cd $(dirname $0)
+set -euo pipefail
 
-TARGET_SRC_DIR=../../src
+LINTER_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$LINTER_DIR/../.." && pwd)"
 
-yarn
+if [ ! -d "$LINTER_DIR/node_modules" ]; then
+  (cd "$LINTER_DIR" && yarn install --frozen-lockfile)
+fi
 
-mkdir -p target_src
-mv $TARGET_SRC_DIR/javascript ./target_src/
-npx eslint --fix .
-mv ./target_src/javascript $TARGET_SRC_DIR
+# With -c, eslint resolves file patterns from the current directory
+cd "$ROOT_DIR"
+"$LINTER_DIR/node_modules/.bin/eslint" -c "$LINTER_DIR/eslint.config.mjs" "$@" src/javascript

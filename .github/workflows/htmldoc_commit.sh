@@ -5,13 +5,13 @@ set -euo pipefail
 # Check if the pwd is the root of the repository
 [ -d .git ]
 
-CODELIB_PATH=`pwd`
 DOCS_WORKDIR=/tmp/docs
 
 # Commit the generated documentation
 
-rm -rf ./docs ||:
-mv $DOCS_WORKDIR ./
-rm $(find ./docs -name .gitignore) ||:
+rm -rf ./docs
+mv "$DOCS_WORKDIR" ./
+find ./docs -name .gitignore -delete
 git add docs
-git commit -m 'update htmldoc by Github Actions' ||:
+# Commit only if there are changes
+git diff --cached --quiet || git commit -m 'update htmldoc by Github Actions'
