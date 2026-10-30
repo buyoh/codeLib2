@@ -6,25 +6,38 @@ on:
     - master
     - develop
   pull_request:
-    tags:
-    - review
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refactor-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
 
 jobs:
   build:
+    # Pull requests from forks and dependabot get a read-only token, which cannot push
+    if: >-
+      github.event_name != 'pull_request' || (
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.event.pull_request.user.login != 'dependabot[bot]'
+      )
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     
     steps:
+    # Commit on the branch itself, not on the merge ref of the pull request.
     - uses: actions/checkout@v6
       with:
         persist-credentials: false
         submodules: recursive
-    - uses: actions/setup-node@v1
-      with:
-        node-version: "20"
-    - uses: actions/setup-ruby@v1
+        ref: ${{ github.head_ref || github.ref_name }}
+    - uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
       with:
         ruby-version: "3.2"
-    - uses: dtolnay/rust-toolchain@stable
+    - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+      with:
+        toolchain: stable
     - name: install tools
       run: |
         sudo apt update
@@ -41,7 +54,7 @@ jobs:
         bash ./.github/workflows/refactor_run.sh
         git add .
         git diff --cached --quiet || git commit -m 'refactor by Github Actions'
-    - uses: ad-m/github-push-action@v1.3.0
+    - uses: ad-m/github-push-action@881a6320fdb16eb5318c5054f31c218aec2b324c # v1.3.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.head_ref || github.ref_name }}

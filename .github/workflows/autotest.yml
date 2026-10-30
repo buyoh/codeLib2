@@ -7,6 +7,9 @@ on:
     - develop
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -16,12 +19,15 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
         with:
           ruby-version: "3.2"
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
       - name: install tools
         run: |
+          sudo apt update
           sudo apt install g++ clang clang-format
       - name: prepare codeLib2-tools
         run: |
