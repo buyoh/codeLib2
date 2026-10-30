@@ -26,8 +26,6 @@ using namespace std;
 //
 // %words
 // vertexcover
-// %require
-// cpp/graph/datastructure/graph.hpp
 //
 // %references
 //

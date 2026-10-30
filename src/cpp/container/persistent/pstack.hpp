@@ -29,8 +29,6 @@ using namespace std;
 // https://www.slideshare.net/qnighy/re-15443018
 // %words
 // persistent,stack,eizoku
-// %require
-//
 // %=END DOC
 // %=BEGIN CODE
 

@@ -33,7 +33,7 @@ using namespace std;
 // http://tubo28.me/algorithm/dinic/
 // http://topcoder.g.hatena.ne.jp/Mi_Sawa/20140311
 //
-// %tag
+// %tags
 // wip
 // %=END DOC
 // %=BEGIN CODE

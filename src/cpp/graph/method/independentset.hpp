@@ -27,7 +27,7 @@
 //
 // %references
 // FV Fomin, Exact Exponential Algorithms, Springer.
-// %tag
+// %tags
 // wip
 // %=END DOC
 // %=BEGIN CODE

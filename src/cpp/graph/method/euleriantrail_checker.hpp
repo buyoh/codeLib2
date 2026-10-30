@@ -23,8 +23,8 @@ using namespace std;
 //
 // %words
 // euler
-// %tag
-// wiip
+// %tags
+// wip
 // %=END DOC
 // %=BEGIN CODE
 

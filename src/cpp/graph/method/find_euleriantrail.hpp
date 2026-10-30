@@ -29,7 +29,7 @@ using namespace std;
 // http://shonen9th.blog.fc2.com/blog-entry-147.html
 // %words
 // euler
-// %tag
+// %tags
 // wip, unverified
 // %=END DOC
 // %=BEGIN CODE

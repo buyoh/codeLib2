@@ -28,7 +28,7 @@ using namespace std;
 //
 // %words
 // persistent,stack,eizoku
-// %tag
+// %tags
 // wip
 //
 // %=END DOC

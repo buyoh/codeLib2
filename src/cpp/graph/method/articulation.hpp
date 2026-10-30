@@ -24,7 +24,7 @@ using namespace std;
 // %references
 // %words
 // articulation
-// %tag
+// %tags
 // unverified
 // %=END DOC
 // %=BEGIN CODE

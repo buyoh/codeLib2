@@ -25,8 +25,6 @@ using namespace std;
 //
 // %words
 // grid, field, point
-// %require
-//
 // %=END DOC
 // %=BEGIN CODE
 

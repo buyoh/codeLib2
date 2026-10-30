@@ -1,3 +1,21 @@
+// %=BEGIN DOC
+// %title
+// 競技プログラミング用テンプレート
+//
+// %overview
+// 標準入力の読み取りと，よく使う関数をまとめたもの．
+//
+// %usage
+// %verified
+// %references
+// %words
+// kyopuro
+// %require
+//
+// %tags
+// nolint
+// %=END DOC
+// %=BEGIN CODE
 package main
 
 import (
@@ -42,4 +60,4 @@ func nextFloat() float64 {
 func Max(x, y int) int { if x > y { return x }; return y }
 func Min(x, y int) int { if x < y { return x }; return y }
 func Abs(x int) int { if x > 0 { return x }; return -x }
-
+// %=END CODE
