@@ -7,3 +7,7 @@
 [submodule "external/codeLib2-rust"]
 	path = external/codeLib2-rust
 	url = https://github.com/buyoh/codeLib2-rust.git
+[submodule "docs-ai"]
+	path = docs-ai
+	url = git@github.com:buyoh/docs-ai.git
+	update = none
