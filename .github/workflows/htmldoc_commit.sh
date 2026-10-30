@@ -11,7 +11,6 @@ DOCS_WORKDIR=/tmp/docs
 
 rm -rf ./docs
 mv "$DOCS_WORKDIR" ./
-find ./docs -name .gitignore -delete
 git add docs
 # Commit only if there are changes
 git diff --cached --quiet || git commit -m 'update htmldoc by Github Actions'
