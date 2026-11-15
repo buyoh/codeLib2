@@ -201,7 +201,10 @@ int main() {
   repeat(_, 3) {
     for (int key_range : {5, 1000}) {
       test_random<AffineSum>(
-          3000, key_range, [] { return AffineSumValue{Rand::i(0LL, AffineSum::MD - 1), 1}; },
+          3000, key_range,
+          [] {
+            return AffineSumValue{Rand::i(0LL, AffineSum::MD - 1), 1};
+          },
           [] {
             return AffineSumOperator{Rand::i(0LL, AffineSum::MD - 1),
                                      Rand::i(0LL, AffineSum::MD - 1)};

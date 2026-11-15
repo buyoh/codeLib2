@@ -210,7 +210,10 @@ int main() {
   test_apply_then_set();
   test_impl_policies();
   test_random<AffineSum>(
-      10000, [] { return AffineSumValue{Rand::i(0LL, AffineSum::MD - 1), 1}; },
+      10000,
+      [] {
+        return AffineSumValue{Rand::i(0LL, AffineSum::MD - 1), 1};
+      },
       [] {
         return AffineSumOperator{Rand::i(0LL, AffineSum::MD - 1), Rand::i(0LL, AffineSum::MD - 1)};
       });

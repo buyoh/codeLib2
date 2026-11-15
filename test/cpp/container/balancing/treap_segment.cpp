@@ -238,7 +238,10 @@ int main() {
   test_impl_policies();
   repeat(_, 3) {
     test_random<AffineSum>(
-        3000, [] { return AffineSumValue{Rand::i(0LL, AffineSum::MD - 1), 1}; },
+        3000,
+        [] {
+          return AffineSumValue{Rand::i(0LL, AffineSum::MD - 1), 1};
+        },
         [] {
           return AffineSumOperator{Rand::i(0LL, AffineSum::MD - 1),
                                    Rand::i(0LL, AffineSum::MD - 1)};
