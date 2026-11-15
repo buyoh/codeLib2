@@ -14,6 +14,7 @@
 // 代わりに set / get / contains を使う．value_at も値を返す．
 // key_at / value_at は 0 <= i < size() が事前条件（assert）．
 // Key には operator< のみを要求する．
+// 同じキーを複数持つ multimap 版は rbtree_multiset_monoid.hpp．
 //
 // Policy P は LazyMonoidPolicy<value_type, operator_type>（monoid_policy.hpp）を継承する．
 // MonoidPolicy のみでは使えない．
