@@ -2,35 +2,33 @@
 #define SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__
 // %=BEGIN DOC
 // %title
-// Treap(set)
+// Treap(map)
 //
 // %overview
-// Treapとは，次を満たす確率的平衝二分探索木である．
-// - keyについてみると，木は二分探索木になっている．
-// - priority(randomized)についてみると，木はHeapになっている．
-//
-// 実装したTreapは，map(set)のような機能を持つだけ．
-// split/mergeも出来ない．
-//
-//
-// keyはユニーク＆これ以上Nodeを追加しないという条件を加えれば区間クエリは書けそう．
-// 例えば『キーがx以下のNodeにyを加算する』は，treap[x]とtreap[x].childlen[0]に対してLazy実装で実現できる．
+// Treap による順序付き map（キーは一意）．
+// Treap は，キーについて二分探索木であり，乱数で決めた優先度について heap である確率的平衡二分木．
+// 各操作の期待計算量は O(log N)．
+// 乱数のシードは固定（デバッグ時に再現できるように）．固定シードを狙った入力が心配なら書き換える．
+// Key には operator< のみを要求する．
+// 返した参照・ポインタは，その要素が削除されるまで有効．
+// 二分探索・順位・区間演算が必要なら rbtree_set.hpp / rbtree_set_monoid.hpp を使う．
 //
 // %usage
-// value_t& Treap::operator[](key_t key)
-// ; keyに対応するvalの参照を得る．無いなら作る．
-// unique_ptr<TreapNode>& Treap::find(key_t key)
-// ; keyに対応するvalのスマートポインタの参照を得る．
-// ; keyに対応するvalが存在しないなら，空のスマートポインタの参照を得る．
-// void Treap::erase(key_t key)
-// ; keyを削除する．
+// TreapSet<Key, Value>()
+// int size() const
+// bool empty() const
+// Value& operator[](const Key& k)
+//   ; k に対応する値の参照．無ければ Value() で作る
+// Value* find(const Key& k)
+//   ; 無ければ nullptr（const 版あり）
+// bool erase(const Key& k)
+//   ; 削除したら true
 //
 // %require
 // ```
 #include <memory>
-#include <algorithm>
 #include <random>
-#include <functional>
+#include <utility>
 using namespace std;
 // ```
 // %verified
@@ -38,111 +36,125 @@ using namespace std;
 // %references
 // https://www.slideshare.net/iwiwi/2-12188757
 // http://www.prefield.com/algorithm/container/treap.html
+// https://www.lambdanote.com/products/opendatastructures
+// %words
+// treap, map, set
 // %=END DOC
 // %=BEGIN CODE
 
-class Treap {
- public:
-  using key_type = int;
-  using value_type = long long;
-
- private:
-  using randevice_type = mt19937;
-
-  static randevice_type rnd;
-
- private:
+template <class Key, class Value>
+class TreapSet {
   struct Node {
-    key_type key;
-    value_type value;
-    unique_ptr<Node> childlen[2];
-    randevice_type::result_type priority;
-
-    Node(const key_type& k = key_type(), const value_type& v = value_type())
-        : key(k), value(v), priority(rnd() | 1) {}
-    Node(key_type k, value_type v, randevice_type::result_type p) : key(k), value(v), priority(p) {}
-
-    // inline Node& operator[](size_t i) { return *childlen[i & 1]; }
-    // inline bool has(size_t i) { return (bool)childlen[i & 1]; }
+    Key key;
+    Value value;
+    unique_ptr<Node> ch[2];
+    unsigned pri;  // 大きいほど根に近い
+    Node(const Key& k, unsigned p) : key(k), value(), pri(p) {}
   };
 
- private:
-  unique_ptr<Node> root;
+  unique_ptr<Node> root_;
+  int size_;
+
+  static mt19937& rng() {
+    static mt19937 r(1341398u);  // デバッグのためシードは固定
+    return r;
+  }
+
+  // base->ch[i] が base の位置に来るように回転する
+  static void rotate_(unique_ptr<Node>& base, int i) {
+    unique_ptr<Node> c = move(base->ch[i]);
+    base->ch[i] = move(c->ch[i ^ 1]);
+    c->ch[i ^ 1] = move(base);
+    base = move(c);
+  }
+
+  static unique_ptr<Node> merge_(unique_ptr<Node> a, unique_ptr<Node> b) {
+    if (!a)
+      return b;
+    if (!b)
+      return a;
+    if (a->pri > b->pri) {
+      a->ch[1] = merge_(move(a->ch[1]), move(b));
+      return a;
+    }
+    b->ch[0] = merge_(move(a), move(b->ch[0]));
+    return b;
+  }
+
+  // k を持つノードを返す．無ければ作る
+  Node* touch_(unique_ptr<Node>& node, const Key& k) {
+    if (!node) {
+      node.reset(new Node(k, rng()()));
+      ++size_;
+      return node.get();
+    }
+    if (!(k < node->key) && !(node->key < k))
+      return node.get();
+    int i = node->key < k ? 1 : 0;
+    Node* res = touch_(node->ch[i], k);
+    if (node->ch[i]->pri > node->pri)
+      rotate_(node, i);
+    return res;
+  }
+
+  Node* find_(const Key& k) const {
+    Node* p = root_.get();
+    while (p) {
+      if (k < p->key)
+        p = p->ch[0].get();
+      else if (p->key < k)
+        p = p->ch[1].get();
+      else
+        return p;
+    }
+    return nullptr;
+  }
 
  public:
-  Treap() {}
-  Treap(Node* p) : root(p) {}
-
- private:
-  // base.childlen[swap_for]がbaseの位置に来るように回転させる．
-  static void _rotate(unique_ptr<Node>& base, size_t swap_for) {
-    swap_for &= 1;
-    unique_ptr<Node> swf = move(base->childlen[swap_for]);
-    base->childlen[swap_for] = move(swf->childlen[swap_for ^ 1]);
-    swf->childlen[swap_for ^ 1] = move(base);
-    base = move(swf);
-  }
-
-  // thisをrootとする部分木にkをkeyとするNodeが無ければ作る，あれば返す．
-  static inline Node& _touch(unique_ptr<Node>& node, key_type k) {
-    if (k == node->key)
-      return *node;
-    size_t i = node->key < k;
-    if (node->childlen[i]) {
-      auto& r = _touch(node->childlen[i], k);
-      if (node->priority > node->childlen[i]->priority)
-        _rotate(node, i);
-      return r;
-    } else {
-      node->childlen[i].reset(new Node(k));
-      return *(node->childlen[i]);
+  TreapSet() : size_(0) {}
+  TreapSet(const TreapSet&) = delete;
+  TreapSet& operator=(const TreapSet&) = delete;
+  TreapSet(TreapSet&& o) : root_(move(o.root_)), size_(o.size_) { o.size_ = 0; }
+  TreapSet& operator=(TreapSet&& o) {
+    if (this != &o) {
+      root_ = move(o.root_);
+      size_ = o.size_;
+      o.size_ = 0;
     }
+    return *this;
   }
 
-  // keyが等しいnodeを探す(const)
-  static const unique_ptr<Node>& _find(const unique_ptr<Node>& ptr, key_type key) {
-    return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key);
+  int size() const { return size_; }
+  bool empty() const { return size_ == 0; }
+
+  Value& operator[](const Key& k) { return touch_(root_, k)->value; }
+
+  Value* find(const Key& k) {
+    Node* p = find_(k);
+    return p ? &p->value : nullptr;
   }
-  // keyが等しいnodeを探す
-  static unique_ptr<Node>& _find(unique_ptr<Node>& ptr, key_type key) {
-    return (!ptr || ptr->key == key) ? ptr : _find(ptr->childlen[ptr->key < key], key);
+  const Value* find(const Key& k) const {
+    const Node* p = find_(k);
+    return p ? &p->value : nullptr;
   }
 
-  // ptrを削除する．
-  static void _erase(unique_ptr<Node>& ptr) {
-    if (!ptr->childlen[0] && !ptr->childlen[1]) {
-      ptr.release();
-    } else {
-      bool i = ptr->childlen[0]   ? 0
-               : ptr->childlen[1] ? 1
-                                  : ptr->childlen[0]->priority > ptr->childlen[1]->priority;
-      _rotate(ptr, i);
-      _erase(ptr->childlen[i ^ 1]);
+  bool erase(const Key& k) {
+    unique_ptr<Node>* p = &root_;
+    while (*p) {
+      if (k < (*p)->key) {
+        p = &(*p)->ch[0];
+      } else if ((*p)->key < k) {
+        p = &(*p)->ch[1];
+      } else {
+        unique_ptr<Node> old = move(*p);
+        *p = merge_(move(old->ch[0]), move(old->ch[1]));
+        --size_;
+        return true;
+      }
     }
-  }
-
- public:
-  // map[]と同じ
-  value_type& operator[](key_type key) {
-    if (!(root)) {
-      root.reset(new Node());
-      return root->value;
-    } else {
-      return _touch(root, key).value;
-    }
-  }
-
-  // keyが等しいnodeを探す
-  // 存在しないなら空のunique_ptrの参照が返る
-  inline const unique_ptr<Node>& find(key_type key) const { return _find(root, key); }
-
-  // keyを持つnodeを削除する
-  inline void erase(key_type key) {
-    unique_ptr<Node>& node = _find(root, key);
-    if (node)
-      _erase(node);
+    return false;
   }
 };
-Treap::randevice_type Treap::rnd = randevice_type();
+
 // %=END CODE
 #endif  // SRC_CPP_CONTAINER_BALANCING_TREAP_SET_HPP__
